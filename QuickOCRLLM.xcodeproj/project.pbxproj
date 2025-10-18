@@ -1,0 +1,102 @@
+// !$*UTF8*$!
+{
+  archiveVersion = 1;
+  classes = {};
+  objectVersion = 60;
+  objects = {
+
+/* Begin PBXBuildFile section */
+    100000010000000000000001 /* QuickOCRLLMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000010000000000000001 /* QuickOCRLLMApp.swift */; };
+    100000010000000000000002 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000010000000000000002 /* AppViewModel.swift */; };
+    100000010000000000000003 /* MenuBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000010000000000000003 /* MenuBarController.swift */; };
+    100000010000000000000004 /* HotkeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000010000000000000004 /* HotkeyManager.swift */; };
+    100000010000000000000005 /* SelectionOverlayWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000010000000000000005 /* SelectionOverlayWindow.swift */; };
+    100000010000000000000007 /* OCRProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000010000000000000007 /* OCRProvider.swift */; };
+    100000010000000000000008 /* OpenAIProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000010000000000000008 /* OpenAIProvider.swift */; };
+    100000010000000000000009 /* GeminiProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000010000000000000009 /* GeminiProvider.swift */; };
+    10000001000000000000000A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000001000000000000000A /* SettingsView.swift */; };
+    10000001000000000000000B /* HistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000001000000000000000B /* HistoryStore.swift */; };
+    10000001000000000000000C /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000001000000000000000C /* Keychain.swift */; };
+    10000001000000000000000D /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000001000000000000000D /* Notifications.swift */; };
+    10000001000000000000000E /* Clipboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000001000000000000000E /* Clipboard.swift */; };
+    10000001000000000000000F /* ImageCompression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000001000000000000000F /* ImageCompression.swift */; };
+    100000010000000000000010 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000010000000000000010 /* Config.swift */; };
+    100000010000000000000011 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 300000010000000000000001 /* Assets.xcassets */; };
+    100000010000000000000012 /* Permissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000010000000000000011 /* Permissions.swift */; };
+    100000010000000000000013 /* SettingsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000010000000000000012 /* SettingsWindow.swift */; };
+    100000010000000000000014 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000010000000000000013 /* HistoryView.swift */; };
+    100000010000000000000015 /* HistoryWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000010000000000000014 /* HistoryWindow.swift */; };
+    100000010000000000000016 /* NativeScreencapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000010000000000000015 /* NativeScreencapture.swift */; };
+    100000010000000000000017 /* NSImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000010000000000000016 /* NSImage+Resize.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+    000000000000000000000001 /* QuickOCRLLM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickOCRLLM.app; sourceTree = BUILT_PRODUCTS_DIR; };
+    200000010000000000000001 /* QuickOCRLLMApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QuickOCRLLMApp.swift; path = Sources/App/QuickOCRLLMApp.swift; sourceTree = SOURCE_ROOT; };
+    200000010000000000000002 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppViewModel.swift; path = Sources/App/AppViewModel.swift; sourceTree = SOURCE_ROOT; };
+    200000010000000000000003 /* MenuBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuBarController.swift; path = Sources/MenuBar/MenuBarController.swift; sourceTree = SOURCE_ROOT; };
+    200000010000000000000004 /* HotkeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HotkeyManager.swift; path = Sources/Hotkey/HotkeyManager.swift; sourceTree = SOURCE_ROOT; };
+    200000010000000000000005 /* SelectionOverlayWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SelectionOverlayWindow.swift; path = Sources/Capture/SelectionOverlayWindow.swift; sourceTree = SOURCE_ROOT; };
+    200000010000000000000007 /* OCRProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OCRProvider.swift; path = Sources/OCR/OCRProvider.swift; sourceTree = SOURCE_ROOT; };
+    200000010000000000000008 /* OpenAIProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OpenAIProvider.swift; path = Sources/OCR/OpenAIProvider.swift; sourceTree = SOURCE_ROOT; };
+    200000010000000000000009 /* GeminiProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GeminiProvider.swift; path = Sources/OCR/GeminiProvider.swift; sourceTree = SOURCE_ROOT; };
+    20000001000000000000000A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsView.swift; path = Sources/Settings/SettingsView.swift; sourceTree = SOURCE_ROOT; };
+    20000001000000000000000B /* HistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HistoryStore.swift; path = Sources/History/HistoryStore.swift; sourceTree = SOURCE_ROOT; };
+    20000001000000000000000C /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Keychain.swift; path = Sources/Utils/Keychain.swift; sourceTree = SOURCE_ROOT; };
+    20000001000000000000000D /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Sources/Utils/Notifications.swift; sourceTree = SOURCE_ROOT; };
+    20000001000000000000000E /* Clipboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Clipboard.swift; path = Sources/Utils/Clipboard.swift; sourceTree = SOURCE_ROOT; };
+    20000001000000000000000F /* ImageCompression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageCompression.swift; path = Sources/Utils/ImageCompression.swift; sourceTree = SOURCE_ROOT; };
+    200000010000000000000010 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Config.swift; path = Sources/Utils/Config.swift; sourceTree = SOURCE_ROOT; };
+    300000010000000000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+    300000010000000000000002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+    300000010000000000000003 /* QuickOCRLLM.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickOCRLLM.entitlements; sourceTree = "<group>"; };
+    200000010000000000000011 /* Permissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Permissions.swift; path = Sources/Utils/Permissions.swift; sourceTree = SOURCE_ROOT; };
+    200000010000000000000012 /* SettingsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SettingsWindow.swift; path = Sources/Settings/SettingsWindow.swift; sourceTree = SOURCE_ROOT; };
+    200000010000000000000013 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HistoryView.swift; path = Sources/History/HistoryView.swift; sourceTree = SOURCE_ROOT; };
+    200000010000000000000014 /* HistoryWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HistoryWindow.swift; path = Sources/History/HistoryWindow.swift; sourceTree = SOURCE_ROOT; };
+    200000010000000000000015 /* NativeScreencapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NativeScreencapture.swift; path = Sources/Capture/NativeScreencapture.swift; sourceTree = SOURCE_ROOT; };
+    200000010000000000000016 /* NSImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "NSImage+Resize.swift"; path = Sources/Utils/NSImage+Resize.swift; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+    400000010000000000000001 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = ( ); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+    500000010000000000000001 /* Products */ = {isa = PBXGroup; children = ( 000000000000000000000001 /* QuickOCRLLM.app */, ); name = Products; sourceTree = "<group>"; };
+    500000010000000000000002 /* Resources */ = {isa = PBXGroup; children = ( 300000010000000000000001 /* Assets.xcassets */, 300000010000000000000003 /* QuickOCRLLM.entitlements */, 300000010000000000000002 /* Info.plist */, ); name = Resources; sourceTree = "<group>"; };
+    500000010000000000000003 = {isa = PBXGroup; children = ( 600000010000000000000001 /* QuickOCRLLM */, 500000010000000000000001 /* Products */ ); sourceTree = "<group>"; };
+    600000010000000000000001 /* QuickOCRLLM */ = {isa = PBXGroup; children = ( 700000010000000000000001 /* Sources */, 500000010000000000000002 /* Resources */ ); path = QuickOCRLLM; sourceTree = SOURCE_ROOT; };
+    700000010000000000000001 /* Sources */ = {isa = PBXGroup; children = ( 200000010000000000000001 /* QuickOCRLLMApp.swift */, 200000010000000000000002 /* AppViewModel.swift */, 200000010000000000000003 /* MenuBarController.swift */, 200000010000000000000004 /* HotkeyManager.swift */, 200000010000000000000005 /* SelectionOverlayWindow.swift */, 200000010000000000000015 /* NativeScreencapture.swift */, 200000010000000000000007 /* OCRProvider.swift */, 200000010000000000000008 /* OpenAIProvider.swift */, 200000010000000000000009 /* GeminiProvider.swift */, 20000001000000000000000A /* SettingsView.swift */, 200000010000000000000012 /* SettingsWindow.swift */, 20000001000000000000000B /* HistoryStore.swift */, 200000010000000000000013 /* HistoryView.swift */, 200000010000000000000014 /* HistoryWindow.swift */, 200000010000000000000016 /* NSImage+Resize.swift */, 200000010000000000000010 /* Config.swift */, 20000001000000000000000C /* Keychain.swift */, 20000001000000000000000D /* Notifications.swift */, 20000001000000000000000E /* Clipboard.swift */, 20000001000000000000000F /* ImageCompression.swift */, 200000010000000000000011 /* Permissions.swift */, ); name = Sources; sourceTree = SOURCE_ROOT; };
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+    800000010000000000000001 /* QuickOCRLLM */ = {isa = PBXNativeTarget; buildConfigurationList = 900000010000000000000002 /* Build configuration list for PBXNativeTarget "QuickOCRLLM" */; buildPhases = ( A00000010000000000000001 /* Sources */, 400000010000000000000001 /* Frameworks */, B00000010000000000000001 /* Resources */ ); buildRules = ( ); dependencies = ( ); name = QuickOCRLLM; productName = QuickOCRLLM; productReference = 000000000000000000000001 /* QuickOCRLLM.app */; productType = "com.apple.product-type.application"; };
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+    C00000010000000000000001 /* Project object */ = {isa = PBXProject; attributes = { LastUpgradeCheck = 1500; ORGANIZATIONNAME = ""; }; buildConfigurationList = C00000010000000000000002 /* Build configuration list for PBXProject "QuickOCRLLM" */; compatibilityVersion = "Xcode 15.0"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = ( en ); mainGroup = 500000010000000000000003; productRefGroup = 500000010000000000000001 /* Products */; projectDirPath = ""; projectRoot = ""; targets = ( 800000010000000000000001 /* QuickOCRLLM */ ); };
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+    B00000010000000000000001 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = ( 100000010000000000000011 /* Assets.xcassets in Resources */, ); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+    A00000010000000000000001 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = ( 100000010000000000000001 /* QuickOCRLLMApp.swift in Sources */, 100000010000000000000002 /* AppViewModel.swift in Sources */, 100000010000000000000003 /* MenuBarController.swift in Sources */, 100000010000000000000004 /* HotkeyManager.swift in Sources */, 100000010000000000000005 /* SelectionOverlayWindow.swift in Sources */, 100000010000000000000007 /* OCRProvider.swift in Sources */, 100000010000000000000008 /* OpenAIProvider.swift in Sources */, 100000010000000000000009 /* GeminiProvider.swift in Sources */, 10000001000000000000000A /* SettingsView.swift in Sources */, 100000010000000000000013 /* SettingsWindow.swift in Sources */, 10000001000000000000000B /* HistoryStore.swift in Sources */, 100000010000000000000014 /* HistoryView.swift in Sources */, 100000010000000000000015 /* HistoryWindow.swift in Sources */, 100000010000000000000017 /* NSImage+Resize.swift in Sources */, 100000010000000000000010 /* Config.swift in Sources */, 10000001000000000000000C /* Keychain.swift in Sources */, 10000001000000000000000D /* Notifications.swift in Sources */, 10000001000000000000000E /* Clipboard.swift in Sources */, 10000001000000000000000F /* ImageCompression.swift in Sources */, 100000010000000000000016 /* NativeScreencapture.swift in Sources */, 100000010000000000000012 /* Permissions.swift in Sources */ ); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+    D00000010000000000000001 /* Debug */ = {isa = XCBuildConfiguration; buildSettings = { ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon; CLANG_ENABLE_OBJC_ARC = YES; CODE_SIGN_ENTITLEMENTS = QuickOCRLLM/QuickOCRLLM.entitlements; CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; DEVELOPMENT_TEAM = ""; ENABLE_HARDENED_RUNTIME = YES; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = QuickOCRLLM/Info.plist; LD_RUNPATH_SEARCH_PATHS = ( "$(inherited)", "@executable_path/../Frameworks" ); MACOSX_DEPLOYMENT_TARGET = 12.0; MARKETING_VERSION = 0.1.0; PRODUCT_BUNDLE_IDENTIFIER = com.quickocr.llm; PRODUCT_NAME = "$(TARGET_NAME)"; SDKROOT = macosx; SWIFT_VERSION = 5.9; }; name = Debug; };
+    D00000010000000000000002 /* Release */ = {isa = XCBuildConfiguration; buildSettings = { ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon; CLANG_ENABLE_OBJC_ARC = YES; CODE_SIGN_ENTITLEMENTS = QuickOCRLLM/QuickOCRLLM.entitlements; CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; DEVELOPMENT_TEAM = ""; ENABLE_HARDENED_RUNTIME = YES; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = QuickOCRLLM/Info.plist; LD_RUNPATH_SEARCH_PATHS = ( "$(inherited)", "@executable_path/../Frameworks" ); MACOSX_DEPLOYMENT_TARGET = 12.0; MARKETING_VERSION = 0.1.0; PRODUCT_BUNDLE_IDENTIFIER = com.quickocr.llm; PRODUCT_NAME = "$(TARGET_NAME)"; SDKROOT = macosx; SWIFT_VERSION = 5.9; }; name = Release; };
+    D00000010000000000000003 /* Debug */ = {isa = XCBuildConfiguration; buildSettings = { }; name = Debug; };
+    D00000010000000000000004 /* Release */ = {isa = XCBuildConfiguration; buildSettings = { }; name = Release; };
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+    900000010000000000000002 /* Build configuration list for PBXNativeTarget "QuickOCRLLM" */ = {isa = XCConfigurationList; buildConfigurations = ( D00000010000000000000001 /* Debug */, D00000010000000000000002 /* Release */ ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+    C00000010000000000000002 /* Build configuration list for PBXProject "QuickOCRLLM" */ = {isa = XCConfigurationList; buildConfigurations = ( D00000010000000000000003 /* Debug */, D00000010000000000000004 /* Release */ ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+/* End XCConfigurationList section */
+  };
+  rootObject = C00000010000000000000001 /* Project object */;
+}
