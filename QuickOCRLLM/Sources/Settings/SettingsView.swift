@@ -2,6 +2,8 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject var vm: AppViewModel
+    private let openAIModels = ["gpt-4o-mini", "gpt-4o", "gpt-4.1"]
+    private let geminiModels = ["gemini-2.0-flash", "gemini-2.0-pro"]
 
     var body: some View {
         Form {
@@ -14,11 +16,23 @@ struct SettingsView: View {
             GroupBox("Models") {
                 HStack {
                     Text("OpenAI:")
-                    TextField("gpt-4o-mini", text: $vm.config.openAIModel)
+                    Picker("OpenAI Model", selection: $vm.config.openAIModel) {
+                        ForEach(openAIModels, id: \.self) { m in
+                            Text(m).tag(m)
+                        }
+                    }
+                    .pickerStyle(.menu)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 HStack {
                     Text("Gemini:")
-                    TextField("gemini-2.0-flash", text: $vm.config.geminiModel)
+                    Picker("Gemini Model", selection: $vm.config.geminiModel) {
+                        ForEach(geminiModels, id: \.self) { m in
+                            Text(m).tag(m)
+                        }
+                    }
+                    .pickerStyle(.menu)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
 
@@ -35,7 +49,6 @@ struct SettingsView: View {
 
             Toggle("Auto Copy to Clipboard", isOn: $vm.config.autoCopy)
             Toggle("Show Notification", isOn: $vm.config.showNotification)
-            Toggle("Use macOS native selection capture", isOn: $vm.config.useNativeScreencapture)
 
             Stepper(value: $vm.config.maxHistory, in: 1...100) { Text("History Limit: \(vm.config.maxHistory)") }
             HStack {
@@ -56,5 +69,13 @@ struct SettingsView: View {
         }
         .padding()
         .frame(width: 520)
+        .onAppear {
+            if !openAIModels.contains(vm.config.openAIModel) {
+                vm.config.openAIModel = openAIModels.first ?? vm.config.openAIModel
+            }
+            if !geminiModels.contains(vm.config.geminiModel) {
+                vm.config.geminiModel = geminiModels.first ?? vm.config.geminiModel
+            }
+        }
     }
 }

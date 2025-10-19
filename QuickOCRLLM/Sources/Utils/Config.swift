@@ -9,7 +9,6 @@ struct AppConfig: Codable {
     var maxHistory: Int = 10
     var imageMaxDimension: CGFloat = 1440
     var jpegQuality: Double = 0.85
-    var useNativeScreencapture: Bool = true
 
     enum Provider: String, Codable { case openAI, gemini }
 }
