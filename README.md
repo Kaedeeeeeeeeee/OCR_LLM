@@ -1,6 +1,6 @@
 QuickOCR LLM (macOS Menu Bar App)
 
-- SwiftUI macOS menu bar OCR app using LLMs (OpenAI and Gemini 2.0) for high-accuracy OCR from selection screenshots.
+- QuickOCR LLM using LLMs (OpenAI and Gemini 2.0) for high-accuracy OCR from selection screenshots.
 - Default: plain text output, auto-copy clipboard, optional notification, simple history.
 
 Run (Xcode project)
