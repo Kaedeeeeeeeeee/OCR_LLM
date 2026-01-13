@@ -2,7 +2,7 @@ import Foundation
 import Security
 
 enum KeychainService {
-    static func set(key: String, value: String, service: String = "QuickOCRLLM") -> Bool {
+    static func set(key: String, value: String, service: String = "CheeseOCR") -> Bool {
         let data = Data(value.utf8)
 
         let query: [String: Any] = [
@@ -19,7 +19,7 @@ enum KeychainService {
         return status == errSecSuccess
     }
 
-    static func get(key: String, service: String = "QuickOCRLLM") -> String? {
+    static func get(key: String, service: String = "CheeseOCR") -> String? {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: service,

@@ -1,0 +1,22 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Body -->
+  <rect x="100" y="50" width="312" height="412" rx="40" fill="#ffffff" stroke="#333333" stroke-width="24"/>
+  
+  <!-- Folded Corner Effect -->
+  <path d="M312 50 L312 150 L412 150" fill="#e5e5e5" stroke="#333333" stroke-width="24" stroke-linejoin="round"/>
+  <!-- Hide the top right corner of rect? A bit complex in SVG without masks. Just overlaying is fine for this style. -->
+  
+  <!-- Eyes -->
+  <ellipse cx="190" cy="260" rx="35" ry="45" fill="#333333"/>
+  <ellipse cx="322" cy="260" rx="35" ry="45" fill="#333333"/>
+  <!-- Highlights -->
+  <circle cx="205" cy="245" r="12" fill="white"/>
+  <circle cx="337" cy="245" r="12" fill="white"/>
+  
+  <!-- Blush -->
+  <ellipse cx="150" cy="310" rx="25" ry="15" fill="#FFB6C1" opacity="0.6"/>
+  <ellipse cx="362" cy="310" rx="25" ry="15" fill="#FFB6C1" opacity="0.6"/>
+
+  <!-- Smile -->
+  <path d="M220 340 Q256 380 292 340" stroke="#333333" stroke-width="20" stroke-linecap="round"/>
+</svg>

@@ -11,7 +11,7 @@ struct NativeScreencapture {
         let tool = candidatePaths.first { FileManager.default.isExecutableFile(atPath: $0) } ?? "screencapture"
 
         // Temp path
-        let dir = FileManager.default.temporaryDirectory.appendingPathComponent("QuickOCRLLM", isDirectory: true)
+        let dir = FileManager.default.temporaryDirectory.appendingPathComponent("CheeseOCR", isDirectory: true)
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
         let filename = "screencap_\(UUID().uuidString).png"
         let outURL = dir.appendingPathComponent(filename)

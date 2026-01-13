@@ -17,7 +17,7 @@ struct AppConfig: Codable {
 enum ConfigStore {
     private static var url: URL {
         let dir = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-            .appendingPathComponent("QuickOCRLLM", isDirectory: true)
+            .appendingPathComponent("CheeseOCR", isDirectory: true)
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
         return dir.appendingPathComponent("config.json")
     }

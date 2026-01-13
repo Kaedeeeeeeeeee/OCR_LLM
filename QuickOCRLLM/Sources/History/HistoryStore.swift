@@ -1,14 +1,14 @@
 import Foundation
 import Combine
 
-struct OCRRecord: Codable, Identifiable { let id = UUID(); let text: String; let timestamp: Date }
+struct OCRRecord: Codable, Identifiable { var id = UUID(); let text: String; let timestamp: Date }
 
 final class HistoryStore: ObservableObject {
     @Published private(set) var items: [OCRRecord] = []
 
     private var url: URL {
         let dir = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-            .appendingPathComponent("QuickOCRLLM", isDirectory: true)
+            .appendingPathComponent("CheeseOCR", isDirectory: true)
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
         return dir.appendingPathComponent("history.json")
     }

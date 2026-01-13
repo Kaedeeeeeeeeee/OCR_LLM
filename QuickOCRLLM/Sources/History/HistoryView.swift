@@ -30,6 +30,7 @@ struct HistoryView: View {
                             let isCopied = copiedId == rec.id
                             Button(action: {
                                 Clipboard.copy(rec.text)
+                                HUDManager.shared.show(text: rec.text)
                                 copiedId = rec.id
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { copiedId = nil }
                             }) {

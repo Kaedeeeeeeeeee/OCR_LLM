@@ -1,4 +1,5 @@
 import Foundation
+import Combine
 #if os(macOS)
 import AppKit
 import CoreGraphics
@@ -29,4 +30,3 @@ enum Permissions {
 }
 
 #endif
-
