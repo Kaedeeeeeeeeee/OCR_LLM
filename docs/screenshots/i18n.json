@@ -1,0 +1,113 @@
+{
+  "en": {
+    "slide1": {
+      "tagline": "Fast, Private OCR for Your Mac"
+    },
+    "slide2": {
+      "title": "Instant Screen Capture",
+      "subtitle": "Select any area. Get text instantly.",
+      "hud_text": "Hello, World! 你好世界"
+    },
+    "slide3": {
+      "title": "100% Private",
+      "point1": "On-Device",
+      "point2": "No Network",
+      "point3": "Zero Data Collection"
+    },
+    "slide4": {
+      "title": "Multi-language OCR",
+      "subtitle": "Recognizes text across languages, out of the box"
+    },
+    "slide5": {
+      "title": "Lives in Your Menu Bar",
+      "subtitle": "Always ready, never in the way",
+      "menu_capture": "Capture and OCR",
+      "menu_history1": "Hello World 你好世...",
+      "menu_history2": "The quick brown fo...",
+      "menu_history3": "import SwiftUI fra...",
+      "menu_show_more": "Show More Result",
+      "menu_settings": "Settings",
+      "menu_quit": "Quit",
+      "menubar_file": "File",
+      "menubar_edit": "Edit",
+      "menubar_view": "View",
+      "menubar_go": "Go",
+      "menubar_window": "Window",
+      "menubar_help": "Help"
+    }
+  },
+  "zh-Hans": {
+    "slide1": {
+      "tagline": "快速、私密的 Mac OCR 工具"
+    },
+    "slide2": {
+      "title": "即时屏幕捕获",
+      "subtitle": "框选任意区域，即刻获取文字",
+      "hud_text": "Hello, World! 你好世界"
+    },
+    "slide3": {
+      "title": "100% 隐私保护",
+      "point1": "本地处理",
+      "point2": "无需网络",
+      "point3": "零数据收集"
+    },
+    "slide4": {
+      "title": "多语言 OCR",
+      "subtitle": "开箱即用，识别多种语言文字"
+    },
+    "slide5": {
+      "title": "常驻菜单栏",
+      "subtitle": "随时待命，不打扰",
+      "menu_capture": "截图识别",
+      "menu_history1": "Hello World 你好世...",
+      "menu_history2": "天下武功唯快不破一键...",
+      "menu_history3": "import SwiftUI fra...",
+      "menu_show_more": "显示更多结果",
+      "menu_settings": "设置",
+      "menu_quit": "退出",
+      "menubar_file": "文件",
+      "menubar_edit": "编辑",
+      "menubar_view": "显示",
+      "menubar_go": "前往",
+      "menubar_window": "窗口",
+      "menubar_help": "帮助"
+    }
+  },
+  "ja": {
+    "slide1": {
+      "tagline": "高速・プライベートなMac OCRツール"
+    },
+    "slide2": {
+      "title": "瞬時にスクリーンキャプチャ",
+      "subtitle": "範囲を選択するだけで、テキストを即座に取得",
+      "hud_text": "Hello, World! こんにちは世界"
+    },
+    "slide3": {
+      "title": "100% プライバシー保護",
+      "point1": "デバイス上で処理",
+      "point2": "ネットワーク不要",
+      "point3": "データ収集ゼロ"
+    },
+    "slide4": {
+      "title": "多言語 OCR",
+      "subtitle": "設定不要、多言語テキストをそのまま認識"
+    },
+    "slide5": {
+      "title": "メニューバーに常駐",
+      "subtitle": "いつでも準備OK、邪魔にならない",
+      "menu_capture": "キャプチャしてOCR",
+      "menu_history1": "Hello World こんにち...",
+      "menu_history2": "花が咲く春の日文字...",
+      "menu_history3": "import SwiftUI fra...",
+      "menu_show_more": "もっと見る",
+      "menu_settings": "設定",
+      "menu_quit": "終了",
+      "menubar_file": "ファイル",
+      "menubar_edit": "編集",
+      "menubar_view": "表示",
+      "menubar_go": "移動",
+      "menubar_window": "ウインドウ",
+      "menubar_help": "ヘルプ"
+    }
+  }
+}

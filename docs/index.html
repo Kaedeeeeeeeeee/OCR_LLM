@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheese! OCR — Fast, Private OCR for Mac</title>
+    <meta name="description" content="Fast, private OCR for your Mac. Select any area on screen and instantly extract text. 100% on-device, no data collection.">
+    <style>
+        :root {
+            --sky: #7EC8E3;
+            --sky-light: #B8E2F2;
+            --sky-pale: #E8F4FA;
+            --bg: #ffffff;
+            --surface: #ffffff;
+            --text: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --shadow: rgba(0, 0, 0, 0.08);
+            --shadow-hover: rgba(0, 0, 0, 0.14);
+            --hero-from: #7EC8E3;
+            --hero-to: #B8E2F2;
+            --hero-text: #1d1d1f;
+            --card-border: rgba(0, 0, 0, 0.04);
+            --step-bg: #7EC8E3;
+            --step-text: #ffffff;
+            --footer-bg: #f5f5f7;
+            --footer-text: #6e6e73;
+            --link: #0071e3;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #141416;
+                --surface: #1e1e22;
+                --text: #f5f5f7;
+                --text-secondary: #a1a1a6;
+                --shadow: rgba(0, 0, 0, 0.3);
+                --shadow-hover: rgba(0, 0, 0, 0.45);
+                --hero-from: #1a3a4a;
+                --hero-to: #141416;
+                --hero-text: #f5f5f7;
+                --card-border: rgba(255, 255, 255, 0.06);
+                --step-bg: #2a6a82;
+                --step-text: #ffffff;
+                --footer-bg: #1a1a1e;
+                --footer-text: #a1a1a6;
+                --link: #64d2ff;
+            }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            background: linear-gradient(160deg, var(--hero-from), var(--hero-to));
+            padding: 5rem 1.5rem 4rem;
+            text-align: center;
+        }
+
+        .hero-icon {
+            width: 160px;
+            height: 160px;
+            border-radius: 36px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            margin-bottom: 1.75rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--hero-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .tagline {
+            font-size: 1.25rem;
+            color: var(--hero-text);
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            max-width: 420px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta {
+            display: inline-block;
+            background: var(--text);
+            color: var(--bg);
+            padding: 0.85rem 2.25rem;
+            border-radius: 980px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--shadow-hover);
+        }
+
+        /* ── Section shared ── */
+        section {
+            padding: 5rem 1.5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ── Features ── */
+        .features {
+            background: var(--bg);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 2px 12px var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 28px var(--shadow-hover);
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            margin-bottom: 0.75rem;
+            color: var(--sky);
+        }
+
+        .feature-card h3 {
+            font-size: 1.1rem;
+            font-weight: 650;
+            margin-bottom: 0.4rem;
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* ── How It Works ── */
+        .how-it-works {
+            background: var(--sky-pale);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .how-it-works {
+                background: var(--surface);
+            }
+        }
+
+        .steps {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .step {
+            text-align: center;
+            flex: 1;
+            max-width: 200px;
+        }
+
+        .step-number {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--step-bg);
+            color: var(--step-text);
+            font-size: 1.35rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .step h3 {
+            font-size: 1.05rem;
+            font-weight: 650;
+            margin-bottom: 0.3rem;
+        }
+
+        .step p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* ── Footer ── */
+        footer {
+            background: var(--footer-bg);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--footer-text);
+        }
+
+        footer a {
+            color: var(--link);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-links {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a + a {
+            margin-left: 1.5rem;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 720px) {
+            .hero { padding: 3.5rem 1.25rem 3rem; }
+            .hero-icon { width: 120px; height: 120px; border-radius: 28px; }
+            .hero h1 { font-size: 2.25rem; }
+            .hero .tagline { font-size: 1.1rem; }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+
+            .steps {
+                flex-direction: column;
+                align-items: center;
+                gap: 2rem;
+            }
+
+            section { padding: 3.5rem 1.25rem; }
+            .section-title { font-size: 1.65rem; }
+        }
+
+        @media (min-width: 721px) and (max-width: 960px) {
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 600px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero -->
+    <section class="hero">
+        <img src="icon.png" alt="Cheese! OCR app icon" class="hero-icon">
+        <h1>Cheese! OCR</h1>
+        <p class="tagline">Fast, private OCR for your Mac</p>
+        <a href="#" class="cta">Download on the Mac App Store</a>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <h2 class="section-title">Features</h2>
+        <p class="section-subtitle">Everything you need, nothing you don't.</p>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+                <h3>Instant Screen Capture</h3>
+                <p>Press a hotkey, select an area, and get text instantly. It's that simple.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                <h3>100% Private</h3>
+                <p>All OCR runs on-device using Apple Vision. No network requests, no data collection.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+                <h3>Multi-language</h3>
+                <p>Recognizes English, Chinese, Japanese, and Korean text out of the box.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg></div>
+                <h3>Auto-copy to Clipboard</h3>
+                <p>Recognized text is copied to your clipboard automatically, ready to paste.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                <h3>Lightweight &amp; Fast</h3>
+                <p>Built with native macOS frameworks. Tiny footprint, blazing-fast recognition.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                <h3>History Management</h3>
+                <p>Browse and search your past OCR results. Never lose captured text again.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <h2 class="section-title">How It Works</h2>
+        <p class="section-subtitle">Three steps. Zero friction.</p>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Press Hotkey</h3>
+                <p>Trigger a screen capture with your custom keyboard shortcut.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Select Area</h3>
+                <p>Click and drag to select the region containing text.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Text Copied</h3>
+                <p>Recognized text is instantly copied to your clipboard.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="mailto:nicholaslck@icloud.com">Contact</a>
+        </div>
+        <p>&copy; 2025 Cheese! OCR. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

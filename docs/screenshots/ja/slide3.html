@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1280">
+    <title>Cheese! OCR — 100% Private</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            width: 1280px;
+            height: 800px;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+            background: #0d1b2a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            -webkit-font-smoothing: antialiased;
+        }
+        .shield {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 2.5rem;
+            color: #7EC8E3;
+        }
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+        }
+        .points {
+            display: flex;
+            gap: 3rem;
+        }
+        .point {
+            text-align: center;
+        }
+        .point-icon {
+            width: 48px;
+            height: 48px;
+            color: #7EC8E3;
+            margin: 0 auto 0.75rem;
+        }
+        .point p {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.85);
+        }
+    </style>
+</head>
+<body>
+    <div class="shield">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="M9 12l2 2 4-4"/>
+        </svg>
+    </div>
+    <h1>100% プライバシー保護</h1>
+    <div class="points">
+        <div class="point">
+            <div class="point-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                    <path d="M16 7V5a4 4 0 0 0-8 0v2"/>
+                    <circle cx="12" cy="15" r="1"/>
+                </svg>
+            </div>
+            <p>デバイス上で処理</p>
+        </div>
+        <div class="point">
+            <div class="point-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="1" y1="1" x2="23" y2="23"/>
+                    <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/>
+                    <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/>
+                    <path d="M10.71 5.05A16 16 0 0 1 22.56 9"/>
+                    <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/>
+                    <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+                    <line x1="12" y1="20" x2="12.01" y2="20"/>
+                </svg>
+            </div>
+            <p>ネットワーク不要</p>
+        </div>
+        <div class="point">
+            <div class="point-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="3 6 5 6 21 6"/>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                    <line x1="10" y1="11" x2="10" y2="17"/>
+                    <line x1="14" y1="11" x2="14" y2="17"/>
+                </svg>
+            </div>
+            <p>データ収集ゼロ</p>
+        </div>
+    </div>
+</body>
+</html>
