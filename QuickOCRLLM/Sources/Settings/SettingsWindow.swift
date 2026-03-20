@@ -13,8 +13,10 @@ final class SettingsWindowController {
 
     func show() {
         if let w = window {
+            w.level = .floating
             w.makeKeyAndOrderFront(nil)
             NSApp.activate(ignoringOtherApps: true)
+            w.level = .normal
             return
         }
         let content = SettingsView().environmentObject(viewModel!)
@@ -27,8 +29,10 @@ final class SettingsWindowController {
         w.isReleasedWhenClosed = false
         w.contentView = hosting
         self.window = w
+        w.level = .floating
         w.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
+        w.level = .normal
     }
 }
 

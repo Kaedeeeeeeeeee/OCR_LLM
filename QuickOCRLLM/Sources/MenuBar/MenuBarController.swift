@@ -79,7 +79,7 @@ final class MenuBarController: NSObject, NSMenuDelegate {
             menu.addItem(NSMenuItem.separator())
         }
         
-        menu.addItem(withTitle: "Show Last Result".localized, action: #selector(showLast), keyEquivalent: "")
+        menu.addItem(withTitle: "Show More Result".localized, action: #selector(showLast), keyEquivalent: "")
         menu.addItem(NSMenuItem.separator())
         menu.addItem(withTitle: "Settings".localized, action: #selector(openSettings), keyEquivalent: ",")
         menu.addItem(withTitle: "Quit".localized, action: #selector(quit), keyEquivalent: "q")

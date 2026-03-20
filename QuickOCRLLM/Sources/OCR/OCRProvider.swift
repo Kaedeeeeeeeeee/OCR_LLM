@@ -8,16 +8,13 @@ protocol OCRProvider {
 }
 
 enum OCRProviderError: Error, LocalizedError {
-    case apiKeyMissing
     case invalidResponse
     case requestFailed(String)
 
     var errorDescription: String? {
         switch self {
-        case .apiKeyMissing: return "API Key missing"
         case .invalidResponse: return "Invalid response"
         case .requestFailed(let s): return s
         }
     }
 }
-

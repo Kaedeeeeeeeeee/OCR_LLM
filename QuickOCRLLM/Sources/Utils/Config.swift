@@ -3,16 +3,9 @@ import SwiftUI
 import Combine
 
 struct AppConfig: Codable {
-    var provider: Provider = .vision
-    var openAIModel: String = "gpt-4o-mini"
-    var geminiModel: String = "gemini-2.0-flash"
     var autoCopy: Bool = true
     var showNotification: Bool = true
     var maxHistory: Int = 20
-    var imageMaxDimension: CGFloat = 1440
-    var jpegQuality: Double = 0.85
-
-    enum Provider: String, Codable { case vision, openAI, gemini }
 }
 
 enum ConfigStore {
@@ -86,10 +79,10 @@ final class LocalizationService: ObservableObject {
             "ja": "前回の結果をコピー",
             "en": "Copy Last Result"
         ],
-        "Show Last Result": [
-            "zh-Hans": "显示上次结果",
-            "ja": "前回の結果を表示",
-            "en": "Show Last Result"
+        "Show More Result": [
+            "zh-Hans": "显示更多结果",
+            "ja": "その他の結果を表示",
+            "en": "Show More Result"
         ],
         "Settings": [
             "zh-Hans": "设置…",
@@ -111,24 +104,9 @@ final class LocalizationService: ObservableObject {
         "Data": ["zh-Hans": "数据", "ja": "データ", "en": "Data"],
         "Clear History & Cache": ["zh-Hans": "清除历史记录与缓存", "ja": "履歴とキャッシュを消去", "en": "Clear History & Cache"],
         
-        // Settings - AI
-        "AI Model": ["zh-Hans": "AI 模型", "ja": "AI モデル", "en": "AI Model"],
-        "AI Provider": ["zh-Hans": "AI 提供商", "ja": "AI プロバイダー", "en": "AI Provider"],
-        "OpenAI Configuration": ["zh-Hans": "OpenAI 配置", "ja": "OpenAI 設定", "en": "OpenAI Configuration"],
-        "Gemini Configuration": ["zh-Hans": "Gemini 配置", "ja": "Gemini 設定", "en": "Gemini Configuration"],
-        "Model": ["zh-Hans": "模型", "ja": "モデル", "en": "Model"],
-        "API Key": ["zh-Hans": "API 密钥", "ja": "API キー", "en": "API Key"],
-        "Stored securely in Keychain": ["zh-Hans": "安全存储在钥匙串中", "ja": "キーチェーンに安全に保存されます", "en": "Stored securely in Keychain"],
-        "Save Settings": ["zh-Hans": "保存设置", "ja": "設定を保存", "en": "Save Settings"],
-        "Settings Management": ["zh-Hans": "设置管理", "ja": "設定管理", "en": "Settings Management"],
-
         // Settings - Advanced
-        "Advanced": ["zh-Hans": "高级", "ja": "詳細", "en": "Advanced"],
         "History": ["zh-Hans": "历史记录", "ja": "履歴", "en": "History"],
         "History Limit": ["zh-Hans": "历史记录上限", "ja": "履歴件数上限", "en": "History Limit"],
-        "Image Processing": ["zh-Hans": "图像处理", "ja": "画像処理", "en": "Image Processing"],
-        "Max Dimension": ["zh-Hans": "最大尺寸", "ja": "最大寸法", "en": "Max Dimension"],
-        "JPEG Quality": ["zh-Hans": "JPEG 质量", "ja": "JPEG 画質", "en": "JPEG Quality"],
         "Language": ["zh-Hans": "语言 / Language", "ja": "言語 / Language", "en": "Language"],
         
         // App Logic
