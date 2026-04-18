@@ -39,3 +39,6 @@ Pods/
 *.tmp
 *.temp
 
+# Raw video source files (too large for git)
+Video/
+

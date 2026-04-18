@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080">
+    <title>Scene 3 Portrait — Say Cheese!</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            width: 1080px;
+            height: 1920px;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+            background: #f5f5f7;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        .bg-gradient {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, #7EC8E3, #B8E2F2, #d4eef7);
+            opacity: 0;
+            animation: fadeIn 1s ease 0.3s forwards;
+        }
+
+        .center-content {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+        }
+
+        .icon {
+            width: 240px;
+            height: 240px;
+            border-radius: 52px;
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            transform: scale(0.5) translateY(30px);
+            animation: iconReveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.8s forwards;
+        }
+
+        .app-name {
+            font-size: 5.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: #1d1d1f;
+            margin-top: 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 0.7s ease 1.5s forwards;
+        }
+
+        .tagline {
+            font-size: 2.2rem;
+            font-weight: 500;
+            color: #1d1d1f;
+            opacity: 0;
+            margin-top: 1.2rem;
+            transform: translateY(15px);
+            animation: slideUp 0.7s ease 2s forwards;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .hotkey-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 3rem;
+            padding: 16px 36px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 980px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: slideUp 0.6s ease 2.5s forwards;
+        }
+
+        .hotkey-badge kbd {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 44px;
+            height: 44px;
+            padding: 0 12px;
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            border-radius: 10px;
+            font-family: -apple-system, sans-serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #333;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+        }
+
+        .float-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .shape-1 {
+            width: 350px;
+            height: 350px;
+            background: rgba(126, 200, 227, 0.15);
+            top: 80px;
+            right: -80px;
+            animation: fadeIn 1s ease 0.5s forwards, floatSlow 6s ease-in-out infinite;
+        }
+
+        .shape-2 {
+            width: 280px;
+            height: 280px;
+            background: rgba(184, 226, 242, 0.2);
+            bottom: 200px;
+            left: -60px;
+            animation: fadeIn 1s ease 0.7s forwards, floatSlow 7s ease-in-out 1s infinite;
+        }
+
+        .shape-3 {
+            width: 200px;
+            height: 200px;
+            background: rgba(126, 200, 227, 0.1);
+            top: 400px;
+            left: 100px;
+            animation: fadeIn 1s ease 0.9s forwards, floatSlow 5s ease-in-out 0.5s infinite;
+        }
+
+        @keyframes fadeIn { to { opacity: 1; } }
+        @keyframes iconReveal { to { opacity: 1; transform: scale(1) translateY(0); } }
+        @keyframes slideUp { to { opacity: 1; transform: translateY(0); } }
+        @keyframes floatSlow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    <div class="float-shape shape-1"></div>
+    <div class="float-shape shape-2"></div>
+    <div class="float-shape shape-3"></div>
+
+    <div class="center-content">
+        <img src="icon.png" class="icon" alt="Cheese! OCR">
+        <div class="app-name">Cheese! OCR</div>
+        <div class="tagline">Say Cheese! Just one hotkey away.</div>
+        <div class="hotkey-badge">
+            <kbd>⇧</kbd>
+            <kbd>⌘</kbd>
+            <kbd>E</kbd>
+        </div>
+    </div>
+</body>
+</html>

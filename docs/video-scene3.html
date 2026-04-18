@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920">
+    <title>Scene 3 — Say Cheese!</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+            background: #f5f5f7;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        /* ── Fade-in background ── */
+        .bg-gradient {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(160deg, #7EC8E3, #B8E2F2);
+            opacity: 0;
+            animation: fadeIn 1s ease 0.3s forwards;
+        }
+
+        /* ── Simulated macOS Menu Bar ── */
+        .menubar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 38px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            z-index: 10;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .menubar-left {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1d1d1f;
+        }
+
+        .apple-logo {
+            font-size: 17px;
+            opacity: 0.85;
+        }
+
+        .menubar-right {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            font-size: 13px;
+            color: #1d1d1f;
+        }
+
+        .menubar-icon {
+            width: 22px;
+            height: 22px;
+            border-radius: 4px;
+            opacity: 0;
+            transform: scale(0.3);
+            animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 2.8s forwards;
+        }
+
+        .menubar-icon-highlight {
+            position: absolute;
+            right: 178px;
+            top: 4px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(126, 200, 227, 0.35);
+            opacity: 0;
+            animation: pulseHighlight 1.5s ease 3.3s forwards;
+        }
+
+        /* ── Central Content ── */
+        .center-content {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+        }
+
+        .icon {
+            width: 200px;
+            height: 200px;
+            border-radius: 44px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            transform: scale(0.5) translateY(30px);
+            animation: iconReveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.8s forwards;
+        }
+
+        .app-name {
+            font-size: 5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: #1d1d1f;
+            margin-top: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 0.7s ease 1.5s forwards;
+        }
+
+        .tagline {
+            font-size: 2rem;
+            font-weight: 500;
+            color: #1d1d1f;
+            opacity: 0;
+            margin-top: 1rem;
+            transform: translateY(15px);
+            animation: slideUp 0.7s ease 2s forwards;
+        }
+
+        .hotkey-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 2rem;
+            padding: 12px 28px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 980px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: slideUp 0.6s ease 2.5s forwards;
+        }
+
+        .hotkey-badge kbd {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 36px;
+            height: 36px;
+            padding: 0 10px;
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            border-radius: 8px;
+            font-family: -apple-system, sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #333;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+        }
+
+        /* ── Decorative floating shapes ── */
+        .float-shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: rgba(126, 200, 227, 0.15);
+            top: -80px;
+            right: -60px;
+            animation: fadeIn 1s ease 0.5s forwards, floatSlow 6s ease-in-out infinite;
+        }
+
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: rgba(184, 226, 242, 0.2);
+            bottom: 60px;
+            left: -40px;
+            animation: fadeIn 1s ease 0.7s forwards, floatSlow 7s ease-in-out 1s infinite;
+        }
+
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            background: rgba(126, 200, 227, 0.1);
+            bottom: -30px;
+            right: 200px;
+            animation: fadeIn 1s ease 0.9s forwards, floatSlow 5s ease-in-out 0.5s infinite;
+        }
+
+        /* ── Animations ── */
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes iconReveal {
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes popIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulseHighlight {
+            0% { opacity: 0; transform: scale(0.5); }
+            30% { opacity: 1; transform: scale(1); }
+            70% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1.5); }
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Animated background -->
+    <div class="bg-gradient"></div>
+
+    <!-- Decorative shapes -->
+    <div class="float-shape shape-1"></div>
+    <div class="float-shape shape-2"></div>
+    <div class="float-shape shape-3"></div>
+
+    <!-- macOS Menu Bar -->
+    <div class="menubar">
+        <div class="menubar-left">
+            <span class="apple-logo"></span>
+            <span>Finder</span>
+            <span style="font-weight: 400;">File</span>
+            <span style="font-weight: 400;">Edit</span>
+            <span style="font-weight: 400;">View</span>
+            <span style="font-weight: 400;">Go</span>
+            <span style="font-weight: 400;">Window</span>
+            <span style="font-weight: 400;">Help</span>
+        </div>
+        <div class="menubar-right">
+            <span>􀙇</span>
+            <span>􀊗</span>
+            <img src="icon.png" class="menubar-icon" alt="Cheese! OCR">
+            <span>Mon 12:01</span>
+            <span>􀆪</span>
+        </div>
+        <div class="menubar-icon-highlight"></div>
+    </div>
+
+    <!-- Center content -->
+    <div class="center-content">
+        <img src="icon.png" class="icon" alt="Cheese! OCR">
+        <div class="app-name">Cheese! OCR</div>
+        <div class="tagline">Say Cheese! Just one hotkey away.</div>
+        <div class="hotkey-badge">
+            <kbd>⇧</kbd>
+            <kbd>⌘</kbd>
+            <kbd>E</kbd>
+        </div>
+    </div>
+
+</body>
+</html>

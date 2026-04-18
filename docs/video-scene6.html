@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920">
+    <title>Scene 6 — CTA</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            width: 1920px;
+            height: 1080px;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+            background: linear-gradient(160deg, #7EC8E3, #B8E2F2);
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+
+        /* ── Decorative background circles ── */
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0;
+        }
+
+        .circle-1 {
+            width: 600px;
+            height: 600px;
+            background: rgba(255, 255, 255, 0.08);
+            top: -200px;
+            left: -150px;
+            animation: fadeScale 1.2s ease 0.2s forwards, floatSlow 8s ease-in-out infinite;
+        }
+
+        .circle-2 {
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.06);
+            bottom: -100px;
+            right: -80px;
+            animation: fadeScale 1.2s ease 0.4s forwards, floatSlow 6s ease-in-out 1s infinite;
+        }
+
+        .circle-3 {
+            width: 250px;
+            height: 250px;
+            background: rgba(255, 255, 255, 0.05);
+            top: 200px;
+            right: 300px;
+            animation: fadeScale 1.2s ease 0.6s forwards, floatSlow 7s ease-in-out 0.5s infinite;
+        }
+
+        /* ── Center layout ── */
+        .center {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+        }
+
+        /* ── Icon with glow ── */
+        .icon-wrap {
+            position: relative;
+            opacity: 0;
+            transform: scale(0.6);
+            animation: iconPop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards;
+        }
+
+        .icon-glow {
+            position: absolute;
+            inset: -30px;
+            border-radius: 62px;
+            background: rgba(255, 255, 255, 0.3);
+            filter: blur(30px);
+            animation: glowPulse 2.5s ease-in-out 1.5s infinite;
+        }
+
+        .icon {
+            width: 180px;
+            height: 180px;
+            border-radius: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ── App name ── */
+        .app-name {
+            font-size: 4.2rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: #1d1d1f;
+            margin-top: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 0.7s ease 1s forwards;
+        }
+
+        /* ── Subtitle ── */
+        .subtitle {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: rgba(29, 29, 31, 0.75);
+            margin-top: 0.8rem;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: slideUp 0.7s ease 1.4s forwards;
+        }
+
+        /* ── App Store Button ── */
+        .appstore-btn {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-top: 2.5rem;
+            padding: 16px 36px;
+            background: #1d1d1f;
+            color: #fff;
+            border-radius: 16px;
+            text-decoration: none;
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            animation: btnReveal 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 1.8s forwards;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .appstore-btn:hover {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        .appstore-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .appstore-text {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .appstore-text-small {
+            font-size: 0.85rem;
+            font-weight: 400;
+            opacity: 0.85;
+            line-height: 1;
+        }
+
+        .appstore-text-big {
+            font-size: 1.5rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        /* ── Shine effect on button ── */
+        .appstore-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 60%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            border-radius: 16px;
+            animation: shine 1.2s ease 2.8s forwards;
+        }
+
+        .appstore-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ── QR Code ── */
+        .qr-wrap {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            transform: translateY(15px);
+            animation: slideUp 0.7s ease 2.3s forwards;
+        }
+
+        .qr-box {
+            background: #fff;
+            border-radius: 16px;
+            padding: 14px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .qr-box canvas {
+            display: block;
+            border-radius: 4px;
+        }
+
+        .qr-label {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: rgba(29, 29, 31, 0.55);
+        }
+
+        /* ── Bottom tagline ── */
+        .bottom-tag {
+            position: absolute;
+            bottom: 40px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: rgba(29, 29, 31, 0.45);
+            letter-spacing: 0.05em;
+            opacity: 0;
+            animation: fadeIn 0.8s ease 2.5s forwards;
+        }
+
+        /* ── Animations ── */
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeScale {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes iconPop {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes btnReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.1); }
+        }
+
+        @keyframes shine {
+            to { left: 150%; }
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Decorative background -->
+    <div class="bg-circle circle-1"></div>
+    <div class="bg-circle circle-2"></div>
+    <div class="bg-circle circle-3"></div>
+
+    <!-- Center content -->
+    <div class="center">
+        <!-- Icon with glow -->
+        <div class="icon-wrap">
+            <div class="icon-glow"></div>
+            <img src="icon.png" class="icon" alt="Cheese! OCR">
+        </div>
+
+        <!-- App name -->
+        <div class="app-name">Cheese! OCR</div>
+
+        <!-- Subtitle -->
+        <div class="subtitle">Fast, Private OCR for Your Mac</div>
+
+        <!-- Mac App Store download button + QR code side by side -->
+        <div style="display: flex; align-items: center; gap: 3rem; margin-top: 2.5rem;">
+            <a class="appstore-btn" href="https://apps.apple.com/app/cheese-ocr/id6760889131" style="margin-top: 0;">
+                <svg class="appstore-icon" viewBox="0 0 40 40" fill="none">
+                    <path d="M28.3 20.5c-.04-4.2 3.4-6.2 3.6-6.3-2-2.9-5-3.3-6.1-3.3-2.6-.3-5 1.5-6.3 1.5s-3.3-1.5-5.5-1.4c-2.8.04-5.4 1.6-6.9 4.2-2.9 5.1-.7 12.6 2.1 16.7 1.4 2 3.1 4.3 5.3 4.2 2.1-.08 2.9-1.4 5.4-1.4s3.3 1.4 5.5 1.3c2.3-.04 3.7-2 5.1-4.1 1.6-2.3 2.3-4.6 2.3-4.7-.05-.02-4.5-1.7-4.5-6.7z" fill="white"/>
+                    <path d="M24.1 8.5c1.1-1.4 1.9-3.3 1.7-5.2-1.6.07-3.6 1.1-4.7 2.5-1 1.2-1.9 3.1-1.7 5 1.8.14 3.6-1 4.7-2.3z" fill="white"/>
+                </svg>
+                <div class="appstore-text">
+                    <span class="appstore-text-small">Download on the</span>
+                    <span class="appstore-text-big">Mac App Store</span>
+                </div>
+            </a>
+
+            <div class="qr-wrap" style="margin-top: 0;">
+                <div class="qr-box">
+                    <canvas id="qrCanvas"></canvas>
+                </div>
+                <span class="qr-label">Scan to Download</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom tagline -->
+    <div class="bottom-tag" style="left: 50%; transform: translateX(-50%);">
+        100% On-Device · Zero Data Collection · Made with ♥
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+    <script>
+        var qr = qrcode(0, 'M');
+        qr.addData('https://apps.apple.com/app/cheese-ocr/id6760889131');
+        qr.make();
+
+        var canvas = document.getElementById('qrCanvas');
+        var size = 120;
+        var modules = qr.getModuleCount();
+        var cellSize = Math.floor(size / modules);
+        canvas.width = cellSize * modules;
+        canvas.height = cellSize * modules;
+
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#1d1d1f';
+        for (var row = 0; row < modules; row++) {
+            for (var col = 0; col < modules; col++) {
+                if (qr.isDark(row, col)) {
+                    ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

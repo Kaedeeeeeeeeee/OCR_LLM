@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A1B2C3D42EA4000000000001 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D42EA4000000000000 /* PrivacyInfo.xcprivacy */; };
 		CEDDD1E12EA3D3CD00C6085F /* MenuBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDD1CF2EA3D3CD00C6085F /* MenuBarController.swift */; };
 		CEDDD1E32EA3D3CD00C6085F /* NSImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDD1DD2EA3D3CD00C6085F /* NSImage+Resize.swift */; };
 		CEDDD1E42EA3D3CD00C6085F /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDD1CA2EA3D3CD00C6085F /* HistoryView.swift */; };
@@ -20,14 +21,13 @@
 		CEDDD1ED2EA3D3CD00C6085F /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDD1C22EA3D3CD00C6085F /* AppViewModel.swift */; };
 		CEDDD1EE2EA3D3CD00C6085F /* NativeScreencapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDD1C52EA3D3CD00C6085F /* NativeScreencapture.swift */; };
 		CEDDD1F02EA3D3CD00C6085F /* OCRProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDD1D22EA3D3CD00C6085F /* OCRProvider.swift */; };
-		E146CE1A8DBD4EB2B5659217 /* VisionOCRProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E075538C23C4694BAE86C64 /* VisionOCRProvider.swift */; };
 		CEDDD1F12EA3D3CD00C6085F /* HotkeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDD1CD2EA3D3CD00C6085F /* HotkeyManager.swift */; };
 		CEDDD1F42EA3D3CD00C6085F /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDD1DC2EA3D3CD00C6085F /* Notifications.swift */; };
 		CEDDD1F52EA3D3CD00C6085F /* SettingsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDD1D62EA3D3CD00C6085F /* SettingsWindow.swift */; };
 		CEDDD1F62EA3D3CD00C6085F /* HistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDD1C92EA3D3CD00C6085F /* HistoryStore.swift */; };
-		CEDDD1FE2EA3D3CD00C6085F /* LaunchAtLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDD1FD2EA3D3CD00C6085F /* LaunchAtLoginService.swift */; };
 		CEDDD1FB2EA3D3F600C6085F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEDDD1F72EA3D3F600C6085F /* Assets.xcassets */; };
-		A1B2C3D42EA4000000000001 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A1B2C3D42EA4000000000000 /* PrivacyInfo.xcprivacy */; };
+		CEDDD1FE2EA3D3CD00C6085F /* LaunchAtLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDD1FD2EA3D3CD00C6085F /* LaunchAtLoginService.swift */; };
+		E146CE1A8DBD4EB2B5659217 /* VisionOCRProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E075538C23C4694BAE86C64 /* VisionOCRProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +48,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CEDDD1982EA3D30800C6085F /* QuickOCRLLM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickOCRLLM.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E075538C23C4694BAE86C64 /* VisionOCRProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionOCRProvider.swift; sourceTree = "<group>"; };
+		A1B2C3D42EA4000000000000 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		CEDDD1982EA3D30800C6085F /* Cheese! OCR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cheese! OCR.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEDDD1A52EA3D30A00C6085F /* QuickOCRLLMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickOCRLLMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEDDD1AF2EA3D30A00C6085F /* QuickOCRLLMUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QuickOCRLLMUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEDDD1C22EA3D3CD00C6085F /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
@@ -62,7 +64,6 @@
 		CEDDD1CD2EA3D3CD00C6085F /* HotkeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeyManager.swift; sourceTree = "<group>"; };
 		CEDDD1CF2EA3D3CD00C6085F /* MenuBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarController.swift; sourceTree = "<group>"; };
 		CEDDD1D22EA3D3CD00C6085F /* OCRProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRProvider.swift; sourceTree = "<group>"; };
-		7E075538C23C4694BAE86C64 /* VisionOCRProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionOCRProvider.swift; sourceTree = "<group>"; };
 		CEDDD1D52EA3D3CD00C6085F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CEDDD1D62EA3D3CD00C6085F /* SettingsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindow.swift; sourceTree = "<group>"; };
 		CEDDD1D82EA3D3CD00C6085F /* Clipboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clipboard.swift; sourceTree = "<group>"; };
@@ -70,11 +71,9 @@
 		CEDDD1DC2EA3D3CD00C6085F /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		CEDDD1DD2EA3D3CD00C6085F /* NSImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Resize.swift"; sourceTree = "<group>"; };
 		CEDDD1DE2EA3D3CD00C6085F /* Permissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permissions.swift; sourceTree = "<group>"; };
-		CEDDD1FD2EA3D3CD00C6085F /* LaunchAtLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLoginService.swift; sourceTree = "<group>"; };
 		CEDDD1F72EA3D3F600C6085F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CEDDD1F82EA3D3F600C6085F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEDDD1F92EA3D3F600C6085F /* QuickOCRLLM.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickOCRLLM.entitlements; sourceTree = "<group>"; };
-		A1B2C3D42EA4000000000000 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		CEDDD1FD2EA3D3CD00C6085F /* LaunchAtLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLoginService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -137,7 +136,7 @@
 		CEDDD1992EA3D30800C6085F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CEDDD1982EA3D30800C6085F /* QuickOCRLLM.app */,
+				CEDDD1982EA3D30800C6085F /* Cheese! OCR.app */,
 				CEDDD1A52EA3D30A00C6085F /* QuickOCRLLMTests.xctest */,
 				CEDDD1AF2EA3D30A00C6085F /* QuickOCRLLMUITests.xctest */,
 			);
@@ -257,7 +256,7 @@
 			packageProductDependencies = (
 			);
 			productName = QuickOCRLLM;
-			productReference = CEDDD1982EA3D30800C6085F /* QuickOCRLLM.app */;
+			productReference = CEDDD1982EA3D30800C6085F /* Cheese! OCR.app */;
 			productType = "com.apple.product-type.application";
 		};
 		CEDDD1A42EA3D30A00C6085F /* QuickOCRLLMTests */ = {
@@ -562,7 +561,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = Y4FV6WUU4V;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -581,9 +580,9 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Cheese! OCR";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				"INFOPLIST_KEY_CFBundleDisplayName" = "Cheese! OCR";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -617,7 +616,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = Y4FV6WUU4V;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -636,9 +635,9 @@
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Cheese! OCR";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				"INFOPLIST_KEY_CFBundleDisplayName" = "Cheese! OCR";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
