@@ -48,7 +48,7 @@ final class AppViewModel: ObservableObject {
             history.add(text, limit: config.maxHistory)
             if config.autoCopy { Clipboard.copy(text) }
             if config.showNotification {
-                HUDManager.shared.show(text: text)
+                HUDManager.shared.show(text: text, mascotOverride: config.mascotStyle)
             }
         } catch {
             lastResult = ""

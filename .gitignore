@@ -5,6 +5,7 @@
 
 # Xcode
 DerivedData/
+.derivedData/
 build/
 *.ipa
 *.xcuserstate

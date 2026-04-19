@@ -6,6 +6,8 @@ struct AppConfig: Codable {
     var autoCopy: Bool = true
     var showNotification: Bool = true
     var maxHistory: Int = 20
+    // MascotChoice.rawValue; nil → random (also omitted from old configs for back-compat)
+    var mascotStyle: String? = nil
 }
 
 enum ConfigStore {
@@ -101,6 +103,14 @@ final class LocalizationService: ObservableObject {
         "Launch at Login": ["zh-Hans": "开机自动启动", "ja": "ログイン時に起動", "en": "Launch at Login"],
         "Auto Copy to Clipboard": ["zh-Hans": "自动复制到剪贴板", "ja": "自動的にクリップボードにコピー", "en": "Auto Copy to Clipboard"],
         "Show Notification": ["zh-Hans": "显示识别结果弹窗", "ja": "認識結果ポップアップを表示", "en": "Show Result Popup"],
+        "Mascot Style": ["zh-Hans": "表情样式", "ja": "マスコット", "en": "Mascot Style"],
+        "Random (Surprise Me)": ["zh-Hans": "随机（惊喜）", "ja": "ランダム", "en": "Random"],
+        "Classic": ["zh-Hans": "经典笑脸", "ja": "クラシック", "en": "Classic"],
+        "Sleepy": ["zh-Hans": "眯眯眼", "ja": "ねむねむ", "en": "Sleepy"],
+        "Starry": ["zh-Hans": "星星眼", "ja": "キラキラ", "en": "Starry"],
+        "Winky": ["zh-Hans": "俏皮眨眼", "ja": "ウィンク", "en": "Winky"],
+        "Lovely": ["zh-Hans": "爱心眼", "ja": "ラブリー", "en": "Lovely"],
+        "Cheerful": ["zh-Hans": "开朗大笑", "ja": "にっこり", "en": "Cheerful"],
         "Data": ["zh-Hans": "数据", "ja": "データ", "en": "Data"],
         "Clear History & Cache": ["zh-Hans": "清除历史记录与缓存", "ja": "履歴とキャッシュを消去", "en": "Clear History & Cache"],
         

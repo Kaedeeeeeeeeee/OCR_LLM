@@ -25,6 +25,13 @@ struct GeneralSettingsView: View {
         )
     }
 
+    var mascotBinding: Binding<MascotChoice> {
+        Binding(
+            get: { MascotChoice(rawValue: vm.config.mascotStyle ?? "") ?? .random },
+            set: { vm.config.mascotStyle = ($0 == .random) ? nil : $0.rawValue }
+        )
+    }
+
     var body: some View {
         Form {
             Section {
@@ -48,14 +55,20 @@ struct GeneralSettingsView: View {
             }
             
             Section {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Mascot Style".localized)
+                    MascotPickerGrid(selection: mascotBinding)
+                }
+                .padding(.vertical, 4)
+
                 Picker("Language".localized, selection: $loc.currentLanguage) {
                     ForEach(Language.allCases) { lang in
                         Text(lang.displayName).tag(lang)
                     }
                 }
-                
+
                 Toggle("Launch at Login".localized, isOn: launchAtLoginBinding)
-                
+
                 Toggle("Auto Copy to Clipboard".localized, isOn: $vm.config.autoCopy)
                 Toggle("Show Notification".localized, isOn: $vm.config.showNotification)
             } header: {
@@ -77,4 +90,50 @@ struct GeneralSettingsView: View {
     }
 }
 
+// MARK: - Mascot picker grid
 
+struct MascotPickerGrid: View {
+    @Binding var selection: MascotChoice
+
+    var body: some View {
+        HStack(spacing: 6) {
+            ForEach(MascotChoice.allCases) { choice in
+                MascotPickerCell(
+                    choice: choice,
+                    isSelected: selection == choice,
+                    onSelect: { selection = choice }
+                )
+            }
+        }
+    }
+}
+
+struct MascotPickerCell: View {
+    let choice: MascotChoice
+    let isSelected: Bool
+    let onSelect: () -> Void
+
+    var body: some View {
+        Button(action: onSelect) {
+            VStack(spacing: 4) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(isSelected ? Color.accentColor.opacity(0.18) : Color.gray.opacity(0.12))
+                        .frame(width: 54, height: 50)
+                    MascotIcon(choice: choice)
+                        .scaleEffect(1.15)
+                }
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(isSelected ? Color.accentColor : Color.clear, lineWidth: 2)
+                )
+                Text(choice.displayName)
+                    .font(.system(size: 10))
+                    .foregroundColor(isSelected ? .primary : .secondary)
+                    .lineLimit(1)
+                    .frame(width: 58)
+            }
+        }
+        .buttonStyle(.plain)
+    }
+}
