@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
+
+    <title>博客 — Cheese! OCR ｜ Mac OCR 教程、对比与技术解析</title>
+    <meta name="description" content="实用的 Mac OCR 文章合集——工具对比、操作教程、技术解析，涵盖 PDF 识别、截图取文、视频文字提取、多语言识别与 Apple Vision 框架。">
+
+    <link rel="canonical" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/">
+    <link rel="alternate" hreflang="en" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/">
+    <link rel="alternate" hreflang="ja" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/">
+    <link rel="alternate" hreflang="ko" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ko/blog/">
+    <link rel="alternate" hreflang="x-default" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/">
+
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../../blog/article.css">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Cheese! OCR">
+    <meta property="og:title" content="Cheese! OCR 博客 — Mac OCR 教程与对比">
+    <meta property="og:description" content="实用的 Mac OCR 文章合集——工具对比、操作教程、技术解析。">
+    <meta property="og:url" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/">
+    <meta property="og:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+    <meta property="og:locale" content="zh_CN">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cheese! OCR 博客">
+    <meta name="twitter:description" content="实用的 Mac OCR 文章合集。">
+    <meta name="twitter:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+</head>
+<body>
+
+    <nav class="article-nav">
+        <a href="../" class="back-link">← Cheese! OCR</a>
+        <div class="lang-switcher">
+            <a href="/OCR_LLM/blog/" hreflang="en">EN</a>
+            <a href="/OCR_LLM/zh/blog/" aria-current="page" hreflang="zh-Hans">中文</a>
+            <a href="/OCR_LLM/ja/blog/" hreflang="ja">日本語</a>
+            <a href="/OCR_LLM/ko/blog/" hreflang="ko">한국어</a>
+        </div>
+    </nav>
+
+    <header class="blog-hero">
+        <h1>博客</h1>
+        <p>实用的 Mac OCR 文章——工具对比、操作教程、偶尔来一篇技术解析。</p>
+    </header>
+
+    <main class="blog-list">
+        <a href="cheese-ocr-vs-live-text/" class="blog-card">
+            <span class="blog-card-tag">对比</span>
+            <h2>Cheese! OCR vs macOS 实况文本：什么时候系统自带的不够用</h2>
+            <p>macOS 实况文本与一款全局热键 OCR 工具的对比，以及 Live Text 在 4 个场景下力不从心的原因。</p>
+        </a>
+
+        <a href="how-to-ocr-pdf-on-mac/" class="blog-card">
+            <span class="blog-card-tag">教程</span>
+            <h2>如何在 Mac 上 OCR 识别 PDF（2026）：原生版、扫描版、混合版完整指南</h2>
+            <p>在 Mac 上识别原生 PDF、扫描版 PDF 和受保护 PDF 的实用指南——不上传任何文件到云端。</p>
+        </a>
+
+        <a href="copy-text-from-video-on-mac/" class="blog-card">
+            <span class="blog-card-tag">教程</span>
+            <h2>如何在 Mac 上从视频中复制文字（教程、会议、任何场景）</h2>
+            <p>从暂停的视频画面中提取文字的三种方法，包括受 DRM 保护的会议与基于 Chrome 的教程。</p>
+        </a>
+
+        <a href="ocr-asian-languages-on-mac/" class="blog-card">
+            <span class="blog-card-tag">指南</span>
+            <h2>Mac 上中文 OCR 完整指南：繁简、混排、古籍与外刊</h2>
+            <p>从繁简识别到中英混排，从扫描古籍到外刊学术论文——一篇覆盖中文 OCR 的所有典型场景。</p>
+        </a>
+
+        <a href="extract-text-from-screenshot-on-mac/" class="blog-card">
+            <span class="blog-card-tag">教程</span>
+            <h2>如何在 Mac 上从截图中提取文字（三种方法对比）</h2>
+            <p>实况文本、Cmd+Shift+5 浮动操作、Cheese! OCR 三种从截图取文的方法，何时用哪个最划算。</p>
+        </a>
+
+        <a href="how-on-device-ocr-works/" class="blog-card">
+            <span class="blog-card-tag">技术解析</span>
+            <h2>设备端 OCR 是如何工作的：Apple Vision 框架解析</h2>
+            <p>从技术角度解读 Apple Vision 如何在设备端完成 OCR，以及为什么它比云端更快、对隐私更友好。</p>
+        </a>
+
+        <a href="cheese-ocr-vs-text-sniper/" class="blog-card">
+            <span class="blog-card-tag">对比</span>
+            <h2>Cheese! OCR 与主流 Mac OCR 工具横评（含 Text Sniper、嗨格式 OCR 等）</h2>
+            <p>Text Sniper 在哪些方面仍然领先，Cheese! OCR 在哪些方面拉开差距，以及如何根据自己的工作流挑选。</p>
+        </a>
+    </main>
+
+    <footer class="article-footer">
+        <a href="../">主页</a>
+        <a href="../../privacy.html">隐私政策</a>
+        <a href="mailto:nicholaslck@icloud.com">联系我们</a>
+        <p>&copy; 2026 Cheese! OCR. 版权所有。</p>
+    </footer>
+
+</body>
+</html>

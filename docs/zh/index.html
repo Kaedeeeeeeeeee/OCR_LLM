@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hans">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,37 +7,37 @@
     <meta name="theme-color" content="#7EC8E3" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
 
-    <title>Cheese! OCR — Screenshot OCR for Mac · English/中文/日本語/한국어</title>
-    <meta name="description" content="Press a hotkey, select any area on your Mac screen, and instantly copy recognized text. 100% on-device via Apple Vision. Supports English, Chinese, Japanese, Korean.">
+    <title>Cheese! OCR — Mac 截图识字工具｜一键 OCR 支持中英日韩</title>
+    <meta name="description" content="按下快捷键，框选 Mac 屏幕任意区域，识别的文字自动复制到剪贴板。基于 Apple Vision 100% 本地运行，支持中文、英文、日文、韩文。Mac App Store 上架。">
 
-    <link rel="canonical" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/">
+    <link rel="canonical" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/">
     <link rel="alternate" hreflang="en" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/">
     <link rel="alternate" hreflang="zh-Hans" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/">
     <link rel="alternate" hreflang="ja" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/">
     <link rel="alternate" hreflang="ko" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ko/">
     <link rel="alternate" hreflang="x-default" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/">
 
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="preload" as="image" href="icon.webp" type="image/webp" fetchpriority="high">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+    <link rel="preload" as="image" href="../icon.webp" type="image/webp" fetchpriority="high">
 
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Cheese! OCR">
-    <meta property="og:title" content="Cheese! OCR — Screenshot OCR for Mac">
-    <meta property="og:description" content="Press a hotkey, select any area on your Mac screen, and instantly copy recognized text. 100% on-device via Apple Vision.">
-    <meta property="og:url" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/">
+    <meta property="og:title" content="Cheese! OCR — Mac 截图识字工具｜一键 OCR 支持中英日韩">
+    <meta property="og:description" content="按下快捷键，框选 Mac 屏幕任意区域，识别的文字自动复制到剪贴板。基于 Apple Vision 100% 本地运行。">
+    <meta property="og:url" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/">
     <meta property="og:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="en_US">
-    <meta property="og:locale:alternate" content="zh_CN">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:locale:alternate" content="en_US">
     <meta property="og:locale:alternate" content="ja_JP">
     <meta property="og:locale:alternate" content="ko_KR">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Cheese! OCR — Screenshot OCR for Mac">
-    <meta name="twitter:description" content="Press a hotkey, select any area, and copy text from anything on your Mac screen. 100% on-device.">
+    <meta name="twitter:title" content="Cheese! OCR — Mac 截图识字工具">
+    <meta name="twitter:description" content="按下快捷键，框选 Mac 屏幕任意区域，文字自动复制到剪贴板。完全本地运行，支持中英日韩。">
     <meta name="twitter:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
 
     <style>
@@ -93,7 +93,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
@@ -102,7 +102,6 @@
 
         img { max-width: 100%; height: auto; }
 
-        /* ── Language switcher ── */
         .lang-switcher {
             position: absolute;
             top: 1.25rem;
@@ -131,7 +130,6 @@
         .lang-switcher a:hover { opacity: 1; background: var(--lang-bg-hover); }
         .lang-switcher a[aria-current="page"] { opacity: 1; font-weight: 600; background: var(--lang-bg-hover); }
 
-        /* ── Hero ── */
         .hero {
             position: relative;
             background: linear-gradient(160deg, var(--hero-from), var(--hero-to));
@@ -162,12 +160,12 @@
             font-size: 1.25rem;
             font-weight: 400;
             color: var(--hero-text);
-            opacity: 0.8;
+            opacity: 0.85;
             margin-top: 0.6rem;
             max-width: 520px;
             margin-left: auto;
             margin-right: auto;
-            letter-spacing: -0.005em;
+            letter-spacing: 0;
         }
 
         .cta {
@@ -183,346 +181,89 @@
             margin-top: 2rem;
         }
 
-        .cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px var(--shadow-hover);
-        }
+        .cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px var(--shadow-hover); }
 
-        /* ── Section shared ── */
         section { padding: 5rem 1.5rem; }
-
         .section-inner { max-width: 1100px; margin: 0 auto; }
 
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: -0.01em;
-            margin-bottom: 0.5rem;
-        }
+        .section-title { text-align: center; font-size: 2rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 0.5rem; }
+        .section-subtitle { text-align: center; color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 3rem; max-width: 560px; margin-left: auto; margin-right: auto; }
 
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            margin-bottom: 3rem;
-            max-width: 560px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+        .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 960px; margin: 0 auto; }
+        .feature-card { background: var(--surface); border: 1px solid var(--card-border); border-radius: 20px; padding: 2rem 1.5rem; box-shadow: 0 2px 12px var(--shadow); transition: transform 0.2s, box-shadow 0.2s; }
+        .feature-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px var(--shadow-hover); }
+        .feature-icon { width: 40px; height: 40px; margin-bottom: 0.75rem; color: var(--sky); }
+        .feature-card h3 { font-size: 1.1rem; font-weight: 650; margin-bottom: 0.4rem; }
+        .feature-card p { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; }
 
-        /* ── Features ── */
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            max-width: 960px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            background: var(--surface);
-            border: 1px solid var(--card-border);
-            border-radius: 20px;
-            padding: 2rem 1.5rem;
-            box-shadow: 0 2px 12px var(--shadow);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 28px var(--shadow-hover);
-        }
-
-        .feature-icon {
-            width: 40px;
-            height: 40px;
-            margin-bottom: 0.75rem;
-            color: var(--sky);
-        }
-
-        .feature-card h3 {
-            font-size: 1.1rem;
-            font-weight: 650;
-            margin-bottom: 0.4rem;
-        }
-
-        .feature-card p {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-
-        /* ── Highlights carousel ── */
         .highlights { background: var(--sky-pale); }
-        @media (prefers-color-scheme: dark) {
-            .highlights { background: var(--surface); }
-        }
-
-        .carousel {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .carousel-track {
-            display: flex;
-            gap: 1rem;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            scroll-behavior: smooth;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-            border-radius: 16px;
-        }
-
+        @media (prefers-color-scheme: dark) { .highlights { background: var(--surface); } }
+        .carousel { position: relative; max-width: 900px; margin: 0 auto; }
+        .carousel-track { display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; border-radius: 16px; }
         .carousel-track::-webkit-scrollbar { display: none; }
-
         .carousel-track:focus { outline: none; }
         .carousel-track:focus-visible { outline: 2px solid var(--sky); outline-offset: 4px; }
-
-        .carousel-track figure {
-            flex: 0 0 100%;
-            scroll-snap-align: center;
-            background: var(--bg);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 4px 20px var(--shadow);
-            margin: 0;
-        }
-
-        .carousel-track img {
-            display: block;
-            width: 100%;
-            height: auto;
-            aspect-ratio: 16 / 10;
-            object-fit: cover;
-        }
-
-        .carousel-track figcaption {
-            padding: 0.9rem 1.1rem;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            text-align: center;
-        }
-
-        .carousel-btn {
-            position: absolute;
-            top: calc(50% - 1.25rem);
-            transform: translateY(-50%);
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            border: 0;
-            background: var(--surface);
-            color: var(--text);
-            cursor: pointer;
-            box-shadow: 0 4px 14px var(--shadow);
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0;
-            transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
-        }
-
+        .carousel-track figure { flex: 0 0 100%; scroll-snap-align: center; background: var(--bg); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px var(--shadow); margin: 0; }
+        .carousel-track img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; }
+        .carousel-track figcaption { padding: 0.9rem 1.1rem; font-size: 0.9rem; color: var(--text-secondary); text-align: center; }
+        .carousel-btn { position: absolute; top: calc(50% - 1.25rem); transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--surface); color: var(--text); cursor: pointer; box-shadow: 0 4px 14px var(--shadow); z-index: 2; display: flex; align-items: center; justify-content: center; padding: 0; transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s; }
         .carousel-btn svg { width: 20px; height: 20px; }
-
-        .carousel-btn:hover:not(:disabled) {
-            transform: translateY(-50%) scale(1.08);
-            box-shadow: 0 6px 22px var(--shadow-hover);
-        }
-
+        .carousel-btn:hover:not(:disabled) { transform: translateY(-50%) scale(1.08); box-shadow: 0 6px 22px var(--shadow-hover); }
         .carousel-btn:disabled { opacity: 0.35; cursor: default; }
-
         .carousel-btn.prev { left: -22px; }
         .carousel-btn.next { right: -22px; }
+        .carousel-dots { display: flex; justify-content: center; gap: 0.5rem; margin: 1.5rem auto 0; max-width: 900px; }
+        .carousel-dots button { width: 8px; height: 8px; border-radius: 50%; border: 0; background: var(--text); opacity: 0.2; cursor: pointer; padding: 0; transition: opacity 0.2s, width 0.2s, background 0.2s; }
+        .carousel-dots button[aria-current="true"] { opacity: 1; width: 24px; border-radius: 4px; background: var(--sky); }
 
-        .carousel-dots {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin: 1.5rem auto 0;
-            max-width: 900px;
-        }
-
-        .carousel-dots button {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            border: 0;
-            background: var(--text);
-            opacity: 0.2;
-            cursor: pointer;
-            padding: 0;
-            transition: opacity 0.2s, width 0.2s, background 0.2s;
-        }
-
-        .carousel-dots button[aria-current="true"] {
-            opacity: 1;
-            width: 24px;
-            border-radius: 4px;
-            background: var(--sky);
-        }
-
-        /* ── Use Cases ── */
         .use-cases { background: var(--bg); }
+        .uc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1000px; margin: 0 auto; }
+        .uc-card { background: var(--surface); border: 1px solid var(--card-border); border-radius: 20px; padding: 2rem 1.5rem; box-shadow: 0 2px 12px var(--shadow); }
+        .uc-icon { width: 40px; height: 40px; margin-bottom: 0.75rem; color: var(--sky); }
+        .uc-card h3 { font-size: 1.1rem; font-weight: 650; margin-bottom: 0.5rem; }
+        .uc-card p { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; }
 
-        .uc-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .uc-card {
-            background: var(--surface);
-            border: 1px solid var(--card-border);
-            border-radius: 20px;
-            padding: 2rem 1.5rem;
-            box-shadow: 0 2px 12px var(--shadow);
-        }
-
-        .uc-icon {
-            width: 40px;
-            height: 40px;
-            margin-bottom: 0.75rem;
-            color: var(--sky);
-        }
-
-        .uc-card h3 {
-            font-size: 1.1rem;
-            font-weight: 650;
-            margin-bottom: 0.5rem;
-        }
-
-        .uc-card p {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            line-height: 1.55;
-        }
-
-        /* ── How It Works ── */
         .how-it-works { background: var(--sky-pale); }
-        @media (prefers-color-scheme: dark) {
-            .how-it-works { background: var(--surface); }
-        }
-
-        .steps {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            max-width: 760px;
-            margin: 0 auto;
-        }
-
+        @media (prefers-color-scheme: dark) { .how-it-works { background: var(--surface); } }
+        .steps { display: flex; justify-content: center; gap: 3rem; max-width: 760px; margin: 0 auto; }
         .step { text-align: center; flex: 1; max-width: 200px; }
-
-        .step-number {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            background: var(--step-bg);
-            color: var(--step-text);
-            font-size: 1.35rem;
-            font-weight: 700;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
-        }
-
+        .step-number { width: 52px; height: 52px; border-radius: 50%; background: var(--step-bg); color: var(--step-text); font-size: 1.35rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
         .step h3 { font-size: 1.05rem; font-weight: 650; margin-bottom: 0.3rem; }
         .step p { font-size: 0.9rem; color: var(--text-secondary); }
 
-        /* ── FAQ ── */
         .faq { background: var(--bg); }
-
         .faq-list { max-width: 760px; margin: 0 auto; }
-
-        .faq-item {
-            border-bottom: 1px solid var(--faq-border);
-        }
-
+        .faq-item { border-bottom: 1px solid var(--faq-border); }
         .faq-item:first-child { border-top: 1px solid var(--faq-border); }
-
-        .faq-item summary {
-            list-style: none;
-            cursor: pointer;
-            padding: 1.25rem 0.25rem;
-            font-weight: 600;
-            font-size: 1.05rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-        }
-
+        .faq-item summary { list-style: none; cursor: pointer; padding: 1.25rem 0.25rem; font-weight: 600; font-size: 1.05rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
         .faq-item summary::-webkit-details-marker { display: none; }
-
-        .faq-item summary::after {
-            content: "+";
-            font-size: 1.5rem;
-            font-weight: 400;
-            color: var(--text-secondary);
-            transition: transform 0.2s;
-            line-height: 1;
-        }
-
+        .faq-item summary::after { content: "+"; font-size: 1.5rem; font-weight: 400; color: var(--text-secondary); transition: transform 0.2s; line-height: 1; }
         .faq-item[open] summary::after { content: "−"; }
+        .faq-item .answer { padding: 0 0.25rem 1.25rem; color: var(--text-secondary); font-size: 0.98rem; line-height: 1.75; }
 
-        .faq-item .answer {
-            padding: 0 0.25rem 1.25rem;
-            color: var(--text-secondary);
-            font-size: 0.98rem;
-            line-height: 1.65;
-        }
-
-        /* ── Footer ── */
-        footer {
-            background: var(--footer-bg);
-            padding: 2rem 1.5rem;
-            text-align: center;
-            font-size: 0.85rem;
-            color: var(--footer-text);
-        }
-
+        footer { background: var(--footer-bg); padding: 2rem 1.5rem; text-align: center; font-size: 0.85rem; color: var(--footer-text); }
         footer a { color: var(--link); text-decoration: none; }
         footer a:hover { text-decoration: underline; }
-
         .footer-links { margin-bottom: 0.5rem; }
         .footer-links a + a { margin-left: 1.5rem; }
 
-        /* ── Responsive ── */
         @media (max-width: 720px) {
             .hero { padding: 4.5rem 1.25rem 3rem; }
             .hero-icon { width: 120px; height: 120px; border-radius: 28px; }
             .hero-title { font-size: 2.25rem; }
             .hero-subtitle { font-size: 1.05rem; }
-
-            .feature-grid, .uc-grid {
-                grid-template-columns: 1fr;
-                max-width: 420px;
-            }
-
+            .feature-grid, .uc-grid { grid-template-columns: 1fr; max-width: 420px; }
             .carousel { max-width: 100%; }
             .carousel-btn { display: none; }
-
             .steps { flex-direction: column; align-items: center; gap: 2rem; }
-
             section { padding: 3.5rem 1.25rem; }
             .section-title { font-size: 1.65rem; }
-
             .lang-switcher { top: 0.75rem; right: 0.75rem; font-size: 0.8rem; }
             .lang-switcher a { padding: 0.3rem 0.7rem; }
         }
 
         @media (min-width: 721px) and (max-width: 960px) {
-            .feature-grid, .uc-grid {
-                grid-template-columns: repeat(2, 1fr);
-                max-width: 640px;
-            }
+            .feature-grid, .uc-grid { grid-template-columns: repeat(2, 1fr); max-width: 640px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -544,12 +285,12 @@
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "Cheese! OCR",
-      "description": "Press a hotkey, select any area on your Mac screen, and instantly copy recognized text. 100% on-device OCR powered by Apple Vision.",
-      "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/",
+      "description": "按下快捷键，框选 Mac 屏幕任意区域，识别的文字自动复制到剪贴板。基于 Apple Vision 100% 本地运行。",
+      "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/",
       "applicationCategory": "UtilitiesApplication",
       "applicationSubCategory": "Productivity",
       "operatingSystem": "macOS 13 and later",
-      "inLanguage": ["en", "zh-Hans", "ja", "ko"],
+      "inLanguage": ["zh-Hans", "en", "ja", "ko"],
       "offers": {
         "@type": "Offer",
         "price": "5.99",
@@ -561,19 +302,19 @@
       "downloadUrl": "https://apps.apple.com/app/cheese-ocr/id6760889131",
       "image": "https://kaedeeeeeeeeee.github.io/OCR_LLM/icon.png",
       "screenshot": [
-        "https://kaedeeeeeeeeee.github.io/OCR_LLM/screenshots/en/slide1.png",
-        "https://kaedeeeeeeeeee.github.io/OCR_LLM/screenshots/en/slide2.png",
-        "https://kaedeeeeeeeeee.github.io/OCR_LLM/screenshots/en/slide3.png",
-        "https://kaedeeeeeeeeee.github.io/OCR_LLM/screenshots/en/slide4.png",
-        "https://kaedeeeeeeeeee.github.io/OCR_LLM/screenshots/en/slide5.png"
+        "https://kaedeeeeeeeeee.github.io/OCR_LLM/screenshots/zh-Hans/slide1.png",
+        "https://kaedeeeeeeeeee.github.io/OCR_LLM/screenshots/zh-Hans/slide2.png",
+        "https://kaedeeeeeeeeee.github.io/OCR_LLM/screenshots/zh-Hans/slide3.png",
+        "https://kaedeeeeeeeeee.github.io/OCR_LLM/screenshots/zh-Hans/slide4.png",
+        "https://kaedeeeeeeeeee.github.io/OCR_LLM/screenshots/zh-Hans/slide5.png"
       ],
       "featureList": [
-        "Instant screen capture with a customizable global hotkey",
-        "100% on-device OCR powered by Apple Vision",
-        "Recognizes English, Simplified Chinese, Japanese, and Korean",
-        "Auto-copy recognized text to the clipboard",
-        "Searchable OCR history",
-        "Lightweight menu bar application"
+        "自定义快捷键一键截屏识别",
+        "基于 Apple Vision 100% 本地 OCR",
+        "支持中文、英文、日文、韩文",
+        "识别结果自动复制到剪贴板",
+        "OCR 历史记录，支持搜索",
+        "轻量菜单栏应用"
       ],
       "publisher": {
         "@type": "Organization",
@@ -587,61 +328,62 @@
     {
       "@context": "https://schema.org",
       "@type": "FAQPage",
+      "inLanguage": "zh-Hans",
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Is Cheese! OCR free?",
+          "name": "Cheese! OCR 是免费的吗？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Cheese! OCR is a one-time paid purchase on the Mac App Store. There is no subscription and no in-app purchases — buy once and use it forever, across all your Macs signed in with the same Apple ID."
+            "text": "Cheese! OCR 是 Mac App Store 上的一次性付费应用，没有订阅，也没有内购。购买一次即可在所有使用同一 Apple ID 的 Mac 上使用。"
           }
         },
         {
           "@type": "Question",
-          "name": "Does Cheese! OCR work offline?",
+          "name": "可以离线使用吗？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. All text recognition runs entirely on-device using Apple's Vision framework. The app has no network entitlements at all, so it literally cannot send data anywhere — even if it wanted to."
+            "text": "可以。所有文字识别都在本地通过 Apple Vision 框架完成。应用完全没有网络权限，即便想联网也做不到，彻底杜绝数据外传。"
           }
         },
         {
           "@type": "Question",
-          "name": "What languages does Cheese! OCR recognize?",
+          "name": "支持哪些语言的文字识别？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "English, Simplified Chinese, Japanese, and Korean out of the box. Mixed scripts within the same capture (e.g. English mixed with Chinese) are handled correctly."
+            "text": "开箱即用支持中文（简体）、英文、日文、韩文。同一个截图中混合多种语言（例如中英混排）也能正确识别。"
           }
         },
         {
           "@type": "Question",
-          "name": "How is Cheese! OCR different from macOS Live Text?",
+          "name": "和 macOS 自带的「实况文本」(Live Text) 有什么区别？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Live Text only works inside a handful of Apple apps (Preview, Photos, Safari). Cheese! OCR works anywhere on your screen — video players, conference apps, protected PDFs, remote desktops — through a global keyboard shortcut."
+            "text": "Live Text 只在少数系统应用（预览、照片、Safari）里可用。Cheese! OCR 通过全局快捷键，可以识别屏幕上任何位置的文字，包括视频播放器、会议软件、受保护的 PDF、远程桌面等任何场景。"
           }
         },
         {
           "@type": "Question",
-          "name": "What version of macOS do I need?",
+          "name": "需要什么版本的 macOS？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Cheese! OCR runs on macOS 13 Ventura and later, on both Apple Silicon and Intel Macs."
+            "text": "Cheese! OCR 支持 macOS 13 Ventura 及以上版本，Apple Silicon 与 Intel 芯片 Mac 都可以使用。"
           }
         },
         {
           "@type": "Question",
-          "name": "Can I change the keyboard shortcut?",
+          "name": "可以修改快捷键吗？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Open the app's settings and record any combination you like. The default shortcut is ⇧⌘E."
+            "text": "可以。在应用设置里打开快捷键录制，按下任意组合即可自定义。默认快捷键是 ⇧⌘E。"
           }
         },
         {
           "@type": "Question",
-          "name": "Are my screenshots uploaded anywhere?",
+          "name": "我的截图会被上传到服务器吗？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Never. Screenshots are processed in memory via Apple Vision and are never saved to disk or sent over the network. The app has zero network permissions."
+            "text": "永远不会。截图仅在内存中通过 Apple Vision 处理，不会写入磁盘，更不会通过网络发送。应用没有任何网络权限。"
           }
         }
       ]
@@ -650,207 +392,201 @@
 </head>
 <body>
 
-    <!-- Hero -->
     <section class="hero">
-        <nav class="lang-switcher" aria-label="Language">
-            <a href="/OCR_LLM/" aria-current="page" hreflang="en">EN</a>
-            <a href="/OCR_LLM/zh/" hreflang="zh-Hans">中文</a>
+        <nav class="lang-switcher" aria-label="语言切换">
+            <a href="/OCR_LLM/" hreflang="en">EN</a>
+            <a href="/OCR_LLM/zh/" aria-current="page" hreflang="zh-Hans">中文</a>
             <a href="/OCR_LLM/ja/" hreflang="ja">日本語</a>
             <a href="/OCR_LLM/ko/" hreflang="ko">한국어</a>
         </nav>
 
         <picture>
-            <source srcset="icon.webp" type="image/webp">
-            <img src="icon.png" alt="Cheese! OCR app icon — a cute smiling document mascot"
+            <source srcset="../icon.webp" type="image/webp">
+            <img src="../icon.png" alt="Cheese! OCR 应用图标 — 可爱的文档吉祥物"
                  class="hero-icon" width="160" height="160"
                  fetchpriority="high" decoding="async">
         </picture>
         <h1 class="hero-title">
             Cheese! OCR
-            <span class="hero-subtitle">Fast, Private Screenshot OCR for Mac</span>
+            <span class="hero-subtitle">快速、私密的 Mac 截图识字工具</span>
         </h1>
-        <a href="https://apps.apple.com/app/cheese-ocr/id6760889131" class="cta">Download on the Mac App Store</a>
+        <a href="https://apps.apple.com/app/cheese-ocr/id6760889131" class="cta">在 Mac App Store 下载</a>
     </section>
 
-    <!-- Features -->
     <section class="features">
-        <h2 class="section-title">Features</h2>
-        <p class="section-subtitle">Everything you need, nothing you don't.</p>
+        <h2 class="section-title">主要功能</h2>
+        <p class="section-subtitle">你需要的都在，不需要的都没有。</p>
         <div class="feature-grid">
             <div class="feature-card">
                 <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-                <h3>Instant Screen Capture</h3>
-                <p>Press a hotkey, select an area, and get text instantly. It's that simple.</p>
+                <h3>即时屏幕捕获</h3>
+                <p>按下快捷键，框选任意区域，文字瞬间就出来。就这么简单。</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-                <h3>100% Private</h3>
-                <p>All OCR runs on-device using Apple Vision. No network requests, no data collection.</p>
+                <h3>100% 隐私保护</h3>
+                <p>全部基于 Apple Vision 本地运行，不联网、不收集任何数据。</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-                <h3>Multi-language</h3>
-                <p>Recognizes English, Chinese, Japanese, and Korean text out of the box.</p>
+                <h3>多语言 OCR</h3>
+                <p>开箱即用支持中文、英文、日文、韩文，中英混排也能正确识别。</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg></div>
-                <h3>Auto-copy to Clipboard</h3>
-                <p>Recognized text is copied to your clipboard automatically, ready to paste.</p>
+                <h3>自动复制到剪贴板</h3>
+                <p>识别结果立刻进入剪贴板，切到任意窗口直接粘贴，不用再点一次。</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-                <h3>Lightweight &amp; Fast</h3>
-                <p>Built with native macOS frameworks. Tiny footprint, blazing-fast recognition.</p>
+                <h3>轻量极速</h3>
+                <p>使用原生 macOS 框架构建，体积小、识别快，启动几乎无感。</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-                <h3>History Management</h3>
-                <p>Browse and search your past OCR results. Never lose captured text again.</p>
+                <h3>历史记录管理</h3>
+                <p>所有识别结果自动保存到历史列表，随时查看和搜索，不再丢失。</p>
             </div>
         </div>
     </section>
 
-    <!-- Highlights -->
     <section class="highlights" id="highlights">
-        <h2 class="section-title">Highlights</h2>
-        <p class="section-subtitle">A visual tour through what makes Cheese! OCR stand out.</p>
+        <h2 class="section-title">产品亮点</h2>
+        <p class="section-subtitle">一眼看清 Cheese! OCR 的核心能力。</p>
         <div class="carousel">
-            <button type="button" class="carousel-btn prev" aria-label="Previous highlight">
+            <button type="button" class="carousel-btn prev" aria-label="上一张">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
             </button>
-            <div class="carousel-track" tabindex="0" aria-label="Product highlights, use arrow keys to navigate">
+            <div class="carousel-track" tabindex="0" aria-label="产品亮点，可用左右方向键切换">
                 <figure>
                     <picture>
-                        <source srcset="screenshots/en/slide1.webp" type="image/webp">
-                        <img src="screenshots/en/slide1.png" alt="Cheese! OCR hero visual — Fast, Private OCR for Your Mac"
+                        <source srcset="../screenshots/zh-Hans/slide1.webp" type="image/webp">
+                        <img src="../screenshots/zh-Hans/slide1.png" alt="Cheese! OCR 主视觉 — 快速、私密的 Mac OCR 工具"
                              loading="lazy" decoding="async" width="2560" height="1600">
                     </picture>
-                    <figcaption>Fast, Private OCR for Your Mac</figcaption>
+                    <figcaption>快速、私密的 Mac OCR 工具</figcaption>
                 </figure>
                 <figure>
                     <picture>
-                        <source srcset="screenshots/en/slide2.webp" type="image/webp">
-                        <img src="screenshots/en/slide2.png" alt="Select any area on screen to extract text instantly"
+                        <source srcset="../screenshots/zh-Hans/slide2.webp" type="image/webp">
+                        <img src="../screenshots/zh-Hans/slide2.png" alt="框选屏幕任意区域，即刻获取文字"
                              loading="lazy" decoding="async" width="2560" height="1600">
                     </picture>
-                    <figcaption>Instant Screen Capture</figcaption>
+                    <figcaption>即时屏幕捕获</figcaption>
                 </figure>
                 <figure>
                     <picture>
-                        <source srcset="screenshots/en/slide3.webp" type="image/webp">
-                        <img src="screenshots/en/slide3.png" alt="100% private on-device OCR — no network, no data collection"
+                        <source srcset="../screenshots/zh-Hans/slide3.webp" type="image/webp">
+                        <img src="../screenshots/zh-Hans/slide3.png" alt="100% 本地 OCR — 无网络请求，零数据收集"
                              loading="lazy" decoding="async" width="2560" height="1600">
                     </picture>
-                    <figcaption>100% Private, On-Device</figcaption>
+                    <figcaption>100% 本地，零数据收集</figcaption>
                 </figure>
                 <figure>
                     <picture>
-                        <source srcset="screenshots/en/slide4.webp" type="image/webp">
-                        <img src="screenshots/en/slide4.png" alt="Multi-language OCR recognizing English, Chinese, Japanese, and Korean"
+                        <source srcset="../screenshots/zh-Hans/slide4.webp" type="image/webp">
+                        <img src="../screenshots/zh-Hans/slide4.png" alt="多语言 OCR — 识别中文、英文、日文、韩文"
                              loading="lazy" decoding="async" width="2560" height="1600">
                     </picture>
-                    <figcaption>Multi-language OCR</figcaption>
+                    <figcaption>多语言 OCR</figcaption>
                 </figure>
                 <figure>
                     <picture>
-                        <source srcset="screenshots/en/slide5.webp" type="image/webp">
-                        <img src="screenshots/en/slide5.png" alt="Cheese! OCR menu bar app with searchable OCR history"
+                        <source srcset="../screenshots/zh-Hans/slide5.webp" type="image/webp">
+                        <img src="../screenshots/zh-Hans/slide5.png" alt="Cheese! OCR 菜单栏应用与可搜索的历史记录"
                              loading="lazy" decoding="async" width="2560" height="1600">
                     </picture>
-                    <figcaption>Lives in Your Menu Bar</figcaption>
+                    <figcaption>常驻菜单栏</figcaption>
                 </figure>
             </div>
-            <button type="button" class="carousel-btn next" aria-label="Next highlight">
+            <button type="button" class="carousel-btn next" aria-label="下一张">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
             </button>
         </div>
-        <div class="carousel-dots" role="tablist" aria-label="Highlights navigation">
-            <button type="button" aria-label="Go to highlight 1"></button>
-            <button type="button" aria-label="Go to highlight 2"></button>
-            <button type="button" aria-label="Go to highlight 3"></button>
-            <button type="button" aria-label="Go to highlight 4"></button>
-            <button type="button" aria-label="Go to highlight 5"></button>
+        <div class="carousel-dots" role="tablist" aria-label="亮点导航">
+            <button type="button" aria-label="跳转到第 1 张"></button>
+            <button type="button" aria-label="跳转到第 2 张"></button>
+            <button type="button" aria-label="跳转到第 3 张"></button>
+            <button type="button" aria-label="跳转到第 4 张"></button>
+            <button type="button" aria-label="跳转到第 5 张"></button>
         </div>
     </section>
 
-    <!-- Use Cases -->
     <section class="use-cases">
-        <h2 class="section-title">Built for Real Workflows</h2>
-        <p class="section-subtitle">The everyday moments Cheese! OCR was made for.</p>
+        <h2 class="section-title">真实使用场景</h2>
+        <p class="section-subtitle">日常工作里最常遇到的那些瞬间。</p>
         <div class="uc-grid">
             <div class="uc-card">
                 <div class="uc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="14" y2="17"/></svg></div>
-                <h3>Scanned PDFs &amp; Papers</h3>
-                <p>Writing a paper with a scanned-only reference? Grab the passage you need without retyping a single line.</p>
+                <h3>扫描版 PDF 与论文</h3>
+                <p>写论文遇到扫描版的参考文献，再也不用对着屏幕手动打字，框选一下就好。</p>
             </div>
             <div class="uc-card">
                 <div class="uc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
-                <h3>Code from Video Tutorials</h3>
-                <p>Pause a tutorial, OCR the code on screen, and paste straight into your editor. No more typing from video.</p>
+                <h3>视频教程里的代码</h3>
+                <p>看编程视频时暂停，直接 OCR 画面上的代码，粘贴进编辑器就能跑。</p>
             </div>
             <div class="uc-card">
                 <div class="uc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-                <h3>Error Logs in Chat Screenshots</h3>
-                <p>A teammate sends a screenshot of a stack trace. Pull the text out in a second and search it properly.</p>
+                <h3>聊天截图里的错误日志</h3>
+                <p>同事发来一张报错截图，几秒钟把文字提出来，就能拿去搜索或贴给 AI。</p>
             </div>
         </div>
     </section>
 
-    <!-- How It Works -->
     <section class="how-it-works">
-        <h2 class="section-title">How It Works</h2>
-        <p class="section-subtitle">Three steps. Zero friction.</p>
+        <h2 class="section-title">三步搞定</h2>
+        <p class="section-subtitle">没有学习成本，一次上手终身受用。</p>
         <div class="steps">
             <div class="step">
                 <div class="step-number">1</div>
-                <h3>Press Hotkey</h3>
-                <p>Trigger a screen capture with your custom keyboard shortcut.</p>
+                <h3>按下快捷键</h3>
+                <p>用自定义的全局快捷键触发截图。</p>
             </div>
             <div class="step">
                 <div class="step-number">2</div>
-                <h3>Select Area</h3>
-                <p>Click and drag to select the region containing text.</p>
+                <h3>框选区域</h3>
+                <p>拖动鼠标选中包含文字的区域。</p>
             </div>
             <div class="step">
                 <div class="step-number">3</div>
-                <h3>Text Copied</h3>
-                <p>Recognized text is instantly copied to your clipboard.</p>
+                <h3>文字已复制</h3>
+                <p>识别结果立刻进入剪贴板，随时粘贴。</p>
             </div>
         </div>
     </section>
 
-    <!-- FAQ -->
     <section class="faq">
-        <h2 class="section-title">Frequently Asked Questions</h2>
-        <p class="section-subtitle">The short answers to the most common questions.</p>
+        <h2 class="section-title">常见问题</h2>
+        <p class="section-subtitle">用最短的答案回答最常见的疑问。</p>
         <div class="faq-list">
             <details class="faq-item">
-                <summary>Is Cheese! OCR free?</summary>
-                <div class="answer">Cheese! OCR is a one-time paid purchase on the Mac App Store. There's no subscription and no in-app purchases — buy once and use it forever, across every Mac signed in with your Apple ID.</div>
+                <summary>Cheese! OCR 是免费的吗？</summary>
+                <div class="answer">Cheese! OCR 是 Mac App Store 上的一次性付费应用，没有订阅，也没有内购。购买一次即可在所有使用同一 Apple ID 的 Mac 上使用。</div>
             </details>
             <details class="faq-item">
-                <summary>Does Cheese! OCR work offline?</summary>
-                <div class="answer">Yes. All text recognition runs entirely on-device using Apple's Vision framework. The app has no network entitlements at all, so it literally cannot send data anywhere — even if it wanted to.</div>
+                <summary>可以离线使用吗？</summary>
+                <div class="answer">可以。所有文字识别都在本地通过 Apple Vision 框架完成。应用完全没有网络权限，即便想联网也做不到，彻底杜绝数据外传。</div>
             </details>
             <details class="faq-item">
-                <summary>What languages does Cheese! OCR recognize?</summary>
-                <div class="answer">English, Simplified Chinese, Japanese, and Korean out of the box. Mixed scripts within the same capture (e.g. English mixed with Chinese) are handled correctly.</div>
+                <summary>支持哪些语言的文字识别？</summary>
+                <div class="answer">开箱即用支持中文（简体）、英文、日文、韩文。同一个截图中混合多种语言（例如中英混排）也能正确识别。</div>
             </details>
             <details class="faq-item">
-                <summary>How is it different from macOS Live Text?</summary>
-                <div class="answer">Live Text only works inside a handful of Apple apps (Preview, Photos, Safari). Cheese! OCR works <em>anywhere</em> on your screen — video players, conference apps, protected PDFs, remote desktops — through a single global keyboard shortcut.</div>
+                <summary>和 macOS 自带的「实况文本」(Live Text) 有什么区别？</summary>
+                <div class="answer">Live Text 只在少数系统应用（预览、照片、Safari）里可用。Cheese! OCR 通过全局快捷键，可以识别屏幕上<em>任何位置</em>的文字，包括视频播放器、会议软件、受保护的 PDF、远程桌面等任何场景。</div>
             </details>
             <details class="faq-item">
-                <summary>What version of macOS do I need?</summary>
-                <div class="answer">Cheese! OCR runs on macOS 13 Ventura and later, on both Apple Silicon and Intel Macs.</div>
+                <summary>需要什么版本的 macOS？</summary>
+                <div class="answer">Cheese! OCR 支持 macOS 13 Ventura 及以上版本，Apple Silicon 与 Intel 芯片 Mac 都可以使用。</div>
             </details>
             <details class="faq-item">
-                <summary>Can I change the keyboard shortcut?</summary>
-                <div class="answer">Yes. Open the app's settings and record any combination you like. The default shortcut is ⇧⌘E.</div>
+                <summary>可以修改快捷键吗？</summary>
+                <div class="answer">可以。在应用设置里打开快捷键录制，按下任意组合即可自定义。默认快捷键是 ⇧⌘E。</div>
             </details>
             <details class="faq-item">
-                <summary>Are my screenshots uploaded anywhere?</summary>
-                <div class="answer">Never. Screenshots are processed in memory via Apple Vision and are never saved to disk or sent over the network. The app has zero network permissions.</div>
+                <summary>我的截图会被上传到服务器吗？</summary>
+                <div class="answer">永远不会。截图仅在内存中通过 Apple Vision 处理，不会写入磁盘，更不会通过网络发送。应用没有任何网络权限。</div>
             </details>
         </div>
     </section>
@@ -913,14 +649,13 @@
     })();
     </script>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-links">
-            <a href="blog/">Blog</a>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="mailto:nicholaslck@icloud.com">Contact</a>
+            <a href="blog/">博客</a>
+            <a href="../privacy.html">隐私政策</a>
+            <a href="mailto:nicholaslck@icloud.com">联系我们</a>
         </div>
-        <p>&copy; 2026 Cheese! OCR. All rights reserved.</p>
+        <p>&copy; 2026 Cheese! OCR. 版权所有。</p>
     </footer>
 
 </body>

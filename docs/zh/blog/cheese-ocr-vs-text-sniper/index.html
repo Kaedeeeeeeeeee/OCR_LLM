@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
+
+    <title>Cheese! OCR 与主流 Mac OCR 工具横评（含 Text Sniper、嗨格式 OCR 等）— Cheese! OCR 博客</title>
+    <meta name="description" content="不偏不倚地横向对比 Cheese! OCR、Text Sniper、macOS 实况文本，以及嗨格式 OCR、ocrmypdf、Adobe Acrobat 等 Mac 上常见的 OCR 工具，帮你按工作流挑选。">
+
+    <link rel="canonical" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/cheese-ocr-vs-text-sniper/">
+    <link rel="alternate" hreflang="en" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/cheese-ocr-vs-text-sniper/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/cheese-ocr-vs-text-sniper/">
+    <link rel="alternate" hreflang="ja" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/cheese-ocr-vs-text-sniper/">
+    <link rel="alternate" hreflang="ko" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ko/blog/cheese-ocr-vs-text-sniper/">
+    <link rel="alternate" hreflang="x-default" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/cheese-ocr-vs-text-sniper/">
+
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../../../blog/article.css">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Cheese! OCR">
+    <meta property="og:title" content="Cheese! OCR 与主流 Mac OCR 工具横评（含 Text Sniper、嗨格式 OCR 等）">
+    <meta property="og:description" content="不偏不倚地横向对比 Cheese! OCR、Text Sniper、macOS 实况文本，以及嗨格式 OCR、ocrmypdf 等 Mac 上常见的 OCR 工具。">
+    <meta property="og:url" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/cheese-ocr-vs-text-sniper/">
+    <meta property="og:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="article:published_time" content="2026-04-25">
+    <meta property="article:author" content="Cheese! OCR Team">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cheese! OCR 与主流 Mac OCR 工具横评">
+    <meta name="twitter:description" content="不偏不倚地横向对比 Mac 上常见的 OCR 工具。">
+    <meta name="twitter:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Cheese! OCR 与主流 Mac OCR 工具横评（含 Text Sniper、嗨格式 OCR 等）",
+      "description": "不偏不倚地横向对比 Cheese! OCR、Text Sniper、macOS 实况文本，以及嗨格式 OCR、ocrmypdf 等 Mac 上常见的 OCR 工具。",
+      "author": {
+        "@type": "Organization",
+        "name": "Cheese! OCR",
+        "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Cheese! OCR",
+        "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+      },
+      "datePublished": "2026-04-25",
+      "dateModified": "2026-04-25",
+      "image": "https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png",
+      "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/cheese-ocr-vs-text-sniper/",
+      "inLanguage": "zh-Hans",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/cheese-ocr-vs-text-sniper/"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "inLanguage": "zh-Hans",
+      "mainEntity": [
+        { "@type": "Question", "name": "我已经在用 Text Sniper 了，需要换成 Cheese! OCR 吗？", "acceptedAnswer": { "@type": "Answer", "text": "多数情况下不需要。两者覆盖的核心工作流几乎一样。如果 Text Sniper 已经在你的肌肉记忆里，且你用得顺手，省下的几美元和小幅功能差异未必值得重新建立习惯。如果好奇，Mac App Store 有 7 天退款窗口，下载试一下也不损失什么。" } },
+        { "@type": "Question", "name": "这些工具是不是都在用同一个 OCR 引擎？", "acceptedAnswer": { "@type": "Answer", "text": "在 Mac 上，大多数现代的快捷键 OCR 工具——包括 Cheese! OCR 和 Text Sniper——底层都是 Apple 的 Vision 框架。这也是为什么它们在 Apple 支持的语言上准确率相近。云端 OCR（比如 Abbyy 系列、Adobe Acrobat 的部分流程、嗨格式 OCR 的部分功能）走的是各自的服务器端引擎，对某些场景可能更准，但代价是图像离开你的电脑。" } },
+        { "@type": "Question", "name": "Cheese! OCR 是不是 Text Sniper 的克隆或派生？", "acceptedAnswer": { "@type": "Answer", "text": "不是。Cheese! OCR 是一款基于 Apple Vision 从零开发的独立应用。两者属于同一类别——菜单栏、快捷键、基于 Apple Vision 的截图 OCR——是因为这就是 macOS 上这个问题最自然的形态，而不是因为代码同源。我们参考了整个 Mac 高级用户社区的传统，但实现完全是自己的。" } },
+        { "@type": "Question", "name": "为什么 Cheese! OCR 更便宜？", "acceptedAnswer": { "@type": "Answer", "text": "这是定价策略的差异，不代表质量更低。Cheese! OCR 把价格定在 6 美元一次性买断，是为了让那些「手动复制文字累了想试试 OCR 工具」的用户能毫不犹豫地买单。Text Sniper 在市场上时间更长，价格反映了一个更成熟的业务形态。两者都不算错，只是面向略有不同的买家。" } },
+        { "@type": "Question", "name": "如果我只想要免费的 Mac OCR 工具呢？", "acceptedAnswer": { "@type": "Answer", "text": "两个真实可用的选项。macOS 实况文本是系统自带的，免费，在 Apple 自家应用（照片、预览、快速查看、Safari）里非常好用。要 OCR 扫描版 PDF，可以用开源命令行工具 ocrmypdf，它会给扫描 PDF 加上一层可搜索的文字层，免费、本地、可批量。日常偶尔用——实况文本足够；批量处理 PDF——ocrmypdf；如果一天要 OCR 几十次、跨各种应用——这时候付费快捷键工具才真正值回票价。" } }
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Cheese! OCR", "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/" },
+        { "@type": "ListItem", "position": 2, "name": "博客", "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Cheese! OCR 与主流 Mac OCR 工具横评（含 Text Sniper、嗨格式 OCR 等）" }
+      ]
+    }
+    </script>
+</head>
+<body>
+
+    <nav class="article-nav">
+        <a href="../" class="back-link">← 博客</a>
+        <div class="lang-switcher">
+            <a href="/OCR_LLM/blog/cheese-ocr-vs-text-sniper/" hreflang="en">EN</a>
+            <a href="/OCR_LLM/zh/blog/cheese-ocr-vs-text-sniper/" aria-current="page" hreflang="zh-Hans">中文</a>
+            <a href="/OCR_LLM/ja/blog/cheese-ocr-vs-text-sniper/" hreflang="ja">日本語</a>
+            <a href="/OCR_LLM/ko/blog/cheese-ocr-vs-text-sniper/" hreflang="ko">한국어</a>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <h1>Cheese! OCR 与主流 Mac OCR 工具横评（含 Text Sniper、嗨格式 OCR 等）</h1>
+        <p class="article-meta">
+            <time datetime="2026-04-25">2026 年 4 月 25 日</time>
+            · 12 分钟阅读
+        </p>
+    </header>
+
+    <aside class="tldr">
+        <strong>速读</strong>
+        Text Sniper 和 Cheese! OCR 走的是同一条工作流：全局快捷键、框选、文字进剪贴板、全部本地 Apple Vision 完成。Text Sniper 时间更久、用户群更大；Cheese! OCR 一次性 5.99 美元更便宜，自带可搜索历史，并且默认就把韩文加在识别语言里。两者是同行而非对头。具体怎么选，要看你工作流里在意哪些细节差异。
+    </aside>
+
+    <article class="article-body">
+
+        <h2>2026 年的 Mac OCR 工具地图</h2>
+
+        <p>五年前在 Mac 上想做 OCR，多半要把 PDF 上传到某个网页服务，然后祈祷不要识别成乱码。今天这已经是一个真正成形的品类。Apple 自 2019 年起把 Vision 框架内置到 macOS，每年都在迭代识别质量，相当于免费向第三方开发者发了一颗本地 OCR 引擎。围绕这颗引擎，长出了一小批菜单栏工具，要解决的都是同一个问题：怎么从「本来不能选」的地方把文字弄出来？被锁死的 PDF、Zoom 共享屏幕里飘过的代码、同事在飞书里贴过来的截图、B 站教程暂停时画面里的命令行。</p>
+
+        <p>这一类工具里最常被提及的两个名字，是 Text Sniper 和 Cheese! OCR。Cheese! OCR 是我们做的，所以这篇不是中立评测——但我们尽量公正。除了这两款，Mac 上还有系统自带的 macOS 实况文本（免费、对部分人来说足够），有 PDFPen Pro、Adobe Acrobat 这类全文档 PDF 编辑器（解决的是另一个问题），还有像嗨格式 OCR、福昕 PDF 阅读器这样在国内市场较常见的产品（多数走云端、定位偏文档处理）。下文都会顺带提到。</p>
+
+        <p>结论先放上：如果你的工作流就是「按下快捷键、框选、粘贴」，Cheese! OCR 和 Text Sniper 对 90% 的用户来说基本可以互换。值得讨论的是剩下 10%——以及价格、历史搜索，和「你愿意每天在菜单栏看到哪个图标」这种问题。</p>
+
+        <h2>Cheese! OCR 与 Text Sniper：相同的部分</h2>
+
+        <p>从相同点开始更容易讲。两款应用都：</p>
+
+        <ul>
+            <li><strong>常驻菜单栏。</strong>没有 Dock 图标，也没有大窗口，安静地待在屏幕角落，叫它才出来。</li>
+            <li><strong>由全局快捷键触发。</strong>在任何应用、任何屏幕区域都能召唤。Cheese! OCR 默认 ⇧⌘E，Text Sniper 也有自己的默认值；两者都支持自定义。</li>
+            <li><strong>都是「拖拽框选」式截屏。</strong>形状跟 Cmd+Shift+4 一样：拖一个矩形、松手。</li>
+            <li><strong>都用 Apple Vision 在本地识别。</strong>图像不离开 Mac，应用沙盒里没有任何网络权限。</li>
+            <li><strong>识别完自动写入剪贴板。</strong>等你手回到键盘上，文字已经准备好被粘贴。</li>
+            <li><strong>都是 Mac App Store 上的一次性买断付费应用。</strong>没有订阅——这一点在 2026 年依然让人庆幸。</li>
+            <li><strong>都默认支持多语言。</strong>两者都吃 Apple Vision 的语言列表，覆盖主流拉丁文字、中文、日文、韩文等。</li>
+        </ul>
+
+        <p>最后这点很重要：因为底层都是同一颗引擎，原始识别准确率基本相当。如果 Apple Vision 把一段花体英文的「rn」看成「m」，那两个 App 都会同样翻车。说 Cheese! OCR 准确率「显著高于」Text Sniper、或者反过来的，多半是在比较两张不同的图。</p>
+
+        <h2>Text Sniper 在哪些方面仍然领先</h2>
+
+        <p>Text Sniper 比 Cheese! OCR 更早进入这个市场。这并不是一件小事——既然底层引擎是 Apple 的，那么一切区别都来自引擎之外：UI 细节、键盘交互的打磨、那些被早期用户撞出来又一个个修掉的边角 bug。</p>
+
+        <p>具体说，Text Sniper 当下确实在以下几方面更稳：</p>
+
+        <ul>
+            <li><strong>成熟度与稳定性。</strong>这款应用已经被打磨多年。各种古怪显示器配置、外接显示屏切换、新版 macOS 改了辅助功能权限提示——这些 corner case Text Sniper 大概率早就遇到过、并且修过。</li>
+            <li><strong>用户基数与口碑。</strong>在 Mac 高级用户的常用工具列表里，Text Sniper 的位置比 Cheese! OCR 更稳。在 r/macapps、Setapp、各种「Mac 必装效率工具」清单里，它通常是首先被提到的名字。「无聊但默认」的名声本身就是价值。</li>
+            <li><strong>已经形成的工作流和生态。</strong>老用户围绕 Text Sniper 已经建好了 Raycast / Alfred / Keyboard Maestro 的联动，换工具意味着把这些都重新搭一遍。</li>
+            <li><strong>分发渠道。</strong>Text Sniper 曾经是 Setapp 套件的一部分，App Store 评价积累的时间也更长。如果你看重「来自第三方平台的信任背书」，这是真实存在的因素。</li>
+        </ul>
+
+        <p>如果你已经用 Text Sniper 用得很顺手了，下面我们要讲的 Cheese! OCR 优点都不构成换工具的理由。习惯是会复利的，最适合你的 OCR 工具往往就是那个快捷键已经长在手指上的工具。</p>
+
+        <h2>Cheese! OCR 在哪些方面拉开差距</h2>
+
+        <p>当然我们不是无缘无故做了一款新应用。下面这几点是我们认为今天 Cheese! OCR 真正具有优势的地方。</p>
+
+        <h3>1. 可搜索的 OCR 历史</h3>
+
+        <p>Cheese! OCR 会把每次识别结果连同时间戳和小缩略图存在本地。你可以往回翻、按文字搜索、把任意一条历史记录重新复制一遍。听起来不大，但用上之后会发现「半小时前 OCR 过的那段文字」出现的频率有多高——你正在读外刊学术 PDF，框了一段引文复制到 Notion，继续往下读，第二天开会时领导问「来源是哪一篇」，搜一下历史就能找到原文。这把 OCR 从「一次性工具」变成了你的个人文字小档案。</p>
+
+        <p>这是 Cheese! OCR 有、Text Sniper 没有的功能。如果你一天 OCR 不止几次，光是历史搜索就大概率值回那点价格差。</p>
+
+        <h3>2. 把中文与韩文当作一等公民</h3>
+
+        <p>Apple Vision 本身支持中文和韩文，但识别效果好不好，要看应用怎么排语言优先级、怎么处理混排。我们在中文上做了具体的回归测试：繁简转换、中英混排、扫描版古籍的竖排识别、外刊 PDF 里的脚注、公众号文章截图。在韩文上同样做了专门投入——韩文是默认开启的语言之一，UI 也提供了完整的韩文翻译。如果你日常 OCR 的内容里中文或者韩文是主力，Cheese! OCR 在产品决策上把你算进了房间里。</p>
+
+        <h3>3. 价格</h3>
+
+        <p>Cheese! OCR 是 5.99 美元一次性买断。Text Sniper 更贵一些（具体数字以 Mac App Store 当前显示为准，我们就不报一个会过期的价格）。两者都不离谱。但如果你是那种对「付费工具要不要买」会犹豫一下的人，5.99 美元的心理门槛低得多，再加上 Mac App Store 7 天退款的兜底——基本零成本试错。</p>
+
+        <p>这里要谨慎一点：便宜不等于更好。我们便宜是因为我们刻意定了一个低门槛的价格，不是因为产品「比较次」。请把这条理解成「如果你还在犹豫，价格友好」，而不是「Text Sniper 卖贵了」。</p>
+
+        <h3>4. 友好的视觉与吉祥物</h3>
+
+        <p>这是审美问题。Cheese! OCR 有一个奶酪主题的吉祥物，可以切换不同造型，整体调性偏温暖——截图音效、轻动画、菜单栏图标本身做得让人愿意天天看。有人喜欢这种风格，也有人更想要一款「冷静、看不见、不打扰」的工具，那么 Text Sniper 在调性上更接近后者。挑那个让你顺眼的就好——这不会改变效率，但你每天确实要看一眼。</p>
+
+        <h2>系统自带的实况文本——先试免费的</h2>
+
+        <p>付费之前，先试试 macOS 实况文本（系统自带、免费、在 Apple 自家应用里相当能打）。在「照片」「预览」「快速查看」里打开图片，鼠标移到文字上指针会变成 I-beam，可以直接选中复制；Safari 里网页上的图片同理。在 Apple 自己的地盘上，实况文本很难被超过。</p>
+
+        <p>它不擅长的是 Apple 地盘之外：多数第三方应用不会暴露实况文本入口，QuickTime 里的视频帧识别也不稳定，「跨任意屏幕区域框选」这件事不在它的设计范围里，更没有历史。我们专门写了一篇拆解：见 <a href="../cheese-ocr-vs-live-text/">Cheese! OCR vs macOS 实况文本</a>。简单说：偶尔用、且都在 Apple 应用里，实况文本就够；否则才轮到付费快捷键工具上场。</p>
+
+        <h2>其它值得知道的 Mac OCR 工具</h2>
+
+        <p>Mac 上号称「能 OCR」的应用不少，但大多数和 Cheese! OCR / Text Sniper 不是一类产品。下面给每类一段，方便你直接判断要不要排除。</p>
+
+        <h3>PDFPen Pro</h3>
+
+        <p>偏向全文档 PDF 编辑器，价格大约在 100 美元以上（具体看版本）。OCR 只是它众多功能之一，还要做注释、表单、PDF 内文字编辑。如果你每天泡在 PDF 里（法律、学术、合同），PDFPen Pro 解决的是另一类问题。不要直接和快捷键 OCR 横评，应该问自己：「我需要的是带 OCR 的 PDF 编辑器，还是偶尔会处理 PDF 的 OCR 工具？」</p>
+
+        <h3>ocrmypdf（开源命令行工具）</h3>
+
+        <p>免费、命令行（<a href="https://github.com/ocrmypdf/OCRmyPDF" rel="noopener">github.com/ocrmypdf/OCRmyPDF</a>），输入一份扫描 PDF，输出一份带隐藏文字层的可搜索 PDF。底层是 Tesseract。批量处理扫描古籍、档案、整堆扫描资料的最佳工具，但完全不是交互式的——没有快捷键、没有菜单栏、没有实时截屏。如果你的「OCR 需求」实际上是「我手上有 200 份扫描 PDF 要补上文字层」，那任何菜单栏工具都不是答案，ocrmypdf 才是。</p>
+
+        <h3>Adobe Acrobat Pro</h3>
+
+        <p>企业默认。OCR 实力强、嵌在重型 PDF 工作流里、订阅大约 20 美元/月起步（Adobe 价格变动较多，我们做了对冲）。两个真实顾虑：成本（订阅、且不便宜），以及 Acrobat 的部分流程会经过 Adobe 云——具体看版本和设置。处理敏感文档前请仔细读它的数据处理说明。仅仅为了截图 OCR 而上 Acrobat，相当于用电锯切面包。</p>
+
+        <h3>Abbyy TextGrabber / FineReader</h3>
+
+        <p>Abbyy 的 OCR 引擎在历史上一直处于第一梯队，对非拉丁文字尤其强。但他们的部分消费级产品是云端 OCR——图像会被上传识别。这是真实存在的隐私 trade-off，把它指向机密合同或病例之前请先想清楚。商业流程能接受云端的话，Abbyy 在准确率上很有竞争力；涉及敏感材料，本地工具（Cheese! OCR、Text Sniper、实况文本、ocrmypdf）更稳妥。</p>
+
+        <h3>嗨格式 OCR、福昕 PDF 等国内常见产品</h3>
+
+        <p>嗨格式 OCR 在中文用户中知名度较高，主打「文档转换 + OCR」的组合，定位更接近一款一站式办公文件处理工具，而不是快捷键 OCR 利器。它的部分识别能力依赖云端，对本地隐私敏感的工作流要慎用，但作为「偶尔批量转换扫描合同」的工具是合理的。福昕 PDF 阅读器同样属于 PDF 编辑器范畴，OCR 是附加功能。简单说：要 PDF 全流程编辑，看这些；要每天高频「截图取字」，还是回到快捷键 OCR。</p>
+
+        <h2>一份实用的选择清单</h2>
+
+        <p>如果今天有人问我们怎么选，我们的建议是：</p>
+
+        <ul>
+            <li><strong>每天要 OCR 很多次、跨各种应用、需要快捷键：</strong>Cheese! OCR 或 Text Sniper。两个都试。Cheese! OCR 有 Mac App Store 的 7 天退款窗口，Text Sniper 自己也有试用机制。用几天选顺手的那个。</li>
+            <li><strong>偶尔用，而且基本都在 Apple 自家应用里：</strong>macOS 实况文本，已经免费内置在系统里了，不要再付费买已经有的东西。</li>
+            <li><strong>需要批量给扫描版 PDF 加文字层：</strong>ocrmypdf。免费、可批处理、专为这件事而生。</li>
+            <li><strong>主要在 PDF 里做编辑、注释，外加 OCR：</strong>PDFPen Pro 或 Adobe Acrobat。另一个品类，另一个价位。</li>
+            <li><strong>OCR 主要语言是韩文：</strong>Cheese! OCR。我们专门为它做了优化，并且提供了完整的韩文 UI。</li>
+            <li><strong>已经在用 Text Sniper 且很顺手：</strong>留在 Text Sniper。为了几美元的差价重新建立一个快捷键工作流，多数情况下不划算。</li>
+            <li><strong>完全是新手、希望我们直接给一句建议：</strong>先用一周实况文本，够用就停在那里；遇到「这个应用里调不出实况文本」的次数变多，就是该换付费快捷键工具的信号——届时 Cheese! OCR 或 Text Sniper 都能胜任。</li>
+        </ul>
+
+        <h2>诚实的结论</h2>
+
+        <p>Cheese! OCR 和 Text Sniper 都是认真维护、值得信赖的 Mac OCR 工具。没有谁在「全局意义上」更强。两者下了不同的赌注——Text Sniper 押在成熟度和已建立的用户群，Cheese! OCR 押在历史搜索、中韩文优化和更友好的价格——哪边跟你的工作流更契合，答案就在那里。</p>
+
+        <p>如果你读到这里希望我们直接判个胜负，最接近的回答是：先把免费的（实况文本）用上一段时间，发现不够再来试 Cheese! OCR。我们做了这款应用，自己觉得它好。但如果 Text Sniper 已经把你拿下了——那就留在那里。最糟的情况是每半年换一次工具，工作反而停滞了。</p>
+
+        <p>说完这些，下面是我们经常被问到的几个问题。</p>
+    </article>
+
+    <section class="article-faq">
+        <h2>常见问题</h2>
+        <details class="faq-item">
+            <summary>我已经在用 Text Sniper 了，需要换成 Cheese! OCR 吗？</summary>
+            <div class="answer">多数情况下不需要。两者覆盖的核心工作流几乎一样。如果 Text Sniper 已经在你的肌肉记忆里，且你用得顺手，省下的几美元和小幅功能差异未必值得重新建立习惯。如果好奇，Mac App Store 有 7 天退款窗口，下载试一下也不损失什么。</div>
+        </details>
+        <details class="faq-item">
+            <summary>这些工具是不是都在用同一个 OCR 引擎？</summary>
+            <div class="answer">在 Mac 上，大多数现代的快捷键 OCR 工具——包括 Cheese! OCR 和 Text Sniper——底层都是 Apple 的 Vision 框架。这也是为什么它们在 Apple 支持的语言上准确率相近。云端 OCR（比如 Abbyy 系列、Adobe Acrobat 的部分流程、嗨格式 OCR 的部分功能）走的是各自的服务器端引擎，对某些场景可能更准，但代价是图像离开你的电脑。</div>
+        </details>
+        <details class="faq-item">
+            <summary>Cheese! OCR 是不是 Text Sniper 的克隆或派生？</summary>
+            <div class="answer">不是。Cheese! OCR 是一款基于 Apple Vision 从零开发的独立应用。两者属于同一类别——菜单栏、快捷键、基于 Apple Vision 的截图 OCR——是因为这就是 macOS 上这个问题最自然的形态，而不是因为代码同源。我们参考了整个 Mac 高级用户社区的传统，但实现完全是自己的。</div>
+        </details>
+        <details class="faq-item">
+            <summary>为什么 Cheese! OCR 更便宜？</summary>
+            <div class="answer">这是定价策略的差异，不代表质量更低。Cheese! OCR 把价格定在 6 美元一次性买断，是为了让那些「手动复制文字累了想试试 OCR 工具」的用户能毫不犹豫地买单。Text Sniper 在市场上时间更长，价格反映了一个更成熟的业务形态。两者都不算错，只是面向略有不同的买家。</div>
+        </details>
+        <details class="faq-item">
+            <summary>如果我只想要免费的 Mac OCR 工具呢？</summary>
+            <div class="answer">两个真实可用的选项。macOS 实况文本是系统自带的，免费，在 Apple 自家应用（照片、预览、快速查看、Safari）里非常好用。要 OCR 扫描版 PDF，可以用开源命令行工具 ocrmypdf，它会给扫描 PDF 加上一层可搜索的文字层，免费、本地、可批量。日常偶尔用——实况文本足够；批量处理 PDF——ocrmypdf；如果一天要 OCR 几十次、跨各种应用——这时候付费快捷键工具才真正值回票价。</div>
+        </details>
+    </section>
+
+    <section class="article-cta">
+        <div class="cta-card">
+            <h2>试试 Cheese! OCR</h2>
+            <p>Mac App Store 一次性 5.99 美元，100% 本地识别，自带可搜索历史，韩文与中文都默认开启。7 天内不合用，App Store 里直接退款。</p>
+            <a href="https://apps.apple.com/app/cheese-ocr/id6760889131" class="cta-button">在 Mac App Store 试用 Cheese! OCR</a>
+        </div>
+    </section>
+
+    <section class="article-related">
+        <h2>相关文章</h2>
+        <div class="related-grid">
+            <a href="../cheese-ocr-vs-live-text/" class="related-card">
+                <h3>Cheese! OCR vs macOS 实况文本：什么时候系统自带的不够用</h3>
+                <p>免费内置 vs 全局快捷键 OCR 工具，以及实况文本会悄悄掉链子的 4 个场景。</p>
+            </a>
+            <a href="../how-on-device-ocr-works/" class="related-card">
+                <h3>设备端 OCR 是如何工作的：Apple Vision 框架解析</h3>
+                <p>为什么现代 Mac OCR 工具几乎都在包 Apple Vision，以及这意味着什么。</p>
+            </a>
+            <a href="../extract-text-from-screenshot-on-mac/" class="related-card">
+                <h3>如何在 Mac 上从截图中提取文字（三种方法对比）</h3>
+                <p>实况文本、Cmd+Shift+5 浮动操作、Cheese! OCR 三种方法各自适合的场景。</p>
+            </a>
+        </div>
+    </section>
+
+    <footer class="article-footer">
+        <a href="../../">主页</a>
+        <a href="../../../privacy.html">隐私政策</a>
+        <a href="mailto:nicholaslck@icloud.com">联系我们</a>
+        <p>&copy; 2026 Cheese! OCR. 版权所有。</p>
+    </footer>
+
+</body>
+</html>

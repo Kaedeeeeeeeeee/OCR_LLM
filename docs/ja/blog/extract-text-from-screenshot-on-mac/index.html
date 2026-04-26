@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
+
+    <title>Mac でスクリーンショットからテキストを抽出する方法（3 つの方法を比較） — Cheese! OCR ブログ</title>
+    <meta name="description" content="Mac のスクリーンショットからテキストを取り出す 3 つの方法。プレビューでの Live Text、Cmd+Shift+5 のフローティングプレビュー、専用 OCR ホットキー。それぞれの使い分けを解説します。">
+
+    <link rel="canonical" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/extract-text-from-screenshot-on-mac/">
+    <link rel="alternate" hreflang="en" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/extract-text-from-screenshot-on-mac/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/extract-text-from-screenshot-on-mac/">
+    <link rel="alternate" hreflang="ja" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/extract-text-from-screenshot-on-mac/">
+    <link rel="alternate" hreflang="ko" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ko/blog/extract-text-from-screenshot-on-mac/">
+    <link rel="alternate" hreflang="x-default" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/extract-text-from-screenshot-on-mac/">
+
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../../../blog/article.css">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Cheese! OCR">
+    <meta property="og:title" content="Mac でスクリーンショットからテキストを抽出する方法（3 つの方法を比較）">
+    <meta property="og:description" content="プレビューでの Live Text、Cmd+Shift+5、専用 OCR ホットキー。3 つの方法を比較します。">
+    <meta property="og:url" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/extract-text-from-screenshot-on-mac/">
+    <meta property="og:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="article:published_time" content="2026-04-25">
+    <meta property="article:author" content="Cheese! OCR Team">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mac でスクリーンショットからテキストを抽出する方法（3 つの方法を比較）">
+    <meta name="twitter:description" content="Live Text、Cmd+Shift+5、専用 OCR ホットキーの使い分け。">
+    <meta name="twitter:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Mac でスクリーンショットからテキストを抽出する方法（3 つの方法を比較）",
+      "description": "Mac のスクリーンショットからテキストを取り出す 3 つの方法。プレビューでの Live Text、Cmd+Shift+5 のフローティングプレビュー、専用 OCR ホットキー。それぞれの使い分けを解説します。",
+      "author": {
+        "@type": "Organization",
+        "name": "Cheese! OCR",
+        "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Cheese! OCR",
+        "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+      },
+      "datePublished": "2026-04-25",
+      "dateModified": "2026-04-25",
+      "image": "https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png",
+      "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/extract-text-from-screenshot-on-mac/",
+      "inLanguage": "ja",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/extract-text-from-screenshot-on-mac/"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "inLanguage": "ja",
+      "mainEntity": [
+        { "@type": "Question", "name": "Mac のスクリーンショットはどこに保存されますか？", "acceptedAnswer": { "@type": "Answer", "text": "デフォルトでは PNG ファイルとしてデスクトップに保存され、ファイル名は日付と時刻になります。保存先を変えるには、Cmd+Shift+5 を押してオプションをクリックします。プルダウンからデスクトップ、書類、クリップボード、メール、メッセージ、プレビュー、または任意のフォルダを選べます。" } },
+        { "@type": "Question", "name": "ファイルを作らずにスクリーンショットを撮ることはできますか？", "acceptedAnswer": { "@type": "Answer", "text": "できます。Cmd+Shift+5 を押し、オプション → 保存先：クリップボード を選びます。画像はディスクに書き込まれずクリップボードに直接入ります。Cheese! OCR のような専用 OCR ホットキーツールはさらに一歩進んでいて、画像ファイルすら作らず、認識済みのテキストをそのままクリップボードに渡します。" } },
+        { "@type": "Question", "name": "Cmd+Shift+5 の方法は古い macOS でも動きますか？", "acceptedAnswer": { "@type": "Answer", "text": "Cmd+Shift+5 のフローティングキャプチャツールバーは 2018 年の macOS Mojave (10.14) から存在するので、現役で使っている Mac ならほぼ全機種で利用できます。ただしフローティングサムネイル内で Live Text を使うには macOS 13 Ventura 以降が必要です。それより古い OS でもキャプチャは可能ですが、ファイルをプレビューで開いてから Live Text を使う流れになります。" } },
+        { "@type": "Question", "name": "3 つの方法のうち、テキスト抽出が最も速いのはどれですか？", "acceptedAnswer": { "@type": "Answer", "text": "方法 3、つまり Cheese! OCR のような専用 OCR ホットキーです。ホットキー 1 回 + ドラッグ 1 回で、認識済みのテキストはもうクリップボードにあります。ファイルは作られず、プレビューを開く手間もありません。Live Text なら最低 2 ステップ追加（Live Text ボタンを押してコピー）、Cmd+Shift+5 のフローティングプレビューも同程度の手数になります。" } },
+        { "@type": "Question", "name": "すでに保存済みのスクリーンショットでも Cheese! OCR は使えますか？", "acceptedAnswer": { "@type": "Answer", "text": "使えます。既存の画像を Cheese! OCR のメニューバーウィンドウや OCR 履歴ペインにドロップすれば再認識できます。メインの導線はグローバルホットキーですが、すでに保存された PNG や JPEG も問題なく扱えます。" } }
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Cheese! OCR", "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/" },
+        { "@type": "ListItem", "position": 2, "name": "ブログ", "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Mac でスクリーンショットからテキストを抽出する方法（3 つの方法を比較）" }
+      ]
+    }
+    </script>
+</head>
+<body>
+
+    <nav class="article-nav">
+        <a href="../" class="back-link">← ブログ</a>
+        <div class="lang-switcher">
+            <a href="/OCR_LLM/blog/extract-text-from-screenshot-on-mac/" hreflang="en">EN</a>
+            <a href="/OCR_LLM/zh/blog/extract-text-from-screenshot-on-mac/" hreflang="zh-Hans">中文</a>
+            <a href="/OCR_LLM/ja/blog/extract-text-from-screenshot-on-mac/" aria-current="page" hreflang="ja">日本語</a>
+            <a href="/OCR_LLM/ko/blog/extract-text-from-screenshot-on-mac/" hreflang="ko">한국어</a>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <h1>Mac でスクリーンショットからテキストを抽出する方法（3 つの方法を比較）</h1>
+        <p class="article-meta">
+            <time datetime="2026-04-25">2026 年 4 月 25 日</time>
+            · 10 分で読める
+        </p>
+    </header>
+
+    <aside class="tldr">
+        <strong>要約</strong>
+        2026 年現在、Mac のスクリーンショットからテキストを抽出する確実な方法は 3 つあります。プレビューで開いて Live Text を使う、Cmd+Shift+5 で撮ってフローティングサムネイル上で Live Text を使う（macOS 13 以降）、そして専用 OCR ホットキーでファイル化のステップ自体を省略する。前者 2 つは無料で標準機能、3 つ目はもっと速くて、1 ドラッグでテキストがクリップボードに入ります — Cheese! OCR が組み立てているのは、まさにこの導線です。
+    </aside>
+
+    <article class="article-body">
+        <p>Mac を使っていれば、週に何度か同じ場面に出くわします。Slack で送られてきたエラーメッセージのスクリーンショット、LINE で共有された予約確認画面、Zoom 会議で共有された資料の一部、駅看板を撮った写真 — その中の「テキストだけ」が欲しい。けれど、Notion 上のテキストのようには選択できません。ピクセルはピクセルだからです。</p>
+
+        <p>幸いなことに、macOS 12 Monterey で Live Text が登場して以降、Mac でのスクリーンショット OCR はずいぶん簡単になりました。ただ少し残念なのは、組み込みの導線では 1 日に 20 回も使うとどうしても手数が多く感じる点と、多くの人が知らない Cmd+Shift+5 のフローティングプレビューを使えば 1〜2 ステップ短縮できるという点です。そしてそれを業務で日常的に使う人 — エンジニアがスタックトレースを取り出す、サポート担当が顧客スクリーンショットから情報を引っ張る、論文 PDF のスクショから引用文を抜く学生 — のためには、3 つ目の方法があり、これは全工程をほぼ「1 回のドラッグ」に圧縮します。</p>
+
+        <p>この記事では 3 つの方法をそれぞれ説明し、横並びで正直に比較し、どの場面でどれを使うべきかをお伝えします。</p>
+
+        <h2>まずは Mac の 3 つのスクリーンショットショートカットの復習</h2>
+
+        <p>テキスト抽出に入る前に、3 つの標準ショートカットは覚えてしまった方が後がラクです。どの方法でも前提として使います。</p>
+
+        <ul>
+            <li><strong>Cmd+Shift+3</strong> — 画面全体（接続中のすべてのディスプレイ）をデスクトップに即保存。</li>
+            <li><strong>Cmd+Shift+4</strong> — 十字カーソルになり、領域をドラッグで指定。ドラッグ中に <kbd>Space</kbd> を押すとウインドウキャプチャモードに切り替わり、好きなウインドウをクリックすればドロップシャドウ込みできれいに撮れます。</li>
+            <li><strong>Cmd+Shift+5</strong> — フローティングのキャプチャツールバーが出ます。フルスクリーン、ウインドウ、領域、画面収録、そしてオプションメニュー付き。これが現行の中心ショートカットで、方法 2 はここに住んでいます。</li>
+        </ul>
+
+        <p>3 つとも標準では <code>スクリーンショット YYYY-MM-DD HH.MM.SS.png</code> という名前の PNG をデスクトップに保存します。保存先は Cmd+Shift+5 → オプション → 保存先 で変更できます。この設定はあとで何度か出てきます。どの方法が手に馴染むかが、この設定で実際に変わってくるからです。</p>
+
+        <p>もう 1 つ知っておくと役立つのは、最近の macOS（Mojave 以降）でスクリーンショットを撮ると、画面右下にサムネイルが数秒間ふわっと浮かぶ点です。このサムネイルは思っているより働き者で、方法 2 ではこれが主役になります。</p>
+
+        <h2>方法 1：スクリーンショット → プレビュー → Live Text</h2>
+
+        <p>最も発見しやすい導線です。Apple の公式ドキュメントが指し示しているのもこれで、多くの人が試行錯誤で辿り着くのもこの方法です。</p>
+
+        <ol>
+            <li>Cmd+Shift+4（フルスクリーンなら Cmd+Shift+3）を押す。</li>
+            <li>領域をドラッグ。スクリーンショットがデスクトップに保存される。</li>
+            <li>ファイルをダブルクリック。標準ではプレビュー（Preview）で開く。</li>
+            <li>プレビュー内で文字の上をドラッグ。文字の上にカーソルを持っていくと I ビームに変わり、普通の文書と同じように選択できる。</li>
+            <li>Cmd+C でコピー。</li>
+        </ol>
+
+        <p>独立した操作が約 5 ステップ。そしてデスクトップにはスクリーンショットファイルが残り続けます（あとで掃除するまで）。</p>
+
+        <p>プレビューの Live Text は本当によくできています。背後で動いているのは Apple Vision の同じパイプラインで、macOS 全体の OCR と同じ系譜です。英語は安定、日本語も縦書きを含めて十分実用、中国語・韓国語、フランス語・ドイツ語・スペイン語・イタリア語・ポルトガル語・ウクライナ語まで認識します。手書きもきれいなものなら拾えます。ダークモード UI のスクリーンショットでも問題なし。データ検出も効くので、電話番号や URL は右クリックで電話アプリやブラウザに渡せます。</p>
+
+        <p>不満点は実質 2 つ。手数（5 ステップ）と、デスクトップにファイルが溜まる問題です。週に 1 度くらいなら気にならないコストですが、毎日となると地味に効いてきます。</p>
+
+        <h3>方法 1 がぴったりな場面</h3>
+
+        <ul>
+            <li>スクリーンショットがすでに手元にある — 誰かから送られてきた、以前自分で撮った。</li>
+            <li>テキストだけでなく画像自体も残しておきたい。</li>
+            <li>取り出す前にマークアップやトリミングをしたい。</li>
+            <li>自分のものではない Mac を借りていて、アプリを入れられない。</li>
+        </ul>
+
+        <h2>方法 2：Cmd+Shift+5 フローティングプレビュー + Live Text</h2>
+
+        <p>これは過小評価されているショートカットです。スクリーンショット後に右下に出るフローティングサムネイルは多くの人が知っていますが、無視するか、Markup を開くためだけに使うかのどちらかです。macOS 13 Ventura 以降では、そのサムネイル上で直接 Live Text が使えて、プレビューを開かずに済むことを知っている人は意外と少ないのです。</p>
+
+        <p>導線は次の通りです。</p>
+
+        <ol>
+            <li>Cmd+Shift+5 を押す。</li>
+            <li>キャプチャモードを選ぶ（領域キャプチャが多いはず）。</li>
+            <li>領域をドラッグ。</li>
+            <li>右下にサムネイルが浮かぶ。消える前にクリック（数秒の猶予あり、もう 1 回クリックで固定もできる）。</li>
+            <li>Markup ウインドウが開く。文字の上でカーソルが I ビームに変わるのでドラッグして選択、Cmd+C。</li>
+        </ol>
+
+        <p>同じく約 5 ステップですが、設定を整えておけばファイルは 1 つも作られません。Cmd+Shift+5 → オプション → 保存先：クリップボード にすると、画像はディスクに書かれずクリップボードへ直接行きます。こうするとフローティングプレビューは実質「一時的な注釈レイヤー」になります — テキストをコピーし終えてウインドウを閉じれば、何も残りません。</p>
+
+        <p>オプションでもう 1 つ便利なのがフローティングプレビューの表示時間です。デフォルトでは数秒で消えますが、明示的に長さを伸ばすスライダーはありません。代わりに 1 回クリックすれば固定できます。サムネイルを取り逃しがちな人は、右下に視線を予約しておく癖をつけると安定します。</p>
+
+        <h3>方法 2 が勝つ場面</h3>
+
+        <ul>
+            <li>スクリーンショットを頻繁に撮るが、デスクトップを散らかしたくない。</li>
+            <li>コピー前に簡単な注釈を入れることがある — Markup がそこにある。</li>
+            <li>OS が macOS 13 Ventura 以降（Markup 内 Live Text は Ventura 以降が要件）。</li>
+        </ul>
+
+        <h3>注意点</h3>
+
+        <p>サムネイルは消える前にクリックする必要があります。そして Markup 内でも自分でドラッグして選択しなければ取り出せません — 「画像内のすべてのテキストをまとめて」というボタンはありません。1 枚に 10 行ばらばらに書かれた文字すべてが必要なら、10 行分のドラッグが要ります。文字の多いスクリーンショットでは少し疲れます。</p>
+
+        <h2>方法 3：専用 OCR ホットキー（Cheese! OCR）</h2>
+
+        <p>これは私たちが作っているプロダクトなので、その点は割り引いて読んでください。それでもワークフロー自体は事実として書けます。</p>
+
+        <ol>
+            <li>⇧⌘E（または自分で設定したホットキー）を押す。</li>
+            <li>テキストを含む領域をドラッグ。</li>
+        </ol>
+
+        <p>これだけです。ファイルは作られません。ウインドウも開きません。認識済みのテキストはすでにクリップボード上にあり、どこにでも貼り付けられます。ドラッグ終了地点の近くに小さな確認チップが一瞬出て、結果はメニューバー内の検索可能な履歴にも保存されます。</p>
+
+        <p>これが方法 1・2 より速い理由は、OCR 本体ではありません。Cheese! OCR は Live Text と同じ Apple Vision フレームワークを使っているので、認識にかかる時間はほぼ同じです。速いのは「テキストが欲しい」と「テキストがクリップボードに入った」の間の工程が圧縮されているからです。ファイル保存なし、アプリ切り替えなし、Markup ウインドウなし、撮った画像内での再ドラッグなし。スクリーンショット領域を決めるドラッグが、そのまま OCR 領域を決めるドラッグになっています。</p>
+
+        <p>業務として日常的に使う場合、もう少し細かい点も効いてきます。</p>
+
+        <ul>
+            <li><strong>検索可能な履歴。</strong>OCR の結果は元画像のサムネイル付きでローカルに保存されます。「先週どこかでエラーメッセージを OCR したな」という記憶を頼りに、数週間後でも検索で取り戻せます。</li>
+            <li><strong>多言語のデフォルト対応。</strong>英語・簡体字中国語・日本語・韓国語をモード切替なしで認識します。混在（英語 UI に日本語のエラー、Slack スレッドにコードスニペット）も透過的に処理されます。</li>
+            <li><strong>100% オンデバイス。</strong>Cheese! OCR にはネットワーク権限が一切なく、App Store サンドボックスで検証可能です。スクリーンショットの内容は Mac から外に出ません。社内ダッシュボード、契約書、顧客データなど機微な内容を撮る人にとって、これは実質的な差です。</li>
+            <li><strong>買い切り。</strong>$5.99 の一度きり。サブスクなし。Mac App Store がレシートとアップデートを管理します。</li>
+        </ul>
+
+        <h3>正直なトレードオフ</h3>
+
+        <p>もう 1 つアプリを入れ、もう 1 つホットキーを設定し、$5.99 を払うことになります。スクリーンショット OCR の頻度が低い人 — 週 1 回・月 1 回 — なら、方法 1・2 で十分ですし、無料です。境目はだいたい「1 日に 1 回以上」のあたり。この頻度になると、節約される秒数と検索可能な履歴が、実際の時間として積み上がってきます。</p>
+
+        <h2>横並び比較</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>方法</th>
+                    <th>ステップ数</th>
+                    <th>ファイル生成</th>
+                    <th>多言語デフォルト</th>
+                    <th>検索可能な履歴</th>
+                    <th>料金</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>方法 1：プレビュー + Live Text</td>
+                    <td>約 5 ステップ</td>
+                    <td>あり（デスクトップに PNG）</td>
+                    <td>あり（Apple Vision）</td>
+                    <td>なし</td>
+                    <td>無料</td>
+                </tr>
+                <tr>
+                    <td>方法 2：Cmd+Shift+5 フローティングプレビュー</td>
+                    <td>約 5 ステップ</td>
+                    <td>任意（保存先：クリップボード）</td>
+                    <td>あり（Apple Vision）</td>
+                    <td>なし</td>
+                    <td>無料</td>
+                </tr>
+                <tr>
+                    <td>方法 3：Cheese! OCR ホットキー</td>
+                    <td>約 2 ステップ</td>
+                    <td>なし</td>
+                    <td>あり（英・中・日・韓）</td>
+                    <td>あり</td>
+                    <td>$5.99 買い切り</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>それぞれの方法はいつ使うべきか</h2>
+
+        <p>友人に聞かれた時に答える、実用的な目安です。</p>
+
+        <h3>方法 1（プレビュー + Live Text）が向く場合</h3>
+
+        <ul>
+            <li>すでに画像ファイルが手元にある — AirDrop や Slack で受け取った、先週保存した、メールの添付。</li>
+            <li>テキストを取り出す前にマークアップやトリミングをしたい。</li>
+            <li>借りものの Mac を一時的に使っている。</li>
+            <li>頻度がそもそも低い。</li>
+        </ul>
+
+        <h3>方法 2（Cmd+Shift+5 フローティングプレビュー）が向く場合</h3>
+
+        <ul>
+            <li>標準機能でいきたいが、デスクトップを散らかしたくない。「保存先：クリップボード」を一度設定するだけで摩擦がぐっと減ります。</li>
+            <li>コピー前に簡単な矢印や枠を足すことがある — Markup がそこにある。</li>
+            <li>OS が macOS 13 Ventura 以降。</li>
+        </ul>
+
+        <h3>方法 3（Cheese! OCR のような専用ツール）が向く場合</h3>
+
+        <ul>
+            <li>スクリーンショット OCR を 1 日に 2 回以上行う。</li>
+            <li>過去の認識結果をよく検索する（「先週見たチュートリアルから OCR したコマンド、何だったっけ？」）。</li>
+            <li>機微な内容を扱うので、ネットワーク権限ゼロという検証可能な保証が欲しい。</li>
+            <li>言語が混ざる場面が多い — Slack の英日混在、Zoom の日本語資料、漫画のセリフ、駅看板。</li>
+            <li>デスクトップに <code>スクリーンショット 2026-04-25.png</code> が並ぶのにそろそろ嫌気がさしている。</li>
+        </ul>
+
+        <h2>3 つの方法すべてに共通するパワーユーザー向けの小ワザ</h2>
+
+        <h3>「保存先」をクリップボードにする</h3>
+
+        <p>意外に紹介されない、最もコスパの良い macOS スクリーンショット改造です。Cmd+Shift+5 → オプション → 保存先 → クリップボード。これ以降、すべてのスクリーンショットはクリップボードに入り、デスクトップにファイルが落ちなくなります。Slack、Notion、メール、どこにでも直接貼り付けられます。逆に「今回はファイルが欲しい」というときは Control を押しながら撮れば一時的に挙動を反転できます（現在の設定の逆方向）。</p>
+
+        <h3>サムネイルを取り逃すなら、ピン留めする</h3>
+
+        <p>右下に出てきたら 1 回クリックして固定します。連続でいくつか撮るときに特に便利です。</p>
+
+        <h3>Cmd+Shift+4 → Space でウインドウをきれいに撮る</h3>
+
+        <p>多くの人はウインドウの周囲をドラッグで囲んで撮りますが、これだと背景まで写ります。Cmd+Shift+4 → Space → 対象ウインドウをクリックすれば、角丸とドロップシャドウを保ったまま、背景なしで撮れます。シャドウが要らない場合は Option を押しながらクリック。</p>
+
+        <h3>Cmd+Shift+5 ツールバーからも同じ操作ができる</h3>
+
+        <p>「選択したウインドウを取り込む」がフローティングコントロールにあります。ショートカットを忘れたときの保険に。</p>
+
+        <h3>Cheese! OCR 限定：履歴検索で過去の結果を呼び出す</h3>
+
+        <p>同じ種類の領域（業務ダッシュボードの注文番号など）を繰り返し OCR するなら、検索可能な履歴がそのまま「過去の抽出結果のタイムライン」として機能します。メニューバーウインドウを開いて Cmd+F で絞り込めば、数日前の結果も数秒で取り出せます。</p>
+
+        <h3>Cheese! OCR 限定：既存画像を渡す</h3>
+
+        <p>メールや AirDrop で受け取ったスクリーンショットは撮り直す必要はありません。Cheese! OCR のメニューバーウインドウに画像をドロップするか、クリップボードからペーストすれば、同じ流れで認識できます。撮影自体が方法 3 でなくても、抽出のステップは方法 3 で済ませられます。</p>
+
+        <h3>ホットキーは自分の指に合わせる</h3>
+
+        <p>⇧⌘E が指に合わない場合（F キーが好き、衝突しにくい ⌃⌥⌘ 系の組み合わせが好き）、Cheese! OCR の設定で変更できます。同じことが macOS 標準にも言えます — 「システム設定 → キーボード → キーボードショートカット → スクリーンショット」で Cmd+Shift+3/4/5 をリマップできるので、他のツールと衝突したら遠慮なく差し替えてください。</p>
+
+        <p>3 つの方法のどれかが「正しい」というわけではなく、それぞれ違う頻度・違うワークフローに最適化されているだけです。週に 1 回、同僚と共有するためにスクリーンショットを撮り、たまにそこから 2 単語を抜き出したい、くらいなら標準機能で十分です。一方、テキスト抽出が仕事の一部になっている場合 — 講義スライドのスクショから引用を抜く、Slack スレッドからエラーメッセージを取り出す、ダッシュボードのスクリーンショットから 1 日に何度も数値をコピーする — なら、専用ホットキーは目に見えて差を生みます。まずは無料の方法から試してみて、「この数キーが惜しい」と思った瞬間が、Cheese! OCR のようなツールが元を取り始めるタイミングです。</p>
+    </article>
+
+    <section class="article-faq">
+        <h2>よくある質問</h2>
+        <details class="faq-item">
+            <summary>Mac のスクリーンショットはどこに保存されますか？</summary>
+            <div class="answer">デフォルトでは PNG ファイルとしてデスクトップに保存され、ファイル名は日付と時刻になります。保存先を変えるには、Cmd+Shift+5 を押してオプションをクリックします。プルダウンからデスクトップ、書類、クリップボード、メール、メッセージ、プレビュー、または任意のフォルダを選べます。</div>
+        </details>
+        <details class="faq-item">
+            <summary>ファイルを作らずにスクリーンショットを撮ることはできますか？</summary>
+            <div class="answer">できます。Cmd+Shift+5 を押し、オプション → 保存先：クリップボード を選びます。画像はディスクに書き込まれずクリップボードに直接入ります。Cheese! OCR のような専用 OCR ホットキーツールはさらに一歩進んでいて、画像ファイルすら作らず、認識済みのテキストをそのままクリップボードに渡します。</div>
+        </details>
+        <details class="faq-item">
+            <summary>Cmd+Shift+5 の方法は古い macOS でも動きますか？</summary>
+            <div class="answer">Cmd+Shift+5 のフローティングキャプチャツールバーは 2018 年の macOS Mojave (10.14) から存在するので、現役で使っている Mac ならほぼ全機種で利用できます。ただしフローティングサムネイル内で Live Text を使うには macOS 13 Ventura 以降が必要です。それより古い OS でもキャプチャは可能ですが、ファイルをプレビューで開いてから Live Text を使う流れになります。</div>
+        </details>
+        <details class="faq-item">
+            <summary>3 つの方法のうち、テキスト抽出が最も速いのはどれですか？</summary>
+            <div class="answer">方法 3、つまり Cheese! OCR のような専用 OCR ホットキーです。ホットキー 1 回 + ドラッグ 1 回で、認識済みのテキストはもうクリップボードにあります。ファイルは作られず、プレビューを開く手間もありません。Live Text なら最低 2 ステップ追加（Live Text ボタンを押してコピー）、Cmd+Shift+5 のフローティングプレビューも同程度の手数になります。</div>
+        </details>
+        <details class="faq-item">
+            <summary>すでに保存済みのスクリーンショットでも Cheese! OCR は使えますか？</summary>
+            <div class="answer">使えます。既存の画像を Cheese! OCR のメニューバーウィンドウや OCR 履歴ペインにドロップすれば再認識できます。メインの導線はグローバルホットキーですが、すでに保存された PNG や JPEG も問題なく扱えます。</div>
+        </details>
+    </section>
+
+    <section class="article-cta">
+        <div class="cta-card">
+            <h2>Cheese! OCR を試す</h2>
+            <p>ホットキー 1 回、ドラッグ 1 回で、テキストがクリップボードに。100% オンデバイス、$5.99 買い切り、サブスクなし。</p>
+            <a href="https://apps.apple.com/app/cheese-ocr/id6760889131" class="cta-button">Mac App Store で試す</a>
+        </div>
+    </section>
+
+    <section class="article-related">
+        <h2>関連記事</h2>
+        <div class="related-grid">
+            <a href="../cheese-ocr-vs-live-text/" class="related-card">
+                <h3>Cheese! OCR vs macOS テキスト認識（Live Text）: 標準機能では足りない場面</h3>
+                <p>Live Text が得意なところ、苦手なところ、専用ホットキーの方が合う 4 つのシーン。</p>
+            </a>
+            <a href="../copy-text-from-video-on-mac/" class="related-card">
+                <h3>Mac で動画からテキストをコピーする方法（チュートリアル・会議・あらゆる場面）</h3>
+                <p>一時停止した動画フレームからテキストを取り出す 3 つの方法。DRM 付き会議や Chrome 上のチュートリアルにも。</p>
+            </a>
+            <a href="../how-to-ocr-pdf-on-mac/" class="related-card">
+                <h3>Mac で PDF を OCR する方法（2026）: ネイティブ・スキャン・混在まで完全ガイド</h3>
+                <p>ネイティブ／スキャン／保護付き PDF を OCR する実用ガイド。クラウドアップロードは一切なし。</p>
+            </a>
+        </div>
+    </section>
+
+    <footer class="article-footer">
+        <a href="../../">ホーム</a>
+        <a href="../../../privacy.html">プライバシーポリシー</a>
+        <a href="mailto:nicholaslck@icloud.com">お問い合わせ</a>
+        <p>&copy; 2026 Cheese! OCR. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

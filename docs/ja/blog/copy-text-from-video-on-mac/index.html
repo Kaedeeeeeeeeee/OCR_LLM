@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
+
+    <title>Mac で動画からテキストをコピーする方法（チュートリアル・会議・あらゆる場面）— Cheese! OCR ブログ</title>
+    <meta name="description" content="動画を一時停止 → フレームをスクリーンショット → OCR でテキスト抽出。Live Text は Safari でしか動かない理由と、Chrome・Zoom・Teams での実用ワークフロー。">
+
+    <link rel="canonical" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/copy-text-from-video-on-mac/">
+    <link rel="alternate" hreflang="en" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/copy-text-from-video-on-mac/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/copy-text-from-video-on-mac/">
+    <link rel="alternate" hreflang="ja" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/copy-text-from-video-on-mac/">
+    <link rel="alternate" hreflang="ko" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ko/blog/copy-text-from-video-on-mac/">
+    <link rel="alternate" hreflang="x-default" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/copy-text-from-video-on-mac/">
+
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../../../blog/article.css">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Cheese! OCR">
+    <meta property="og:title" content="Mac で動画からテキストをコピーする方法（チュートリアル・会議・あらゆる場面）">
+    <meta property="og:description" content="動画を一時停止 → フレームをスクリーンショット → OCR でテキスト抽出。Live Text は Safari 限定。Chrome・Zoom・Teams での実用ワークフロー。">
+    <meta property="og:url" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/copy-text-from-video-on-mac/">
+    <meta property="og:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="article:published_time" content="2026-04-25">
+    <meta property="article:author" content="Cheese! OCR Team">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mac で動画からテキストをコピーする方法">
+    <meta name="twitter:description" content="一時停止・キャプチャ・OCR。Chrome や Zoom 録画でも使える実用フロー。">
+    <meta name="twitter:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Mac で動画からテキストをコピーする方法（チュートリアル・会議・あらゆる場面）",
+      "description": "動画を一時停止 → フレームをスクリーンショット → OCR でテキスト抽出。Live Text は Safari でしか動かない理由と、Chrome・Zoom・Teams での実用ワークフロー。",
+      "author": {
+        "@type": "Organization",
+        "name": "Cheese! OCR",
+        "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Cheese! OCR",
+        "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+      },
+      "datePublished": "2026-04-25",
+      "dateModified": "2026-04-25",
+      "image": "https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png",
+      "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/copy-text-from-video-on-mac/",
+      "inLanguage": "ja",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/copy-text-from-video-on-mac/"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "inLanguage": "ja",
+      "mainEntity": [
+        { "@type": "Question", "name": "Netflix の字幕を OCR できますか？", "acceptedAnswer": { "@type": "Answer", "text": "OCR エンジン自体はスクリーンショットに写ったピクセルなら何でも認識しますが、Netflix・Disney+・Apple TV のような DRM 保護付きプレイヤーは映像を保護レイヤーに描画するため、スクリーンショットは黒い四角になります。素直にプラットフォーム標準の字幕（クローズドキャプション）を使うのがおすすめです。プレイヤーから直接コピーするか、字幕トラックを取り出すブラウザ拡張を使ってください。" } },
+        { "@type": "Question", "name": "ライブ動画でも使えますか？", "acceptedAnswer": { "@type": "Answer", "text": "使えますが、まず一時停止してください。動いているフレームでは動きブレや切れた文字を拾ってしまいます。スペースキーで止め、コーデックがクリーンなキーフレームに落ち着くのを一拍待ってから OCR ホットキーを押すと精度が上がります。" } },
+        { "@type": "Question", "name": "スクロールするテキストやアニメーション字幕はどうすれば？", "acceptedAnswer": { "@type": "Answer", "text": "テキストが完全に表示された瞬間に手動で一時停止します。コードがスクロールするチュートリアル動画なら、IINA のようにフレーム単位で前後できるプレイヤーを使い、最も読みやすいフレームで止めて OCR してください。" } },
+        { "@type": "Question", "name": "Cheese! OCR は動画を録画しますか？", "acceptedAnswer": { "@type": "Answer", "text": "いいえ。Cheese! OCR は選択した範囲の静止スクリーンショットだけを取得します。動画録画も連続キャプチャも、外部送信も一切ありません。ホットキーを押した瞬間の 1 フレームを認識するだけです。" } },
+        { "@type": "Question", "name": "Zoom の録画をスクリーンショットすると黒くなるのはなぜ？", "acceptedAnswer": { "@type": "Answer", "text": "一部の Zoom や Teams の録画は、ウォーターマークや外部共有制限が有効なときに、スクリーンキャプチャ保護フラグが立っています。macOS はこの保護を尊重するためフレームが黒くなります。OCR 側で解決できる問題ではないので、保護のかかっていない録画やスライド資料を主催者に依頼するのが現実的です。" } }
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Cheese! OCR", "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/" },
+        { "@type": "ListItem", "position": 2, "name": "ブログ", "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Mac で動画からテキストをコピーする方法" }
+      ]
+    }
+    </script>
+</head>
+<body>
+
+    <nav class="article-nav">
+        <a href="../" class="back-link">← ブログ</a>
+        <div class="lang-switcher">
+            <a href="/OCR_LLM/blog/copy-text-from-video-on-mac/" hreflang="en">EN</a>
+            <a href="/OCR_LLM/zh/blog/copy-text-from-video-on-mac/" hreflang="zh-Hans">中文</a>
+            <a href="/OCR_LLM/ja/blog/copy-text-from-video-on-mac/" aria-current="page" hreflang="ja">日本語</a>
+            <a href="/OCR_LLM/ko/blog/copy-text-from-video-on-mac/" hreflang="ko">한국어</a>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <h1>Mac で動画からテキストをコピーする方法（チュートリアル・会議・あらゆる場面）</h1>
+        <p class="article-meta">
+            <time datetime="2026-04-25">2026 年 4 月 25 日</time>
+            · 9 分で読める
+        </p>
+    </header>
+
+    <aside class="tldr">
+        <strong>要約</strong>
+        動画を一時停止し、フレームをスクリーンショットして、その画像に OCR をかけます。Apple の Live Text は止めた動画フレームでも動きますが、<strong>Safari の中だけ</strong>です。Chrome・VLC・IINA・Zoom・Teams・YouTube のデスクトップアプリでは効きません。Safari の外では、画面の任意領域をホットキーでキャプチャして Apple Vision で認識する Cheese! OCR のようなツールが必要になります。
+    </aside>
+
+    <article class="article-body">
+        <h2>動画からテキストをコピーするのはなぜ難しいのか</h2>
+
+        <p>Web ページと同じ感覚でトリプルクリックしてコピーしようとして、「あ、動画は文書じゃなかった」と気づく。これはよくある話です。画面に映っている文字は映像の一部、つまり H.264 や HEVC からデコードされたピクセルの集合体です。各フレームはただのビットマップ。ターミナルの出力も、スライドの箇条書きも、テロップの文字も、すべて「描かれた絵」であってテキストではありません。</p>
+
+        <p>普通のスクリーンショット OCR より厄介な理由は 3 つあります。</p>
+
+        <ul>
+            <li><strong>圧縮による劣化。</strong>動画コーデックは帯域節約のために高周波成分を捨てます。静止画では鮮明な文字エッジも、低ビットレートのストリームや、720p ソースを Retina ディスプレイに引き伸ばしたフレームではぼやけます。</li>
+            <li><strong>動き。</strong>一時停止したつもりでも、たまたま 1 フレームずれてキーフレームの中間でモーションブラーが残ることがあります。</li>
+            <li><strong>DRM。</strong>Netflix・Disney+・一部の Zoom 録画・企業向けウェビナーツールなどは、映像を保護レイヤーに描画します。macOS はこのフラグを尊重するため、スクリーンショットは黒い四角で返ってきます。</li>
+        </ul>
+
+        <p>これらはどれも OCR エンジン側で解決できる問題ではありません。OCR より上流、映像が画面に届くまでの過程の話です。逆に言えば、YouTube のプログラミング講座、Udemy 日本のオンライン講義、ウェビナー Q&A の録画、社内 Loom など実用上の大半のケースでは、画面は普通に描画され、普通にキャプチャできます。あとは「正しいフレームで止めたら、そのプレイヤーに合った道具を選ぶ」だけです。</p>
+
+        <h2>まずは Live Text を試す（どこで動くかを正確に把握する）</h2>
+
+        <p>動画が Safari 内で再生されているなら、Apple のテキスト認識（Live Text）が一番楽な経路です。</p>
+
+        <ol>
+            <li>動画を一時停止します。</li>
+            <li>停止したフレームの上で右クリックします。</li>
+            <li>「テキスト認識を表示」を選びます（システムが選択可能なテキストを検出したときだけ表示されます）。</li>
+            <li>欲しい部分をドラッグで選択してコピーします。</li>
+        </ol>
+
+        <p>これが成立するのは、Safari が WebKit ベースで、Apple が WebKit と Vision フレームワークを密に統合しているからです。一時停止すると、WebKit が現在のフレームを静止画としてシステムに渡し、Vision が認識し、プレイヤー側に選択レイヤーが重なります。アプリ追加もホットキー暗記も不要です。</p>
+
+        <p>ただし、ほとんどの記事が触れていない重要な制約があります。動画フレームに対する Live Text は <strong>Safari 限定</strong>です。Apple は他のブラウザに同じフックを公開していません。Chrome や Firefox の GPU コンポジティング経路は、Live Text が見ているレイヤーを通りません。macOS Sonoma・Sequoia の時点で、Chrome・Firefox・Brave・Arc・Edge では一時停止しても「テキスト認識を表示」は出ません。Mac の Chrome は普通の画像なら Live Text が効きますが、video 要素の現在フレームには効きません。</p>
+
+        <h2>Live Text が静かに効かない場面</h2>
+
+        <p>Safari の外に出た瞬間、動画フレーム上の Live Text は使えなくなります。実際のユースケースのかなりの割合がここに該当します。</p>
+
+        <ul>
+            <li><strong>Chrome・Firefox・Brave・Arc・Edge。</strong>多くの人がチュートリアルやウェビナーを Chrome で観ています。動画フレームへの Live Text は反応しません。右クリックは普通のブラウザメニューです。</li>
+            <li><strong>Mac ネイティブのプレイヤー。</strong>VLC・IINA・MPV・QuickTime Player は独自の描画パイプラインを使います。Live Text は届きません。</li>
+            <li><strong>Zoom・Microsoft Teams・Webex のクライアントと録画。</strong>映像が普通に映っていてもクライアント側のカスタムレンダリングを通っているため、Live Text は使えません。</li>
+            <li><strong>Loom のデスクトップアプリ。</strong>Safari 上のウェブ再生は場合によって効きますが、デスクトップアプリや Chrome での再生では効きません。</li>
+            <li><strong>NHK オンデマンド・U-NEXT・Amazon Prime Video・Netflix・Apple TV+。</strong>DRM の保護で、フレーム自体が黒くなります。OCR ツールを変えても読み取るピクセルがありません。</li>
+        </ul>
+
+        <p>これは Live Text を貶しているわけではありません。写真・プレビュー・メモ・Safari 内の画像と動画では、Live Text は実によくできたシステム機能です。ただ「チュートリアルが Chrome、録画が Loom、スライドが Zoom 再生」という現実のシナリオには合わないというだけのことです。</p>
+
+        <h2>あらゆる場面に通用するワークフロー</h2>
+
+        <p>私たちが日常的に使っていて、Cheese! OCR を設計するときの軸にもしているのは、OCR を「ブラウザの機能」ではなく「OS レベルの操作」として扱う考え方です。</p>
+
+        <ol>
+            <li><strong>動画を一時停止する。</strong>スペースキーを押し、プレイヤーを落ち着かせます。</li>
+            <li><strong>OCR ホットキーを押す。</strong>Cheese! OCR の既定は ⇧⌘E。画面が暗くなり、十字カーソルが現れます。</li>
+            <li><strong>テキストのある領域をドラッグ選択する。</strong>チュートリアルのターミナル、スライドの箇条書き、ウェビナーの Q&A パネル、必要な範囲を選びます。</li>
+            <li><strong>貼り付ける。</strong>認識されたテキストはクリップボードに入っています。Cmd+V でメモ・エディタ・Slack のどこにでも貼れます。</li>
+        </ol>
+
+        <p>このフローがどのプレイヤーでも成立するのは、Cheese! OCR がブラウザにも video 要素にも会議クライアントにも「何を表示しているか」を尋ねないからです。macOS のスクリーンキャプチャ API でディスプレイのピクセルを取得し、その上で Apple Vision をローカル実行します。OS から見れば ⇧⌘4 と同じ操作 — 画面に描かれていて、かつ DRM で能動的に隠されていないものなら、何でもキャプチャして OCR できます。</p>
+
+        <p>2 つの実務上の利点に触れておきます。1 つ目はオンデバイス処理であること。Apple Vision は Mac 上で完結し、キャプチャしたフレームは外に出ません。Cheese! OCR にはネットワーク権限がそもそもありません。社外秘の会議録画や未公開の講座教材を扱うときに、これは普段以上に効いてきます。2 つ目は履歴が残ること。Cheese! OCR は最近の認識結果を検索可能なリストに残します。チュートリアル動画から連続して 4 つコードスニペットを切り出すとき、最新を取ったから前の 3 つが消える、ということはありません。</p>
+
+        <h2>このワークフローが解決する実例</h2>
+
+        <h3>プログラミングのチュートリアル</h3>
+
+        <p>YouTube・Udemy 日本・Coursera・Egghead・Frontend Masters。講師が画面でコードを打ち、その通りにエディタに入れたいけれど打ち直したくない。一時停止して OCR、貼り付け。最近の Apple Vision はモダンなプログラミングフォントの画面録画に対してかなり強く、たいていはインデントを直すぐらい、低ビットレートのストリームでまれに <code>l</code> と <code>1</code> を直すぐらいで済みます。</p>
+
+        <h3>オンライン講義のスライド</h3>
+
+        <p>録画講義で講師がスライドの定義・公式・引用を読み上げています。そのスライドは 20 秒で消えて次の章に進んでしまう。一時停止 → スライド領域を OCR → 続きを聴く。シーク戻して止めて打ち直すよりずっと速いはずです。</p>
+
+        <h3>ウェビナー Q&A・チャット欄</h3>
+
+        <p>録画ウェビナーのチャット欄には、登壇者がライブで答えたけれど発言で繰り返さなかった「もっとも有用な質問」が含まれていることが多いです。チャット欄を OCR すれば質問の正確な文言が手元に残ります。</p>
+
+        <h3>箇条書きスライドのプレゼン動画</h3>
+
+        <p>カンファレンス動画、社内全体会の録画、営業キックオフの動画。登壇者が 5 つの箇条書きをサッと流す。それを議事メモに残したい。スライドを OCR して貼り付け、終わり。</p>
+
+        <h3>同僚の Loom や Zoom レビュー動画</h3>
+
+        <p>同僚がツールの設定方法を Loom で説明していて、画面にコマンドラインのスニペットが映っています。再生は Chrome か Loom デスクトップアプリ。Live Text は手伝えません。グローバルホットキーの OCR ツールなら手伝えます。</p>
+
+        <h2>体感で効く小さなコツ</h2>
+
+        <p><strong>IINA でフレーム送りを使う。</strong>IINA は MPV ベースの完成度の高いオープンソース Mac プレイヤーです。矢印キーで 1 フレームずつ進めます。欲しい文字が 1 秒未満しか表示されない場合でも、IINA なら最も鮮明なフレームに正確に止めて OCR できます。</p>
+
+        <p><strong>高解像度の瞬間で止める。</strong>講師の引きの絵と、コードのズーム録画を行き来する動画なら、ズームしているフレームで OCR します。引きの絵に映る同じコードはコーデックが小さすぎて保てません。</p>
+
+        <p><strong>文字が小さければプレイヤーを拡大してから止める。</strong>YouTube などウェブプレイヤーの多くは Cmd++ で拡大できます。1 段階拡大するだけで 12px の字幕が 18px になり、認識精度が目に見えて上がります。</p>
+
+        <p><strong>履歴で複数フレームを束ねる。</strong>長いコードブロックは 1 フレームに収まらないこともあります。フレームごとにキャプチャしておけば、Cheese! OCR が検索可能なリストに残してくれるので、後でエディタで継ぎ合わせれば中間結果を失わずに済みます。</p>
+
+        <p><strong>クローズドキャプションがあるなら OCR より字幕。</strong>動画に字幕があり、知りたいのが台詞だけなら、字幕の方が焼き込み字幕の OCR より常に正確です。動画フレーム OCR は、字幕に含まれない要素 — コード・スライド箇条書き・チャット欄・画面共有ドキュメント — に向く道具です。台詞起こしの代替ではありません。</p>
+
+        <h2>使う前に知っておきたい注意点</h2>
+
+        <p>動画フレーム OCR はよく動きますが、魔法ではありません。正直に書いておきます。</p>
+
+        <ul>
+            <li><strong>圧縮の強い動画はスクリーンショットより精度が落ちます。</strong>1080p の画面録画を 480p で配信されると、小さな漢字の画数や <code>O</code> と <code>0</code> の判別で崩れます。可能な限り高画質で再生してください。</li>
+            <li><strong>極端に小さな文字は先に拡大が必要。</strong>13 インチ Retina で 10px の文字を映している動画では OCR は厳しいです。ページかプレイヤーを拡大してから止めます。</li>
+            <li><strong>アニメーションする文字はアニメ完了後に止める。</strong>テロップが 0.5 秒かけてスライドインするなら、動きが止まったフレームで一時停止します。</li>
+            <li><strong>DRM 保護の録画は OCR 側で救えません。</strong>スクリーンショットが黒い四角で返ってくるなら、どの OCR でも読みようがありません。保護のないバージョンを入手する以外に道はありません。</li>
+        </ul>
+
+        <p>どれも致命的というほどではなく、普通のスクリーンショット OCR と同じトレードオフが、動画は二重圧縮（コーデック＋プレイヤースケーリング）のぶんだけ少し増幅されているだけです。意図的に一時停止し、きれいなフレームを取れば、現代の Apple Vision のチュートリアル録画に対する精度は、打ち直しを省けるレベルで安定しています。</p>
+
+        <p>一行でまとめるなら、<em>動画は静止画の連なりなので、きれいな静止画さえ取れれば OCR は効く</em>。まず一時停止、次にキャプチャ、最後に OCR。あとは目の前のプレイヤーに合わせて道具を選ぶだけです。</p>
+    </article>
+
+    <section class="article-faq">
+        <h2>よくある質問</h2>
+        <details class="faq-item">
+            <summary>Netflix の字幕を OCR できますか？</summary>
+            <div class="answer">OCR エンジン自体はスクリーンショットに写ったピクセルなら何でも認識しますが、Netflix・Disney+・Apple TV のような DRM 保護付きプレイヤーは映像を保護レイヤーに描画するため、スクリーンショットは黒い四角になります。素直にプラットフォーム標準の字幕（クローズドキャプション）を使うのがおすすめです。プレイヤーから直接コピーするか、字幕トラックを取り出すブラウザ拡張を使ってください。</div>
+        </details>
+        <details class="faq-item">
+            <summary>ライブ動画でも使えますか？</summary>
+            <div class="answer">使えますが、まず一時停止してください。動いているフレームでは動きブレや切れた文字を拾ってしまいます。スペースキーで止め、コーデックがクリーンなキーフレームに落ち着くのを一拍待ってから OCR ホットキーを押すと精度が上がります。</div>
+        </details>
+        <details class="faq-item">
+            <summary>スクロールするテキストやアニメーション字幕はどうすれば？</summary>
+            <div class="answer">テキストが完全に表示された瞬間に手動で一時停止します。コードがスクロールするチュートリアル動画なら、IINA のようにフレーム単位で前後できるプレイヤーを使い、最も読みやすいフレームで止めて OCR してください。</div>
+        </details>
+        <details class="faq-item">
+            <summary>Cheese! OCR は動画を録画しますか？</summary>
+            <div class="answer">いいえ。Cheese! OCR は選択した範囲の静止スクリーンショットだけを取得します。動画録画も連続キャプチャも、外部送信も一切ありません。ホットキーを押した瞬間の 1 フレームを認識するだけです。</div>
+        </details>
+        <details class="faq-item">
+            <summary>Zoom の録画をスクリーンショットすると黒くなるのはなぜ？</summary>
+            <div class="answer">一部の Zoom や Teams の録画は、ウォーターマークや外部共有制限が有効なときに、スクリーンキャプチャ保護フラグが立っています。macOS はこの保護を尊重するためフレームが黒くなります。OCR 側で解決できる問題ではないので、保護のかかっていない録画やスライド資料を主催者に依頼するのが現実的です。</div>
+        </details>
+    </section>
+
+    <section class="article-cta">
+        <div class="cta-card">
+            <h2>Cheese! OCR を試す</h2>
+            <p>あらゆるプレイヤーの動画に対応するグローバルホットキー OCR。Apple Vision を使い 100% オンデバイスで動作、ネットワーク権限なし。Mac App Store で買い切り $5.99。</p>
+            <a href="https://apps.apple.com/app/cheese-ocr/id6760889131" class="cta-button">Mac App Store で試す</a>
+        </div>
+    </section>
+
+    <section class="article-related">
+        <h2>関連記事</h2>
+        <div class="related-grid">
+            <a href="../cheese-ocr-vs-live-text/" class="related-card">
+                <h3>Cheese! OCR vs macOS テキスト認識（Live Text）: 標準機能では足りない場面</h3>
+                <p>macOS の Live Text とグローバルホットキー型 OCR ツールの比較。Live Text が苦手な 4 つのシーン。</p>
+            </a>
+            <a href="../extract-text-from-screenshot-on-mac/" class="related-card">
+                <h3>Mac でスクリーンショットからテキストを抽出する方法（3 つの方法を比較）</h3>
+                <p>Live Text、Cmd+Shift+5、Cheese! OCR の 3 つの方法。それぞれをいつ使うべきか。</p>
+            </a>
+            <a href="../how-to-ocr-pdf-on-mac/" class="related-card">
+                <h3>Mac で PDF を OCR する方法（2026）: ネイティブ・スキャン・混在まで完全ガイド</h3>
+                <p>Mac でネイティブ／スキャン／保護付き PDF を OCR する実用ガイド。クラウドアップロードは一切なし。</p>
+            </a>
+        </div>
+    </section>
+
+    <footer class="article-footer">
+        <a href="../../">ホーム</a>
+        <a href="../../../privacy.html">プライバシーポリシー</a>
+        <a href="mailto:nicholaslck@icloud.com">お問い合わせ</a>
+        <p>&copy; 2026 Cheese! OCR. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
+
+    <title>オンデバイス OCR はどう動くのか：Apple Vision Framework 解説 — Cheese! OCR ブログ</title>
+    <meta name="description" content="Apple Vision が Mac のローカルで OCR を行う仕組みを技術的に解説します。VNRecognizeTextRequest、Neural Engine、ネットワーク権限ゼロ — その意味も含めて。">
+
+    <link rel="canonical" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-on-device-ocr-works/">
+    <link rel="alternate" hreflang="en" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-on-device-ocr-works/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/how-on-device-ocr-works/">
+    <link rel="alternate" hreflang="ja" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-on-device-ocr-works/">
+    <link rel="alternate" hreflang="ko" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ko/blog/how-on-device-ocr-works/">
+    <link rel="alternate" hreflang="x-default" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-on-device-ocr-works/">
+
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../../../blog/article.css">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Cheese! OCR">
+    <meta property="og:title" content="オンデバイス OCR はどう動くのか：Apple Vision Framework 解説">
+    <meta property="og:description" content="Apple Vision が Mac のローカルで OCR を行う仕組み — VNRecognizeTextRequest、Neural Engine、ネットワーク権限ゼロ。">
+    <meta property="og:url" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-on-device-ocr-works/">
+    <meta property="og:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="article:published_time" content="2026-04-25">
+    <meta property="article:author" content="Cheese! OCR Team">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="オンデバイス OCR はどう動くのか：Apple Vision Framework 解説">
+    <meta name="twitter:description" content="Apple Vision が Mac のローカルで OCR を行う仕組みと、Neural Engine の意義。クラウド OCR との比較も。">
+    <meta name="twitter:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "オンデバイス OCR はどう動くのか：Apple Vision Framework 解説",
+      "description": "Apple Vision が Mac のローカルで OCR を行う仕組み — VNRecognizeTextRequest、Neural Engine、ネットワーク権限ゼロ。",
+      "author": {
+        "@type": "Organization",
+        "name": "Cheese! OCR",
+        "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Cheese! OCR",
+        "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+      },
+      "datePublished": "2026-04-25",
+      "dateModified": "2026-04-25",
+      "image": "https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png",
+      "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-on-device-ocr-works/",
+      "inLanguage": "ja",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-on-device-ocr-works/"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "inLanguage": "ja",
+      "mainEntity": [
+        { "@type": "Question", "name": "サードパーティの開発者も Apple Vision で OCR を使えますか？", "acceptedAnswer": { "@type": "Answer", "text": "はい、使えます。Apple Vision は公開されたフレームワークで、任意の macOS / iOS アプリが Vision モジュール経由で呼び出せます。Live Text が内部で呼んでいるのと同じ VNRecognizeTextRequest を、Cheese! OCR や Text Sniper など多くの Mac OCR ツールも使っています。API キーも、レート制限も、ネットワーク呼び出しも一切ありません。" } },
+        { "@type": "Question", "name": "Apple Vision OCR は Apple Silicon が必須ですか？", "acceptedAnswer": { "@type": "Answer", "text": "いいえ。Apple Vision は Intel Mac でも動作し、Neural Engine が無い場合は CPU と GPU にフォールバックします。Apple Silicon は Neural Engine が ML モデルを加速するため明らかに高速ですが、macOS 13 Ventura 以降の Intel Mac でもテキスト認識は問題なく動きます。" } },
+        { "@type": "Question", "name": "GPT-4V のようなマルチモーダルモデルと比べて、Apple Vision の精度はどうですか？", "acceptedAnswer": { "@type": "Answer", "text": "サポート言語のきれいな印刷文字であれば、Apple Vision はクラウド OCR と同等で、速度はたいてい上回ります。手書き・複雑なレイアウト復元・化学式や数式といった領域ではマルチモーダル LLM の方が強いですが、レイテンシーやコスト、画像を第三者に渡すというトレードオフがあります。日常のスクリーンショット OCR には Apple Vision の方が実用的です。" } },
+        { "@type": "Question", "name": "Apple Vision OCR を使うとき、画像データが Apple に送られることはありますか？", "acceptedAnswer": { "@type": "Answer", "text": "ありません。Vision Framework は完全にデバイス上で動作します。Apple は画像も認識結果もメタデータも見られません。Apple Vision を使うアプリは、App Store のサンドボックスでネットワーク権限ゼロを宣言できます。これは独立に検証可能です。Cheese! OCR はネットワーク権限を一切持たない構成で配信されています。" } },
+        { "@type": "Question", "name": "ローカル OCR がここまで強いのに、Google Vision のようなクラウド OCR がまだ存在するのはなぜですか？", "acceptedAnswer": { "@type": "Answer", "text": "クラウド OCR はサーバーサイド・クロスプラットフォーム用途を狙った製品です。請求書処理パイプライン、ドキュメント管理システム、ML 学習基盤などです。対応言語が多く、手書きモデルを内蔵し、フォーム解析を大量にこなせます。エンドユーザーが Mac でスクリーンショット OCR をする用途なら、ローカルの Apple Vision が妥当な選択肢です。バックエンドで毎日数百万件のスキャンを処理するなら、クラウド OCR の方が筋が通ります。" } }
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Cheese! OCR", "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/" },
+        { "@type": "ListItem", "position": 2, "name": "ブログ", "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "オンデバイス OCR はどう動くのか：Apple Vision Framework 解説" }
+      ]
+    }
+    </script>
+</head>
+<body>
+
+    <nav class="article-nav">
+        <a href="../" class="back-link">← ブログ</a>
+        <div class="lang-switcher">
+            <a href="/OCR_LLM/blog/how-on-device-ocr-works/" hreflang="en">EN</a>
+            <a href="/OCR_LLM/zh/blog/how-on-device-ocr-works/" hreflang="zh-Hans">中文</a>
+            <a href="/OCR_LLM/ja/blog/how-on-device-ocr-works/" aria-current="page" hreflang="ja">日本語</a>
+            <a href="/OCR_LLM/ko/blog/how-on-device-ocr-works/" hreflang="ko">한국어</a>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <h1>オンデバイス OCR はどう動くのか：Apple Vision Framework 解説</h1>
+        <p class="article-meta">
+            <time datetime="2026-04-25">2026 年 4 月 25 日</time>
+            · 10 分で読める
+        </p>
+    </header>
+
+    <aside class="tldr">
+        <strong>要約</strong>
+        Apple Vision はシステムレベルのフレームワークで、OCR の処理は Mac 本体の中で完結します。ネットワーク呼び出しも、Apple のサーバー経由もありません。Live Text の内部で呼ばれているのと同じ <code>VNRecognizeTextRequest</code> がサードパーティ開発者にも開放されており、Apple Silicon では Neural Engine が処理を加速します。日常的に Mac でスクリーンショットの OCR をするのであれば、クラウド級の精度・厳格なプライバシー・HTTP では不可能な低レイテンシーが同時に手に入ります。
+    </aside>
+
+    <article class="article-body">
+        <h2>「オンデバイス」とは具体的に何を意味するのか</h2>
+        <p>「オンデバイス OCR」という言葉はマーケティングコピーで気軽に使われがちなので、Apple Vision の文脈で何を意味するのかを正確に整理します。macOS 上のアプリが Vision に画像内のテキスト認識を依頼すると、画像の前処理から、字形を検出・デコードする CNN や Transformer、曖昧性を解消する言語モデルまで、パイプライン全体がお手元の Mac の中の物理的なハードウェアで動きます。CPU、内蔵 GPU、そして Apple Silicon なら Neural Engine — これらが分担して計算を行います。1 バイトもマシンの外には出ません。</p>
+        <p>クラウド OCR は完全に別の話です。Google Cloud Vision・AWS Textract・Azure Computer Vision はいずれも、画像を base64 で HTTPS 上にアップロードする前提で設計されています。画像はベンダーのデータセンターに着地し、そこのモデルを通って、認識結果が返ってきます。この往復には光速・自分のネットワーク・ベンダー側のキューという下限があります。さらに、その画像は短時間とはいえ他人のディスクに乗り、そのベンダーのその時点のログ保管・モデル学習ポリシーの対象になります。</p>
+        <p>オンデバイスはこれを丸ごと回避します。アップロードのステップが無く、アプリにネットワーク権限が要らず、API キーの管理も、利用上限の監視も、コール毎の課金も、読むべきプライバシーポリシーも存在しません。代わりに、OS が出荷するモデルと、自分が買ったシリコンに縛られます。スクリーンショット OCR においては、ほとんどの Mac ユーザーがこのトレードオフを受け入れやすいと思います。</p>
+
+        <h2>Apple Vision Framework の歴史を簡単に</h2>
+        <p>Apple Vision は 2017 年 WWDC で iOS 11 / macOS 10.13 High Sierra と一緒に登場しました。最初のバージョンは顔検出・矩形検出・バーコード読み取りどまりで、まだ OCR はありませんでした。本格的なテキスト認識が来たのは 2019 年の iOS 13 / macOS 10.15 Catalina で、ここで Apple は <code>VNRecognizeTextRequest</code> を追加しました。「Vision がテキストを読める」が宣伝文句から、Swift 数行で呼べる API へと変わった瞬間です。</p>
+        <p>多くの人が Apple のオンデバイス OCR を体感する Live Text（テキスト認識表示）が出たのはその 2 年後、iOS 15 / macOS Monterey でした。Live Text はフレームワークを置き換えたわけではなく、その上に UI をかぶせたものです。「メッセージ」で写真を長押ししても、Safari でテキストの上をホバーしても、Cheese! OCR のようなサードパーティアプリを使っても、内部で動いているのは同じ <code>VNRecognizeTextRequest</code> です。Ventura・Sonoma・Sequoia と世代を重ねるごとに、Apple は認識モデルを継続的に改善し、対応言語を増やしてきました。</p>
+        <p>2026 年時点で、フレームワークは数十言語に対応しています。歴史的に OCR エンジンを苦しめてきた中日韓の三系統文字も含まれます。Vision は今や「写真」検索（「テキストを含む写真を見せて」）、VoiceOver の画像説明、ビジュアルルックアップなどの土台にもなっています。</p>
+
+        <h2>VNRecognizeTextRequest API の中身</h2>
+        <p>開発者が実際に呼ぶクラスは <code>VNRecognizeTextRequest</code> です。入力画像と設定、completion handler を取り、<code>VNRecognizedTextObservation</code> の配列を返します。各要素には認識候補とバウンディングボックスが入っています。</p>
+        <p>重要な設定は 2 つ。1 つ目は <code>recognitionLevel</code> で、2 つのモードがあります。<code>.fast</code> は速度に最適化された小さめのモデルで、ライブカメラやスクロール中の動画フレーム向け。<code>.accurate</code> は大きめのモデルで、静止スクリーンショットや PDF ページに向きます。Cheese! OCR を含む大半の Mac OCR ツールはデフォルトで <code>.accurate</code> を選びます。ユーザーが見ているのは静止画 1 枚で、数百ミリ秒の差は人間には分からないからです。</p>
+        <p>2 つ目は <code>recognitionLanguages</code>。BCP-47 形式の言語タグを優先順に並べた配列で、たとえば <code>"en-US"</code>・<code>"zh-Hans"</code>・<code>"ja-JP"</code>・<code>"ko-KR"</code>。順番は曖昧な字形を解決するときに言語モデルへのヒントとして使われます。たとえば、ラテン文字の「o」と数字の「0」とキリル文字の「о」を見分けるのに効きます。LINE のスクショから漫画のコマ、英語の論文 PDF まで何でも放り込まれる可能性のある汎用ツールなら、CJK + 英語の 4 つを既定で有効にしておくのが妥当です。</p>
+        <p>もう一つ <code>usesLanguageCorrection</code> という Bool 設定があり、認識後の言語モデル補正をオン/オフできます。オンにすると「teh」が「the」に直り、語彙統計に沿って結果がならされます。オフにすればピクセル通りに返ってくるので、コードやナンバープレート、製品 SKU には便利です。</p>
+
+        <h2>最小構成の Swift コード例</h2>
+        <p>以下は CGImage に対して Apple Vision の OCR を走らせ、結果を出力する最小限の Swift コードです。Cheese! OCR が内部で使っている呼び出し経路から、エラー処理と UI 周りを取り除いたものです。</p>
+<pre><code>import Vision
+
+func recognizeText(in cgImage: CGImage) {
+    let request = VNRecognizeTextRequest { request, error in
+        guard let observations = request.results as? [VNRecognizedTextObservation] else {
+            return
+        }
+        let lines = observations.compactMap { $0.topCandidates(1).first?.string }
+        print(lines.joined(separator: "\n"))
+    }
+
+    request.recognitionLevel = .accurate
+    request.recognitionLanguages = ["en-US", "zh-Hans", "ja-JP", "ko-KR"]
+    request.usesLanguageCorrection = true
+
+    let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+    try? handler.perform([request])
+}
+</code></pre>
+        <p>注意点をいくつか。completion handler はバックグラウンドキューで動くので、UI アプリならクリップボード更新やトースト表示の前にメインスレッドへ戻します。<code>topCandidates(1)</code> は最有力候補だけを返しますが、引数を増やせば複数候補をユーザーに見せることもできます。ここでは <code>VNImageRequestHandler</code> に <code>CGImage</code> を渡していますが、<code>CVPixelBuffer</code>・<code>CIImage</code>・ファイル URL も受け付けます。動画フレームや PDF ページから流すときに便利です。</p>
+        <p>普通のユースケースで触る API はこれで全部です。SDK のインストールも、モデルファイルの同梱も、認証フローも、利用ダッシュボードもありません。OS がモデルを提供し、シリコンが実行し、アプリは関数を 1 つ呼ぶだけです。</p>
+
+        <h2>Apple Silicon で Neural Engine が効く理由</h2>
+        <p>Neural Engine は Apple Silicon の各チップに載っている専用の機械学習アクセラレータです。M1 で 16 コアからスタートし、M2・M3 もそのコア数を維持、M4 でスループットと共有メモリ帯域に手が入りました。Apple Silicon Mac では、Vision のテキスト認識モデルは既定で Neural Engine 向けにコンパイルされて動き、Neural Engine で処理できない部分は GPU がフォールバックします。</p>
+        <p>体感できる効果は 2 つ。1 つ目は速度。ホットキーを押して画面の一部を切り取ると、ほぼ即時に結果が返ってきます。2 つ目は省電力性。Neural Engine は推論あたりの消費電力が CPU や GPU より大幅に低く、何百枚もの OCR を続けても MacBook のバッテリーが目に見えて減りません。同じハードは Siri、写真検索、ボイスメモの文字起こし、Apple Intelligence などにも使われていて、Vision はその多くのテナントの一つです。</p>
+        <p>Intel Mac でもフレームワークは動きます。CPU と GPU の経路にフォールバックするのでやや遅くなりますが、スクリーンショット程度の画像サイズなら人間が違和感を覚えるほどの差は出ません。Vision は最新ハードだけでなく、Mac ラインナップ全体で使えるよう意図的に設計されています。</p>
+
+        <h2>プライバシー：オンデバイスである意義</h2>
+        <p>オンデバイス OCR の中で最も流されがちなのが、実はプライバシーの話です。技術的な主張はシンプルです。Apple Vision でスクリーンショットを OCR したとき、その画像のバイトはあなたの Mac の外には出ていません。Apple は見られない。あなたのネットワークも見られない。Vision を呼んでいるサードパーティのアプリでさえ、画像そのものは見ていません。</p>
+        <p>最後の点が大事なのは、「オンデバイス OCR」という言葉が時にゆるく使われるからです。アプリが Apple Vision を使いつつ、認識結果やテレメトリ、あるいはスクリーンショットを「学習用に」自社サーバーに送ることは技術的に可能です。それを検証する手段が、App Store サンドボックスのネットワーク権限です。Mac App Store 経由で配信されるアプリは、使うネットワーク機能をすべて宣言する必要があります。ネットワーク権限を一切持たないアプリは、カーネルレベルで HTTP 通信が不可能です。例外はありません。</p>
+        <p>Cheese! OCR はその後者です。ネットワーク権限を持たず、テレメトリ SDK も、解析サービスも、外部にデータを送るクラッシュレポーター類もありません。Vision 呼び出しは OS に渡し、認識結果は OS のクリップボードに置く — データフローはこれで完結します。社内の機密文書、Slack のスレッド、個人的なやり取りといったスクリーンショットを OCR する用途では、これは大きな差になります。</p>
+
+        <h2>Apple Vision とクラウド OCR の比較表</h2>
+        <p>トレードオフを 1 か所に集めると次のとおりです。クラウドの価格はベンダーが定期的に料金体系を組み替えるため幅で示しています。実際の単価はボリューム・リージョン・機能フラグで変わります。あくまで桁感として参照し、正確な数字はベンダーの料金ページを見てください。</p>
+        <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>項目</th>
+                    <th>Apple Vision</th>
+                    <th>Google Cloud Vision</th>
+                    <th>AWS Textract</th>
+                    <th>Azure Computer Vision</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>料金</td>
+                    <td>macOS / iOS に同梱、無料</td>
+                    <td>無料枠後でおおむね 1.5 ドル / 1,000 回</td>
+                    <td>おおむね 1.5 ドル / 1,000 ページ</td>
+                    <td>おおむね 1.0 ドル / 1,000 件</td>
+                </tr>
+                <tr>
+                    <td>対応言語</td>
+                    <td>数十言語、CJK と Latin 系を含む</td>
+                    <td>50 以上の印刷文字、手書きは限定的</td>
+                    <td>英語・Latin 系に強く、CJK は拡充中</td>
+                    <td>CJK 含む幅広い対応</td>
+                </tr>
+                <tr>
+                    <td>レイテンシー</td>
+                    <td>ローカル、ネットワーク往復なし</td>
+                    <td>ネットワーク + 処理時間</td>
+                    <td>ネットワーク + 処理時間</td>
+                    <td>ネットワーク + 処理時間</td>
+                </tr>
+                <tr>
+                    <td>プライバシー</td>
+                    <td>100% オンデバイス、画像は Mac から出ない</td>
+                    <td>画像は Google データセンターに送信</td>
+                    <td>画像は AWS データセンターに送信</td>
+                    <td>画像は Azure データセンターに送信</td>
+                </tr>
+                <tr>
+                    <td>得意分野</td>
+                    <td>リアルタイム UI OCR、スクショ、Live Text</td>
+                    <td>ドキュメント AI、大規模パイプライン</td>
+                    <td>フォーム・表・構造化文書</td>
+                    <td>企業向け OCR + 画像解析の組み合わせ</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        <p>エンドユーザー向けの Mac アプリにとっての結論はシンプルです。コスト・レイテンシー・プライバシーの 3 点では Apple Vision に分があります。サーバーサイドのバッチ処理・構造化フォーム解析・Apple が出荷していない言語が必要な場面ではクラウド API に分があります。</p>
+
+        <h2>Apple Vision がまだ苦手なもの</h2>
+        <p>Apple Vision を完璧と書くのは正直ではありません。OCR 戦略を選ぶときに知っておく価値のある制限を挙げます。</p>
+        <p><strong>続け書きの手書き。</strong>整った活字風の手書きならある程度読めますが、続け書きの英語、自由なメモ、手書きの漢字や仮名は当たり外れがあります。手書きノートを取り込むワークフローが中心なら、Apple Vision 単体では足りません。マルチモーダル LLM か専用の手書き認識エンジンの方が向いています。</p>
+        <p><strong>縦書きの CJK テキスト。</strong>日本の書籍、漢籍、伝統的なポスターは縦書き・右から左の組版が多いです。Vision のテキスト検出器は左から右への横書きに強く偏っており、縦書き列を分断したり、読み順を取り違えたりすることがしばしばあります。「縦書きだよ」と教えるための公開フラグはありません。</p>
+        <p><strong>強い傾きや歪み。</strong>本の綴じ際で曲がったページ、急角度で撮った看板、遠近変換のかかったスクリーンショットなどは検出器を惑わせます。Vision にも一定の補正は入っていますが、一部のクラウドサービスほど積極的ではありません。</p>
+        <p><strong>装飾フォント。</strong>ゲーム UI の装飾文字、書道、レトロな看板、極端なカーニングのロゴは精度が落ちます。モデルは一般的な書体で学習されており、装飾フォントのロングテールは既知の弱点です。</p>
+        <p><strong>数式・化学式の記法。</strong>方程式、積分記号、化学構造式、読み順に並ばない 2 次元レイアウトは平坦な文字列に潰れます。LaTeX や MathML 出力が必要なら専用モデルの出番で、Mathpix が存在する理由はまさにここにあります。</p>
+        <p>これらの制限は、オンデバイス OCR が一般的な用途に向かないことを意味しません。万能ではないというだけです。</p>
+
+        <h2>Cheese! OCR のようなツールにとっての意味</h2>
+        <p>こうした基盤の話が Mac の OCR ユーティリティに関係するのは、フレームワーク選びがそのアプリに約束できることの上限と下限を決めてしまうからです。クラウド前提の OCR アプリが「爆速 OCR」と謳っても、ネットワークレイテンシーという床と、消えないプライバシーの注釈は付いて回ります。Apple Vision を使う完全ローカルの OCR アプリは、フレームワークの床（とても速い）と天井（Apple が出荷する言語と精度）の両方を引き継ぎます。</p>
+        <p>Cheese! OCR は Apple Vision の上に直接組み立てられています。ホットキーを押し、画面の領域をドラッグで選ぶと、得られた CGImage が <code>VNRecognizeTextRequest</code> に渡されます。デフォルトで CJK + 英語の 4 言語を有効にした構成です。一瞬後にはクリップボードに認識結果が入り、ローカルの SQLite 履歴 DB に書き込まれます。サーバーは無く、ネットワーク権限は無く、テレメトリも無し。Live Text と同じモデルを、別の — 率直に言ってより使いやすい — UI で動かしているだけです。</p>
+        <p>この設計は実利として効きます。飛行機の機内でも動きます。インターネットの半分を遮断する社内 VPN でも動きます。Google サービスにアクセスできない地域でも動きます。家の Wi-Fi が不安定でも遅くなりません。機密契約書や個人的なメッセージのスクリーンショットを OCR するときに、「今この画像を誰が見たか」と気を揉む必要もありません。</p>
+
+        <p>自分の Mac で使う OCR を選ぶときに、最初に話すべきはフレームワークのレイヤーです。クラウドにもローカルにも正当な使いどころがあります。個人の Mac で日常のスクリーンショット OCR をする限り、オンデバイスの Apple Vision を超えるのは難しい — そして、よく聞かれる疑問は次の FAQ にまとめてあります。</p>
+    </article>
+
+    <section class="article-faq">
+        <h2>よくある質問</h2>
+        <details class="faq-item">
+            <summary>サードパーティの開発者も Apple Vision で OCR を使えますか？</summary>
+            <div class="answer"><p>はい、使えます。Apple Vision は公開されたフレームワークで、任意の macOS / iOS アプリが Vision モジュール経由で呼び出せます。Live Text が内部で呼んでいるのと同じ <code>VNRecognizeTextRequest</code> を、Cheese! OCR や Text Sniper など多くの Mac OCR ツールも使っています。API キーも、レート制限も、ネットワーク呼び出しも一切ありません。</p></div>
+        </details>
+        <details class="faq-item">
+            <summary>Apple Vision OCR は Apple Silicon が必須ですか？</summary>
+            <div class="answer"><p>いいえ。Apple Vision は Intel Mac でも動作し、Neural Engine が無い場合は CPU と GPU にフォールバックします。Apple Silicon は Neural Engine が ML モデルを加速するため明らかに高速ですが、macOS 13 Ventura 以降の Intel Mac でもテキスト認識は問題なく動きます。</p></div>
+        </details>
+        <details class="faq-item">
+            <summary>GPT-4V のようなマルチモーダルモデルと比べて、Apple Vision の精度はどうですか？</summary>
+            <div class="answer"><p>サポート言語のきれいな印刷文字であれば、Apple Vision はクラウド OCR と同等で、速度はたいてい上回ります。手書き・複雑なレイアウト復元・化学式や数式といった領域ではマルチモーダル LLM の方が強いですが、レイテンシーやコスト、画像を第三者に渡すというトレードオフがあります。日常のスクリーンショット OCR には Apple Vision の方が実用的です。</p></div>
+        </details>
+        <details class="faq-item">
+            <summary>Apple Vision OCR を使うとき、画像データが Apple に送られることはありますか？</summary>
+            <div class="answer"><p>ありません。Vision Framework は完全にデバイス上で動作します。Apple は画像も認識結果もメタデータも見られません。Apple Vision を使うアプリは、App Store のサンドボックスでネットワーク権限ゼロを宣言できます。これは独立に検証可能です。Cheese! OCR はネットワーク権限を一切持たない構成で配信されています。</p></div>
+        </details>
+        <details class="faq-item">
+            <summary>ローカル OCR がここまで強いのに、Google Vision のようなクラウド OCR がまだ存在するのはなぜですか？</summary>
+            <div class="answer"><p>クラウド OCR はサーバーサイド・クロスプラットフォーム用途を狙った製品です。請求書処理パイプライン、ドキュメント管理システム、ML 学習基盤などです。対応言語が多く、手書きモデルを内蔵し、フォーム解析を大量にこなせます。エンドユーザーが Mac でスクリーンショット OCR をする用途なら、ローカルの Apple Vision が妥当な選択肢です。バックエンドで毎日数百万件のスキャンを処理するなら、クラウド OCR の方が筋が通ります。</p></div>
+        </details>
+    </section>
+
+    <section class="article-cta">
+        <div class="cta-card">
+            <h2>Cheese! OCR を試す</h2>
+            <p>Apple Vision をグローバルホットキーの裏に置いた Mac のメニューバーアプリです。100% オンデバイス、ネットワーク権限ゼロ、Mac App Store で 5.99 ドルの買い切り。</p>
+            <a href="https://apps.apple.com/app/cheese-ocr/id6760889131" class="cta-button">Mac App Store で試す</a>
+        </div>
+    </section>
+
+    <section class="article-related">
+        <h2>関連記事</h2>
+        <div class="related-grid">
+            <a href="../cheese-ocr-vs-live-text/" class="related-card">
+                <h3>Cheese! OCR vs macOS テキスト認識（Live Text）: 標準機能では足りない場面</h3>
+                <p>Live Text とホットキー型 OCR ツールの比較。どちらが明らかに向いているのはいつか。</p>
+            </a>
+            <a href="../how-to-ocr-pdf-on-mac/" class="related-card">
+                <h3>Mac で PDF を OCR する方法（2026）: ネイティブ・スキャン・混在まで完全ガイド</h3>
+                <p>Mac でネイティブ／スキャン／保護付き PDF を OCR する実用ガイド。クラウドアップロード一切なし。</p>
+            </a>
+            <a href="../cheese-ocr-vs-text-sniper/" class="related-card">
+                <h3>Cheese! OCR と主要 Mac OCR ツールの比較（Text Sniper・他）</h3>
+                <p>Text Sniper がいまも先行している点、Cheese! OCR が引き離している点。自分のワークフローでの選び方。</p>
+            </a>
+        </div>
+    </section>
+
+    <footer class="article-footer">
+        <a href="../../">ホーム</a>
+        <a href="../../../privacy.html">プライバシーポリシー</a>
+        <a href="mailto:nicholaslck@icloud.com">お問い合わせ</a>
+        <p>&copy; 2026 Cheese! OCR. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

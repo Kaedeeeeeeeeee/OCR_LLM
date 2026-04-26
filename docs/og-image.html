@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+    background: linear-gradient(135deg, #7EC8E3 0%, #B8E2F2 100%);
+    color: #1d1d1f;
+    display: flex;
+    align-items: center;
+    padding: 0 90px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .layout {
+    display: flex;
+    align-items: center;
+    gap: 70px;
+    width: 100%;
+  }
+  .icon-wrap {
+    flex-shrink: 0;
+    width: 260px;
+    height: 260px;
+    border-radius: 58px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.18);
+  }
+  .icon-wrap img { width: 100%; height: 100%; display: block; }
+  .text-block { flex: 1; }
+  .title {
+    font-size: 92px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 22px;
+  }
+  .subtitle {
+    font-size: 36px;
+    font-weight: 500;
+    color: #1d1d1f;
+    opacity: 0.82;
+    line-height: 1.25;
+    margin-bottom: 34px;
+    letter-spacing: -0.01em;
+  }
+  .pill-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .pill {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(8px);
+    color: #1d1d1f;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+  .footer-strip {
+    position: absolute;
+    bottom: 36px;
+    left: 90px;
+    right: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 22px;
+    font-weight: 500;
+    color: #1d1d1f;
+    opacity: 0.65;
+  }
+  .langs { letter-spacing: 0.02em; }
+</style>
+</head>
+<body>
+  <div class="layout">
+    <div class="icon-wrap">
+      <img src="icon.png" alt="">
+    </div>
+    <div class="text-block">
+      <div class="title">Cheese! OCR</div>
+      <div class="subtitle">Fast, Private Screenshot OCR for Mac</div>
+      <div class="pill-row">
+        <span class="pill">Apple Vision</span>
+        <span class="pill">On-Device</span>
+        <span class="pill">Menu Bar</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-strip">
+    <span>Download on the Mac App Store</span>
+    <span class="langs">English · 中文 · 日本語 · 한국어</span>
+  </div>
+</body>
+</html>

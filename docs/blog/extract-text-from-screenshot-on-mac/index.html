@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
+
+    <title>How to Extract Text from a Screenshot on Mac (Three Methods Compared) — Cheese! OCR Blog</title>
+    <meta name="description" content="Three ways to pull text out of a Mac screenshot — Live Text in Preview, the Cmd+Shift+5 floating action, and a dedicated OCR hotkey. When each one is worth the keystrokes.">
+
+    <link rel="canonical" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/extract-text-from-screenshot-on-mac/">
+    <link rel="alternate" hreflang="en" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/extract-text-from-screenshot-on-mac/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/extract-text-from-screenshot-on-mac/">
+    <link rel="alternate" hreflang="ja" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/extract-text-from-screenshot-on-mac/">
+    <link rel="alternate" hreflang="ko" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ko/blog/extract-text-from-screenshot-on-mac/">
+    <link rel="alternate" hreflang="x-default" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/extract-text-from-screenshot-on-mac/">
+
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../article.css">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Cheese! OCR">
+    <meta property="og:title" content="How to Extract Text from a Screenshot on Mac (Three Methods Compared)">
+    <meta property="og:description" content="Three ways to pull text out of a Mac screenshot — Live Text in Preview, the Cmd+Shift+5 floating action, and a dedicated OCR hotkey.">
+    <meta property="og:url" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/extract-text-from-screenshot-on-mac/">
+    <meta property="og:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    <meta property="article:published_time" content="2026-04-25">
+    <meta property="article:author" content="Cheese! OCR Team">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Extract Text from a Screenshot on Mac (Three Methods Compared)">
+    <meta name="twitter:description" content="Live Text, Cmd+Shift+5, and a dedicated OCR hotkey — when each one is worth using.">
+    <meta name="twitter:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "How to Extract Text from a Screenshot on Mac (Three Methods Compared)",
+      "description": "Three ways to pull text out of a Mac screenshot — Live Text in Preview, the Cmd+Shift+5 floating action, and a dedicated OCR hotkey. When each one is worth the keystrokes.",
+      "author": {
+        "@type": "Organization",
+        "name": "Cheese! OCR",
+        "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Cheese! OCR",
+        "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+      },
+      "datePublished": "2026-04-25",
+      "dateModified": "2026-04-25",
+      "image": "https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png",
+      "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/extract-text-from-screenshot-on-mac/",
+      "inLanguage": "en",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/extract-text-from-screenshot-on-mac/"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "inLanguage": "en",
+      "mainEntity": [
+        { "@type": "Question", "name": "Where do Mac screenshots save by default?", "acceptedAnswer": { "@type": "Answer", "text": "By default, screenshots save as PNG files to your Desktop, named with the date and time. You can change the save location by pressing Cmd+Shift+5 and clicking Options — the dropdown lets you pick Desktop, Documents, Clipboard, Mail, Messages, Preview, or any custom folder." } },
+        { "@type": "Question", "name": "Can I capture a screenshot on Mac without creating a file?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Press Cmd+Shift+5, click Options, and set Save to: Clipboard. The image goes straight to your clipboard with no file written to disk. A dedicated OCR hotkey tool like Cheese! OCR goes one step further — it never writes a file at all and gives you the recognized text on the clipboard instead of an image." } },
+        { "@type": "Question", "name": "Does the Cmd+Shift+5 method work on older versions of macOS?", "acceptedAnswer": { "@type": "Answer", "text": "The Cmd+Shift+5 floating capture toolbar has existed since macOS Mojave (10.14) in 2018, so it works on virtually any Mac you'd still use today. However, Live Text inside the floating thumbnail preview requires macOS 13 Ventura or later. On older macOS you can still capture, but you'll need to open the file in Preview to use Live Text on the captured image." } },
+        { "@type": "Question", "name": "Which method is fastest for extracting text from a screenshot?", "acceptedAnswer": { "@type": "Answer", "text": "Method 3 — a dedicated screenshot-to-text hotkey like Cheese! OCR. One keystroke, one drag-select, and the text is already on your clipboard. No file is created and you skip Preview entirely. Live Text adds at least two extra steps (click Live Text, copy) and Cmd+Shift+5 with the floating preview is similar." } },
+        { "@type": "Question", "name": "Can Cheese! OCR work on screenshots I already saved?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. You can drop an existing image into the Cheese! OCR menu bar window or the OCR History pane and re-recognize it. The primary workflow is the global hotkey, but the app handles already-captured PNGs and JPEGs as well." } }
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Cheese! OCR", "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "How to Extract Text from a Screenshot on Mac (Three Methods Compared)" }
+      ]
+    }
+    </script>
+</head>
+<body>
+
+    <nav class="article-nav">
+        <a href="../" class="back-link">← Blog</a>
+        <div class="lang-switcher">
+            <a href="/OCR_LLM/blog/extract-text-from-screenshot-on-mac/" aria-current="page" hreflang="en">EN</a>
+            <a href="/OCR_LLM/zh/blog/extract-text-from-screenshot-on-mac/" hreflang="zh-Hans">中文</a>
+            <a href="/OCR_LLM/ja/blog/extract-text-from-screenshot-on-mac/" hreflang="ja">日本語</a>
+            <a href="/OCR_LLM/ko/blog/extract-text-from-screenshot-on-mac/" hreflang="ko">한국어</a>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <h1>How to Extract Text from a Screenshot on Mac (Three Methods Compared)</h1>
+        <p class="article-meta">
+            <time datetime="2026-04-25">April 25, 2026</time>
+            · 10 min read
+        </p>
+    </header>
+
+    <aside class="tldr">
+        <strong>TL;DR</strong>
+        Three reliable ways to extract text from a Mac screenshot in 2026: open the screenshot in Preview and use Live Text, capture with Cmd+Shift+5 and use Live Text directly on the floating thumbnail (macOS 13+), or use a dedicated OCR hotkey tool that skips the file entirely. The first two are free and built in. The third is faster and copies the text to your clipboard in a single drag — that's the workflow Cheese! OCR is built around.
+    </aside>
+
+    <article class="article-body">
+        <p>Most Mac users hit the same wall a few times a week: someone sends a screenshot of an error message, a Slack thread, a flight confirmation, or a slide from a deck — and you need the text from it. You can't just select it the way you would highlight text in a Notion page. The pixels are pixels.</p>
+
+        <p>The good news is that macOS has made screenshot OCR genuinely easy since Live Text shipped in macOS 12 Monterey. The somewhat-bad news is that the built-in workflow still involves a few too many steps when you're doing it twenty times a day, and the floating-preview shortcut a lot of people don't know about can shave off a couple of those steps. And then, for anyone who lives in this workflow professionally — engineers grabbing stack traces, support agents pulling info out of customer screenshots, students pulling quotes from PDFs of slides — there's a third method that essentially collapses the whole sequence into one drag-select.</p>
+
+        <p>This guide walks through all three, compares them honestly side by side, and tells you which one to reach for in different situations.</p>
+
+        <h2>A quick refresher on Mac screenshot shortcuts</h2>
+
+        <p>Before we get into text extraction, the three native screenshot shortcuts are worth committing to muscle memory. They show up in every method below.</p>
+
+        <ul>
+            <li><strong>Cmd+Shift+3</strong> — captures the entire screen (every connected display) instantly to your Desktop.</li>
+            <li><strong>Cmd+Shift+4</strong> — gives you a crosshair to drag-select a region. Press Space mid-drag to switch to window-capture mode, where you can click any window to grab it cleanly with its drop shadow.</li>
+            <li><strong>Cmd+Shift+5</strong> — opens the floating capture toolbar with options for full screen, window, region, screen recording, plus an Options menu. This is the modern flagship shortcut and it's where the second method below lives.</li>
+        </ul>
+
+        <p>By default, all three save PNG files named <code>Screenshot YYYY-MM-DD at HH.MM.SS.png</code> to your Desktop. You can change that with Cmd+Shift+5 → Options → Save to. We'll come back to this option a few times because it materially changes which method makes sense.</p>
+
+        <p>One more thing worth knowing: when you take a screenshot on a recent macOS (Mojave and later), a small thumbnail floats in the bottom-right corner for a few seconds. That thumbnail is more capable than people realize, and it's the second method's secret weapon.</p>
+
+        <h2>Method 1: Screenshot, then Live Text in Preview</h2>
+
+        <p>This is the most discoverable workflow — the one Apple's documentation tends to point you toward, and the one most people land on by trial and error.</p>
+
+        <ol>
+            <li>Press Cmd+Shift+4 (or Cmd+Shift+3 for the full screen).</li>
+            <li>Drag-select your region. The screenshot saves to your Desktop.</li>
+            <li>Double-click the file. It opens in Preview by default.</li>
+            <li>In Preview, click and drag across the text in the image. Cursor turns into the I-beam over text, just like in a regular text document.</li>
+            <li>Cmd+C to copy.</li>
+        </ol>
+
+        <p>That's about five distinct user actions, and it leaves a Screenshot file behind on your Desktop forever (or until you remember to clean up).</p>
+
+        <p>Live Text inside Preview is genuinely good. It's the same Apple Vision pipeline that powers OCR everywhere else on macOS — accurate on English, solid on Chinese, Japanese, Korean, French, German, Spanish, Italian, Portuguese, Ukrainian. It handles handwriting reasonably well in clean cases. It picks up text in screenshots of dark-mode UIs without complaint. And it understands data detectors, so phone numbers and email addresses get right-click menus to dial or compose.</p>
+
+        <p>The two real complaints are the friction (five actions) and the file pollution (your Desktop fills up with throwaway PNGs). For someone who needs text from a screenshot once a week, those costs are negligible. For someone doing it constantly, they add up.</p>
+
+        <h3>When Method 1 is exactly right</h3>
+
+        <ul>
+            <li>You already have the screenshot saved — someone sent it to you, or you took it earlier.</li>
+            <li>You want to keep the image as a reference, not just the text.</li>
+            <li>You also want to mark up or annotate the screenshot before extracting text.</li>
+            <li>You're on a Mac you don't own and can't install apps on.</li>
+        </ul>
+
+        <h2>Method 2: Cmd+Shift+5 floating preview with Live Text</h2>
+
+        <p>This is the underused shortcut. Most Mac users know about the floating thumbnail that appears in the bottom-right corner after a screenshot, but most of them either ignore it or click it to open Markup. Fewer people realize that on macOS 13 Ventura and later, you can use Live Text directly on the thumbnail without ever opening Preview.</p>
+
+        <p>Here's the flow:</p>
+
+        <ol>
+            <li>Press Cmd+Shift+5.</li>
+            <li>Pick your capture mode (region capture is the most common).</li>
+            <li>Drag-select your area.</li>
+            <li>The thumbnail floats in the bottom-right. Click it before it disappears (you have a few seconds, and you can also force it to stay by clicking once more).</li>
+            <li>The Markup window opens. The cursor over text becomes an I-beam — drag to select, then Cmd+C.</li>
+        </ol>
+
+        <p>Same five actions, but no file is written if you turn on the right setting. Cmd+Shift+5 → Options → Save to: Clipboard sends the image to your clipboard instead of disk. Then the floating preview becomes essentially a transient annotation layer — once you copy the text out, you can dismiss the window and nothing persists.</p>
+
+        <p>The other useful setting in that Options menu is the floating-preview duration. By default the thumbnail disappears after a few seconds. There's no slider to extend it, but you can pin it open by clicking on it once. If you find yourself constantly missing the thumbnail before it disappears, get into the habit of double-tapping the trackpad-edge corner where it appears — that brings the focus there reliably.</p>
+
+        <h3>When Method 2 wins</h3>
+
+        <ul>
+            <li>You take screenshots constantly and don't want a Desktop full of files.</li>
+            <li>You want to occasionally annotate before copying — Markup is right there.</li>
+            <li>You're on macOS 13 Ventura or newer (the Live Text-in-Markup feature is Ventura-and-up).</li>
+        </ul>
+
+        <h3>The catch</h3>
+
+        <p>You still have to click the floating thumbnail before it vanishes. And you still need to drag-select inside Markup to get text out — there's no "OCR everything in this image" button. If your screenshot has, say, ten distinct lines of text and you want all of them, you're highlighting all ten. For text-rich screenshots, this gets tedious.</p>
+
+        <h2>Method 3: A dedicated OCR hotkey (Cheese! OCR)</h2>
+
+        <p>This is what we make, so factor that in. But here's the workflow honestly:</p>
+
+        <ol>
+            <li>Press ⇧⌘E (or whatever hotkey you've configured).</li>
+            <li>Drag-select the area containing text.</li>
+        </ol>
+
+        <p>That's it. No file is created. No window opens. The recognized text is already on your clipboard, ready to paste anywhere. A small confirmation chip appears briefly near where you finished dragging, and the result is also stored in a searchable history that lives in the menu bar.</p>
+
+        <p>The reason this is faster than Methods 1 and 2 isn't the OCR itself — Cheese! OCR uses the same Apple Vision framework that powers Live Text, so the recognition step takes effectively the same amount of time. The reason is that everything between "I want this text" and "the text is in my clipboard" is collapsed. No file save. No app switch. No Markup window. No drag-select inside the captured image. The drag you do to select the screenshot region is also the drag that defines the OCR area.</p>
+
+        <p>A few other things that matter when this is your daily workflow:</p>
+
+        <ul>
+            <li><strong>Searchable history.</strong> Every OCR result is saved locally with a thumbnail of the source. You can search across past extractions weeks later when you remember "I OCR'd that error message somewhere."</li>
+            <li><strong>Multi-language defaults.</strong> English, Simplified Chinese, Japanese, and Korean are recognized out of the box without switching modes. Mixed-language screenshots (which are common in real life — a Slack thread with a code snippet, an English UI with a Japanese error message) work transparently.</li>
+            <li><strong>100% on-device.</strong> Cheese! OCR has zero network entitlements, verifiable in the App Store sandbox. Nothing about your screenshot leaves the Mac. For people who screenshot internal dashboards, contracts, customer data, or anything sensitive, this matters.</li>
+            <li><strong>One-time price.</strong> $5.99 once. No subscription. The Mac App Store handles the receipt and updates.</li>
+        </ul>
+
+        <h3>The honest trade-off</h3>
+
+        <p>You're installing another app, configuring another hotkey, and paying $5.99. If your screenshot-OCR frequency is low — once a week, once a month — Methods 1 and 2 are perfectly fine and free. The math flips somewhere around "more than once a day." At that frequency, the saved seconds and the searchable history start adding up to real time.</p>
+
+        <h2>Side-by-side comparison</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Method</th>
+                    <th>Steps</th>
+                    <th>File created?</th>
+                    <th>Multi-lang default</th>
+                    <th>Searchable history</th>
+                    <th>Cost</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Method 1: Preview + Live Text</td>
+                    <td>~5 actions</td>
+                    <td>Yes (PNG on Desktop)</td>
+                    <td>Yes (Apple Vision)</td>
+                    <td>No</td>
+                    <td>Free</td>
+                </tr>
+                <tr>
+                    <td>Method 2: Cmd+Shift+5 floating preview</td>
+                    <td>~5 actions</td>
+                    <td>Optional (Save to: Clipboard)</td>
+                    <td>Yes (Apple Vision)</td>
+                    <td>No</td>
+                    <td>Free</td>
+                </tr>
+                <tr>
+                    <td>Method 3: Cheese! OCR hotkey</td>
+                    <td>~2 actions</td>
+                    <td>No</td>
+                    <td>Yes (en/zh/ja/ko)</td>
+                    <td>Yes</td>
+                    <td>$5.99 one-time</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>When each method makes sense</h2>
+
+        <p>This is the practical heuristic we'd give a friend asking which one to use:</p>
+
+        <h3>Use Method 1 (Preview + Live Text) when</h3>
+
+        <ul>
+            <li>You already have the screenshot file — somebody AirDropped it to you, you saved it last week, it's an attachment in an email.</li>
+            <li>You want to mark up or crop the image before grabbing text.</li>
+            <li>You're working on a borrowed Mac.</li>
+            <li>You only do this every now and then.</li>
+        </ul>
+
+        <h3>Use Method 2 (Cmd+Shift+5 floating preview) when</h3>
+
+        <ul>
+            <li>You're going to keep using built-in tools but want to stop polluting your Desktop. Set Save to: Clipboard once and the friction drops.</li>
+            <li>You sometimes need to annotate before copying — Markup gives you arrows and shapes right there.</li>
+            <li>You're on macOS 13 Ventura or newer.</li>
+        </ul>
+
+        <h3>Use Method 3 (Cheese! OCR or similar dedicated tool) when</h3>
+
+        <ul>
+            <li>You extract text from screenshots more than once a day.</li>
+            <li>You frequently search for past extractions ("what was that command I OCR'd from a tutorial last week?").</li>
+            <li>You handle sensitive content and want a tool with zero network entitlements.</li>
+            <li>You work in multiple languages — Slack threads with mixed English and Chinese, Japanese game menus, Korean web articles.</li>
+            <li>You're tired of seeing your Desktop fill up with throwaway PNGs.</li>
+        </ul>
+
+        <h2>Power-user tips that apply to all three methods</h2>
+
+        <h3>Set Save to: Clipboard if you want to stop creating files</h3>
+
+        <p>This is the single best macOS screenshot tweak nobody tells you about. Cmd+Shift+5 → Options → under Save to, pick Clipboard. From that point on, every screenshot goes to your clipboard instead of your Desktop. You can paste directly into Slack, Notion, Mail, anywhere. If you do want a file, hold Control while taking the screenshot — that temporarily forces clipboard mode for that one capture (or, with the setting flipped, forces a file).</p>
+
+        <h3>Pin the floating preview if you keep missing it</h3>
+
+        <p>Click the thumbnail once instead of waiting for it to fade. The window stays open until you dismiss it. Useful when you're juggling several captures back to back.</p>
+
+        <h3>Use Cmd+Shift+4 then Space to capture a window cleanly</h3>
+
+        <p>Most people drag a region around a window, which captures the background too. Press Cmd+Shift+4, then tap Space, then click the target window — you get a clean PNG with the rounded corners and drop shadow preserved. If you want it without the drop shadow, hold Option while clicking.</p>
+
+        <h3>Use Cmd+Shift+5 → Capture Selected Window for the same effect from the toolbar</h3>
+
+        <p>Same idea, but launchable from the floating capture controls. Useful when you forget the keyboard shortcut.</p>
+
+        <h3>Cheese! OCR-specific: pin frequent captures via the OCR History</h3>
+
+        <p>If you find yourself OCR'ing the same kind of region repeatedly — say, copying customer IDs out of a recurring dashboard — the searchable history doubles as a timeline of past extractions. Open the menu bar window, Cmd+F to filter, and you can find a result from days ago in seconds.</p>
+
+        <h3>Cheese! OCR-specific: feed an existing image into the app</h3>
+
+        <p>If you receive a screenshot via email or AirDrop, you don't have to re-take it. Drop the image onto the Cheese! OCR menu bar window or paste it from the clipboard, and it gets recognized the same way. So even when Method 3 isn't the original capture path, it can still be the extraction path.</p>
+
+        <h3>Customize hotkeys per workflow</h3>
+
+        <p>If your fingers are happier with a different combination than ⇧⌘E (some people prefer F-key bindings, some prefer ⌃⌥⌘ combos for fewer collisions), you can change the hotkey in Cheese! OCR's Settings. The same advice applies to macOS itself — you can rebind Cmd+Shift+3/4/5 in System Settings → Keyboard → Keyboard Shortcuts → Screenshots if any of those collide with another tool you use.</p>
+
+        <p>None of the three methods is wrong. They're just optimized for different frequencies and different workflows. If you take one screenshot a week to share with a teammate and occasionally need to grab a couple of words out of it, the built-in tools are excellent. If text extraction is part of how you work — pulling quotes from PDFs of slides, grabbing error messages from chat threads, copying numbers out of dashboard screenshots half a dozen times a day — a dedicated hotkey makes a noticeable difference. Try the free workflows first; if you find yourself wishing the keystrokes would collapse, that's the moment a tool like Cheese! OCR is paying for itself.</p>
+    </article>
+
+    <section class="article-faq">
+        <h2>Frequently Asked Questions</h2>
+        <details class="faq-item">
+            <summary>Where do Mac screenshots save by default?</summary>
+            <div class="answer">By default, screenshots save as PNG files to your Desktop, named with the date and time. You can change the save location by pressing Cmd+Shift+5 and clicking Options — the dropdown lets you pick Desktop, Documents, Clipboard, Mail, Messages, Preview, or any custom folder.</div>
+        </details>
+        <details class="faq-item">
+            <summary>Can I capture a screenshot on Mac without creating a file?</summary>
+            <div class="answer">Yes. Press Cmd+Shift+5, click Options, and set Save to: Clipboard. The image goes straight to your clipboard with no file written to disk. A dedicated OCR hotkey tool like Cheese! OCR goes one step further — it never writes a file at all and gives you the recognized text on the clipboard instead of an image.</div>
+        </details>
+        <details class="faq-item">
+            <summary>Does the Cmd+Shift+5 method work on older versions of macOS?</summary>
+            <div class="answer">The Cmd+Shift+5 floating capture toolbar has existed since macOS Mojave (10.14) in 2018, so it works on virtually any Mac you'd still use today. However, Live Text inside the floating thumbnail preview requires macOS 13 Ventura or later. On older macOS you can still capture, but you'll need to open the file in Preview to use Live Text on the captured image.</div>
+        </details>
+        <details class="faq-item">
+            <summary>Which method is fastest for extracting text from a screenshot?</summary>
+            <div class="answer">Method 3 — a dedicated screenshot-to-text hotkey like Cheese! OCR. One keystroke, one drag-select, and the text is already on your clipboard. No file is created and you skip Preview entirely. Live Text adds at least two extra steps (click Live Text, copy) and Cmd+Shift+5 with the floating preview is similar.</div>
+        </details>
+        <details class="faq-item">
+            <summary>Can Cheese! OCR work on screenshots I already saved?</summary>
+            <div class="answer">Yes. You can drop an existing image into the Cheese! OCR menu bar window or the OCR History pane and re-recognize it. The primary workflow is the global hotkey, but the app handles already-captured PNGs and JPEGs as well.</div>
+        </details>
+    </section>
+
+    <section class="article-cta">
+        <div class="cta-card">
+            <h2>Try Cheese! OCR</h2>
+            <p>One hotkey, one drag-select, text on your clipboard. 100% on-device, $5.99 one-time, no subscription.</p>
+            <a href="https://apps.apple.com/app/cheese-ocr/id6760889131" class="cta-button">Try Cheese! OCR — Mac App Store</a>
+        </div>
+    </section>
+
+    <section class="article-related">
+        <h2>Related articles</h2>
+        <div class="related-grid">
+            <a href="../cheese-ocr-vs-live-text/" class="related-card">
+                <h3>Cheese! OCR vs macOS Live Text: When Apple's Built-in Tool Isn't Enough</h3>
+                <p>Where Live Text shines, where it falls short, and the four scenarios where a dedicated hotkey makes more sense.</p>
+            </a>
+            <a href="../copy-text-from-video-on-mac/" class="related-card">
+                <h3>How to Copy Text from a Video on Mac (Tutorials, Meetings, Anything)</h3>
+                <p>Three ways to grab text from a paused video frame, including DRM-protected meetings and Chrome-based tutorials.</p>
+            </a>
+            <a href="../how-to-ocr-pdf-on-mac/" class="related-card">
+                <h3>How to OCR a PDF on Mac (2026): Native, Scanned, and Everything In Between</h3>
+                <p>A practical guide to extracting text from native, scanned, and protected PDFs on Mac — without uploading to the cloud.</p>
+            </a>
+        </div>
+    </section>
+
+    <footer class="article-footer">
+        <a href="../../">Home</a>
+        <a href="../../privacy.html">Privacy Policy</a>
+        <a href="mailto:nicholaslck@icloud.com">Contact</a>
+        <p>&copy; 2026 Cheese! OCR. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

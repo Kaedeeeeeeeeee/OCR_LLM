@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
+
+    <title>Mac で日本語 OCR を使う完全ガイド：漫画・PDF・ビジネス文書 — Cheese! OCR ブログ</title>
+    <meta name="description" content="2026 年の Mac で日本語 OCR を使う実践ガイド。macOS のテキスト認識（Live Text）の対応状況、漫画・スキャン PDF・縦書き・ビジネス文書での実用ノウハウ。">
+
+    <link rel="canonical" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/ocr-asian-languages-on-mac/">
+    <link rel="alternate" hreflang="en" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/ocr-asian-languages-on-mac/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/ocr-asian-languages-on-mac/">
+    <link rel="alternate" hreflang="ja" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/ocr-asian-languages-on-mac/">
+    <link rel="alternate" hreflang="ko" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ko/blog/ocr-asian-languages-on-mac/">
+    <link rel="alternate" hreflang="x-default" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/ocr-asian-languages-on-mac/">
+
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../../../blog/article.css">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Cheese! OCR">
+    <meta property="og:title" content="Mac で日本語 OCR を使う完全ガイド：漫画・PDF・ビジネス文書">
+    <meta property="og:description" content="2026 年の Mac で日本語 OCR を使う実践ガイド。macOS のテキスト認識（Live Text）の対応状況、漫画・スキャン PDF・縦書き・ビジネス文書での実用ノウハウ。">
+    <meta property="og:url" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/ocr-asian-languages-on-mac/">
+    <meta property="og:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="article:published_time" content="2026-04-25">
+    <meta property="article:author" content="Cheese! OCR Team">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mac で日本語 OCR を使う完全ガイド：漫画・PDF・ビジネス文書">
+    <meta name="twitter:description" content="macOS の Live Text は日本語をどこまで読めるのか。漫画、縦書き、スキャン本、業務文書での実用ノウハウ。">
+    <meta name="twitter:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Mac で日本語 OCR を使う完全ガイド：漫画・PDF・ビジネス文書",
+      "description": "2026 年の Mac で日本語 OCR を使う実践ガイド。macOS のテキスト認識（Live Text）の対応状況、漫画・スキャン PDF・縦書き・ビジネス文書での実用ノウハウ。",
+      "author": {
+        "@type": "Organization",
+        "name": "Cheese! OCR",
+        "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Cheese! OCR",
+        "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+      },
+      "datePublished": "2026-04-25",
+      "dateModified": "2026-04-25",
+      "image": "https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png",
+      "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/ocr-asian-languages-on-mac/",
+      "inLanguage": "ja",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/ocr-asian-languages-on-mac/"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "inLanguage": "ja",
+      "mainEntity": [
+        { "@type": "Question", "name": "macOS のテキスト認識（Live Text）は日本語に対応していますか？", "acceptedAnswer": { "@type": "Answer", "text": "対応しています。macOS 13 Ventura 以降、Live Text は日本語を正式サポートしています。Apple Vision は混在スクリプトを自動判別するので、漢字・ひらがな・カタカナ・英数字が混ざった文章も言語切り替えなしで一度に認識できます。" } },
+        { "@type": "Question", "name": "漢字・ひらがな・カタカナ・英語が混ざった文章は正しく読めますか？", "acceptedAnswer": { "@type": "Answer", "text": "問題なく読めます。Apple Vision は最初から混在スクリプトを想定して作られており、ビジネス文書でよく出てくる「日本語＋アルファベット略語＋カタカナ外来語」のような並びも一度の認識でまとめて取り出せます。" } },
+        { "@type": "Question", "name": "手書きの日本語はどこまで読めますか？", "acceptedAnswer": { "@type": "Answer", "text": "印刷物については安定して読めますが、手書きは精度が大きく落ちます。特に走り書き、行書、メモ書きは誤認識が多くなります。手書きは「下書きとして OCR にかけて、必ず人の目で校正する」前提で使うことをおすすめします。" } },
+        { "@type": "Question", "name": "Cheese! OCR は縦書きや古い活字にも対応していますか？", "acceptedAnswer": { "@type": "Answer", "text": "Cheese! OCR が使っている認識エンジンは Apple Vision なので、Live Text と同じ範囲をカバーします。現代の整った縦書き（小説の文庫本など）は実用レベル、戦前の活字本や写本は誤認識が増えるとお考えください。専門的な古文書 OCR は別の専用ツールの守備範囲です。" } },
+        { "@type": "Question", "name": "Cheese! OCR は Live Text より精度が高いのですか？", "acceptedAnswer": { "@type": "Answer", "text": "同じ画像に対する認識精度は同じです。両方とも裏側は Apple Vision を呼んでいるので、認識結果に差は出ません。違うのはワークフローで、Cheese! OCR は任意のアプリ上でグローバルホットキーから直接 OCR でき、履歴を検索できる点が日常的なメリットになります。" } }
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Cheese! OCR", "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/" },
+        { "@type": "ListItem", "position": 2, "name": "ブログ", "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Mac で日本語 OCR を使う完全ガイド：漫画・PDF・ビジネス文書" }
+      ]
+    }
+    </script>
+</head>
+<body>
+
+    <nav class="article-nav">
+        <a href="../" class="back-link">← ブログ</a>
+        <div class="lang-switcher">
+            <a href="/OCR_LLM/blog/ocr-asian-languages-on-mac/" hreflang="en">EN</a>
+            <a href="/OCR_LLM/zh/blog/ocr-asian-languages-on-mac/" hreflang="zh-Hans">中文</a>
+            <a href="/OCR_LLM/ja/blog/ocr-asian-languages-on-mac/" aria-current="page" hreflang="ja">日本語</a>
+            <a href="/OCR_LLM/ko/blog/ocr-asian-languages-on-mac/" hreflang="ko">한국어</a>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <h1>Mac で日本語 OCR を使う完全ガイド：漫画・PDF・ビジネス文書</h1>
+        <p class="article-meta">
+            <time datetime="2026-04-25">2026 年 4 月 25 日</time>
+            · 11 分で読める
+        </p>
+    </header>
+
+    <aside class="tldr">
+        <strong>要約</strong>
+        macOS 13 Ventura 以降、Apple のテキスト認識（Live Text）は日本語に正式対応しています。Apple Vision が漢字・ひらがな・カタカナ・英数字の混在を自動判別するので、言語を切り替える必要はありません。Photos・プレビュー・Safari・メモなど Apple 純正アプリの中では、文字にカーソルを合わせるだけで選択・コピーできます。一方で、Slack・LINE・Notion・Zoom・Teams のような他社アプリのウィンドウ内、業務でよくある複数段組のスキャン PDF、漫画の擬音、戦前の縦書き活字本などでは Live Text の力が届かない場面が出てきます。そういうときに役立つのが、グローバルホットキーから任意のウィンドウで使えるスクリーンショット OCR ツール（私たちが作っている Cheese! OCR もそのひとつ）です。同じ Apple Vision を使うので精度はそのまま、違いはワークフローにあります。
+    </aside>
+
+    <article class="article-body">
+
+        <h2>日本語 OCR の難しさ</h2>
+
+        <p>2026 年の今、英語の OCR 精度はすでに頭打ちに近い水準まで来ています。難しいのはここから先で、日本語のように「漢字・ひらがな・カタカナを混ぜながら、横書きと縦書きを併用する」言語は、汎用 OCR にとって今でも挑戦が多い領域です。具体的には次のような点があります。</p>
+
+        <ul>
+            <li>漢字の字種が多く、似た字形を取り違えると意味が大きく変わる（例：「未」と「末」、「土」と「士」）。</li>
+            <li>ひらがな・カタカナ・漢字・英数字の 4 種類が同じ行に混在する。</li>
+            <li>新聞や雑誌、文庫本では縦書き、Web やオフィス文書では横書きと、版面の方向が混在する。</li>
+            <li>漫画の擬音、駅看板の意匠ロゴ、商品パッケージのデザイン書体など、文字とイラストが一体化する場面が多い。</li>
+            <li>業務文書では PDF・Word・Excel のスクリーンショットが日常的に飛び交う。</li>
+        </ul>
+
+        <p>幸い、Apple Vision はこの領域にかなり力を入れていて、macOS 13 以降の日本語 OCR は実用レベルに到達しています。それでも「すべて読める」わけではありません。本記事では、日本語特有のシーンごとに、Live Text で済む場面、別のツールが要る場面、そして専門ツールが必要な場面を整理していきます。</p>
+
+        <h2>macOS Live Text の日本語対応状況</h2>
+
+        <p>Apple の公式仕様では、macOS 13 Ventura 時点で Live Text は英語、スペイン語、フランス語、ドイツ語、イタリア語、ポルトガル語、中国語（簡体・繁体）、日本語に対応しました。macOS 14 Sonoma で韓国語・ウクライナ語・タイ語が追加され、現行の macOS 15 系列では合計 14 言語ほどがサポート対象になっています。</p>
+
+        <p>日本語ユーザーにとって特に便利なのは、Apple Vision が「言語を選ばせない」設計になっている点です。漢字・ひらがな・カタカナ・英数字が混ざった文章を、いちいち「これは日本語です」と教えなくても 1 回の認識でまとめて読めます。たとえば社内 Slack に貼られた「来週の MTG は 14:00〜です。詳細は Notion を参照」のような画像でも、英数字込みでひと続きのテキストとして取り出せます。</p>
+
+        <p>使い方も難しくはありません。</p>
+
+        <ul>
+            <li>写真アプリで画像を開き、文字部分にカーソルを合わせると I 字カーソルになり、選択・コピーが可能になります。</li>
+            <li>プレビューで画像や PDF を開いた場合も同じく直接選択できます。</li>
+            <li>Safari でページ内画像を右クリックすると「画像内のテキストをコピー」が出ます。</li>
+            <li>Cmd+Shift+5 でスクリーンショットを撮ると、サムネールから Live Text を呼び出せます。</li>
+        </ul>
+
+        <h2>Live Text が苦手な場面</h2>
+
+        <p>Live Text は「Apple 純正のサーフェスに乗っている文字」が一番得意です。逆に、日本語ユーザーが日々の業務で出会う場面の半分以上は、純正アプリの外で起きています。</p>
+
+        <h3>他社アプリのウィンドウ内（LINE・Slack・Notion・Zoom・Teams）</h3>
+
+        <p>LINE で送られてきた長文スクリーンショット、Slack に貼られた業務マニュアルの画像、Notion のページに埋め込まれた図、Zoom や Teams で共有された資料スライド——いずれも Live Text のホット領域から外れます。一度スクリーンショットを撮り、写真かプレビューで開いてから選択する、という手順が必要です。これは 1 日に 10 回以上やると確実に煩わしくなります。</p>
+
+        <p>ここがグローバルホットキー型の OCR ツールが効く一番の理由です。Slack や LINE のウィンドウの上から直接 OCR をかけられれば、保存と再オープンの 2 ステップが消えます。</p>
+
+        <h3>複数段組のスキャン PDF と論文</h3>
+
+        <p>日本語の業務報告書、白書、学会誌、紀要、医学論文には 2 段組や 3 段組の PDF が珍しくありません。文字レイヤーが入っているネイティブ PDF はそもそも OCR が要らず、コピーで済みます。問題はスキャン PDF で、Live Text は画像順に文字を読むため、左段の 1 行目→右段の 1 行目→左段の 2 行目……と読み順が崩れた結果が返ってきます。</p>
+
+        <p>実用的な対処法は、ページ全体ではなく、段単位で範囲指定して OCR をかけることです。Cheese! OCR は矩形でドラッグ選択するので、左段だけ→右段だけと順に取れば、貼り付けた段階できれいに連続したテキストになります。</p>
+
+        <h3>縦書き活字（古い文庫本・写本・新聞）</h3>
+
+        <p>現代の小説や雑誌の縦書きは、行間が整っていれば Live Text で実用レベルに認識できます。問題が出やすいのは次のような版面です。</p>
+
+        <ul>
+            <li>戦前の活字本、復刻本、戦後すぐの新聞——字形・約物・段組のスタイルが現代と異なります。</li>
+            <li>ルビ（振り仮名）が密集する古典の教科書——本文とルビの分離が崩れることがあります。</li>
+            <li>装飾的な見出しや、文字とイラストが重なる雑誌のレイアウト。</li>
+        </ul>
+
+        <p>このあたりは Apple Vision の訓練データの分布から外れる領域なので、汎用 OCR では下書き止まりと割り切るのが現実的です。古文書を本格的に扱う場合は国立国会図書館の NDLOCR など専用ツールが先を行っています。</p>
+
+        <h3>漫画とコミック</h3>
+
+        <p>これも正直に書いておきますが、漫画は OCR にとって難所です。きれいな吹き出しの中の写植は問題なく読めますが、次の要素は精度が落ちます。</p>
+
+        <ul>
+            <li>擬音（ドカーン、ザァァ など）の手描き文字。背景イラストに溶け込んでいたり、不規則に変形していたりします。</li>
+            <li>コマ外のキャプションや作家のメモ書き。</li>
+            <li>背景のロゴ、看板、新聞紙面など、絵として描かれた文字。</li>
+        </ul>
+
+        <p>漫画の翻訳支援や読書記録のためにセリフだけ取り出したい、という用途であれば、吹き出しは Apple Vision で十分実用です。擬音まで完全に拾いたい場合は、人の手による補完が前提になります。</p>
+
+        <h3>業務文書のスキャンと社内ナレッジ</h3>
+
+        <p>請求書、契約書、見積書、議事録のスキャン、社内ナレッジに保存された画像化された手順書——日本のオフィスで一番件数の多い OCR シーンです。Live Text でも実用ですが、たいてい「対象が業務アプリの中にある」ので、ホットキー型のほうが手数が少なくて済みます。Cheese! OCR の履歴があると、過去にスキャンした請求書番号や型番を後から検索で取り出せるのも、業務利用では地味に効きます。</p>
+
+        <h2>Cheese! OCR が日本語をどう扱うか</h2>
+
+        <p>はじめにフェアに書いておくと、Cheese! OCR は Apple Vision を呼び出しているだけなので、同じ画像に対する認識精度は Live Text と同じです。Vision より上の精度を目指して別のモデルを動かしているわけではありません。差は精度ではなく、ワークフローと運用にあります。</p>
+
+        <p>具体的にどう違うかをまとめると次のとおりです。</p>
+
+        <ul>
+            <li><strong>グローバルホットキー</strong>：デフォルトは ⇧⌘E（変更可）。LINE・Slack・Zoom・ブラウザ動画の一時停止画面など、どのアプリの上からでも矩形ドラッグで OCR できます。</li>
+            <li><strong>多言語デフォルト</strong>：英語・簡体中国語・日本語・韓国語の 4 言語が初期状態で有効。日本語と英語が混ざったメールスクショでも設定なしで一発で読めます。</li>
+            <li><strong>履歴の検索</strong>：メニューバーから過去に OCR したテキストを全文検索できます。1 週間前にスクショから抜いた製品コードや会議メモを探すときに重宝します。</li>
+            <li><strong>完全オンデバイス</strong>：Mac App Store のサンドボックス情報からも確認できますが、ネットワーク権限を一切持たないアプリです。社内文書、医療関係の書類、契約書など、機密性の高い画像でも安心して使えます。</li>
+        </ul>
+
+        <h2>具体シーン別の実用ノウハウ</h2>
+
+        <h3>漫画と Webコミック</h3>
+
+        <p>外国語学習や翻訳資料作成のために漫画のセリフをテキスト化したい、という用途は意外と多いです。実用的な進め方は、コマ単位で吹き出しを矩形選択することです。1 ページまるごと OCR にかけると、擬音や看板文字が混じって順序が崩れがちですが、吹き出し単位で取れば人物のセリフだけきれいに並びます。擬音まで欲しい場合は別途手で書き起こすか、漫画専用の OCR ツールを併用してください。</p>
+
+        <h3>ビジネス文書のスキャン</h3>
+
+        <p>日本のオフィスで一番ありがちな PDF パターンは「複合機でスキャンされた A4 横の画像 PDF」です。これは文字レイヤーが入っていないので、コピー操作だけでは取り出せません。プレビューで開いてから Live Text 経由でも取れますが、内容を抜きながら他のアプリ（業務システム、Notion の議事録、Slack の引用）に貼っていく場合は、ホットキーから直接 OCR したほうがテンポが良くなります。</p>
+
+        <p>金額や型番が並ぶ表の場合、行ごとに範囲指定すると貼り付け先での整形が楽になります。表全体を一度に OCR すると、列の境界がスペースに変わるため、後から手で整える手間が増えやすいからです。</p>
+
+        <h3>駅看板・店頭ポスター・観光案内</h3>
+
+        <p>意匠を凝らした駅名標、観光地の案内板、店頭の手書き POP——いわゆる「街の中の文字」も日本語 OCR の典型シーンです。一般的な駅看板（ゴシック体のフルサイズ）は問題なく読めます。崩した手書き、書道風のロゴ、夜間で背景と文字のコントラストが低い写真は精度が落ちます。撮影時に「真正面・しっかりした明るさ・余分な背景を入れない」を意識すると、認識結果が安定します。</p>
+
+        <h3>学術 PDF と政府刊行物</h3>
+
+        <p>論文・白書・統計資料は段組と図表が多く、ページ全体 OCR には向きません。実用的な手順は次のとおりです。</p>
+
+        <ol>
+            <li>まずネイティブ PDF か画像 PDF かを判定する（プレビューで Cmd+A してテキストが選択できればネイティブ）。</li>
+            <li>ネイティブなら OCR は不要、コピーで済ませる。</li>
+            <li>画像 PDF の場合、本文を段単位で OCR する。脚注・図キャプションは別個に取る。</li>
+            <li>図中の数式や記号は、汎用 OCR ではなく Mathpix のような数式専門ツールに任せる。</li>
+        </ol>
+
+        <h3>Web 上の日本語コンテンツ（X・note・はてな）</h3>
+
+        <p>X（旧 Twitter）の長文画像投稿、note のサムネに埋め込まれた一節、はてなブログ記事のキャプチャ——これらは Web の中にあるとはいえ、ブラウザ内に画像として表示されているので Live Text のショートカットメニューから取れます。ただし、ブラウザのフルウィンドウから複数段の画像を順に取り出す場合は、矩形で連続して切り出せるホットキー型のほうが圧倒的に早いです。</p>
+
+        <h2>使い分けの目安</h2>
+
+        <ul>
+            <li><strong>Live Text を使う</strong>：Photos・プレビュー・Safari・メモなど純正アプリの中にある文字。ここでは Live Text が一番手数が少なく、第三者ツールと同じ Apple Vision の結果が返ります。</li>
+            <li><strong>Cheese! OCR のようなグローバルホットキー型 OCR を使う</strong>：LINE・Slack・Zoom・Notion・YouTube の一時停止画面など、純正アプリの外にある文字。精度は同じで、手順が短くなる分だけ速くなります。</li>
+            <li><strong>専門 OCR を使う</strong>：戦前の活字本、写本、漫画の擬音まで完全に拾いたい場合、複雑な数式。汎用 OCR は下書き止まりだと考えて、最初から専門ツールに切り替えるのが堅実です。</li>
+        </ul>
+
+        <p>多くの日本語ユーザーが日々遭遇する OCR シーン——Slack や LINE の画像、業務スキャン、Web 上の引用画像、駅看板のメモ書き——のほとんどは、最初の 2 つの組み合わせで足ります。Live Text で土台がしっかりしているおかげで、残るのはどう楽に呼び出すか、という設計の話に集約されます。</p>
+
+    </article>
+
+    <section class="article-faq">
+        <h2>よくある質問</h2>
+        <details class="faq-item">
+            <summary>macOS のテキスト認識（Live Text）は日本語に対応していますか？</summary>
+            <div class="answer">対応しています。macOS 13 Ventura 以降、Live Text は日本語を正式サポートしています。Apple Vision は混在スクリプトを自動判別するので、漢字・ひらがな・カタカナ・英数字が混ざった文章も言語切り替えなしで一度に認識できます。</div>
+        </details>
+        <details class="faq-item">
+            <summary>漢字・ひらがな・カタカナ・英語が混ざった文章は正しく読めますか？</summary>
+            <div class="answer">問題なく読めます。Apple Vision は最初から混在スクリプトを想定して作られており、ビジネス文書でよく出てくる「日本語＋アルファベット略語＋カタカナ外来語」のような並びも一度の認識でまとめて取り出せます。</div>
+        </details>
+        <details class="faq-item">
+            <summary>手書きの日本語はどこまで読めますか？</summary>
+            <div class="answer">印刷物については安定して読めますが、手書きは精度が大きく落ちます。特に走り書き、行書、メモ書きは誤認識が多くなります。手書きは「下書きとして OCR にかけて、必ず人の目で校正する」前提で使うことをおすすめします。</div>
+        </details>
+        <details class="faq-item">
+            <summary>Cheese! OCR は縦書きや古い活字にも対応していますか？</summary>
+            <div class="answer">Cheese! OCR が使っている認識エンジンは Apple Vision なので、Live Text と同じ範囲をカバーします。現代の整った縦書き（小説の文庫本など）は実用レベル、戦前の活字本や写本は誤認識が増えるとお考えください。専門的な古文書 OCR は別の専用ツールの守備範囲です。</div>
+        </details>
+        <details class="faq-item">
+            <summary>Cheese! OCR は Live Text より精度が高いのですか？</summary>
+            <div class="answer">同じ画像に対する認識精度は同じです。両方とも裏側は Apple Vision を呼んでいるので、認識結果に差は出ません。違うのはワークフローで、Cheese! OCR は任意のアプリ上でグローバルホットキーから直接 OCR でき、履歴を検索できる点が日常的なメリットになります。</div>
+        </details>
+    </section>
+
+    <section class="article-cta">
+        <div class="cta-card">
+            <h2>Cheese! OCR を試す</h2>
+            <p>ホットキー 1 つで、どのアプリの上からでも日本語 OCR。⇧⌘E を押して矩形をドラッグするだけで、認識結果がクリップボードに入ります。Mac App Store で $5.99、買い切り、ネットワーク権限なし。</p>
+            <a href="https://apps.apple.com/app/cheese-ocr/id6760889131" class="cta-button">Mac App Store で試す</a>
+        </div>
+    </section>
+
+    <section class="article-related">
+        <h2>関連記事</h2>
+        <div class="related-grid">
+            <a href="../cheese-ocr-vs-live-text/" class="related-card">
+                <h3>Cheese! OCR vs macOS テキスト認識（Live Text）: 標準機能では足りない場面</h3>
+                <p>macOS の Live Text とグローバルホットキー型 OCR ツールの比較。Live Text が苦手な 4 つのシーン。</p>
+            </a>
+            <a href="../how-to-ocr-pdf-on-mac/" class="related-card">
+                <h3>Mac で PDF を OCR する方法（2026）: ネイティブ・スキャン・混在まで完全ガイド</h3>
+                <p>Mac でネイティブ／スキャン／保護付き PDF を OCR する実用ガイド。クラウドアップロードは一切なし。</p>
+            </a>
+            <a href="../extract-text-from-screenshot-on-mac/" class="related-card">
+                <h3>Mac でスクリーンショットからテキストを抽出する方法（3 つの方法を比較）</h3>
+                <p>Live Text、Cmd+Shift+5、Cheese! OCR の 3 つの方法。それぞれをいつ使うべきか。</p>
+            </a>
+        </div>
+    </section>
+
+    <footer class="article-footer">
+        <a href="../../">ホーム</a>
+        <a href="../../../privacy.html">プライバシーポリシー</a>
+        <a href="mailto:nicholaslck@icloud.com">お問い合わせ</a>
+        <p>&copy; 2026 Cheese! OCR. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

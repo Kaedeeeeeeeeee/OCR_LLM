@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kaedeeeeeeeeee.github.io/OCR_LLM/sitemap.xml

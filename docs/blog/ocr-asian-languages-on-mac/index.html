@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
+
+    <title>How to OCR Chinese, Japanese, and Korean Text on Mac — Cheese! OCR Blog</title>
+    <meta name="description" content="A practical guide to Chinese, Japanese, and Korean OCR on Mac in 2026 — what Live Text handles natively, where it falls short, and how to fill the gaps.">
+
+    <link rel="canonical" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/ocr-asian-languages-on-mac/">
+    <link rel="alternate" hreflang="en" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/ocr-asian-languages-on-mac/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/ocr-asian-languages-on-mac/">
+    <link rel="alternate" hreflang="ja" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/ocr-asian-languages-on-mac/">
+    <link rel="alternate" hreflang="ko" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ko/blog/ocr-asian-languages-on-mac/">
+    <link rel="alternate" hreflang="x-default" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/ocr-asian-languages-on-mac/">
+
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../article.css">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Cheese! OCR">
+    <meta property="og:title" content="How to OCR Chinese, Japanese, and Korean Text on Mac">
+    <meta property="og:description" content="A practical guide to Chinese, Japanese, and Korean OCR on Mac in 2026 — what Live Text handles natively, where it falls short, and how to fill the gaps.">
+    <meta property="og:url" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/ocr-asian-languages-on-mac/">
+    <meta property="og:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    <meta property="article:published_time" content="2026-04-25">
+    <meta property="article:author" content="Cheese! OCR Team">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to OCR Chinese, Japanese, and Korean Text on Mac">
+    <meta name="twitter:description" content="What macOS Live Text handles natively for CJK, where it falls short, and how to OCR Chinese, Japanese, and Korean text in any app.">
+    <meta name="twitter:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "How to OCR Chinese, Japanese, and Korean Text on Mac",
+      "description": "A practical guide to Chinese, Japanese, and Korean OCR on Mac in 2026 — what Live Text handles natively, where it falls short, and how to fill the gaps.",
+      "author": {
+        "@type": "Organization",
+        "name": "Cheese! OCR",
+        "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Cheese! OCR",
+        "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+      },
+      "datePublished": "2026-04-25",
+      "dateModified": "2026-04-25",
+      "image": "https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png",
+      "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/ocr-asian-languages-on-mac/",
+      "inLanguage": "en",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/ocr-asian-languages-on-mac/"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "inLanguage": "en",
+      "mainEntity": [
+        { "@type": "Question", "name": "Does macOS support Chinese, Japanese, and Korean OCR out of the box?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Since macOS 13 Ventura, Live Text recognizes Simplified Chinese, Traditional Chinese, and Japanese. macOS 14 Sonoma added Korean. Apple Vision auto-detects mixed scripts, so you usually don't need to set a language at all." } },
+        { "@type": "Question", "name": "Can it handle mixed-script text like Chinese with English, or Japanese with kanji and kana?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Apple Vision is designed for mixed scripts. Chinese mixed with English, Japanese mixed with English or katakana loanwords, and Korean mixed with hanja or English are all handled in a single pass without the user picking a language." } },
+        { "@type": "Question", "name": "What about handwritten Chinese, Japanese, or Korean?", "acceptedAnswer": { "@type": "Answer", "text": "Apple Vision handles clean printed CJK well, but handwriting accuracy drops sharply, especially for cursive Chinese or quick Japanese notes. We recommend treating handwriting as a known weakness and verifying the result before pasting." } },
+        { "@type": "Question", "name": "Does Cheese! OCR support Traditional Chinese, vertical Japanese, and hanja?", "acceptedAnswer": { "@type": "Answer", "text": "Cheese! OCR uses the same Apple Vision engine as Live Text, so language coverage is identical. Traditional Chinese is supported. Vertical Japanese works for clean modern layouts but is less reliable for older typesetting. Hanja embedded in Korean text is recognized as Chinese characters." } },
+        { "@type": "Question", "name": "Will Cheese! OCR be more accurate than Live Text?", "acceptedAnswer": { "@type": "Answer", "text": "No. Both use Apple Vision under the hood, so on the same image they produce the same text. The difference is workflow: Cheese! OCR works in any app, ships with multi-language defaults, and keeps a searchable history." } }
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Cheese! OCR", "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "How to OCR Chinese, Japanese, and Korean Text on Mac" }
+      ]
+    }
+    </script>
+</head>
+<body>
+
+    <nav class="article-nav">
+        <a href="../" class="back-link">← Blog</a>
+        <div class="lang-switcher">
+            <a href="/OCR_LLM/blog/ocr-asian-languages-on-mac/" aria-current="page" hreflang="en">EN</a>
+            <a href="/OCR_LLM/zh/blog/ocr-asian-languages-on-mac/" hreflang="zh-Hans">中文</a>
+            <a href="/OCR_LLM/ja/blog/ocr-asian-languages-on-mac/" hreflang="ja">日本語</a>
+            <a href="/OCR_LLM/ko/blog/ocr-asian-languages-on-mac/" hreflang="ko">한국어</a>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <h1>How to OCR Chinese, Japanese, and Korean Text on Mac</h1>
+        <p class="article-meta">
+            <time datetime="2026-04-25">April 25, 2026</time>
+            · 11 min read
+        </p>
+    </header>
+
+    <aside class="tldr">
+        <strong>TL;DR</strong>
+        macOS already has solid built-in OCR for all three CJK languages: Chinese (simplified and traditional) and Japanese since macOS 13, Korean since macOS 14. Apple Vision auto-detects mixed scripts, so you almost never need to pick a language by hand. Live Text handles the easy cases — clean printed text inside Photos, Preview, Safari, and Notes. It struggles with multi-column academic PDFs, vertical Japanese typesetting, manga sound effects, classical Chinese, and any text living inside a third-party app like WeChat, KakaoTalk, or LINE. For those cases you want a global hotkey OCR tool that works in any window. Cheese! OCR uses the same Apple Vision engine, so accuracy is identical, but the workflow is one keystroke away regardless of the app.
+    </aside>
+
+    <article class="article-body">
+
+        <h2>Why CJK OCR is its own problem</h2>
+
+        <p>OCR for English is a solved problem in 2026. The interesting questions are about everything else. Chinese, Japanese, and Korean each bring a different mix of difficulties: thousands of glyphs instead of a few dozen letters, mixed scripts within a single line, vertical typesetting, decorative typography that bleeds into images, and writing systems that have been evolving for two millennia. A model that gets 99 percent on English newspaper text might land at 92 percent on a scanned Japanese paperback, and that 7-point gap is where most of the user pain lives.</p>
+
+        <p>The good news is that Apple has invested heavily in CJK OCR through the Vision framework, and as of macOS 14 Sonoma all three languages are first-class citizens. The bad news is that "first-class" doesn't mean "perfect." There are real edge cases worth knowing about before you trust an OCR pipeline with a research paper, a manga panel, or a screenshot of your boss's KakaoTalk message.</p>
+
+        <p>This guide walks through what Live Text gets right for each language, where it falls short, and how to fill the gaps without uploading anything to a cloud service.</p>
+
+        <h2>What macOS Live Text actually supports</h2>
+
+        <p>Apple's official Live Text language list as of macOS 14 includes English, Spanish, French, Italian, German, Portuguese, Chinese (Simplified and Traditional), Japanese, Korean, Ukrainian, and Thai, with Vietnamese added more recently. macOS 13 Ventura was the release that brought Simplified Chinese, Traditional Chinese, and Japanese into the supported list. macOS 14 Sonoma added Korean. If you're on macOS 12 Monterey or older, you're stuck with English-only Live Text and you should plan to upgrade before fighting the OCR battle.</p>
+
+        <p>One of the most useful properties of Apple Vision is that you don't have to declare the language. The framework runs language detection internally and can mix scripts inside a single recognition pass. A screenshot of a Tokyo train station sign with Japanese, English, and Korean labels comes out as one block of correctly-segmented text. A WeChat message that mixes Chinese sentences with English brand names lands the way you'd expect. This is a real advantage over OCR tools that ask you to pick a language before each scan.</p>
+
+        <h2>Where Live Text falls short for CJK</h2>
+
+        <p>Live Text is the right tool when your source is already inside an Apple-native surface — Photos, Preview, Safari, Notes, Quick Look. Hover the pointer, the text becomes selectable, you copy. Done.</p>
+
+        <p>It gets less convenient as soon as you step outside that bubble. A few patterns recur across all three CJK languages:</p>
+
+        <ul>
+            <li><strong>Third-party app windows.</strong> Slack, Notion, Zoom, WeChat, LINE, KakaoTalk, Discord, and most browsers' video players don't expose Live Text inside the window itself. You have to screenshot first, then open the screenshot in Preview, then use Live Text. That's three extra steps for what should be one.</li>
+            <li><strong>Multi-column layouts.</strong> Academic PDFs in any CJK language often have two or three columns plus footnotes. Live Text reads them in image order, not column order, so you get the first line of column one followed by the first line of column two — useless for downstream copy-paste.</li>
+            <li><strong>Vertical text.</strong> Modern Japanese and traditional Chinese can both be set vertically. Live Text handles cleanly typeset modern vertical text reasonably well, but loses accuracy quickly on older typesetting, decorative covers, and anything where line spacing is irregular.</li>
+            <li><strong>Decorative or stylized typography.</strong> Manga sound effects, K-pop album cover lettering, Chinese calligraphy, and modern brand logos that lean on art-direction more than legibility all degrade accuracy.</li>
+            <li><strong>Classical script.</strong> Classical Chinese (文言文, 古籍), pre-modern Japanese, and older Korean texts use vocabulary, glyph variants, and layouts the model wasn't trained on. Live Text is competent on modern printed editions but unreliable on old prints and manuscripts.</li>
+        </ul>
+
+        <p>None of these are reasons to dismiss Live Text. They're reasons to know its shape, so you reach for a different tool when the shape doesn't fit.</p>
+
+        <h2>How Cheese! OCR handles CJK</h2>
+
+        <p>Cheese! OCR is a menu bar app that calls the same Apple Vision framework Live Text uses. That has two consequences worth being honest about. First, on the same image, accuracy will match Live Text — we're not running a different OCR model and there's no secret sauce. Second, the difference comes from workflow, not recognition quality.</p>
+
+        <p>The workflow is: press a global hotkey (default ⇧⌘E), drag-select any rectangle on screen, and the recognized text is on your clipboard. It works the same whether the text is in a Photos window, a Slack thread, a YouTube video paused on a foreign-language slide, a WeChat chat, a Korean PDF in Preview, or a manga page in a comics reader. There is no "open in Preview first" detour.</p>
+
+        <p>Two other things make a meaningful difference for CJK use. We ship with all four supported languages enabled by default — English, Simplified Chinese, Japanese, Korean — so the first time you OCR a Japanese train timetable or a Chinese receipt, it just works without preference clicks. And the menu bar history keeps a searchable log of every capture, so when you OCR a Chinese term you didn't recognize and look it up later, you can re-find the original in two seconds.</p>
+
+        <p>Privacy is worth flagging because CJK users are often scanning sensitive material — work documents in Japanese, medical paperwork in Korean, financial statements in Chinese. Cheese! OCR uses Apple Vision entirely on-device. The app ships without a network entitlement, which is verifiable in the Mac App Store sandbox metadata. Nothing is uploaded, nothing is logged on a server, no model training happens on your captures. It's the same privacy property Live Text has, with the same engine doing the same work.</p>
+
+        <h2>Chinese: simplified, traditional, mixed, classical</h2>
+
+        <h3>Modern simplified and traditional</h3>
+
+        <p>Apple Vision treats Simplified and Traditional Chinese as two distinct trained variants and auto-detects which one is on screen. You can OCR a Hong Kong newspaper, a Taiwanese product label, and a Mainland WeChat post in the same session without changing settings. The output is verbatim — Cheese! OCR doesn't auto-convert between simplified and traditional. If you need conversion, run the captured text through a tool like OpenCC or a converter built into your editor.</p>
+
+        <h3>Chinese mixed with English</h3>
+
+        <p>Modern Chinese writing borrows English heavily — brand names, technical terms, Latin abbreviations like CEO and PDF, sometimes whole quoted phrases. Apple Vision handles these well in a single pass. A Zhihu post that drops "ChatGPT" into a Chinese sentence comes out clean. The most common failure mode is when Latin letters are styled to look like Chinese characters or vice versa, in which case you may see one or two glyph confusions.</p>
+
+        <h3>Scanned academic and foreign-journal PDFs</h3>
+
+        <p>Chinese-language academic PDFs and Chinese translations of foreign journals are a frequent OCR target. Native PDFs (where text is already a layer in the file) don't need OCR — copy works directly. Scanned PDFs (where every page is an image) do, and this is where Live Text's column-order weakness shows up. For a multi-column scanned paper, OCR each column separately rather than the whole page at once. Yes, it's two captures instead of one. The output is much cleaner.</p>
+
+        <h3>Classical Chinese and old prints</h3>
+
+        <p>Apple Vision was not trained primarily on 古籍 (classical Chinese prints), and accuracy reflects that. Modern reprints of classical works in standard typography come out fine. Photographs of actual block-printed editions, handwritten manuscripts, or stone rubbings often don't. For research-grade work on classical texts, dedicated tools like the Tripitaka Koreana digitization toolchain or specialized humanities OCR projects are still ahead of consumer-grade frameworks. Cheese! OCR is a fine first pass for getting most of the text into your editor, where you can hand-correct.</p>
+
+        <h2>Japanese: kanji, kana, vertical, manga</h2>
+
+        <h3>Modern printed text</h3>
+
+        <p>Standard horizontal Japanese — newspapers, magazines, websites, business documents — is one of Apple Vision's strengths. Mixed kanji, hiragana, and katakana within a single sentence are recognized as one stream. Loanwords in katakana that often trip lesser OCR (パソコン, スクリーンショット, ホットキー) come out clean.</p>
+
+        <h3>Vertical typesetting</h3>
+
+        <p>Vertical Japanese (縦書き) in modern printed novels and magazines is handled well when the typesetting is clean and line spacing is regular. Older books with mixed line widths, ruby annotations (furigana), and irregular margins lose some accuracy. If a vertical scan comes out scrambled, try cropping a single column at a time.</p>
+
+        <h3>Manga and comics</h3>
+
+        <p>Manga is the genre where OCR struggles most, and it's worth being upfront about it. Speech bubbles with clean typography are usually fine. Sound effects (擬音, ぎおん) painted into the artwork in stylized lettering, hand-drawn shouts, and dialogue that bleeds into background detail all degrade. For straight reading and translation purposes, Cheese! OCR will pull most of the speech-bubble dialogue accurately. For complete sound-effect transcription, expect to hand-correct.</p>
+
+        <h3>Business documents and email screenshots</h3>
+
+        <p>Japanese business documents, internal Slack screenshots from a colleague, and quoted email captures are the day-to-day OCR use case for many users. These come out reliably. The most common workflow is: paste the screenshot into a chat window or a Notion page, drag-OCR the relevant section, paste the recognized text into a translation tool or a meeting note.</p>
+
+        <h2>Korean: PDFs, webtoons, KakaoTalk, hanja</h2>
+
+        <h3>Modern Hangul</h3>
+
+        <p>Korean Hangul is the most uniformly typeset of the three CJK scripts, and accuracy on clean printed Korean is excellent. The 2,350-character KS X 1001 set covers virtually all modern Korean, and Apple Vision is well-trained on it. Korean PDFs (네이티브 or 스캔), Naver search results, and government documents all OCR cleanly.</p>
+
+        <h3>Korean PDFs and academic material</h3>
+
+        <p>The same multi-column caveat applies: a two-column scanned Korean paper is best OCR'd column by column. For native Korean PDFs with a text layer, OCR isn't needed at all — copy works directly. The mistake we see most often is users running OCR on a native PDF and getting a slightly worse copy than they would have with plain copy-paste.</p>
+
+        <h3>Webtoons and KakaoTalk screenshots</h3>
+
+        <p>Webtoons (웹툰) on Naver and Kakao Page render dialogue in stylized speech bubbles. Standard typography reads fine. Sound effects and decorative onomatopoeia drawn into the panel struggle the same way manga does. KakaoTalk message screenshots are a frequent OCR target — a friend forwards a screenshot of a long block of Korean text, and you want it as plain text to paste into a translator. This case is reliable.</p>
+
+        <h3>Hanja in Korean text</h3>
+
+        <p>Older Korean documents and academic writing sometimes embed Hanja (한자, Chinese characters used for Korean meaning). Apple Vision recognizes these as Chinese characters within the Korean text stream. The output is correct, though the script labels the characters as Chinese, which is fine for most purposes.</p>
+
+        <h2>The decision: which tool, when</h2>
+
+        <p>For CJK on Mac in 2026, our honest read:</p>
+
+        <ul>
+            <li><strong>Use Live Text</strong> when your text is already inside Photos, Preview, Safari, Quick Look, or Notes. It's free, it's built in, and it produces the same Apple Vision output any third-party tool would.</li>
+            <li><strong>Use a global-hotkey OCR tool like Cheese! OCR</strong> when the text lives in WeChat, KakaoTalk, LINE, Slack, Notion, Zoom, a YouTube video frame, a paused movie subtitle, or any other surface where Live Text doesn't reach. The win is workflow, not recognition.</li>
+            <li><strong>Use a specialist tool</strong> when you're working on classical Chinese block prints, vertical pre-modern Japanese, handwriting, or any source where general consumer OCR is going to give you a 70-percent first draft. Apple Vision is not the right tool there, and neither Live Text nor Cheese! OCR will rescue you.</li>
+        </ul>
+
+        <p>For everything that lives between those poles — Chinese receipts, Japanese train signs, Korean PDFs, mixed-script manga dialogue, business documents in any of the three — Apple Vision is genuinely good, and the only question is whether you want to type ⇧⌘E or open Preview first.</p>
+
+    </article>
+
+    <section class="article-faq">
+        <h2>Frequently Asked Questions</h2>
+        <details class="faq-item">
+            <summary>Does macOS support Chinese, Japanese, and Korean OCR out of the box?</summary>
+            <div class="answer">Yes. Since macOS 13 Ventura, Live Text recognizes Simplified Chinese, Traditional Chinese, and Japanese. macOS 14 Sonoma added Korean. Apple Vision auto-detects mixed scripts, so you usually don't need to set a language at all.</div>
+        </details>
+        <details class="faq-item">
+            <summary>Can it handle mixed-script text like Chinese with English, or Japanese with kanji and kana?</summary>
+            <div class="answer">Yes. Apple Vision is designed for mixed scripts. Chinese mixed with English, Japanese mixed with English or katakana loanwords, and Korean mixed with hanja or English are all handled in a single pass without the user picking a language.</div>
+        </details>
+        <details class="faq-item">
+            <summary>What about handwritten Chinese, Japanese, or Korean?</summary>
+            <div class="answer">Apple Vision handles clean printed CJK well, but handwriting accuracy drops sharply, especially for cursive Chinese or quick Japanese notes. We recommend treating handwriting as a known weakness and verifying the result before pasting.</div>
+        </details>
+        <details class="faq-item">
+            <summary>Does Cheese! OCR support Traditional Chinese, vertical Japanese, and hanja?</summary>
+            <div class="answer">Cheese! OCR uses the same Apple Vision engine as Live Text, so language coverage is identical. Traditional Chinese is supported. Vertical Japanese works for clean modern layouts but is less reliable for older typesetting. Hanja embedded in Korean text is recognized as Chinese characters.</div>
+        </details>
+        <details class="faq-item">
+            <summary>Will Cheese! OCR be more accurate than Live Text?</summary>
+            <div class="answer">No. Both use Apple Vision under the hood, so on the same image they produce the same text. The difference is workflow: Cheese! OCR works in any app, ships with multi-language defaults, and keeps a searchable history.</div>
+        </details>
+    </section>
+
+    <section class="article-cta">
+        <div class="cta-card">
+            <h2>Try Cheese! OCR</h2>
+            <p>One hotkey, any window, any of the four supported languages. Press ⇧⌘E, drag a rectangle, paste the result. $5.99 one-time on the Mac App Store, no subscription, no network entitlement.</p>
+            <a href="https://apps.apple.com/app/cheese-ocr/id6760889131" class="cta-button">Try Cheese! OCR — Mac App Store</a>
+        </div>
+    </section>
+
+    <section class="article-related">
+        <h2>Related articles</h2>
+        <div class="related-grid">
+            <a href="../cheese-ocr-vs-live-text/" class="related-card">
+                <h3>Cheese! OCR vs macOS Live Text: When Apple's Built-in Tool Isn't Enough</h3>
+                <p>How macOS Live Text compares to a global-hotkey OCR tool, and the four scenarios where Live Text falls short.</p>
+            </a>
+            <a href="../how-to-ocr-pdf-on-mac/" class="related-card">
+                <h3>How to OCR a PDF on Mac (2026): Native, Scanned, and Everything In Between</h3>
+                <p>A practical guide to extracting text from native, scanned, and protected PDFs on Mac — without uploading anything to the cloud.</p>
+            </a>
+            <a href="../extract-text-from-screenshot-on-mac/" class="related-card">
+                <h3>How to Extract Text from a Screenshot on Mac (Three Methods Compared)</h3>
+                <p>Live Text, Cmd+Shift+5 floating actions, and dedicated OCR tools — when each one is worth the keystrokes.</p>
+            </a>
+        </div>
+    </section>
+
+    <footer class="article-footer">
+        <a href="../../">Home</a>
+        <a href="../../privacy.html">Privacy Policy</a>
+        <a href="mailto:nicholaslck@icloud.com">Contact</a>
+        <p>&copy; 2026 Cheese! OCR. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

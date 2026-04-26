@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
+
+    <title>How On-Device OCR Works: Apple Vision Framework Explained — Cheese! OCR Blog</title>
+    <meta name="description" content="A technical look at how Apple Vision performs OCR on-device using VNRecognizeTextRequest, the Neural Engine, and zero network calls — and why it matters.">
+
+    <link rel="canonical" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-on-device-ocr-works/">
+    <link rel="alternate" hreflang="en" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-on-device-ocr-works/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/how-on-device-ocr-works/">
+    <link rel="alternate" hreflang="ja" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-on-device-ocr-works/">
+    <link rel="alternate" hreflang="ko" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ko/blog/how-on-device-ocr-works/">
+    <link rel="alternate" hreflang="x-default" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-on-device-ocr-works/">
+
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../article.css">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Cheese! OCR">
+    <meta property="og:title" content="How On-Device OCR Works: Apple Vision Framework Explained">
+    <meta property="og:description" content="A technical look at how Apple Vision performs OCR on-device using VNRecognizeTextRequest, the Neural Engine, and zero network calls.">
+    <meta property="og:url" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-on-device-ocr-works/">
+    <meta property="og:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    <meta property="article:published_time" content="2026-04-25">
+    <meta property="article:author" content="Cheese! OCR Team">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How On-Device OCR Works: Apple Vision Framework Explained">
+    <meta name="twitter:description" content="How Apple Vision runs OCR on-device, why the Neural Engine matters, and how it compares to cloud OCR.">
+    <meta name="twitter:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "How On-Device OCR Works: Apple Vision Framework Explained",
+      "description": "A technical look at how Apple Vision performs OCR on-device using VNRecognizeTextRequest, the Neural Engine, and zero network calls.",
+      "author": {
+        "@type": "Organization",
+        "name": "Cheese! OCR",
+        "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Cheese! OCR",
+        "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+      },
+      "datePublished": "2026-04-25",
+      "dateModified": "2026-04-25",
+      "image": "https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png",
+      "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-on-device-ocr-works/",
+      "inLanguage": "en",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-on-device-ocr-works/"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "inLanguage": "en",
+      "mainEntity": [
+        { "@type": "Question", "name": "Can third-party developers use Apple Vision for OCR?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Apple Vision is a public framework available to any macOS or iOS app via the Vision module. Apps call VNRecognizeTextRequest the same way Live Text does internally. Cheese! OCR, Text Sniper, and many other Mac OCR tools use this same API. There is no API key, no rate limit, and no network call involved." } },
+        { "@type": "Question", "name": "Does Apple Vision OCR require Apple Silicon?", "acceptedAnswer": { "@type": "Answer", "text": "No. Apple Vision works on Intel Macs as well, falling back to CPU and GPU when the Neural Engine is not available. Apple Silicon Macs are noticeably faster because the Neural Engine accelerates the underlying ML models, but text recognition still works on Intel hardware running macOS 13 Ventura or later." } },
+        { "@type": "Question", "name": "How accurate is Apple Vision compared to GPT-4V or other multimodal models?", "acceptedAnswer": { "@type": "Answer", "text": "For clean printed text in supported languages, Apple Vision is competitive with cloud OCR services and usually faster. For handwriting, heavy layout reconstruction, or chemistry and math notation, multimodal LLMs can do better but at the cost of latency, money, and sending the image to a third party. For everyday screenshot OCR, Apple Vision is the more practical choice." } },
+        { "@type": "Question", "name": "Is any image data sent to Apple when I use Apple Vision OCR?", "acceptedAnswer": { "@type": "Answer", "text": "No. The Vision framework runs entirely on the device. Apple does not see the image, the recognized text, or any metadata. Apps that use Apple Vision can additionally declare zero network entitlements in their App Store sandbox, which is independently auditable. Cheese! OCR ships with no network entitlements at all." } },
+        { "@type": "Question", "name": "Why do cloud OCR services like Google Vision still exist?", "acceptedAnswer": { "@type": "Answer", "text": "Cloud OCR services target server-side and cross-platform workloads — invoice processing pipelines, document management systems, and ML training. They support more languages, run handwriting models, and parse forms at scale. For an end-user Mac app doing screenshot OCR, on-device Apple Vision is generally the right choice; for a backend processing millions of scanned forms, cloud OCR makes more sense." } }
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Cheese! OCR", "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "How On-Device OCR Works: Apple Vision Framework Explained" }
+      ]
+    }
+    </script>
+</head>
+<body>
+
+    <nav class="article-nav">
+        <a href="../" class="back-link">← Blog</a>
+        <div class="lang-switcher">
+            <a href="/OCR_LLM/blog/how-on-device-ocr-works/" aria-current="page" hreflang="en">EN</a>
+            <a href="/OCR_LLM/zh/blog/how-on-device-ocr-works/" hreflang="zh-Hans">中文</a>
+            <a href="/OCR_LLM/ja/blog/how-on-device-ocr-works/" hreflang="ja">日本語</a>
+            <a href="/OCR_LLM/ko/blog/how-on-device-ocr-works/" hreflang="ko">한국어</a>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <h1>How On-Device OCR Works: Apple Vision Framework Explained</h1>
+        <p class="article-meta">
+            <time datetime="2026-04-25">April 25, 2026</time>
+            · 10 min read
+        </p>
+    </header>
+
+    <aside class="tldr">
+        <strong>TL;DR</strong>
+        Apple Vision is a system framework that runs OCR entirely on the Mac itself, with no network calls and no Apple servers involved. The same engine that powers Live Text is exposed to third-party apps through <code>VNRecognizeTextRequest</code>, accelerated on Apple Silicon by the Neural Engine. For everyday screenshot OCR on Mac, this gives you cloud-grade accuracy with strict privacy and lower latency than any HTTP round trip.
+    </aside>
+
+    <article class="article-body">
+        <h2>What "on-device" actually means</h2>
+        <p>"On-device OCR" is a phrase marketing copy throws around a lot, so it's worth being precise about what it means in the Apple Vision case. When an app on macOS asks Vision to recognize text in an image, the entire pipeline — image preprocessing, the convolutional and transformer networks that detect and decode glyphs, the language model that resolves ambiguity — runs on hardware physically inside your Mac. The CPU, the integrated GPU, and on Apple Silicon the Neural Engine, do all of the work. No bytes leave the machine.</p>
+        <p>Compare that to cloud OCR. Google Cloud Vision, AWS Textract, and Azure Computer Vision all expect you to upload the image as a base64 blob over HTTPS. The image lands in the provider's data center, runs through their model, and the recognized text comes back. That round trip is bounded by the speed of light, your network, and the provider's queue. It also means the image is, however briefly, on someone else's hard drive — and subject to whatever logging, retention, and ML-training policies that vendor has at the moment.</p>
+        <p>On-device avoids all of that. There is no upload step, no network entitlement required for the app, no API key to manage, no quota to monitor, no per-call billing, and no privacy policy to read. The trade-off is that you are bound by the model the OS ships and the silicon you bought. Most Mac users find that trade-off easy to make for screenshot OCR.</p>
+
+        <h2>A short history of Apple Vision Framework</h2>
+        <p>Apple Vision launched at WWDC 2017 as part of iOS 11 and macOS 10.13 High Sierra. The first version handled face detection, rectangle detection, and barcode reading — useful but not yet OCR. Real text recognition arrived with iOS 13 and macOS 10.15 Catalina in 2019, when Apple added <code>VNRecognizeTextRequest</code>. That was when "Vision can read text" stopped being a marketing claim and became something you could call from a few lines of Swift.</p>
+        <p>Live Text, the user-facing feature most people associate with Apple's on-device OCR, arrived two years later with iOS 15 and macOS Monterey. Live Text didn't replace the framework — it just put a UI in front of it. Underneath, the same <code>VNRecognizeTextRequest</code> call is doing the work whether you long-press a photo in Messages, hover over text in Safari, or run a third-party app like Cheese! OCR. Apple iterated on the recognition model heavily through macOS Ventura, Sonoma, and Sequoia, adding more languages and improving accuracy on each major release.</p>
+        <p>By 2026 the framework supports dozens of languages, including the four CJK scripts that historically gave OCR engines the most trouble. Vision is now also used as a building block for Photos search ("show me photos with text"), VoiceOver image descriptions, and the Visual Look Up feature.</p>
+
+        <h2>The VNRecognizeTextRequest API</h2>
+        <p>The class developers actually call is <code>VNRecognizeTextRequest</code>. It takes an input image, a configuration, and a completion handler that returns an array of <code>VNRecognizedTextObservation</code> objects, each containing recognition candidates and a bounding box.</p>
+        <p>Two configuration choices matter most. The first is <code>recognitionLevel</code>, which has two modes: <code>.fast</code> uses a smaller model optimized for speed and is the right choice for live camera frames or scrolling video; <code>.accurate</code> uses a larger model and is the right choice for static screenshots and PDF pages. Most Mac OCR utilities, including Cheese! OCR, default to <code>.accurate</code> because the user is staring at a single image and a few hundred extra milliseconds is invisible.</p>
+        <p>The second is <code>recognitionLanguages</code>, an ordered array of BCP-47 language tags like <code>"en-US"</code>, <code>"zh-Hans"</code>, <code>"ja-JP"</code>, <code>"ko-KR"</code>. The order is a hint to the language model when it disambiguates similar shapes — for example, distinguishing the Latin letter "o" from the digit "0" or the Cyrillic "о". Passing all four CJK + English tags is the right default for a general-purpose Mac OCR tool whose user might paste anything from a Notion screenshot to a Japanese manga panel into the same hotkey.</p>
+        <p>There's also <code>usesLanguageCorrection</code>, a Boolean that turns on the post-recognition language model. With it on, "teh" becomes "the" and recognized strings are smoothed against vocabulary statistics. With it off, the engine returns whatever it sees pixel-for-pixel, which is sometimes preferable for code, license plates, or product SKUs.</p>
+
+        <h2>A minimal Swift example</h2>
+        <p>Here is the smallest useful chunk of Swift that runs Apple Vision OCR on a CGImage and prints out the recognized strings. This is the same call path Cheese! OCR uses internally, stripped of error handling and UI plumbing.</p>
+<pre><code>import Vision
+
+func recognizeText(in cgImage: CGImage) {
+    let request = VNRecognizeTextRequest { request, error in
+        guard let observations = request.results as? [VNRecognizedTextObservation] else {
+            return
+        }
+        let lines = observations.compactMap { $0.topCandidates(1).first?.string }
+        print(lines.joined(separator: "\n"))
+    }
+
+    request.recognitionLevel = .accurate
+    request.recognitionLanguages = ["en-US", "zh-Hans", "ja-JP", "ko-KR"]
+    request.usesLanguageCorrection = true
+
+    let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+    try? handler.perform([request])
+}
+</code></pre>
+        <p>A few things are worth noting. The completion handler runs on a background queue, so a UI app would dispatch back to the main thread before updating the clipboard or showing a toast. <code>topCandidates(1)</code> returns the top guess; you can ask for more if you want to surface ambiguous lines to the user. The <code>VNImageRequestHandler</code> takes a <code>CGImage</code> here, but it can also accept <code>CVPixelBuffer</code>, <code>CIImage</code>, or a file URL — useful when you're feeding it from a video frame or a PDF page.</p>
+        <p>That's the whole API surface for the common case. There is no SDK to install, no model file to ship, no auth flow, no usage dashboard. The OS provides the model, the silicon runs it, and your app just calls a function.</p>
+
+        <h2>Why the Neural Engine matters on Apple Silicon</h2>
+        <p>The Neural Engine is the dedicated machine-learning accelerator inside every Apple Silicon chip. The M1 launched with 16 cores; M2 and M3 kept that core count; M4 brought architectural improvements to throughput and shared memory bandwidth. On an Apple Silicon Mac, Vision's text recognition models are compiled to run on the Neural Engine by default, with the GPU as a fallback for parts of the pipeline the Neural Engine can't accelerate.</p>
+        <p>The practical effect is twofold. First, OCR is fast — fast enough that a screenshot region of a few hundred pixels feels instantaneous when you press a hotkey. Second, OCR is energy-efficient. The Neural Engine is much more power-efficient per inference than the CPU or GPU, which means running OCR on hundreds of screenshots in a row doesn't noticeably drain the battery on a MacBook. The same hardware also accelerates Siri, Photos search, transcription in Voice Memos, and Apple Intelligence features — Vision is just one of many tenants.</p>
+        <p>On Intel Macs, the framework still works. It falls back to CPU and GPU paths and is somewhat slower, but for typical screenshot-sized images the difference is rarely felt by a human user. Vision was deliberately designed to remain usable across the entire Mac lineup, not just the latest hardware.</p>
+
+        <h2>Privacy: why on-device matters</h2>
+        <p>Privacy is the part of on-device OCR that most often gets glossed over. The technical claim is simple: when you OCR a screenshot using Apple Vision, the bytes of that screenshot never leave your Mac. Apple does not see them. Your network does not see them. The app vendor does not see them, even if their app is the one calling Vision.</p>
+        <p>That last point matters because "on-device OCR" is sometimes used loosely. An app can use Apple Vision and still phone home with the recognized text, telemetry, or screenshots for "training." The way to verify on-device behavior is to look at the app's network entitlements in the App Store sandbox. An app distributed through the Mac App Store must declare every network capability it uses; an app with no network entitlements at all cannot make HTTP calls of any kind, period — the operating system blocks them at the kernel level.</p>
+        <p>Cheese! OCR is in that latter category. It has no network entitlements, no telemetry SDK, no analytics, and no crash reporting service that ships data off the machine. The Vision call goes to the OS, the recognized text goes to the system clipboard, and that is the entire data flow. If you're using OCR for screenshots that contain confidential business documents, internal Slack threads, or personal correspondence, this matters quite a lot.</p>
+
+        <h2>Apple Vision vs cloud OCR — comparison table</h2>
+        <p>To put the trade-offs in one place, here is how Apple Vision compares to the three big cloud OCR APIs. Cloud pricing is given as a range because the major vendors restructure their tiers regularly and the exact number depends on volume, region, and feature flags; treat these as ballpark figures and check the vendor's pricing page for current numbers.</p>
+        <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Apple Vision</th>
+                    <th>Google Cloud Vision</th>
+                    <th>AWS Textract</th>
+                    <th>Azure Computer Vision</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Pricing</td>
+                    <td>Free with macOS / iOS</td>
+                    <td>Roughly $1.50 per 1,000 calls (after free tier)</td>
+                    <td>Roughly $1.50 per 1,000 pages</td>
+                    <td>Roughly $1.00 per 1,000 transactions</td>
+                </tr>
+                <tr>
+                    <td>Languages</td>
+                    <td>Dozens, including CJK + Latin scripts</td>
+                    <td>50+ printed languages, handwriting subset</td>
+                    <td>Strong on English / Latin scripts; growing CJK</td>
+                    <td>Broad coverage including CJK</td>
+                </tr>
+                <tr>
+                    <td>Latency</td>
+                    <td>Local; no network round trip</td>
+                    <td>Network bound + processing</td>
+                    <td>Network bound + processing</td>
+                    <td>Network bound + processing</td>
+                </tr>
+                <tr>
+                    <td>Privacy</td>
+                    <td>100% on-device, image never leaves Mac</td>
+                    <td>Image uploaded to Google data center</td>
+                    <td>Image uploaded to AWS data center</td>
+                    <td>Image uploaded to Azure data center</td>
+                </tr>
+                <tr>
+                    <td>Best at</td>
+                    <td>Real-time UI OCR, screenshots, Live Text</td>
+                    <td>Document AI, large-scale pipelines</td>
+                    <td>Forms, tables, structured documents</td>
+                    <td>Mixed enterprise OCR + image analysis</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        <p>The summary, for an end-user Mac app: Apple Vision wins on cost, latency, and privacy. The cloud APIs win when you need server-side batch processing, structured form parsing, or languages that Apple doesn't ship.</p>
+
+        <h2>What Apple Vision still struggles with</h2>
+        <p>Pretending Apple Vision is perfect would be dishonest, and the framework's limitations are worth knowing if you're picking an OCR strategy.</p>
+        <p><strong>Cursive handwriting.</strong> Vision can sometimes pull characters out of neat block printing, but cursive English, hand-written kanji, or any free-form note-taking is hit or miss. If your workflow centers on scanning handwritten notes, Apple Vision alone won't be enough — a multimodal LLM or a specialized handwriting recognizer will do better.</p>
+        <p><strong>Vertical CJK text.</strong> Japanese books, Chinese classical texts, and traditional posters often run text top-to-bottom, right-to-left. Vision's text detector is heavily biased toward left-to-right horizontal lines and frequently fragments vertical columns or reads them in the wrong order. There's no public configuration flag to tell it the text is vertical.</p>
+        <p><strong>Severely skewed or warped text.</strong> Photos of book pages bent at the spine, signs photographed at sharp angles, or screenshots of zoomed perspective-projected text can confuse the detector. Vision does some deskewing but it's not as aggressive as some cloud services.</p>
+        <p><strong>Decorative typography.</strong> Stylized fonts on game UI, calligraphy, vintage signage, or heavily kerned logo type degrade accuracy. The model is trained on common typefaces; the long tail of decorative ones is a known weak spot.</p>
+        <p><strong>Math and chemistry notation.</strong> Equations, integrals, chemical structures, and any 2D layout that isn't reading order get flattened to a linear string. For LaTeX or MathML output you need a specialized model — Mathpix, for instance, exists for exactly this reason.</p>
+        <p>None of these limitations mean on-device OCR is wrong for the common case. They just mean it isn't a universal solvent.</p>
+
+        <h2>Why this matters for tools like Cheese! OCR</h2>
+        <p>The reason any of this matters for a Mac OCR utility is that the framework choice determines what the app can and can't promise. A cloud-backed OCR app that markets "lightning-fast OCR" has a fundamental floor at network latency and a permanent privacy asterisk. A local-only OCR app built on Apple Vision inherits the framework's floor (very fast) and its ceiling (the languages and accuracy Apple ships).</p>
+        <p>Cheese! OCR is built directly on Apple Vision. Press the hotkey, drag-select a region of the screen, and the resulting CGImage is handed to <code>VNRecognizeTextRequest</code> with the four default languages enabled. The recognized text lands in the clipboard a moment later and gets logged to a local SQLite history database. There is no server. There are no network entitlements. There is no telemetry. The app is running the same model as Live Text, with a different — and frankly more useful — UI bolted on top.</p>
+        <p>That choice has implications a user can feel. The app works on a plane. It works on a corporate VPN that blocks half the internet. It works in a country where Google services are unreachable. It doesn't slow down when your home Wi-Fi flakes. And when you OCR a screenshot of a confidential contract or a private message, you don't have to think about which third party has now seen it.</p>
+
+        <p>If you're picking an OCR strategy for your own Mac, the framework conversation is the one that should come first. Cloud and local each have legitimate use cases. For everyday screenshot OCR on a personal machine, on-device with Apple Vision is hard to beat — and the questions below cover the ones we hear most often.</p>
+    </article>
+
+    <section class="article-faq">
+        <h2>Frequently Asked Questions</h2>
+        <details class="faq-item">
+            <summary>Can third-party developers use Apple Vision for OCR?</summary>
+            <div class="answer"><p>Yes. Apple Vision is a public framework available to any macOS or iOS app via the Vision module. Apps call <code>VNRecognizeTextRequest</code> the same way Live Text does internally. Cheese! OCR, Text Sniper, and many other Mac OCR tools use this same API. There is no API key, no rate limit, and no network call involved.</p></div>
+        </details>
+        <details class="faq-item">
+            <summary>Does Apple Vision OCR require Apple Silicon?</summary>
+            <div class="answer"><p>No. Apple Vision works on Intel Macs as well, falling back to CPU and GPU when the Neural Engine is not available. Apple Silicon Macs are noticeably faster because the Neural Engine accelerates the underlying ML models, but text recognition still works on Intel hardware running macOS 13 Ventura or later.</p></div>
+        </details>
+        <details class="faq-item">
+            <summary>How accurate is Apple Vision compared to GPT-4V or other multimodal models?</summary>
+            <div class="answer"><p>For clean printed text in supported languages, Apple Vision is competitive with cloud OCR services and usually faster. For handwriting, heavy layout reconstruction, or chemistry and math notation, multimodal LLMs can do better but at the cost of latency, money, and sending the image to a third party. For everyday screenshot OCR, Apple Vision is the more practical choice.</p></div>
+        </details>
+        <details class="faq-item">
+            <summary>Is any image data sent to Apple when I use Apple Vision OCR?</summary>
+            <div class="answer"><p>No. The Vision framework runs entirely on the device. Apple does not see the image, the recognized text, or any metadata. Apps that use Apple Vision can additionally declare zero network entitlements in their App Store sandbox, which is independently auditable. Cheese! OCR ships with no network entitlements at all.</p></div>
+        </details>
+        <details class="faq-item">
+            <summary>Why do cloud OCR services like Google Vision still exist?</summary>
+            <div class="answer"><p>Cloud OCR services target server-side and cross-platform workloads — invoice processing pipelines, document management systems, and ML training. They support more languages, run handwriting models, and parse forms at scale. For an end-user Mac app doing screenshot OCR, on-device Apple Vision is generally the right choice; for a backend processing millions of scanned forms, cloud OCR makes more sense.</p></div>
+        </details>
+    </section>
+
+    <section class="article-cta">
+        <div class="cta-card">
+            <h2>Try Cheese! OCR</h2>
+            <p>A Mac menu-bar app that wraps Apple Vision behind a global hotkey. 100% on-device, zero network entitlements, $5.99 one-time on the Mac App Store.</p>
+            <a href="https://apps.apple.com/app/cheese-ocr/id6760889131" class="cta-button">Try Cheese! OCR — Mac App Store</a>
+        </div>
+    </section>
+
+    <section class="article-related">
+        <h2>Related articles</h2>
+        <div class="related-grid">
+            <a href="../cheese-ocr-vs-live-text/" class="related-card">
+                <h3>Cheese! OCR vs macOS Live Text: When Apple's Built-in Tool Isn't Enough</h3>
+                <p>How Live Text and a hotkey-driven OCR tool compare, and when one is clearly the better choice over the other.</p>
+            </a>
+            <a href="../how-to-ocr-pdf-on-mac/" class="related-card">
+                <h3>How to OCR a PDF on Mac (2026): Native, Scanned, and Everything In Between</h3>
+                <p>A practical guide to extracting text from native, scanned, and protected PDFs on Mac without uploading anything.</p>
+            </a>
+            <a href="../cheese-ocr-vs-text-sniper/" class="related-card">
+                <h3>Cheese! OCR vs Text Sniper: Honest Comparison Between Two Mac OCR Tools</h3>
+                <p>Where Text Sniper still leads, where Cheese! OCR pulls ahead, and how to pick between them based on how you actually work.</p>
+            </a>
+        </div>
+    </section>
+
+    <footer class="article-footer">
+        <a href="../../">Home</a>
+        <a href="../../privacy.html">Privacy Policy</a>
+        <a href="mailto:nicholaslck@icloud.com">Contact</a>
+        <p>&copy; 2026 Cheese! OCR. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

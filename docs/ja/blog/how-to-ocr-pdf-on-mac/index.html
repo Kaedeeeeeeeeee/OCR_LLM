@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
+
+    <title>Mac で PDF を OCR する方法（2026）: ネイティブ・スキャン・混在まで完全ガイド — Cheese! OCR ブログ</title>
+    <meta name="description" content="2026 年版・Mac で PDF を OCR する実用ガイド。プレビューで足りるとき、ocrmypdf を使うべきとき、Cheese! OCR でスニペットを抜き出すのが速いとき、それぞれの判断基準を整理しました。">
+
+    <link rel="canonical" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-to-ocr-pdf-on-mac/">
+    <link rel="alternate" hreflang="en" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-pdf-on-mac/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/how-to-ocr-pdf-on-mac/">
+    <link rel="alternate" hreflang="ja" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-to-ocr-pdf-on-mac/">
+    <link rel="alternate" hreflang="ko" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ko/blog/how-to-ocr-pdf-on-mac/">
+    <link rel="alternate" hreflang="x-default" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-pdf-on-mac/">
+
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../../../blog/article.css">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Cheese! OCR">
+    <meta property="og:title" content="Mac で PDF を OCR する方法（2026）: ネイティブ・スキャン・混在まで完全ガイド">
+    <meta property="og:description" content="2026 年版・Mac で PDF を OCR する実用ガイド。プレビューで足りるとき、ocrmypdf を使うべきとき、Cheese! OCR でスニペットを抜き出すのが速いとき。">
+    <meta property="og:url" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-to-ocr-pdf-on-mac/">
+    <meta property="og:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="article:published_time" content="2026-04-25">
+    <meta property="article:author" content="Cheese! OCR Team">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mac で PDF を OCR する方法（2026）">
+    <meta name="twitter:description" content="ネイティブ PDF・スキャン PDF・混在 PDF の 3 ケースを Mac でどう処理するか、一気に整理。">
+    <meta name="twitter:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Mac で PDF を OCR する方法（2026）: ネイティブ・スキャン・混在まで完全ガイド",
+      "description": "2026 年版・Mac で PDF を OCR する実用ガイド。プレビューで足りるとき、ocrmypdf を使うべきとき、Cheese! OCR でスニペットを抜き出すのが速いとき、それぞれの判断基準を整理しました。",
+      "author": {
+        "@type": "Organization",
+        "name": "Cheese! OCR",
+        "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Cheese! OCR",
+        "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+      },
+      "datePublished": "2026-04-25",
+      "dateModified": "2026-04-25",
+      "image": "https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png",
+      "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-to-ocr-pdf-on-mac/",
+      "inLanguage": "ja",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-to-ocr-pdf-on-mac/"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "inLanguage": "ja",
+      "mainEntity": [
+        { "@type": "Question", "name": "この PDF はなぜテキストを選択できないのですか？", "acceptedAnswer": { "@type": "Answer", "text": "ほぼ確実にスキャン PDF です。各ページが画像として保存されていて、ファイル内にテキストデータが存在しません。最も速い確認方法は Cmd+F で、画面上にはっきり見える単語を検索してみることです。ヒットしなければテキスト層がないので、選択・コピー・検索を行うには先に OCR をかける必要があります。" } },
+        { "@type": "Question", "name": "Cheese! OCR は PDF ファイルそのものを書き換えますか？", "acceptedAnswer": { "@type": "Answer", "text": "いいえ。Cheese! OCR は画面レベルで動作します。ホットキーを押し、画面上の領域をドラッグで囲むと、認識結果がクリップボードに入る仕組みです。ディスク上の PDF ファイルが開かれたり書き換えられたりアップロードされたりすることはありません。さらに App Store のサンドボックス上でネットワーク権限が一切付与されていないので、技術的にもアップロードは不可能です。" } },
+        { "@type": "Question", "name": "ocrmypdf は多言語混在の PDF にも対応できますか？", "acceptedAnswer": { "@type": "Answer", "text": "対応できます。Tesseract の言語コードをプラスでつないで -l に渡してください。例えば -l eng+chi_sim+jpn+kor のように指定します。各言語パックがインストールされている必要があり、Homebrew であれば brew install tesseract-lang で主要な言語が揃います。多く詰め込みすぎると速度も精度も落ちるので、実際にその PDF で出てくる言語だけを指定するのが無難です。" } },
+        { "@type": "Question", "name": "プレビューの Live Text は PDF 全体の OCR にも使えますか？", "acceptedAnswer": { "@type": "Answer", "text": "PDF 全体には向きません。Live Text は今表示しているページ上の文字を認識する機能で、その認識結果を PDF ファイルに書き戻したりはしません。ファイルを閉じたり同僚に送ったりすると、Cmd+F は相変わらず効きません。ファイル全体を恒久的に検索可能にしたい場合は、ocrmypdf や PDFPen Pro のようにテキスト層を埋め込むツールを使ってください。" } },
+        { "@type": "Question", "name": "クラウド OCR サービスのほうが速いことはありますか？", "acceptedAnswer": { "@type": "Answer", "text": "あります。とくに巨大な PDF を古めの Mac で処理する場合、クラウド GPU のほうがローカル処理より速いことは珍しくありません。代償は、PDF の全ページが手元の Mac から外に出ることです。契約書、医療記録、社内資料など機密性のあるものについては、ocrmypdf や Cheese! OCR のようにファイルを Mac から出さない方法のほうが安心です。" } }
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Cheese! OCR", "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/" },
+        { "@type": "ListItem", "position": 2, "name": "ブログ", "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Mac で PDF を OCR する方法（2026）" }
+      ]
+    }
+    </script>
+</head>
+<body>
+
+    <nav class="article-nav">
+        <a href="../" class="back-link">← ブログ</a>
+        <div class="lang-switcher">
+            <a href="/OCR_LLM/blog/how-to-ocr-pdf-on-mac/" hreflang="en">EN</a>
+            <a href="/OCR_LLM/zh/blog/how-to-ocr-pdf-on-mac/" hreflang="zh-Hans">中文</a>
+            <a href="/OCR_LLM/ja/blog/how-to-ocr-pdf-on-mac/" aria-current="page" hreflang="ja">日本語</a>
+            <a href="/OCR_LLM/ko/blog/how-to-ocr-pdf-on-mac/" hreflang="ko">한국어</a>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <h1>Mac で PDF を OCR する方法（2026）: ネイティブ・スキャン・混在まで完全ガイド</h1>
+        <p class="article-meta">
+            <time datetime="2026-04-25">2026 年 4 月 25 日</time>
+            · 10 分で読める
+        </p>
+    </header>
+
+    <aside class="tldr">
+        <strong>要約</strong>
+        2026 年の Mac では、現実的に 3 つのルートがあります。(1) PDF にすでにテキスト層がある場合は、プレビュー・メモ・Spotlight が標準で機能するので、追加のソフトは不要です。(2) スキャン PDF から段落・引用・1 つの表を抜きたいだけなら、Cheese! OCR のようなスクリーンショット OCR が最速です。(3) 検索可能なテキスト層をファイル本体に埋め込みたい場合は、オープンソースの <code>ocrmypdf</code> が最良の無料解で、コマンドラインを使いたくない方は PDFPen Pro が同じ仕事を GUI で行ってくれます。
+    </aside>
+
+    <article class="article-body">
+
+        <h2>ステップ 0: その PDF がどちらのタイプか先に見極める</h2>
+
+        <p>ツールに手を伸ばす前に、いま開いているのがどちらのタイプの PDF か 10 秒で確かめてください。最適な手段はこの判定だけで決まります。「Mac の PDF OCR は面倒」という不満のほとんどは、間違った道具を間違った種類のファイルに当てはめたことが原因です。</p>
+
+        <p>PDF は実用上、大きく 2 種類に分かれます。</p>
+
+        <ul>
+            <li><strong>テキスト層を持つネイティブ PDF。</strong>Word、Pages、LaTeX、ブラウザの「PDF として書き出し」など、元のソースが文字データだったファイルです。各文字がグリフと座標として保存されていて、ファイル内には本物のテキストが存在します。</li>
+            <li><strong>画像のみのスキャン PDF。</strong>スキャナや「Adobe Scan」のようなスマホアプリ、FAX、画像を「PDF として書き出し」したものなど。各ページは単なる画像で、ファイル内に文字データはなく、人間にとって文字に「見える」ピクセルがあるだけです。</li>
+        </ul>
+
+        <p>判定方法はシンプルで確実です。プレビューで PDF を開き、<kbd>Cmd</kbd>+<kbd>F</kbd> を押して、ページ上にはっきり見える単語(見出しでも人名でも)を検索してください。ハイライトされればネイティブ PDF で、テキストはすでに埋め込まれているので OCR は不要です。検索でヒットしないなら、それはスキャン PDF で、内容を選択・検索可能にするには OCR が必要です。</p>
+
+        <p>3 つ目のケースとして、<strong>混在 PDF</strong>があります。大半のページはネイティブのテキストでも、間に挟まったページ(署名済み契約書、スキャンされた付録、FAX のカバーシートなど)が画像、というパターンです。Cmd+F で検索できる単語と、できない単語が混じります。本記事のどの方法でもこのケースは扱えますが、特に ocrmypdf には <code>--skip-text</code> というフラグがあり、既存のテキスト層を保ったままスキャンページだけを OCR してくれます。</p>
+
+        <h2>方法 1: プレビュー / メモ(すでにテキスト層がある場合)</h2>
+
+        <p>Cmd+F で見つかれば、サードパーティ製のツールは要りません。macOS は長年ネイティブ PDF を上手に扱ってきました。プレビューはカーソルでテキストを選択でき、コピーもページをまたいだ選択もできます。Spotlight は標準で PDF 内のテキストをインデックス化するので、メニューバーから契約書の条文の一部を探し当てられます。メモに貼ればきれいに入ります。Pages にドラッグすればレイアウトもおおむね保たれます。</p>
+
+        <p>ネイティブ PDF で別のツールに切り替えたくなる唯一の状況は、テキスト層は技術的に存在するけれど壊れているケースです。古い PDF では文字マッピングが破損していて、コピー&ペーストすると文字化けすることがあります。その場合はスキャン扱いにして、後述の方法で OCR をやり直したほうが速いです。</p>
+
+        <h3>プレビューの Live Text は PDF にも使える?</h3>
+
+        <p>macOS 13 Ventura 以降、Apple の Live Text(テキスト認識)は PDF ページにも使えるようになりました。プレビューでスキャン PDF を開き、テキストの上にカーソルを置くと I ビームに変わり、ドラッグで選択・コピーできます。これは本当に便利な機能で、「スキャンから 1 文だけ拾いたい」場面ではよく機能します。</p>
+
+        <p>ただし、正直に書いておきたい制約が 2 つあります。1 つ目、Live Text は今見えているページに対して動作するので、200 ページのスキャン報告書を一括処理したり、文書全体を検索可能にしたりはできません。2 つ目、Live Text は認識結果を PDF ファイルに書き戻しません。文書を閉じる、同僚に送る、別の Mac で開く、いずれの場合も Cmd+F は依然として効きません。Live Text はビューワー側の機能であって、ファイルを書き換える機能ではありません。</p>
+
+        <h2>方法 2: スニペット抽出には Cheese! OCR</h2>
+
+        <p>これは私たちの自社ツールなので、最初に正直なことを書きます。Cheese! OCR は PDF 全体を処理するためのツールではありません。テキスト層をファイルに書き戻すこともしませんし、500 ページを夜通しバッチ処理することもしません。それが必要なら方法 3 に飛んでください。</p>
+
+        <p>Cheese! OCR が Mac で最速になるのは、実務でいちばん頻度の高い別のシーンです。<strong>画面にスキャン PDF を開いていて、その中から段落、引用、表、コードスニペットを 1 つ抜きたいだけ</strong>のとき。例えば、レビュー論文を書いていて 1970 年代に Scan された PDF から特定の一節を引用したい。業者から送られてきた契約書がスキャンで、損害賠償条項を Slack のスレッドに貼り付けたい。論文の一段落を翻訳ツールに突っ込みたい。あるいは漫画やビジネス文書のスキャン、駅看板のキャプチャから日本語を抜きたい。</p>
+
+        <p>流れはこうです。</p>
+
+        <ol>
+            <li>グローバルホットキー(デフォルトは <kbd>⇧</kbd>+<kbd>⌘</kbd>+<kbd>E</kbd>)を押します。</li>
+            <li>スクリーンショットを撮るのと同じ要領で、ページ上のテキスト部分を矩形で囲みます。</li>
+            <li>認識結果がクリップボードに入ります。あとはどこにでも貼れます。</li>
+        </ol>
+
+        <p>スニペット用途で他の方法より速い理由は 3 つあります。ホットキーがグローバルなのでアプリを切り替える必要がない。認識は Apple Vision フレームワークで端末上で完結するので、ネットワーク往復もなく、機密ページがアップロードされる経路もない。結果が直接クリップボードに入るので「テキストファイルとして保存して開き直す」中間ステップが要らない。</p>
+
+        <p>プライバシーの点は具体的です。Cheese! OCR は App Store のサンドボックスでネットワーク権限を一切要求していません。「送信しない約束」ではなく、OS レベルでネットワーク接続そのものが不可能になっています。契約書、医療記録、社内資料といったページ単位の機密が混じる現場では、「理論上は外に出せる」ツールとの差は実際的です。</p>
+
+        <p>判断基準はシンプル。作業の単位が「スニペット」なら最速。作業の単位が「文書 1 本まるごと」なら、次の方法へ。</p>
+
+        <h2>方法 3: ocrmypdf で文書全体を OCR(無料・OSS)</h2>
+
+        <p>PDF 全体を検索可能にしたい——どのページも選択可能、どの単語も Cmd+F や Spotlight で見つかる——という場合、Mac での最良の無料解は <a href="https://github.com/ocrmypdf/OCRmyPDF" rel="noopener">ocrmypdf</a> です。Tesseract をラップしたオープンソースで、傾き補正やノイズ除去などの前処理を済ませた上で、PDF のコピーに整理されたテキスト層を書き戻してくれます。</p>
+
+        <p>Homebrew が入っていれば、インストールは 1 行で済みます。</p>
+
+        <pre><code>brew install ocrmypdf</code></pre>
+
+        <p>もっとも基本的な使い方は引数 2 つ — 入力ファイルと出力ファイル — だけです。</p>
+
+        <pre><code>ocrmypdf input.pdf output.pdf</code></pre>
+
+        <p>英語のみの PDF ならこれで完了です。出力ファイルは見た目は入力と同じで、各ページの裏に不可視のテキスト層が乗っています。これでプレビューで Cmd+F が効き、コピーペーストもでき、同僚に送っても向こうで検索できます。元ファイルには手を加えません。</p>
+
+        <h3>多言語・非英語の PDF</h3>
+
+        <p>非英語の文書には <code>-l</code>(または <code>--language</code>)で言語コードを指定します。Tesseract は 3 文字コードを使います。</p>
+
+        <pre><code>ocrmypdf -l eng+chi_sim+jpn+kor input.pdf output.pdf</code></pre>
+
+        <p>プラスを使えば複数言語をスタックできるので、英日混在の学術 PDF や、引用が複数言語をまたぐ文書、漢字・かな・英字が一緒に出てくるビジネス文書に向きます。対応する Tesseract 言語データのインストールが必要で、Homebrew なら <code>brew install tesseract-lang</code> でだいたいの言語が揃います。</p>
+
+        <h3>実務で使うフラグ</h3>
+
+        <ul>
+            <li><code>--skip-text</code> — すでにテキスト層があるページはスキップし、スキャンのページだけを OCR。混在 PDF の正解。</li>
+            <li><code>--rotate-pages</code> — 横向き・上下逆のスキャンを自動検出して回転。</li>
+            <li><code>--deskew</code> — 少し傾いたスキャンをまっすぐに直す。認識精度が目に見えて上がります。</li>
+            <li><code>--clean</code> — OCR 前にページ画像のノイズ除去。古い・低画質スキャンに有効。</li>
+            <li><code>--output-type pdfa</code> — PDF/A 形式で出力。法務・機関アーカイブ用途で求められることがあります。</li>
+        </ul>
+
+        <p>ocrmypdf の代償はコマンドラインであることです。Terminal に抵抗がない方には、Mac で文書全体を OCR する最速・最クリーン・最もプライバシーに優しい方法です。<code>brew install</code> がよく分からないなら、方法 4 へ進んでください。</p>
+
+        <h2>方法 4: PDFPen Pro などの GUI 製品</h2>
+
+        <p>コマンドラインではなく GUI で完結させたい方には、Smile Software の PDFPen Pro が Mac の定番です。スキャン PDF を開き、OCR を実行し、認識テキストを編集して、検索可能な PDF として保存——全部、ふつうの Mac アプリの UI で完結します。価格は買い切りで歴史的に 100 ドル前後を上下しています。バージョンや更新ライセンスで変動するので、購入前に公式の最新価格を確認するのが無難です。</p>
+
+        <p>類似製品としては Nitro PDF Pro、Readdle の PDF Expert(OCR は有料アドオン)、ABBYY FineReader for Mac(より高機能・高価格、研究やアーカイブ用途で選ばれがち)があります。やることは「PDF を開く → OCR を押す → テキスト層付きで保存」と大同小異で、有料なのは Terminal を開きたくない層が顧客だからです。</p>
+
+        <p>判断のコツ。四半期に一度しか OCR しないなら、ocrmypdf は学習コスト的に過剰で、PDFPen はエディタ機能をついでに使えるので過剰にはなりません。週に何度も OCR する業務なら、GUI ツールが省く時間がライセンス代を上回ります。</p>
+
+        <h2>Adobe Acrobat について</h2>
+
+        <p>Acrobat Pro は歴史的に既定の選択肢で、いまでも普通に動きます。それでも本記事で先頭に置いていない理由は、サブスクリプション制(プランにより月額 20 ドル前後〜)であること、OCR の経路によっては Adobe のクラウドサービスを通る場合があること、そして「スキャン PDF を検索可能にする」という単一目的に対して ocrmypdf 比でオーバースペックだからです。ocrmypdf は無料・ローカル動作・結果も同等以上です。</p>
+
+        <p>すでにフォーム入力、複雑な編集、企業コンプライアンスのために Acrobat に課金しているなら、その OCR で十分で、追加のソフトは不要です。<em>OCR のためだけに</em> Acrobat を契約するか迷っているなら、やめておいたほうが良いです。ocrmypdf や PDFPen Pro のほうが安く済みます。</p>
+
+        <h2>判断マトリクス</h2>
+
+        <p>ここまでを 1 枚にまとめます。</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>方法</th>
+                    <th>得意な場面</th>
+                    <th>費用</th>
+                    <th>プライバシー</th>
+                    <th>速度</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>プレビュー / メモ</td>
+                    <td>テキスト層がすでにあるネイティブ PDF</td>
+                    <td>OS 標準・無料</td>
+                    <td>完全ローカル</td>
+                    <td>即時</td>
+                </tr>
+                <tr>
+                    <td>Cheese! OCR</td>
+                    <td>スキャン PDF からスニペット・引用・表を抜く</td>
+                    <td>$5.99 買い切り</td>
+                    <td>オンデバイス、ネットワーク権限ゼロ</td>
+                    <td>1 件あたり数秒</td>
+                </tr>
+                <tr>
+                    <td>ocrmypdf</td>
+                    <td>文書全体の検索可能化、バッチ処理</td>
+                    <td>無料・OSS</td>
+                    <td>完全ローカル</td>
+                    <td>遅め(全ページ処理)</td>
+                </tr>
+                <tr>
+                    <td>PDFPen Pro 系</td>
+                    <td>Terminal を使わない全文 OCR</td>
+                    <td>約 $100+ 買い切り(変動あり)</td>
+                    <td>完全ローカル</td>
+                    <td>ocrmypdf と同程度</td>
+                </tr>
+                <tr>
+                    <td>Adobe Acrobat Pro</td>
+                    <td>すでに別目的で契約済み</td>
+                    <td>月額 $20〜</td>
+                    <td>混在(機能によりクラウド)</td>
+                    <td>同程度</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>選び方を 1 段落で</h2>
+
+        <p>まず Cmd+F を試す。見つかればプレビューで終わり。見つからなければ、必要なのはスニペットか文書全体か。スニペットなら Cheese! OCR、文書全体で Terminal が苦でなければ ocrmypdf、文書全体で GUI を望むなら PDFPen Pro、すでに Acrobat を契約しているなら Acrobat、OCR のためだけに Acrobat 契約を検討中なら——やめておく。</p>
+
+        <p>多くの方は最終的にこの中の 2 つを併用しています。月 1 のアーカイブ用に ocrmypdf、毎日の「この PDF から 1 段落欲しい」にスクリーンショット OCR、というように。あるいは大物に PDFPen、たまの単発に Live Text、という組み合わせ。これらは競合ではなく補完関係にあります。</p>
+
+        <p>個別の方法についてさらに気になる点があれば、よく聞かれる質問を下の FAQ にまとめました。</p>
+
+    </article>
+
+    <section class="article-faq">
+        <h2>よくある質問</h2>
+        <details class="faq-item">
+            <summary>この PDF はなぜテキストを選択できないのですか？</summary>
+            <div class="answer">
+                <p>ほぼ確実にスキャン PDF です。各ページが画像として保存されていて、ファイル内にテキストデータが存在しません。最も速い確認方法は Cmd+F で、画面上にはっきり見える単語を検索してみることです。ヒットしなければテキスト層がないので、選択・コピー・検索を行うには先に OCR をかける必要があります。</p>
+            </div>
+        </details>
+        <details class="faq-item">
+            <summary>Cheese! OCR は PDF ファイルそのものを書き換えますか？</summary>
+            <div class="answer">
+                <p>いいえ。Cheese! OCR は画面レベルで動作します。ホットキーを押して画面上の領域を矩形で囲むと、認識結果がクリップボードに入る仕組みです。ディスク上の PDF ファイルが開かれたり書き換えられたりアップロードされたりすることはありません。さらに App Store のサンドボックスでネットワーク権限が一切付与されていないため、技術的にもアップロードは不可能です。</p>
+            </div>
+        </details>
+        <details class="faq-item">
+            <summary>ocrmypdf は多言語混在の PDF にも対応できますか？</summary>
+            <div class="answer">
+                <p>対応できます。Tesseract の言語コードをプラスでつないで <code>-l</code> に渡してください。例えば <code>-l eng+chi_sim+jpn+kor</code> のように指定します。各言語パックがインストールされている必要があり、Homebrew であれば <code>brew install tesseract-lang</code> で主要な言語が揃います。多く詰め込みすぎると速度も精度も落ちるので、実際にその文書で出てくる言語だけを指定するのがおすすめです。</p>
+            </div>
+        </details>
+        <details class="faq-item">
+            <summary>プレビューの Live Text は PDF 全体の OCR にも使えますか？</summary>
+            <div class="answer">
+                <p>PDF 全体には向きません。Live Text は今表示しているページ上の文字を認識する機能で、その認識結果を PDF ファイルに書き戻したりはしません。ファイルを閉じたり同僚に送ったりすると、Cmd+F は相変わらず効きません。文書全体を恒久的に検索可能にしたい場合は、ocrmypdf や PDFPen Pro のようにテキスト層をファイルに埋め込むツールを使ってください。</p>
+            </div>
+        </details>
+        <details class="faq-item">
+            <summary>クラウド OCR サービスのほうが速いことはありますか？</summary>
+            <div class="answer">
+                <p>あります。とくに巨大な PDF を古めの Mac で処理する場合、クラウド GPU のほうがローカル処理より速いことは珍しくありません。代償は、PDF の全ページが手元の Mac から外に出ることです。契約書、医療記録、NDA 付きの社内資料など、機密性のある文書については、ocrmypdf や Cheese! OCR のようにファイルを Mac から出さない方法のほうが安心です。「他人にメールで送るのをためらう文書」はだいたいこの基準で扱うのが妥当です。</p>
+            </div>
+        </details>
+    </section>
+
+    <section class="article-cta">
+        <div class="cta-card">
+            <h2>Cheese! OCR を試す</h2>
+            <p>日々の PDF まわりの困り事が「この段落をすぐクリップボードに入れたい」なら、まさにそのために作ったアプリです。$5.99 買い切り、完全オンデバイス、サブスクなし、アップロードなし。</p>
+            <a href="https://apps.apple.com/app/cheese-ocr/id6760889131" class="cta-button">Mac App Store で試す</a>
+        </div>
+    </section>
+
+    <section class="article-related">
+        <h2>関連記事</h2>
+        <div class="related-grid">
+            <a href="../cheese-ocr-vs-live-text/" class="related-card">
+                <h3>Cheese! OCR vs macOS テキスト認識（Live Text）: 標準機能では足りない場面</h3>
+                <p>Live Text は Apple 純正アプリのなかでは便利。ホットキー駆動の OCR ツールが効く 4 つのシーンを整理します。</p>
+            </a>
+            <a href="../extract-text-from-screenshot-on-mac/" class="related-card">
+                <h3>Mac でスクリーンショットからテキストを抽出する方法（3 つの方法を比較）</h3>
+                <p>Live Text、Cmd+Shift+5、Cheese! OCR の 3 つの方法。それぞれをいつ使うべきか。</p>
+            </a>
+            <a href="../how-on-device-ocr-works/" class="related-card">
+                <h3>オンデバイス OCR はどう動くのか：Apple Vision Framework 解説</h3>
+                <p>新しめの Mac でなぜローカル OCR がクラウドより速くなりがちなのか。Apple Vision の中身を解説します。</p>
+            </a>
+        </div>
+    </section>
+
+    <footer class="article-footer">
+        <a href="../../">ホーム</a>
+        <a href="../../../privacy.html">プライバシーポリシー</a>
+        <a href="mailto:nicholaslck@icloud.com">お問い合わせ</a>
+        <p>&copy; 2026 Cheese! OCR. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

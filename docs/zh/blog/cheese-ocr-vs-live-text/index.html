@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
+
+    <title>Cheese! OCR vs macOS 实况文本：什么时候系统自带的不够用 — Cheese! OCR 博客</title>
+    <meta name="description" content="对比 macOS 实况文本与 Cheese! OCR：实况文本擅长哪些场景、在哪 4 种情况下力不从心，以及如何根据自己的工作流挑选。">
+
+    <link rel="canonical" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/cheese-ocr-vs-live-text/">
+    <link rel="alternate" hreflang="en" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/cheese-ocr-vs-live-text/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/cheese-ocr-vs-live-text/">
+    <link rel="alternate" hreflang="ja" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/cheese-ocr-vs-live-text/">
+    <link rel="alternate" hreflang="ko" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ko/blog/cheese-ocr-vs-live-text/">
+    <link rel="alternate" hreflang="x-default" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/cheese-ocr-vs-live-text/">
+
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../../../blog/article.css">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Cheese! OCR">
+    <meta property="og:title" content="Cheese! OCR vs macOS 实况文本：什么时候系统自带的不够用">
+    <meta property="og:description" content="对比 macOS 实况文本与 Cheese! OCR：实况文本擅长哪些场景、在哪 4 种情况下力不从心，以及如何根据自己的工作流挑选。">
+    <meta property="og:url" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/cheese-ocr-vs-live-text/">
+    <meta property="og:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="article:published_time" content="2026-04-25">
+    <meta property="article:author" content="Cheese! OCR Team">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cheese! OCR vs macOS 实况文本：什么时候系统自带的不够用">
+    <meta name="twitter:description" content="实况文本在哪 4 个场景力不从心，以及如何挑选合适的截图识字工具。">
+    <meta name="twitter:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Cheese! OCR vs macOS 实况文本：什么时候系统自带的不够用",
+      "description": "对比 macOS 实况文本与 Cheese! OCR：实况文本擅长哪些场景、在哪 4 种情况下力不从心，以及如何根据自己的工作流挑选。",
+      "author": {
+        "@type": "Organization",
+        "name": "Cheese! OCR",
+        "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Cheese! OCR",
+        "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+      },
+      "datePublished": "2026-04-25",
+      "dateModified": "2026-04-25",
+      "image": "https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png",
+      "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/cheese-ocr-vs-live-text/",
+      "inLanguage": "zh-Hans",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/cheese-ocr-vs-live-text/"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "inLanguage": "zh-Hans",
+      "mainEntity": [
+        { "@type": "Question", "name": "实况文本和 Cheese! OCR 可以一起用吗？", "acceptedAnswer": { "@type": "Answer", "text": "可以，两者完全不冲突。我们身边很多人会一直开着实况文本应付照片和 Safari，遇到第三方应用或视频画面再按 Cheese! OCR 的快捷键。两者底层都是 Apple Vision，识别准确率接近，差别只在覆盖范围。" } },
+        { "@type": "Question", "name": "实况文本在 Chrome 里能用吗？", "acceptedAnswer": { "@type": "Answer", "text": "不能直接用。实况文本接入的是 WebKit，也就是 Safari 用的内核。Chrome、Edge、Firefox 用的是自己的渲染引擎，因此实况文本无法识别它们里面的图片和暂停的视频帧。截图识字工具不挑应用，按快捷键截就完事，所以这种场景反而更顺手。" } },
+        { "@type": "Question", "name": "Cheese! OCR 会比实况文本慢吗？", "acceptedAnswer": { "@type": "Answer", "text": "两者都在本地跑 Apple Vision，纯识别速度差不多。实际感受要看流程：实况文本要把鼠标停到图片上再选字，Cheese! OCR 要按快捷键再框选。识别一两个字时实况文本通常更快；要识别一整段，或者源根本不让选字，Cheese! OCR 反而整体更快。" } },
+        { "@type": "Question", "name": "两个工具能识别手写字吗？", "acceptedAnswer": { "@type": "Answer", "text": "Apple Vision 对印刷体很强，但手写识别相对有限，效果还跟语种有关。英文工整的手写常常能识别；草书、密集笔记或非拉丁手写在两个工具里都不太可靠，因为底层是同一个模型。" } },
+        { "@type": "Question", "name": "Cheese! OCR 需要给什么权限？", "acceptedAnswer": { "@type": "Answer", "text": "需要「屏幕录制」权限，因为要捕获你框选的区域。第一次按快捷键时 macOS 会提示授权。应用沙盒里没有任何网络权限，可以在 Mac App Store 的隐私报告里核对，所以授权屏幕录制并不意味着画面会离开你的 Mac。" } }
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Cheese! OCR", "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/" },
+        { "@type": "ListItem", "position": 2, "name": "博客", "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Cheese! OCR vs macOS 实况文本：什么时候系统自带的不够用" }
+      ]
+    }
+    </script>
+</head>
+<body>
+
+    <nav class="article-nav">
+        <a href="../" class="back-link">← 博客</a>
+        <div class="lang-switcher">
+            <a href="/OCR_LLM/blog/cheese-ocr-vs-live-text/" hreflang="en">EN</a>
+            <a href="/OCR_LLM/zh/blog/cheese-ocr-vs-live-text/" aria-current="page" hreflang="zh-Hans">中文</a>
+            <a href="/OCR_LLM/ja/blog/cheese-ocr-vs-live-text/" hreflang="ja">日本語</a>
+            <a href="/OCR_LLM/ko/blog/cheese-ocr-vs-live-text/" hreflang="ko">한국어</a>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <h1>Cheese! OCR vs macOS 实况文本：什么时候系统自带的不够用</h1>
+        <p class="article-meta">
+            <time datetime="2026-04-25">2026 年 4 月 25 日</time>
+            · 9 分钟阅读
+        </p>
+    </header>
+
+    <aside class="tldr">
+        <strong>速读</strong>
+        macOS 实况文本（Live Text）在苹果自家应用里非常好用——照片、预览、Safari、备忘录——而且免费。但碰到第三方应用（微信、钉钉、飞书、Slack、Telegram 这类的图片预览）、视频会议窗口、部分受保护的 PDF，以及 Safari 之外浏览器里的视频帧时，它经常派不上用场。像 Cheese! OCR 这样的全局热键截图识字工具，底层用的是同一个 Apple Vision 引擎，但能识别屏幕上任何看得见的像素。能用实况文本的时候用，用不了的时候按快捷键。
+    </aside>
+
+    <article class="article-body">
+        <p>用 Mac 时间稍长的人，多半都见过实况文本——只是不一定知道它叫什么名字。把鼠标移到照片里的招牌上、移到预览里那张被同事丢过来的截图上，光标就变成了文字光标，能选、能复制、然后接着干活。这种功能"用着用着就忘了它存在"，对一个系统功能来说是最高的评价。</p>
+
+        <p>那为什么还要写一篇对比？因为只要你开始用 OCR 处理工作内容——从微信里别人发来的截图里抠一段话、把腾讯会议里的某张幻灯片里的字复制出来、把 B 站某个 Chrome 标签页里暂停的代码教程截下来——你就会很快撞上实况文本的边界。这些边界并不是 bug，而是它当初接入 macOS 的方式所带来的自然结果。搞清楚边界在哪，你就知道自己是该止步于系统自带的工具，还是有必要再装一个补位的。</p>
+
+        <p>这篇是我们团队对两个工具比较坦白的看法。我们做的是 Cheese! OCR，立场上肯定有偏向。但我们也尽量把"实况文本就是更合适"的情况讲清楚——含糊带过只会浪费你的时间。</p>
+
+        <h2>实况文本擅长什么</h2>
+
+        <p>苹果在 macOS 12 Monterey（2021 年）里引入实况文本，之后几代系统不断打磨。它的核心逻辑是：凡是由苹果自家视图渲染的图片——比如照片里的图、预览里的页面、QuickTime 里的画面、Safari 里的图片——都可以原地分析，文字直接变成可选的，就像本来就是文本一样。整个过程不需要你主动触发，鼠标接近图片时就在后台启动。</p>
+
+        <p>它擅长的场景很集中，也很顺手：</p>
+
+        <ul>
+            <li><strong>照片 App</strong>：你拍过的任何带字的照片——发票、白板、名片、路牌——都能搜、能选、能复制。</li>
+            <li><strong>预览 App</strong>：打开图片（PNG、JPEG、HEIC）就能直接选字。原生 PDF 自带文字层不用说，扫描版 PDF 多数情况下实况文本也能识别。</li>
+            <li><strong>Safari</strong>：暂停的视频帧、文章里的图片、SVG 渲染的内容，通常都能选字。</li>
+            <li><strong>备忘录、邮件</strong>：贴一张图进去，里面的字就能选。</li>
+            <li><strong>快速查看</strong>：在访达里按空格的悬浮预览也支持实况文本。</li>
+        </ul>
+
+        <p>对一个普通用户来说，这些就够了。如果你日常的 OCR 需求只是"偶尔从照片里抠个电话号码"，真不需要再装别的工具。</p>
+
+        <h2>实况文本力不从心的 4 个场景</h2>
+
+        <p>但只要你开始跨应用处理大量文字，这 4 个空缺就会接连冒出来。</p>
+
+        <h3>1. 第三方应用里的图片预览</h3>
+
+        <p>实况文本是接到 AppKit 的图片渲染管线上的，但很多第三方应用用的是自己写的图片控件，没接进系统的文字选择层。微信和企业微信的图片查看器、钉钉和飞书里的图片预览、Slack 和 Discord 的灯箱、Telegram 的媒体预览、Notion 内嵌图片，以及一堆企业内部应用，渲染图片的方式都绕开了实况文本。结果是：你看着那段字，选不动。</p>
+
+        <p>系统内的曲线救国方法是"把图保存下来用预览打开"。一次还行，作为日常习惯就太啰嗦了：右键、保存到下载、找文件、打开、再选字。这一通操作下来，按两次截图识字快捷键早搞完了。</p>
+
+        <h3>2. 视频会议</h3>
+
+        <p>腾讯会议、飞书会议、Zoom、Microsoft Teams、Webex，以及在 Chrome 里跑的 Google Meet，经常会给会议窗口加上屏幕保护或类似 DRM 的标记。苹果的截图机制和实况文本在不少配置下都会尊重这些标记。结果就是：你看着幻灯片上的项目符号，怎么都选不动；有时候直接截屏甚至会出来一张黑图。</p>
+
+        <p>会议软件这么做并不是恶意，而是面向敏感分享内容的"默认隐私"选择。但对那种再普通不过的需求——"我就想把这页幻灯片上的链接复制下来"——它就是一堵墙。一个走系统屏幕录制 API 的截图识字工具，多数情况下能把当前可见的画面捕获下来再交给 Apple Vision 识别，具体效果取决于源应用画帧的方式。</p>
+
+        <h3>3. 受保护的 PDF 和某些公司分发的文档</h3>
+
+        <p>带文字层的原生 PDF 最简单，任何工具都能复制，实况文本当然也能。扫描版 PDF 麻烦一点，但预览里的实况文本通常也能搞定。真正讨厌的是中间那部分情况：</p>
+
+        <ul>
+            <li>设了密码、允许查看但禁用复制和实况文本的 PDF。</li>
+            <li>少数出版商和公司文档系统下发的带 DRM 的 PDF。</li>
+            <li>某些专门阅读器在应用层禁用了文字选择，即使 PDF 本身是原生的。</li>
+        </ul>
+
+        <p>这种"允许你读但不允许你选字"的场景下，OCR 是个合理的解决方案：你不是在绕过访问控制，只是在绕过 UI 层的复制限制——文档本来就在你手里。Cheese! OCR 捕获的是已经渲染出来的像素，相当于你用手把那段字打字打出来一样。</p>
+
+        <h3>4. Safari 之外的视频画面</h3>
+
+        <p>实况文本在 Safari 暂停视频里挺好用，但在 Chrome、Edge、Firefox 里就不行了——这些浏览器用的是自己的渲染引擎，没把视频帧暴露给 AppKit 的实况文本钩子。同样的道理也适用于 IINA、VLC 和大多数本地播放器。如果你在 Chrome 上看 B 站、YouTube 或某门课程的录播，老师在终端里敲了一行命令，你只能盯着屏幕一个字一个字地敲下来。</p>
+
+        <p>问题相同，解法也相同：截图识字工具不在乎像素是哪个应用画上去的。</p>
+
+        <h2>Cheese! OCR 是怎么补这几个口子的</h2>
+
+        <p>Cheese! OCR 是个菜单栏应用，只做一件事。按下全局快捷键（默认 ⇧⌘E，可改）。屏幕变暗，光标变成十字，你拖一个矩形把要识别的区域框出来，识别后的文字直接进剪贴板，粘到任何地方就行。整套动作熟练之后大概 2 秒。</p>
+
+        <p>有几个细节对这次对比比较关键：</p>
+
+        <ul>
+            <li><strong>同一个 Apple Vision 引擎</strong>。Cheese! OCR 用的就是 Vision 框架——和实况文本是同一条流水线。印刷体识别准确率接近。我们没有在偷偷训练什么自家模型来"打败"苹果，只是把苹果的模型套了一个不同的工作流。</li>
+            <li><strong>天生跨应用</strong>。输入永远是"屏幕上的像素"，所以来源是微信、钉钉、腾讯会议、IINA，还是 Citrix、远程桌面，都不影响。看得见就识得到。</li>
+            <li><strong>全程在本地</strong>。应用沙盒里没有任何网络权限，这一点可以在 Mac App Store 的应用隐私页面里核对。截图永远不出 Mac。</li>
+            <li><strong>历史记录可搜索</strong>。每次识别都会带时间戳存到本地。你一个小时前粘到某个聊天里的段落丢了，到历史里搜两个关键字就能翻回来。</li>
+            <li><strong>多语言默认开启</strong>。英文、简体中文、日语、韩语开箱即识，不用为每张截图切语言。</li>
+        </ul>
+
+        <p>每一项单看都不算什么。合在一起，刚好把上面那 4 个场景填掉，而且不需要切应用、切流程。</p>
+
+        <h2>什么时候实况文本就够了</h2>
+
+        <p>有些情况确实没必要再装第二个工具，明确说出来比较省时间：</p>
+
+        <ul>
+            <li><strong>你 OCR 的频率很低，且只在苹果自家应用里用</strong>。照片、预览、Safari、备忘录。如果你一周也就用上几次，实况文本免费、即开即用，最划算。</li>
+            <li><strong>你需要的是图内"逐词选中"，不是整段复制</strong>。实况文本可以让你在图片里像在文档里一样精确地选某几个字，Cheese! OCR 的逻辑是框选一个区域，把里面所有字都给你。</li>
+            <li><strong>你不希望装任何第三方应用</strong>。这是合理的偏好。实况文本是系统自带的，苹果签的，跟着系统更新。</li>
+            <li><strong>你需要的是辅助功能层面的实时识别</strong>。实况文本和 VoiceOver 等辅助功能集成得很深，这跟一个截图识字应用属于不同范畴。</li>
+        </ul>
+
+        <p>如果以上情况是你的日常，那就别再多看了，用你已经有的就行。我们说真的。</p>
+
+        <h2>对比表</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>维度</th>
+                    <th>macOS 实况文本</th>
+                    <th>Cheese! OCR</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>价格</td>
+                    <td>免费，macOS 12+ 自带</td>
+                    <td>5.99 美元买断，无订阅</td>
+                </tr>
+                <tr>
+                    <td>覆盖范围</td>
+                    <td>苹果自家应用与 WebKit 视图</td>
+                    <td>屏幕上任何看得见的内容</td>
+                </tr>
+                <tr>
+                    <td>触发方式</td>
+                    <td>把鼠标移到图片上选字</td>
+                    <td>全局快捷键 + 框选</td>
+                </tr>
+                <tr>
+                    <td>语言</td>
+                    <td>Apple Vision（按需启用多语言）</td>
+                    <td>英 / 简中 / 日 / 韩 自动识别</td>
+                </tr>
+                <tr>
+                    <td>历史记录</td>
+                    <td>无</td>
+                    <td>本地，可搜索</td>
+                </tr>
+                <tr>
+                    <td>识别引擎</td>
+                    <td>Apple Vision，本地</td>
+                    <td>Apple Vision，本地</td>
+                </tr>
+                <tr>
+                    <td>网络</td>
+                    <td>不联网</td>
+                    <td>沙盒无网络权限，可核查</td>
+                </tr>
+                <tr>
+                    <td>最适合</td>
+                    <td>日常、应用内零星抓字</td>
+                    <td>跨应用、高频、批量识字</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>简单的判断框架</h2>
+
+        <p>三条规则覆盖了绝大多数情况。</p>
+
+        <ol>
+            <li>把鼠标停到图上，光标变成文字光标——直接用实况文本。它已经在那里等你了。</li>
+            <li>来源是第三方应用、视频会议、Safari 之外的浏览器，或者受保护的文档——按快捷键。</li>
+            <li>如果一周里要这么干很多次，把快捷键设成顺手的位置，让肌肉记忆替你做决定。一两天之后两个工具的切换就会变成下意识的动作。</li>
+        </ol>
+
+        <p>实际工作中我们两个一直都开着。实况文本悄悄地处理那些"老老实实在苹果应用里"的情况，Cheese! OCR 处理那些不老实的。如果你想试试后半段这个组合，可以去 Mac App Store 看看这个应用。FAQ 下面我们也挑了几篇相关文章——尤其是 PDF 那篇和截图那篇，会把这里讲到的思路再展开一层。</p>
+    </article>
+
+    <section class="article-faq">
+        <h2>常见问题</h2>
+        <details class="faq-item">
+            <summary>实况文本和 Cheese! OCR 可以一起用吗？</summary>
+            <div class="answer">可以，两者完全不冲突。我们身边很多人会一直开着实况文本应付照片和 Safari，遇到第三方应用或视频画面再按 Cheese! OCR 的快捷键。两者底层都是 Apple Vision，识别准确率接近，差别只在覆盖范围。</div>
+        </details>
+        <details class="faq-item">
+            <summary>实况文本在 Chrome 里能用吗？</summary>
+            <div class="answer">不能直接用。实况文本接入的是 WebKit，也就是 Safari 用的内核。Chrome、Edge、Firefox 用的是自己的渲染引擎，因此实况文本无法识别它们里面的图片和暂停的视频帧。截图识字工具不挑应用，按快捷键截就完事，所以这种场景反而更顺手。</div>
+        </details>
+        <details class="faq-item">
+            <summary>Cheese! OCR 会比实况文本慢吗？</summary>
+            <div class="answer">两者都在本地跑 Apple Vision，纯识别速度差不多。实际感受要看流程：实况文本要把鼠标停到图片上再选字，Cheese! OCR 要按快捷键再框选。识别一两个字时实况文本通常更快；要识别一整段，或者源根本不让选字，Cheese! OCR 反而整体更快。</div>
+        </details>
+        <details class="faq-item">
+            <summary>两个工具能识别手写字吗？</summary>
+            <div class="answer">Apple Vision 对印刷体很强，但手写识别相对有限，效果还跟语种有关。英文工整的手写常常能识别；草书、密集笔记或非拉丁手写在两个工具里都不太可靠，因为底层是同一个模型。</div>
+        </details>
+        <details class="faq-item">
+            <summary>Cheese! OCR 需要给什么权限？</summary>
+            <div class="answer">需要「屏幕录制」权限，因为要捕获你框选的区域。第一次按快捷键时 macOS 会提示授权。应用沙盒里没有任何网络权限，可以在 Mac App Store 的隐私报告里核对，所以授权屏幕录制并不意味着画面会离开你的 Mac。</div>
+        </details>
+    </section>
+
+    <section class="article-cta">
+        <div class="cta-card">
+            <h2>试试 Cheese! OCR</h2>
+            <p>一个快捷键，框选一下，文字就到剪贴板。买断 5.99 美元，本地识别，看得见就识得到。</p>
+            <a href="https://apps.apple.com/app/cheese-ocr/id6760889131" class="cta-button">在 Mac App Store 试用 Cheese! OCR</a>
+        </div>
+    </section>
+
+    <section class="article-related">
+        <h2>相关文章</h2>
+        <div class="related-grid">
+            <a href="../how-to-ocr-pdf-on-mac/" class="related-card">
+                <h3>如何在 Mac 上 OCR 识别 PDF（2026）：原生版、扫描版、混合版完整指南</h3>
+                <p>在 Mac 上识别原生 PDF、扫描版 PDF 和受保护 PDF 的实用指南——不上传任何文件到云端。</p>
+            </a>
+            <a href="../extract-text-from-screenshot-on-mac/" class="related-card">
+                <h3>如何在 Mac 上从截图中提取文字（三种方法对比）</h3>
+                <p>实况文本、Cmd+Shift+5 浮动操作、Cheese! OCR 三种从截图取文的方法，何时用哪个最划算。</p>
+            </a>
+            <a href="../cheese-ocr-vs-text-sniper/" class="related-card">
+                <h3>Cheese! OCR 与主流 Mac OCR 工具横评（含 Text Sniper、嗨格式 OCR 等）</h3>
+                <p>Text Sniper 在哪些方面仍然领先，Cheese! OCR 在哪些方面拉开差距，以及如何根据自己的工作流挑选。</p>
+            </a>
+        </div>
+    </section>
+
+    <footer class="article-footer">
+        <a href="../../">主页</a>
+        <a href="../../../privacy.html">隐私政策</a>
+        <a href="mailto:nicholaslck@icloud.com">联系我们</a>
+        <p>&copy; 2026 Cheese! OCR. 版权所有。</p>
+    </footer>
+
+</body>
+</html>

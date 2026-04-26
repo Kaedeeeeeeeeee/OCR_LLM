@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
+
+    <title>Cheese! OCR vs macOS テキスト認識（Live Text）: 標準機能では足りない場面 — Cheese! OCR ブログ</title>
+    <meta name="description" content="macOS のテキスト認識（Live Text）と Cheese! OCR を比較。Live Text が得意な場面、苦手な 4 つのシーン、自分のワークフローでの選び方。">
+
+    <link rel="canonical" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/cheese-ocr-vs-live-text/">
+    <link rel="alternate" hreflang="en" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/cheese-ocr-vs-live-text/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/cheese-ocr-vs-live-text/">
+    <link rel="alternate" hreflang="ja" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/cheese-ocr-vs-live-text/">
+    <link rel="alternate" hreflang="ko" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ko/blog/cheese-ocr-vs-live-text/">
+    <link rel="alternate" hreflang="x-default" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/cheese-ocr-vs-live-text/">
+
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../../../blog/article.css">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Cheese! OCR">
+    <meta property="og:title" content="Cheese! OCR vs macOS テキスト認識（Live Text）: 標準機能では足りない場面">
+    <meta property="og:description" content="macOS のテキスト認識（Live Text）と Cheese! OCR を比較。Live Text が得意な場面、苦手な 4 つのシーン、自分のワークフローでの選び方。">
+    <meta property="og:url" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/cheese-ocr-vs-live-text/">
+    <meta property="og:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="article:published_time" content="2026-04-25">
+    <meta property="article:author" content="Cheese! OCR Team">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cheese! OCR vs macOS テキスト認識（Live Text）: 標準機能では足りない場面">
+    <meta name="twitter:description" content="Live Text が苦手な 4 つの場面と、ホットキー型 OCR ツールでの補い方。">
+    <meta name="twitter:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Cheese! OCR vs macOS テキスト認識（Live Text）: 標準機能では足りない場面",
+      "description": "macOS のテキスト認識（Live Text）と Cheese! OCR を比較。Live Text が得意な場面、苦手な 4 つのシーン、自分のワークフローでの選び方。",
+      "author": {
+        "@type": "Organization",
+        "name": "Cheese! OCR",
+        "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Cheese! OCR",
+        "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+      },
+      "datePublished": "2026-04-25",
+      "dateModified": "2026-04-25",
+      "image": "https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png",
+      "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/cheese-ocr-vs-live-text/",
+      "inLanguage": "ja",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/cheese-ocr-vs-live-text/"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "inLanguage": "ja",
+      "mainEntity": [
+        { "@type": "Question", "name": "Live Text と Cheese! OCR は併用できますか？", "acceptedAnswer": { "@type": "Answer", "text": "はい、競合しません。写真や Safari では Live Text を有効にしたまま、サードパーティアプリや動画フレームに当たったら Cheese! OCR のホットキーを押す、という使い分けが一般的です。どちらも内部で Apple Vision を使うため精度は同等で、違いはあくまでカバー範囲です。" } },
+        { "@type": "Question", "name": "Live Text は Chrome でも動きますか？", "acceptedAnswer": { "@type": "Answer", "text": "直接は動きません。Live Text は WebKit（Safari のエンジン）に組み込まれていて、Chrome や Firefox は独自エンジンを使うため、そこでの画像内テキストや一時停止した動画フレームには反応しません。スクリーンショット OCR ツールは描画したアプリを問わず画面のピクセルを読むので、この場面では結果的に速いです。" } },
+        { "@type": "Question", "name": "Cheese! OCR は Live Text より遅いですか？", "acceptedAnswer": { "@type": "Answer", "text": "どちらも Apple Vision をオンデバイスで動かすため、認識処理そのものの速度はほぼ同じです。体感速度はワークフロー次第です。Live Text はカーソルを画像に重ねて選択する操作、Cheese! OCR はホットキーとドラッグ。1〜2 単語なら Live Text の方が速い場面が多く、長文や選択不可な画面では Cheese! OCR の方が結果的に速くなります。" } },
+        { "@type": "Question", "name": "どちらも手書き文字を認識できますか？", "acceptedAnswer": { "@type": "Answer", "text": "Apple Vision は印刷文字には強いですが、手書き認識は限定的で言語にも依存します。丁寧で高コントラストな英文手書きは比較的読めます。崩し字や密度の高いノート、非ラテン手書きはどちらのツールでも安定しません。基盤モデルが共通だからです。" } },
+        { "@type": "Question", "name": "Cheese! OCR には特別な権限が必要ですか？", "acceptedAnswer": { "@type": "Answer", "text": "ドラッグ選択した範囲を取り込むため、画面収録の権限が必要です。初めてホットキーを押した際に macOS が許可ダイアログを出します。アプリのサンドボックスにはネットワーク権限が一切付与されていないため（Mac App Store のプライバシーレポートで確認できます）、画面収録を許可しても取得した画像が外部に送られることはありません。" } }
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Cheese! OCR", "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/" },
+        { "@type": "ListItem", "position": 2, "name": "ブログ", "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Cheese! OCR vs macOS テキスト認識（Live Text）: 標準機能では足りない場面" }
+      ]
+    }
+    </script>
+</head>
+<body>
+
+    <nav class="article-nav">
+        <a href="../" class="back-link">← ブログ</a>
+        <div class="lang-switcher">
+            <a href="/OCR_LLM/blog/cheese-ocr-vs-live-text/" hreflang="en">EN</a>
+            <a href="/OCR_LLM/zh/blog/cheese-ocr-vs-live-text/" hreflang="zh-Hans">中文</a>
+            <a href="/OCR_LLM/ja/blog/cheese-ocr-vs-live-text/" aria-current="page" hreflang="ja">日本語</a>
+            <a href="/OCR_LLM/ko/blog/cheese-ocr-vs-live-text/" hreflang="ko">한국어</a>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <h1>Cheese! OCR vs macOS テキスト認識（Live Text）: 標準機能では足りない場面</h1>
+        <p class="article-meta">
+            <time datetime="2026-04-25">2026 年 4 月 25 日</time>
+            · 9 分で読める
+        </p>
+    </header>
+
+    <aside class="tldr">
+        <strong>要約</strong>
+        macOS のテキスト認識（Live Text）は、写真・プレビュー・Safari・メモといった Apple 純正アプリの中では非常によくできていて、しかも無料です。一方、サードパーティアプリ（LINE・Slack・Discord・Notion などの画像ビューア）、ビデオ会議の画面、保護付きの PDF、Safari 以外のブラウザで一時停止した動画フレーム、といった場面では届かないことがあります。グローバルホットキー型のスクリーンショット OCR ツール、たとえば Cheese! OCR は同じ Apple Vision エンジンを使いつつ、画面に映っているピクセルなら何でも読み取れます。Live Text で済むときは Live Text、無理なときはホットキー、という使い分けで十分です。
+    </aside>
+
+    <article class="article-body">
+        <p>Mac を使っていれば、おそらく名前を意識しないまま Live Text を使ったことがあるはずです。プレビューで開いた画像や、写真 App の中の看板にマウスを重ねると、カーソルがテキストカーソルに変わって、そのまま範囲選択してコピーできる。あの体験です。気づかないうちに作業の一部になっている、というのが OS 機能としての一番の褒め言葉だと私たちは思っています。</p>
+
+        <p>では、なぜわざわざ比較記事を書くのか。それは、仕事で OCR を使い始めた瞬間に Live Text の境界線にぶつかるからです。Slack のスクリーンショットから一段落抜き出したい、Zoom のスライドの一行をコピーしたい、Chrome で一時停止した YouTube のチュートリアルからコマンドを取りたい — どれも普通の作業ですが、Live Text だけだと意外と早く詰まります。境界線はバグではなく、Live Text が macOS に組み込まれた時点で必然的に決まったものです。それを理解すれば、標準機能だけで足りるのか、もう一つツールを足す価値があるのかが判断できます。</p>
+
+        <p>この記事は私たち Cheese! OCR チームの率直な見方です。立場がある以上、当然偏りはあります。ただ「Live Text の方が向いている」と言える場面ははっきりそう書きます。曖昧にしても読む側の時間を奪うだけなので。</p>
+
+        <h2>Live Text が得意な場面</h2>
+
+        <p>macOS 12 Monterey（2021 年）で導入された Live Text は、その後のメジャーアップデートで磨かれてきました。考え方はシンプルで、Apple のビューが描画する画像 — 写真の画像、プレビュー上のページ、QuickTime のフレーム、Safari 上の画像 — であれば、その場で内容を解析してテキストを選択可能にする、というものです。明示的なトリガーはなく、画像にカーソルが触れた瞬間にバックグラウンドで動きます。</p>
+
+        <p>得意な領域は予想通り、そして快適です。</p>
+
+        <ul>
+            <li><strong>写真 App</strong>: 過去に撮った写真の中の文字 — レシート、ホワイトボード、名刺、駅看板、商店街の張り紙 — がそのまま検索・コピー対象になります。</li>
+            <li><strong>プレビュー App</strong>: PNG、JPEG、HEIC を開けば文字を直接選べます。テキスト層付きのネイティブ PDF はもちろん、スキャン PDF も多くのケースで読み取れます。</li>
+            <li><strong>Safari</strong>: 一時停止した動画フレーム、記事中の画像、SVG で描画されたコンテンツも、たいてい選択できます。</li>
+            <li><strong>メモ・メール</strong>: 画像を貼り付ければ中の文字が選択可能になります。</li>
+            <li><strong>クイックルック</strong>: Finder でスペースキーを押したときの簡易プレビューでも Live Text が効きます。</li>
+        </ul>
+
+        <p>普段の OCR 用途が「写真からたまに電話番号を抜く」程度なら、これで十分すぎます。</p>
+
+        <h2>Live Text が届かない 4 つの場面</h2>
+
+        <p>業務で日常的にテキストを跨いで扱うようになると、次の 4 つの空白がはっきり見えてきます。</p>
+
+        <h3>1. サードパーティアプリの独自画像ビューア</h3>
+
+        <p>Live Text は AppKit の画像描画にフックされていますが、独自の画像コンポーネントを持つサードパーティアプリでは反応しないことがあります。Slack の画像ビューア、Discord のライトボックス、Notion の埋め込み画像、LINE のメディアプレビュー、Telegram の画像表示、それから多くの業務アプリは、独自描画でシステムのテキスト選択層をバイパスしてしまいます。文字は見えているのに選択できない、という典型的な状況です。</p>
+
+        <p>macOS の中での回避策は「画像をプレビューで開き直す」ですが、毎回それをやるのは面倒です。右クリックして保存して、ダウンロードフォルダから探して、開いて、選択する。その手間をかけるくらいなら、ホットキーを 2 回叩いた方が早く終わります。</p>
+
+        <h3>2. ビデオ会議</h3>
+
+        <p>Zoom、Microsoft Teams、Webex、Chrome 上の Google Meet などは、会議ウィンドウに画面保護や DRM 相当のフラグを立てている場面が珍しくありません。Apple のスクリーンキャプチャや Live Text は、設定によってはこのフラグを尊重します。結果として、スライドの箇条書きをドラッグ選択しようとしても何も反応せず、スクリーンショットを撮ると真っ黒な画像が保存されることもあります。</p>
+
+        <p>これは会議アプリ側の悪意ではなく、機微な発表に向けた「デフォルトでプライバシー寄り」の設定です。とはいえ「このスライドの URL をコピーしたいだけ」という普通の用件には、これが壁として立ちはだかります。システムの画面収録 API を経由するスクリーンショット OCR なら、ソースアプリの描画方法によりますが、見えているフレームを取り込んで Apple Vision に流せるケースが多くなります。</p>
+
+        <h3>3. 保護付き PDF と一部の業務文書</h3>
+
+        <p>テキスト層を持つネイティブ PDF はどんなツールでもコピーできるので Live Text でも問題ありません。スキャン PDF は少し面倒ですが、プレビューの Live Text が大抵対応します。厄介なのは、その中間の以下のような場合です。</p>
+
+        <ul>
+            <li>パスワード付きで、閲覧は許可されているがコピーと Live Text が無効化されている PDF。</li>
+            <li>一部の出版社や社内文書配布システムから降りてくる DRM 付き PDF。</li>
+            <li>PDF 自体はネイティブでも、特定のリーダーアプリがアプリ層でテキスト選択を切っているケース。</li>
+        </ul>
+
+        <p>「読むことは許可されているがコピー操作だけが UI で塞がれている」という状況での OCR は、アクセス制御の回避ではなく、すでに手元にある文書の UI 制限を越える正当な手段だと考えています。Cheese! OCR は描画されたピクセルを取り込んで認識するだけで、原理的には目で読んで打ち直すのと同じです。</p>
+
+        <h3>4. Safari 以外で再生中の動画フレーム</h3>
+
+        <p>Live Text は Safari で一時停止した動画にはちゃんと効きますが、Chrome、Firefox、Edge では効きません。これらのブラウザは独自レンダリングエンジンを使っていて、AppKit の Live Text フックにフレームを渡していないためです。IINA、VLC など多くのプレーヤーアプリも同様です。Chrome で開いたコーディング講座で、講師がターミナルに長いコマンドを打ち込んでいる — そんな場面で Live Text には頼れません。</p>
+
+        <p>同じ問題、同じ解決策。スクリーンショット OCR は誰がそのピクセルを描いたかを問いません。</p>
+
+        <h2>Cheese! OCR が埋めるところ</h2>
+
+        <p>Cheese! OCR はメニューバーアプリで、やることは一つです。グローバルホットキー（既定値 ⇧⌘E、変更可）を押すと画面が暗くなり、カーソルが十字に変わります。読み取りたい範囲をドラッグで囲うと、認識結果がそのままクリップボードに入ります。あとは貼り付けるだけ。慣れれば 2 秒ほどの操作です。</p>
+
+        <p>比較において重要な点をいくつか。</p>
+
+        <ul>
+            <li><strong>同じ Apple Vision エンジン</strong>。Cheese! OCR は Vision Framework — Live Text と同じパイプライン — の上に作られています。印刷文字の精度は同等です。Apple のモデルを「上回る」自前モデルを謳っているわけではなく、Apple のモデルに別のワークフローを被せただけ、というのが正確な表現です。</li>
+            <li><strong>仕組みとしてアプリ非依存</strong>。入力が「画面に映っているピクセル」なので、ソースが LINE であろうと、Zoom であろうと、IINA であろうと、Citrix のリモートデスクトップであろうと関係ありません。見えれば読める、です。</li>
+            <li><strong>完全にオンデバイス</strong>。アプリのサンドボックスにはネットワーク権限が一切ありません。これは Mac App Store のプライバシーレポートで確認できます。スクリーンショットが Mac の外に出ることはありません。</li>
+            <li><strong>検索可能なローカル履歴</strong>。各認識結果はタイムスタンプ付きでローカルに保存されます。1 時間前にチャットに貼った段落が見当たらなくなっても、履歴ペインで検索すれば戻ってきます。</li>
+            <li><strong>多言語が初期状態で有効</strong>。英語、簡体字中国語、日本語、韓国語が自動で認識されます。撮るたびに言語を切り替える必要はありません。</li>
+        </ul>
+
+        <p>一つひとつは特別な機能ではありません。組み合わさることで上の 4 つの空白がコンテキストスイッチなしで埋まる、というのが要点です。</p>
+
+        <h2>Live Text で十分な場面</h2>
+
+        <p>逆に、わざわざ別ツールを入れなくてよい場面も明確に書いておきます。</p>
+
+        <ul>
+            <li><strong>OCR は週に数回、しかも Apple 純正アプリの中だけ</strong>。写真、プレビュー、Safari、メモ。これに当てはまるなら Live Text は無料・即起動・OS 標準で、最も合理的です。</li>
+            <li><strong>画像の中の特定の単語だけを選びたい</strong>。Live Text は画像内テキストをドキュメント内テキストと同じように単語単位で選べます。Cheese! OCR は囲んだ範囲を一括で返す方式なので、用途が少しずれます。</li>
+            <li><strong>サードパーティアプリを増やしたくない</strong>。これは合理的な好みです。Live Text は OS 内蔵で、Apple が署名し、OS と一緒に更新されます。</li>
+            <li><strong>アクセシビリティ用途のリアルタイム認識</strong>。Live Text は VoiceOver などのアクセシビリティ機能と深く統合されており、これは「スクリーンショット OCR」とは別カテゴリの話です。</li>
+        </ul>
+
+        <p>ここに当てはまるなら、それ以上読む必要はありません。手元のものをそのまま使ってください。本気でそう思っています。</p>
+
+        <h2>比較表</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>項目</th>
+                    <th>macOS テキスト認識（Live Text）</th>
+                    <th>Cheese! OCR</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>価格</td>
+                    <td>無料、macOS 12 以降に内蔵</td>
+                    <td>5.99 USD 買い切り、サブスクなし</td>
+                </tr>
+                <tr>
+                    <td>カバー範囲</td>
+                    <td>Apple 純正アプリ・WebKit ビュー</td>
+                    <td>画面に映っているもの全て</td>
+                </tr>
+                <tr>
+                    <td>トリガー</td>
+                    <td>画像にカーソルを重ねて選択</td>
+                    <td>グローバルホットキー＋ドラッグ選択</td>
+                </tr>
+                <tr>
+                    <td>言語</td>
+                    <td>Apple Vision（複数言語、必要時）</td>
+                    <td>英／簡体中／日／韓 を自動認識</td>
+                </tr>
+                <tr>
+                    <td>履歴</td>
+                    <td>なし</td>
+                    <td>ローカル、検索可能</td>
+                </tr>
+                <tr>
+                    <td>エンジン</td>
+                    <td>Apple Vision、オンデバイス</td>
+                    <td>Apple Vision、オンデバイス</td>
+                </tr>
+                <tr>
+                    <td>ネットワーク</td>
+                    <td>使用しない</td>
+                    <td>サンドボックスに権限ゼロ、確認可能</td>
+                </tr>
+                <tr>
+                    <td>向いている使い方</td>
+                    <td>アプリ内での散発的な抽出</td>
+                    <td>アプリ横断・反復・大量</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>シンプルな判断基準</h2>
+
+        <p>3 つのルールでだいたいの場面はカバーできます。</p>
+
+        <ol>
+            <li>カーソルを画像に重ねてテキストカーソルに変わったら、Live Text を使う。すでにそこにいます。</li>
+            <li>ソースがサードパーティアプリ・ビデオ会議・Safari 以外のブラウザ・保護付き文書なら、ホットキーに切り替える。</li>
+            <li>週に何度もこれをやるなら、ホットキーを押しやすい組み合わせに設定して、判断を筋肉記憶に委ねる。1〜2 日で無意識に切り替わるようになります。</li>
+        </ol>
+
+        <p>私たちは普段、両方とも常時オンで使っています。Live Text が「お行儀の良い」純正アプリの場面を黙々とこなし、Cheese! OCR がそれ以外を引き受ける、という分業です。後半の役割を試してみたい方は Mac App Store のページを見てみてください。FAQ の下には関連記事も並べました。特に PDF と スクリーンショットの記事は、ここで触れた話をもう一段掘り下げています。</p>
+    </article>
+
+    <section class="article-faq">
+        <h2>よくある質問</h2>
+        <details class="faq-item">
+            <summary>Live Text と Cheese! OCR は併用できますか？</summary>
+            <div class="answer">はい、競合しません。写真や Safari では Live Text を有効にしたまま、サードパーティアプリや動画フレームに当たったら Cheese! OCR のホットキーを押す、という使い分けが一般的です。どちらも内部で Apple Vision を使うため精度は同等で、違いはあくまでカバー範囲です。</div>
+        </details>
+        <details class="faq-item">
+            <summary>Live Text は Chrome でも動きますか？</summary>
+            <div class="answer">直接は動きません。Live Text は WebKit（Safari のエンジン）に組み込まれていて、Chrome や Firefox は独自エンジンを使うため、そこでの画像内テキストや一時停止した動画フレームには反応しません。スクリーンショット OCR ツールは描画したアプリを問わず画面のピクセルを読むので、この場面では結果的に速いです。</div>
+        </details>
+        <details class="faq-item">
+            <summary>Cheese! OCR は Live Text より遅いですか？</summary>
+            <div class="answer">どちらも Apple Vision をオンデバイスで動かすため、認識処理そのものの速度はほぼ同じです。体感速度はワークフロー次第です。Live Text はカーソルを画像に重ねて選択する操作、Cheese! OCR はホットキーとドラッグ。1〜2 単語なら Live Text の方が速い場面が多く、長文や選択不可な画面では Cheese! OCR の方が結果的に速くなります。</div>
+        </details>
+        <details class="faq-item">
+            <summary>どちらも手書き文字を認識できますか？</summary>
+            <div class="answer">Apple Vision は印刷文字には強いですが、手書き認識は限定的で言語にも依存します。丁寧で高コントラストな英文手書きは比較的読めます。崩し字や密度の高いノート、非ラテン手書きはどちらのツールでも安定しません。基盤モデルが共通だからです。</div>
+        </details>
+        <details class="faq-item">
+            <summary>Cheese! OCR には特別な権限が必要ですか？</summary>
+            <div class="answer">ドラッグ選択した範囲を取り込むため、画面収録の権限が必要です。初めてホットキーを押した際に macOS が許可ダイアログを出します。アプリのサンドボックスにはネットワーク権限が一切付与されていないため（Mac App Store のプライバシーレポートで確認できます）、画面収録を許可しても取得した画像が外部に送られることはありません。</div>
+        </details>
+    </section>
+
+    <section class="article-cta">
+        <div class="cta-card">
+            <h2>Cheese! OCR を試す</h2>
+            <p>ホットキー 1 つ、ドラッグ選択、テキストはクリップボードへ。5.99 USD の買い切り、オンデバイス、見えているものなら何でも読み取れます。</p>
+            <a href="https://apps.apple.com/app/cheese-ocr/id6760889131" class="cta-button">Mac App Store で試す</a>
+        </div>
+    </section>
+
+    <section class="article-related">
+        <h2>関連記事</h2>
+        <div class="related-grid">
+            <a href="../how-to-ocr-pdf-on-mac/" class="related-card">
+                <h3>Mac で PDF を OCR する方法（2026）: ネイティブ・スキャン・混在まで完全ガイド</h3>
+                <p>Mac でネイティブ／スキャン／保護付き PDF を OCR する実用ガイド。クラウドアップロードは一切なし。</p>
+            </a>
+            <a href="../extract-text-from-screenshot-on-mac/" class="related-card">
+                <h3>Mac でスクリーンショットからテキストを抽出する方法（3 つの方法を比較）</h3>
+                <p>Live Text、Cmd+Shift+5、Cheese! OCR の 3 つの方法。それぞれをいつ使うべきか。</p>
+            </a>
+            <a href="../cheese-ocr-vs-text-sniper/" class="related-card">
+                <h3>Cheese! OCR と主要 Mac OCR ツールの比較（Text Sniper・他）</h3>
+                <p>Text Sniper がいまも先行している点、Cheese! OCR が引き離している点。自分のワークフローでの選び方。</p>
+            </a>
+        </div>
+    </section>
+
+    <footer class="article-footer">
+        <a href="../../">ホーム</a>
+        <a href="../../../privacy.html">プライバシーポリシー</a>
+        <a href="mailto:nicholaslck@icloud.com">お問い合わせ</a>
+        <p>&copy; 2026 Cheese! OCR. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

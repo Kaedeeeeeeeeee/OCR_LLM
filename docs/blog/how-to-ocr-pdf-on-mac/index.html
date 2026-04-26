@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
+
+    <title>How to OCR a PDF on Mac (2026): Native, Scanned, and Everything In Between — Cheese! OCR Blog</title>
+    <meta name="description" content="A practical 2026 guide to OCR-ing PDFs on Mac. When Apple Preview is enough, when to use ocrmypdf, and when a screenshot OCR app like Cheese! OCR is faster.">
+
+    <link rel="canonical" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-pdf-on-mac/">
+    <link rel="alternate" hreflang="en" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-pdf-on-mac/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/how-to-ocr-pdf-on-mac/">
+    <link rel="alternate" hreflang="ja" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-to-ocr-pdf-on-mac/">
+    <link rel="alternate" hreflang="ko" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ko/blog/how-to-ocr-pdf-on-mac/">
+    <link rel="alternate" hreflang="x-default" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-pdf-on-mac/">
+
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../article.css">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Cheese! OCR">
+    <meta property="og:title" content="How to OCR a PDF on Mac (2026): Native, Scanned, and Everything In Between">
+    <meta property="og:description" content="A practical 2026 guide to OCR-ing PDFs on Mac. When Apple Preview is enough, when to use ocrmypdf, and when a screenshot OCR app like Cheese! OCR is faster.">
+    <meta property="og:url" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-pdf-on-mac/">
+    <meta property="og:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    <meta property="article:published_time" content="2026-04-25">
+    <meta property="article:author" content="Cheese! OCR Team">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to OCR a PDF on Mac (2026)">
+    <meta name="twitter:description" content="Three workable paths to OCR a PDF on Mac in 2026: Apple's built-in tools, ocrmypdf, and Cheese! OCR for snippet extraction.">
+    <meta name="twitter:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "How to OCR a PDF on Mac (2026): Native, Scanned, and Everything In Between",
+      "description": "A practical 2026 guide to OCR-ing PDFs on Mac. When Apple Preview is enough, when to use ocrmypdf, and when a screenshot OCR app like Cheese! OCR is faster.",
+      "author": {
+        "@type": "Organization",
+        "name": "Cheese! OCR",
+        "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Cheese! OCR",
+        "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+      },
+      "datePublished": "2026-04-25",
+      "dateModified": "2026-04-25",
+      "image": "https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png",
+      "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-pdf-on-mac/",
+      "inLanguage": "en",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-pdf-on-mac/"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "inLanguage": "en",
+      "mainEntity": [
+        { "@type": "Question", "name": "Why can't I select text in this PDF?", "acceptedAnswer": { "@type": "Answer", "text": "It's almost certainly a scanned PDF — pages are stored as images with no underlying text layer. Press Cmd+F and search for any word you can see; if nothing matches, the file has no text layer and needs OCR before its contents become selectable or searchable." } },
+        { "@type": "Question", "name": "Does Cheese! OCR change my PDF file?", "acceptedAnswer": { "@type": "Answer", "text": "No. Cheese! OCR works at the screen level — you trigger the hotkey, drag-select an area on the rendered page, and the recognized text lands on your clipboard. The PDF on disk is never opened, modified, or uploaded." } },
+        { "@type": "Question", "name": "Can ocrmypdf handle multi-language PDFs?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Pass multiple Tesseract language codes joined with plus signs, for example -l eng+chi_sim+jpn+kor. Make sure each language pack is installed; on Homebrew that usually means brew install tesseract-lang or installing the specific traineddata file." } },
+        { "@type": "Question", "name": "Is Apple Preview's Live Text good enough for full-document OCR?", "acceptedAnswer": { "@type": "Answer", "text": "Not really. Live Text recognizes text on the page you're looking at, but it doesn't write a text layer back into the PDF. The next time you open the file or send it to a colleague, Cmd+F still won't work. For full-document, persistent OCR you want ocrmypdf or a desktop tool that bakes in a text layer." } },
+        { "@type": "Question", "name": "Are there cloud OCR services that are faster?", "acceptedAnswer": { "@type": "Answer", "text": "Sometimes, especially for huge documents on a slow Mac. The trade-off is privacy: every page of your PDF leaves your machine. For contracts, medical records, or anything sensitive, an on-device path like ocrmypdf or Cheese! OCR keeps the file on your computer." } }
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Cheese! OCR", "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "How to OCR a PDF on Mac (2026)" }
+      ]
+    }
+    </script>
+</head>
+<body>
+
+    <nav class="article-nav">
+        <a href="../" class="back-link">← Blog</a>
+        <div class="lang-switcher">
+            <a href="/OCR_LLM/blog/how-to-ocr-pdf-on-mac/" aria-current="page" hreflang="en">EN</a>
+            <a href="/OCR_LLM/zh/blog/how-to-ocr-pdf-on-mac/" hreflang="zh-Hans">中文</a>
+            <a href="/OCR_LLM/ja/blog/how-to-ocr-pdf-on-mac/" hreflang="ja">日本語</a>
+            <a href="/OCR_LLM/ko/blog/how-to-ocr-pdf-on-mac/" hreflang="ko">한국어</a>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <h1>How to OCR a PDF on Mac (2026): Native, Scanned, and Everything In Between</h1>
+        <p class="article-meta">
+            <time datetime="2026-04-25">April 25, 2026</time>
+            · 10 min read
+        </p>
+    </header>
+
+    <aside class="tldr">
+        <strong>TL;DR</strong>
+        Three workable paths on a 2026 Mac. (1) If the PDF already has a text layer, Apple Preview, Notes, and Spotlight will search it without any extra software. (2) If you only need a paragraph, a quote, or a single table out of a scanned PDF, a screenshot OCR app like Cheese! OCR is the fastest way to get there. (3) For a permanent, searchable text layer baked back into the file, the open-source <code>ocrmypdf</code> is the best free option, and PDFPen Pro covers the same ground with a GUI for non-CLI users.
+    </aside>
+
+    <article class="article-body">
+
+        <h2>Step zero: figure out what kind of PDF you're dealing with</h2>
+
+        <p>Before you reach for any tool, spend ten seconds checking which kind of PDF is on your screen. The right method depends entirely on this question, and most of the frustration around "OCR on Mac" comes from people applying the wrong fix to the wrong file.</p>
+
+        <p>There are two kinds of PDFs in the wild:</p>
+
+        <ul>
+            <li><strong>Native PDFs with a text layer.</strong> These are exported from Word, Pages, LaTeX, web browsers, or any tool where the original source was already text. Each character is stored as a glyph plus its position. The pages look the same on screen, but the underlying data is real text.</li>
+            <li><strong>Scanned, image-only PDFs.</strong> These come from a flatbed scanner, a phone scan app, a fax, or a "Print to PDF" of an image. Each page is just a picture. There is no text data anywhere in the file — only pixels that <em>look</em> like text to a human reader.</li>
+        </ul>
+
+        <p>The fastest test is also the most reliable. Open the PDF in Preview and press <kbd>Cmd</kbd>+<kbd>F</kbd>. Search for a word you can see clearly on the page — a heading, a name, anything. If Preview highlights it, you have a native PDF and you don't need OCR at all; the text is already there, ready to be selected and copied. If Preview returns "Not Found" while the word is plainly visible, you have a scanned PDF, and you need to run OCR to make its contents searchable.</p>
+
+        <p>A third case shows up often enough to mention: <strong>hybrid PDFs</strong>, where most pages are native text but a few inserted pages — a signed contract page, a scanned appendix, a fax cover sheet — are images. Cmd+F finds some words and not others. The methods below all handle this case; ocrmypdf in particular has a flag (<code>--skip-text</code>) that leaves existing text layers alone and only OCRs the pages that need it.</p>
+
+        <h2>Method 1: Apple Preview and Notes (when the text layer already exists)</h2>
+
+        <p>If your Cmd+F test succeeded, you do not need any third-party tool. macOS has handled native PDFs gracefully for years. Preview lets you select text with the cursor, copy it to the clipboard, and copy across page boundaries. Spotlight indexes the text inside PDFs by default, so you can find a clause from a contract by searching from the menu bar. Notes will paste the text in cleanly. Pages will preserve most of the formatting if you drag the PDF in.</p>
+
+        <p>For native PDFs, the only situation where you'd want a different tool is when the text layer is technically present but mangled — older PDFs sometimes encode text with broken character maps so that copy-paste produces gibberish. In that case, treat the file as if it were scanned and use one of the methods below.</p>
+
+        <h3>What about Live Text on PDFs?</h3>
+
+        <p>Starting with macOS 13 Ventura, Apple's Live Text feature works on PDF pages too. Open a scanned PDF in Preview, hover over a block of text on the rendered page, and the cursor turns into an I-beam — you can drag-select and copy. This is a real, useful capability, and for a quick "grab one sentence out of a scan" moment it works well.</p>
+
+        <p>But there are two limits worth being honest about. First, Live Text operates page-by-page on what's currently visible; it won't help you search the document or process all 200 pages of a scanned report at once. Second, Live Text does not write the recognized text back into the PDF file. Close the document, send it to a colleague, or open it on another Mac, and Cmd+F still doesn't work. Live Text is a viewer-side feature, not a file-modification feature.</p>
+
+        <h2>Method 2: Cheese! OCR for snippet extraction</h2>
+
+        <p>This is our own tool, so the honest framing first: Cheese! OCR is not a full-document PDF processor. It will not write a text layer back into your file, it will not batch-process 500 pages overnight, and if those are your needs you should skip down to Method 3.</p>
+
+        <p>Where Cheese! OCR is the fastest path on Mac is the case that actually comes up most often in real work: <strong>you have a scanned PDF open on screen and you need a paragraph, a quote, a table, or a code snippet out of it</strong>. Maybe you're writing a literature review and want to cite a specific passage from a 1970s journal article that someone scanned to PDF. Maybe a vendor sent a contract as a scan and you need to paste the indemnification clause into a Slack thread. Maybe you're reading a foreign-language paper and want to drop a paragraph into a translator.</p>
+
+        <p>The workflow is:</p>
+
+        <ol>
+            <li>Press the global hotkey (<kbd>⇧</kbd>+<kbd>⌘</kbd>+<kbd>E</kbd> by default).</li>
+            <li>Drag a selection rectangle around the text on the page — exactly like taking a screenshot.</li>
+            <li>The recognized text lands on your clipboard. Paste it wherever.</li>
+        </ol>
+
+        <p>Three things make this faster than alternatives for snippet work. The hotkey is global, so you don't switch apps. The recognition runs on Apple's Vision framework on-device, so there's no network round-trip and no upload of confidential pages. And the result goes straight to the clipboard — no intermediate "save as text file" step, no separate window to manage.</p>
+
+        <p>The privacy point is more concrete than it sounds. Cheese! OCR ships with zero network entitlements in its App Store sandbox, which means the operating system itself prevents the app from making network connections at all. For pages of a contract, a medical record, or an internal report, that's a meaningful difference from any tool that can theoretically phone home.</p>
+
+        <p>Use it when the unit of work is a snippet. Skip it when you need the whole file to become searchable.</p>
+
+        <h2>Method 3: Full-document OCR with ocrmypdf (free, open source)</h2>
+
+        <p>When you need the whole PDF to become searchable — every page selectable, every word findable by Cmd+F or Spotlight — the best free option on Mac is <a href="https://github.com/ocrmypdf/OCRmyPDF" rel="noopener">ocrmypdf</a>. It's an open-source project that wraps Tesseract, handles deskewing and cleanup, and writes a clean, searchable text layer back into a copy of your PDF.</p>
+
+        <p>If you have Homebrew installed, the install is one line:</p>
+
+        <pre><code>brew install ocrmypdf</code></pre>
+
+        <p>The basic invocation is two arguments — the input file and the output file:</p>
+
+        <pre><code>ocrmypdf input.pdf output.pdf</code></pre>
+
+        <p>That's it for English-only PDFs. The output file is byte-identical to the input visually, but with a hidden text layer behind every page. You can now Cmd+F it in Preview, paste from it, send it to colleagues who'll be able to search it too. The original file isn't touched.</p>
+
+        <h3>Multi-language and non-English PDFs</h3>
+
+        <p>For non-English documents, pass language codes with <code>-l</code> (or <code>--language</code>). Tesseract uses three-letter codes:</p>
+
+        <pre><code>ocrmypdf -l eng+chi_sim+jpn+kor input.pdf output.pdf</code></pre>
+
+        <p>The plus signs let you stack multiple languages, which is useful for academic papers with mixed English and CJK content, or for any document that quotes across scripts. You'll need the corresponding Tesseract language data files installed; on Homebrew, <code>brew install tesseract-lang</code> covers the common set.</p>
+
+        <h3>Useful flags for real-world PDFs</h3>
+
+        <ul>
+            <li><code>--skip-text</code> — leave pages that already have a text layer alone, OCR only the scanned ones. The right choice for hybrid PDFs.</li>
+            <li><code>--rotate-pages</code> — auto-detect and fix sideways or upside-down scans before OCR.</li>
+            <li><code>--deskew</code> — straighten slightly rotated scans so OCR has a fairer shot at clean recognition.</li>
+            <li><code>--clean</code> — denoise the page image before OCR. Good for older or low-quality scans.</li>
+            <li><code>--output-type pdfa</code> — produce a PDF/A archival-format file, sometimes required for legal or institutional use.</li>
+        </ul>
+
+        <p>The trade-off with ocrmypdf is that it's a command-line tool. If you're comfortable in Terminal it's the cleanest, fastest, most private option for full-document OCR on Mac. If <code>brew install</code> looks like a foreign language, Method 4 is for you.</p>
+
+        <h2>Method 4: PDFPen Pro and other commercial GUI tools</h2>
+
+        <p>For people who want a graphical app rather than a command-line tool, PDFPen Pro from Smile Software is the established Mac choice. It opens scanned PDFs, runs OCR on them, lets you edit the recognized text, and saves a searchable file back out — all from a regular Mac app interface. Pricing has historically been around the $100 range as a one-time license; check the current page before buying because it shifts and there are sometimes upgrade tiers.</p>
+
+        <p>Other names you'll see: Nitro PDF Pro, Readdle's PDF Expert (OCR is a paid add-on), and ABBYY FineReader for Mac (more powerful, more expensive, often the choice for archival or research workflows). All of them do roughly the same thing — open PDF, click OCR, save with text layer — and they all charge for it because that's the customer base willing to pay for not opening a Terminal.</p>
+
+        <p>If you OCR PDFs once a quarter, ocrmypdf is overkill of the wrong kind (CLI learning curve) and PDFPen is overkill of the right kind (you'll use the rest of the editor too). If you OCR PDFs once a week as part of a workflow, the GUI tools earn their license fee in saved fiddling.</p>
+
+        <h2>About Adobe Acrobat</h2>
+
+        <p>Acrobat Pro is the historical default and still works fine. The reasons we don't lead with it: it's subscription-based (in the $20+/month range, depending on plan), the OCR features sometimes route through Adobe's cloud services (depending on which path you click), and for the specific job of "make a scanned PDF searchable" it's overkill against ocrmypdf, which is free, runs locally, and produces equivalent or better results.</p>
+
+        <p>If you already pay for Acrobat for other reasons — form-filling, complex editing, enterprise compliance — its OCR is good and you don't need anything else. If you're considering subscribing to Acrobat <em>just</em> to OCR PDFs, don't. ocrmypdf or PDFPen Pro will get you there for less.</p>
+
+        <h2>Decision matrix</h2>
+
+        <p>Pulling it together:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Method</th>
+                    <th>Best for</th>
+                    <th>Cost</th>
+                    <th>Privacy</th>
+                    <th>Speed</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Apple Preview / Notes</td>
+                    <td>Native PDFs that already have a text layer</td>
+                    <td>Free (built in)</td>
+                    <td>Fully local</td>
+                    <td>Instant</td>
+                </tr>
+                <tr>
+                    <td>Cheese! OCR</td>
+                    <td>Pulling a paragraph or table out of a scanned PDF</td>
+                    <td>$5.99 one-time</td>
+                    <td>On-device, no network entitlements</td>
+                    <td>Seconds per snippet</td>
+                </tr>
+                <tr>
+                    <td>ocrmypdf</td>
+                    <td>Full-document searchable PDFs, batch jobs</td>
+                    <td>Free, open source</td>
+                    <td>Fully local</td>
+                    <td>Slower (whole file)</td>
+                </tr>
+                <tr>
+                    <td>PDFPen Pro / similar</td>
+                    <td>Full-document OCR without using Terminal</td>
+                    <td>~$100+ one-time (varies)</td>
+                    <td>Fully local</td>
+                    <td>Comparable to ocrmypdf</td>
+                </tr>
+                <tr>
+                    <td>Adobe Acrobat Pro</td>
+                    <td>You already pay for it for other reasons</td>
+                    <td>~$20+/month</td>
+                    <td>Mixed (some features cloud-based)</td>
+                    <td>Comparable</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>How to choose, in one paragraph</h2>
+
+        <p>Run the Cmd+F test first. If it works, you're done — use Preview. If it doesn't, ask whether you need a snippet or the whole file. Snippet: Cheese! OCR. Whole file, comfortable in Terminal: ocrmypdf. Whole file, prefer a GUI: PDFPen Pro. Already paying for Acrobat: use Acrobat. Considering paying for Acrobat just for OCR: don't.</p>
+
+        <p>Most people end up using two of these, not one. ocrmypdf as a once-a-month batch processor for archival scans, plus a screenshot OCR tool for the daily "grab a quote out of this PDF" task. Or PDFPen for big jobs and Live Text for one-offs. The categories are complementary, not competing.</p>
+
+        <p>If you have specific questions about any of these methods, the FAQ below covers the ones we hear most often.</p>
+
+    </article>
+
+    <section class="article-faq">
+        <h2>Frequently Asked Questions</h2>
+        <details class="faq-item">
+            <summary>Why can't I select text in this PDF?</summary>
+            <div class="answer">
+                <p>It's almost certainly a scanned PDF — the pages are stored as images with no underlying text layer. The fastest confirmation is Cmd+F: search for any word you can see clearly. If nothing matches, there's no text data in the file and you'll need OCR before you can select, copy, or search the contents.</p>
+            </div>
+        </details>
+        <details class="faq-item">
+            <summary>Does Cheese! OCR change my PDF file?</summary>
+            <div class="answer">
+                <p>No. Cheese! OCR works at the screen level. You press the hotkey, drag-select a region of whatever's on screen, and the recognized text goes to your clipboard. The PDF on disk is never opened, modified, or uploaded — and the app has no network entitlements at all in its App Store sandbox, so it couldn't upload it even if it wanted to.</p>
+            </div>
+        </details>
+        <details class="faq-item">
+            <summary>Can ocrmypdf handle multi-language PDFs?</summary>
+            <div class="answer">
+                <p>Yes. Pass multiple Tesseract language codes joined with plus signs, like <code>-l eng+chi_sim+jpn+kor</code>. Make sure each language pack is installed; on Homebrew, <code>brew install tesseract-lang</code> covers most common languages. Stacking too many languages does slow recognition down and can hurt accuracy, so list only the ones actually present in your document.</p>
+            </div>
+        </details>
+        <details class="faq-item">
+            <summary>Is Apple Preview's Live Text good enough for full-document OCR?</summary>
+            <div class="answer">
+                <p>Not for full-document needs. Live Text recognizes text on the page you're currently viewing, which is great for quick selections, but it doesn't write a text layer back into the PDF. Close the file or send it to a colleague and Cmd+F still won't work. For persistent, file-level OCR you want ocrmypdf, PDFPen Pro, or another tool that bakes a text layer in.</p>
+            </div>
+        </details>
+        <details class="faq-item">
+            <summary>Are there cloud OCR services that are faster?</summary>
+            <div class="answer">
+                <p>Sometimes — especially for very large documents on an older Mac, where a cloud GPU farm will outpace local processing. The trade-off is that every page of your PDF leaves your machine. For sensitive material — contracts, medical records, employee data, anything covered by an NDA — an on-device path like ocrmypdf or Cheese! OCR keeps the file on your computer, which is usually the right answer for any document you wouldn't email to a stranger.</p>
+            </div>
+        </details>
+    </section>
+
+    <section class="article-cta">
+        <div class="cta-card">
+            <h2>Try Cheese! OCR</h2>
+            <p>If your daily PDF pain is "I need this paragraph in my clipboard, now" — that's exactly what Cheese! OCR was built for. $5.99 one-time, runs entirely on-device, no subscription, no upload.</p>
+            <a href="https://apps.apple.com/app/cheese-ocr/id6760889131" class="cta-button">Try Cheese! OCR — Mac App Store</a>
+        </div>
+    </section>
+
+    <section class="article-related">
+        <h2>Related articles</h2>
+        <div class="related-grid">
+            <a href="../cheese-ocr-vs-live-text/" class="related-card">
+                <h3>Cheese! OCR vs macOS Live Text: When Apple's Built-in Tool Isn't Enough</h3>
+                <p>Live Text is great inside Apple's apps. Here are the four scenarios where a hotkey-driven OCR tool is the better answer.</p>
+            </a>
+            <a href="../extract-text-from-screenshot-on-mac/" class="related-card">
+                <h3>How to Extract Text from a Screenshot on Mac (Three Methods Compared)</h3>
+                <p>Live Text, Cmd+Shift+5's floating action, and Cheese! OCR — when each one earns its keep on a 2026 Mac.</p>
+            </a>
+            <a href="../how-on-device-ocr-works/" class="related-card">
+                <h3>How On-Device OCR Works: Apple Vision Framework Explained</h3>
+                <p>Why local OCR is faster than cloud OCR on a modern Mac, and what Apple's Vision framework actually does under the hood.</p>
+            </a>
+        </div>
+    </section>
+
+    <footer class="article-footer">
+        <a href="../../">Home</a>
+        <a href="../../privacy.html">Privacy Policy</a>
+        <a href="mailto:nicholaslck@icloud.com">Contact</a>
+        <p>&copy; 2026 Cheese! OCR. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

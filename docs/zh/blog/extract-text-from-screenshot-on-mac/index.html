@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
+
+    <title>如何在 Mac 上从截图中提取文字（三种方法对比） — Cheese! OCR 博客</title>
+    <meta name="description" content="Mac 截图取文的三种方式：Preview 里用实况文本、Cmd+Shift+5 浮动预览、专用 OCR 快捷键。哪种省事，看你截图的频率。">
+
+    <link rel="canonical" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/extract-text-from-screenshot-on-mac/">
+    <link rel="alternate" hreflang="en" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/extract-text-from-screenshot-on-mac/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/extract-text-from-screenshot-on-mac/">
+    <link rel="alternate" hreflang="ja" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/extract-text-from-screenshot-on-mac/">
+    <link rel="alternate" hreflang="ko" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ko/blog/extract-text-from-screenshot-on-mac/">
+    <link rel="alternate" hreflang="x-default" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/extract-text-from-screenshot-on-mac/">
+
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../../../blog/article.css">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Cheese! OCR">
+    <meta property="og:title" content="如何在 Mac 上从截图中提取文字（三种方法对比）">
+    <meta property="og:description" content="Mac 截图取文的三种方式：Preview 里用实况文本、Cmd+Shift+5 浮动预览、专用 OCR 快捷键。">
+    <meta property="og:url" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/extract-text-from-screenshot-on-mac/">
+    <meta property="og:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="article:published_time" content="2026-04-25">
+    <meta property="article:author" content="Cheese! OCR Team">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="如何在 Mac 上从截图中提取文字（三种方法对比）">
+    <meta name="twitter:description" content="实况文本、Cmd+Shift+5、专用 OCR 快捷键三种方式对比。">
+    <meta name="twitter:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "如何在 Mac 上从截图中提取文字（三种方法对比）",
+      "description": "Mac 截图取文的三种方式：Preview 里用实况文本、Cmd+Shift+5 浮动预览、专用 OCR 快捷键。哪种省事，看你截图的频率。",
+      "author": {
+        "@type": "Organization",
+        "name": "Cheese! OCR",
+        "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Cheese! OCR",
+        "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+      },
+      "datePublished": "2026-04-25",
+      "dateModified": "2026-04-25",
+      "image": "https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png",
+      "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/extract-text-from-screenshot-on-mac/",
+      "inLanguage": "zh-Hans",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/extract-text-from-screenshot-on-mac/"
+      }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "inLanguage": "zh-Hans",
+      "mainEntity": [
+        { "@type": "Question", "name": "Mac 截图默认保存到哪里？", "acceptedAnswer": { "@type": "Answer", "text": "默认保存为 PNG 文件，存到桌面，文件名是日期加时间。要改保存位置，按 Cmd+Shift+5 然后点选项（Options），下拉菜单里能选桌面、文稿、剪贴板、邮件、信息、预览，或者任意自定义文件夹。" } },
+        { "@type": "Question", "name": "Mac 截图能不能不生成文件？", "acceptedAnswer": { "@type": "Answer", "text": "可以。按 Cmd+Shift+5，点选项，把『储存位置』设为剪贴板。截图直接进剪贴板，磁盘上不留文件。专用 OCR 快捷键工具（比如 Cheese! OCR）更进一步——它根本不写文件，给你的是识别后的文字而不是图片。" } },
+        { "@type": "Question", "name": "Cmd+Shift+5 这个方法在老版本 macOS 上可以用吗？", "acceptedAnswer": { "@type": "Answer", "text": "Cmd+Shift+5 浮动截图工具栏从 2018 年的 macOS Mojave (10.14) 就有了，现在还在用的 Mac 基本都支持。但是浮动缩略图打开后里面的实况文本（Live Text）需要 macOS 13 Ventura 或更新版本。老系统上还能截图，只是要把文件用预览（Preview）打开后才能用实况文本。" } },
+        { "@type": "Question", "name": "三种方法里哪种最快？", "acceptedAnswer": { "@type": "Answer", "text": "方法三——专用 OCR 快捷键，比如 Cheese! OCR。按一次快捷键，框选一下，文字就在剪贴板里了。不生成文件，也不用打开预览。实况文本至少多两步（点实况文本按钮、复制），Cmd+Shift+5 浮动预览的步骤也差不多。" } },
+        { "@type": "Question", "name": "已经存好的截图能用 Cheese! OCR 识别吗？", "acceptedAnswer": { "@type": "Answer", "text": "可以。把现有图片拖到 Cheese! OCR 的菜单栏窗口或 OCR 历史面板里就能重新识别。它的主力工作流是全局快捷键，但已经截好的 PNG、JPEG 也照样处理。" } }
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Cheese! OCR", "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/" },
+        { "@type": "ListItem", "position": 2, "name": "博客", "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "如何在 Mac 上从截图中提取文字（三种方法对比）" }
+      ]
+    }
+    </script>
+</head>
+<body>
+
+    <nav class="article-nav">
+        <a href="../" class="back-link">← 博客</a>
+        <div class="lang-switcher">
+            <a href="/OCR_LLM/blog/extract-text-from-screenshot-on-mac/" hreflang="en">EN</a>
+            <a href="/OCR_LLM/zh/blog/extract-text-from-screenshot-on-mac/" aria-current="page" hreflang="zh-Hans">中文</a>
+            <a href="/OCR_LLM/ja/blog/extract-text-from-screenshot-on-mac/" hreflang="ja">日本語</a>
+            <a href="/OCR_LLM/ko/blog/extract-text-from-screenshot-on-mac/" hreflang="ko">한국어</a>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <h1>如何在 Mac 上从截图中提取文字（三种方法对比）</h1>
+        <p class="article-meta">
+            <time datetime="2026-04-25">2026 年 4 月 25 日</time>
+            · 10 分钟阅读
+        </p>
+    </header>
+
+    <aside class="tldr">
+        <strong>速读</strong>
+        2026 年在 Mac 上从截图里提取文字，可靠的方法有三种：把截图用预览（Preview）打开后用实况文本、用 Cmd+Shift+5 截图后直接在浮动缩略图里用实况文本（macOS 13 起支持）、用专用的 OCR 快捷键工具直接跳过文件这一步。前两种免费、系统自带；第三种快得多，一次拖拽就把文字塞进剪贴板——这正是 Cheese! OCR 的工作流。
+    </aside>
+
+    <article class="article-body">
+        <p>每个 Mac 用户每周都会撞上几次同样的墙：朋友发来一张报错截图、一段微信聊天截图、一张机票确认页、或者公众号文章的海报图，你想要里面的文字。但你没法像在飞书文档里那样直接选中复制——像素就是像素。</p>
+
+        <p>好消息是，自从 macOS 12 Monterey 引入实况文本（Live Text）以来，Mac 上的截图取文已经相当容易。不太好的消息是，系统自带的流程在你一天要做二十次的时候还是嫌慢，而 Cmd+Shift+5 那个浮动预览的小技巧很多人不知道，能省下一两步。再然后，对那些把截图取文当吃饭的人来说——技术支持要从用户截图里抠错误码、做笔记的同学要从课件 PPT 截图里抓引文、产品经理要从 B 站视频帧里截字幕——还有第三种方式，能把整个流程压缩成一次拖拽。</p>
+
+        <p>这篇文章把三种方法都讲一遍，老老实实横向对比，告诉你什么时候该用哪种。</p>
+
+        <h2>先把 Mac 的三个截图快捷键复习一下</h2>
+
+        <p>讲取文之前，三个原生截图快捷键值得先练成肌肉记忆，下面每种方法都会用到。</p>
+
+        <ul>
+            <li><strong>Cmd+Shift+3</strong>——抓全屏（所有连接的显示器都抓），结果直接保存到桌面。</li>
+            <li><strong>Cmd+Shift+4</strong>——出十字光标，让你框选一块区域。框选过程中按一下 <kbd>Space</kbd>（空格）能切到窗口模式，点哪个窗口就抓哪个，连阴影都干净保留。</li>
+            <li><strong>Cmd+Shift+5</strong>——打开浮动截图工具栏，里面有全屏、窗口、区域、屏幕录制和一个『选项』菜单。这是现在的主力快捷键，第二种方法就藏在它里面。</li>
+        </ul>
+
+        <p>三种快捷键默认都把 PNG 存到桌面，文件名是 <code>截屏 YYYY-MM-DD HH.MM.SS.png</code>。要换地方，可以 Cmd+Shift+5 → 选项 → 储存位置。这个设置后面会提到几次，因为它能直接改变哪种方法更顺手。</p>
+
+        <p>还有一个细节值得知道：在比较新的 macOS（Mojave 之后）上，截完图右下角会浮一张缩略图几秒钟。这张缩略图比大多数人意识到的要能干，正是第二种方法的关键。</p>
+
+        <h2>方法一：先截图，再在预览里用实况文本</h2>
+
+        <p>这是最容易发现的流程——苹果文档基本都指向它，大多数人也是误打误撞用上的。</p>
+
+        <ol>
+            <li>按 Cmd+Shift+4（要全屏就 Cmd+Shift+3）。</li>
+            <li>框选一块区域。截图保存到桌面。</li>
+            <li>双击打开文件，默认用预览（Preview）打开。</li>
+            <li>在预览里，鼠标拖过图里的文字。光标在文字上方会变成 I 形光标，跟在普通文档里选字一样。</li>
+            <li>Cmd+C 复制。</li>
+        </ol>
+
+        <p>大概五个独立动作，桌面上还会留一个截图文件（直到你想起来去清理为止）。</p>
+
+        <p>预览里的实况文本本身相当好用，背后是同一个 Apple Vision 流水线，跟 macOS 各处的 OCR 是一脉相承的。英文准、中文稳、日韩文也都靠谱，法德西意葡乌克兰都能识别。手写在干净的情况下也能勉强读出来。深色模式 UI 截图也照吃不误。再加上数据检测器，电话号码和邮箱右键就能拨打或写邮件。</p>
+
+        <p>真正的两个槽点是步骤多（五步）和文件污染（桌面慢慢被一次性 PNG 塞满）。一周才需要一次的人无所谓，但天天用的人会越来越烦。</p>
+
+        <h3>方法一最合适的场景</h3>
+
+        <ul>
+            <li>截图已经存好了——朋友发的、之前自己截的。</li>
+            <li>你想留下这张图作为参考，不只是文字。</li>
+            <li>你打算先标注或裁剪一下再取文。</li>
+            <li>你在用一台不属于自己、不能装应用的 Mac。</li>
+        </ul>
+
+        <h2>方法二：Cmd+Shift+5 浮动预览 + 实况文本</h2>
+
+        <p>这是被低估的快捷键。大多数 Mac 用户知道截图右下角会浮出一张缩略图，但他们要么忽略它、要么点开就只用来标记。很少有人知道在 macOS 13 Ventura 之后，可以直接在那张缩略图上用实况文本，全程不用打开预览。</p>
+
+        <p>流程是这样的：</p>
+
+        <ol>
+            <li>按 Cmd+Shift+5。</li>
+            <li>选一种截图方式（最常用的是区域截图）。</li>
+            <li>框选区域。</li>
+            <li>右下角浮出缩略图。在它消失之前点它（有几秒时间，再点一次还能让它停留）。</li>
+            <li>打开标记窗口（Markup）。文字上方鼠标变成 I 形光标——拖选，Cmd+C。</li>
+        </ol>
+
+        <p>同样大致五步，但配合正确的设置，可以一个文件都不写。Cmd+Shift+5 → 选项 → 储存位置：剪贴板，截图就直接进剪贴板而不落盘。这时浮动预览本质上是个临时标注层——文字复制完，关掉窗口，什么都不会留下。</p>
+
+        <p>选项菜单里另一个有用的设置是浮动预览的停留时长。默认几秒后消失，没有滑杆能直接调，但可以点一下让它钉在那里。如果你总是没来得及点缩略图就消失了，习惯性地往右下角瞄一眼，必要时立刻点上去。</p>
+
+        <h3>方法二什么时候赢</h3>
+
+        <ul>
+            <li>你截图非常频繁，但又不想让桌面堆满文件。</li>
+            <li>你偶尔需要在复制前标注一下——标记工具就在手边。</li>
+            <li>你的系统是 macOS 13 Ventura 或更新（标记里的实况文本要 Ventura 起）。</li>
+        </ul>
+
+        <h3>它的小问题</h3>
+
+        <p>浮动缩略图必须趁它没消失之前点。而且在标记窗口里还得自己拖选才能取文——没有『把这张图里的所有文字都识别出来』的按钮。如果一张截图里有十行不同位置的文字而你都想要，那十行得自己一行一行选。文字密集的截图就会比较累。</p>
+
+        <h2>方法三：专用 OCR 快捷键（Cheese! OCR）</h2>
+
+        <p>这是我们做的产品，所以这一节请自动加上一份滤镜。但工作流本身可以照实讲：</p>
+
+        <ol>
+            <li>按 ⇧⌘E（或者你自己设的快捷键）。</li>
+            <li>框选含有文字的区域。</li>
+        </ol>
+
+        <p>结束。不生成文件，不弹窗口。识别后的文字已经在剪贴板里，随便往哪粘都行。完成位置附近会闪一下小确认提示，结果同时存进菜单栏里的可搜索历史。</p>
+
+        <p>它比方法一、方法二快，原因不是 OCR 本身——Cheese! OCR 用的是同一个 Apple Vision 框架，跟实况文本背后是同一套，识别耗时基本一样。真正快的是中间那段被压扁了：『我想要这段字』到『字在剪贴板里』之间，没有保存文件、没有切应用、没有标记窗口、也没有在截图里再拖一次选区。你截图的那一拖，本身就是 OCR 的取词区。</p>
+
+        <p>对天天用的人，还有几点会真正影响体感：</p>
+
+        <ul>
+            <li><strong>可搜索的历史。</strong>每一次识别都会在本地存下结果加上原图缩略图。三周后你想起『那段报错我之前 OCR 过』，搜一下就能翻出来。</li>
+            <li><strong>多语言默认开启。</strong>英文、简体中文、日文、韩文开箱就识别，不用切换模式。混排也透明处理——飞书消息里夹一段英文报错码，或者一张繁简混排的截图，都能一起识。</li>
+            <li><strong>100% 本地。</strong>Cheese! OCR 没有任何网络权限，沙盒清单可查。截图内容根本不会离开你的 Mac。对那些会截内部仪表盘、合同、客户数据的人来说，这一点是真材实料。</li>
+            <li><strong>一次性买断。</strong>$5.99 一次买断，无订阅，由 Mac App Store 处理收据和更新。</li>
+        </ul>
+
+        <h3>诚实的代价</h3>
+
+        <p>多装一个应用，多设一个快捷键，付 $5.99。如果你截图取文的频率本来就低——一周一次、一月一次——方法一、方法二完全够用，且免费。临界点大概在『一天不止一次』。到了这个频率，省下的那几秒和那个能搜的历史就开始攒成实际节省的时间了。</p>
+
+        <h2>三种方法横向对比</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>方法</th>
+                    <th>步骤数</th>
+                    <th>是否生成文件</th>
+                    <th>多语言默认</th>
+                    <th>可搜索历史</th>
+                    <th>价格</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>方法一：预览 + 实况文本</td>
+                    <td>约 5 步</td>
+                    <td>是（桌面 PNG）</td>
+                    <td>支持（Apple Vision）</td>
+                    <td>否</td>
+                    <td>免费</td>
+                </tr>
+                <tr>
+                    <td>方法二：Cmd+Shift+5 浮动预览</td>
+                    <td>约 5 步</td>
+                    <td>可选（储存到剪贴板）</td>
+                    <td>支持（Apple Vision）</td>
+                    <td>否</td>
+                    <td>免费</td>
+                </tr>
+                <tr>
+                    <td>方法三：Cheese! OCR 快捷键</td>
+                    <td>约 2 步</td>
+                    <td>否</td>
+                    <td>支持（中英日韩）</td>
+                    <td>有</td>
+                    <td>$5.99 一次买断</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>各种方法分别什么时候用</h2>
+
+        <p>如果朋友问起，我们一般会这么建议：</p>
+
+        <h3>方法一（预览 + 实况文本）适合</h3>
+
+        <ul>
+            <li>截图文件已经在你手上——别人 AirDrop 给你的、你上周存下来的、邮件里收到的附件。</li>
+            <li>取字之前还想标注或裁剪。</li>
+            <li>临时借别人的 Mac 用一下。</li>
+            <li>截图取文是偶尔为之的事。</li>
+        </ul>
+
+        <h3>方法二（Cmd+Shift+5 浮动预览）适合</h3>
+
+        <ul>
+            <li>不想换工具，但又不想再让桌面堆满 PNG。把『储存位置』设成剪贴板，摩擦立刻就降下去。</li>
+            <li>偶尔截完要画两个箭头加点说明再发出去——标记工具已经在那儿了。</li>
+            <li>系统在 macOS 13 Ventura 或更新。</li>
+        </ul>
+
+        <h3>方法三（Cheese! OCR 这类专用工具）适合</h3>
+
+        <ul>
+            <li>截图取文一天不止一次。</li>
+            <li>经常要回头找以前识别过的文字（『上周那个教程里我 OCR 过的命令是什么来着』）。</li>
+            <li>处理敏感内容，需要『零网络权限』这种可验证的隐私保证。</li>
+            <li>多语言混排是常态——微信消息里夹英文术语、知乎专栏里贴日文截图、小红书图文里出现韩文段落。</li>
+            <li>看着桌面上一排排 <code>截屏 2026-04-25.png</code> 心累。</li>
+        </ul>
+
+        <h2>所有方法通用的进阶小贴士</h2>
+
+        <h3>把『储存位置』改成剪贴板</h3>
+
+        <p>这是最少有人提的 macOS 截图改造点。Cmd+Shift+5 → 选项 → 储存位置 → 剪贴板。从此每张截图都进剪贴板，桌面再也不会堆文件。可以直接粘贴到微信、钉钉、飞书、Notion、知乎编辑器里。万一某次确实想要文件，按住 Control 截图就能临时反向（具体方向取决于你当前的设置）。</p>
+
+        <h3>缩略图老抓不住，就让它停下来</h3>
+
+        <p>看到右下角浮出来，点一下就让它钉住，不用赶着在它消失前操作。连续截好几张时尤其有用。</p>
+
+        <h3>Cmd+Shift+4 后按 Space 干净抓窗口</h3>
+
+        <p>大多数人都是拖一个矩形把窗口框进去，背景就一起进了。其实可以 Cmd+Shift+4 → 按一下 Space → 点目标窗口，得到干净的 PNG，圆角和阴影都好好的。不想要阴影就按住 Option 再点。</p>
+
+        <h3>Cmd+Shift+5 工具栏里也有同样的选项</h3>
+
+        <p>『抓取所选窗口』就在浮动控件里，记不住快捷键时也能用上。</p>
+
+        <h3>Cheese! OCR 专属：用历史搜索找回老结果</h3>
+
+        <p>如果你经常 OCR 同一种区域——比如反复从仪表盘里复制订单号——可搜索的历史会自动变成一份取字时间线。打开菜单栏窗口，Cmd+F 搜一下，几天前的结果几秒钟就能翻出来。</p>
+
+        <h3>Cheese! OCR 专属：把现成图片喂给它</h3>
+
+        <p>邮件或 AirDrop 收到的截图不用重截。把图拖到 Cheese! OCR 菜单栏窗口，或者从剪贴板粘进去，识别流程是一样的。所以即使原始截图不是它截的，最后一步还是可以由它完成。</p>
+
+        <h3>按自己习惯改快捷键</h3>
+
+        <p>如果手指不太喜欢 ⇧⌘E（有人偏好 F 键、有人偏好 ⌃⌥⌘ 三键来避免冲突），在 Cheese! OCR 设置里换就行。同样的话也适用于系统截图——『系统设置 → 键盘 → 键盘快捷键 → 屏幕快照』可以重映射 Cmd+Shift+3/4/5，跟其他工具撞键时直接换掉。</p>
+
+        <p>三种方法没有绝对的对错，只是分别为不同频率、不同工作流优化的。如果你一周截一张图发给同事、偶尔需要从里面抓两个字出来，系统自带的方法已经很好用了。但如果取字本身就是你工作的一部分——从课件 PPT 截图里抓引文、从微信群里截图找用户反馈、从仪表盘里反复抠数字——一个专用的快捷键会带来肉眼可见的差别。先用免费方案试试看，如果哪天你真的开始嫌那几下键盘是浪费，那就是 Cheese! OCR 这类工具开始为自己买单的时刻。</p>
+    </article>
+
+    <section class="article-faq">
+        <h2>常见问题</h2>
+        <details class="faq-item">
+            <summary>Mac 截图默认保存到哪里？</summary>
+            <div class="answer">默认保存为 PNG 文件，存到桌面，文件名是日期加时间。要改保存位置，按 Cmd+Shift+5 然后点选项（Options），下拉菜单里能选桌面、文稿、剪贴板、邮件、信息、预览，或者任意自定义文件夹。</div>
+        </details>
+        <details class="faq-item">
+            <summary>Mac 截图能不能不生成文件？</summary>
+            <div class="answer">可以。按 Cmd+Shift+5，点选项，把『储存位置』设为剪贴板。截图直接进剪贴板，磁盘上不留文件。专用 OCR 快捷键工具（比如 Cheese! OCR）更进一步——它根本不写文件，给你的是识别后的文字而不是图片。</div>
+        </details>
+        <details class="faq-item">
+            <summary>Cmd+Shift+5 这个方法在老版本 macOS 上可以用吗？</summary>
+            <div class="answer">Cmd+Shift+5 浮动截图工具栏从 2018 年的 macOS Mojave (10.14) 就有了，现在还在用的 Mac 基本都支持。但是浮动缩略图打开后里面的实况文本（Live Text）需要 macOS 13 Ventura 或更新版本。老系统上还能截图，只是要把文件用预览（Preview）打开后才能用实况文本。</div>
+        </details>
+        <details class="faq-item">
+            <summary>三种方法里哪种最快？</summary>
+            <div class="answer">方法三——专用 OCR 快捷键，比如 Cheese! OCR。按一次快捷键，框选一下，文字就在剪贴板里了。不生成文件，也不用打开预览。实况文本至少多两步（点实况文本按钮、复制），Cmd+Shift+5 浮动预览的步骤也差不多。</div>
+        </details>
+        <details class="faq-item">
+            <summary>已经存好的截图能用 Cheese! OCR 识别吗？</summary>
+            <div class="answer">可以。把现有图片拖到 Cheese! OCR 的菜单栏窗口或 OCR 历史面板里就能重新识别。它的主力工作流是全局快捷键，但已经截好的 PNG、JPEG 也照样处理。</div>
+        </details>
+    </section>
+
+    <section class="article-cta">
+        <div class="cta-card">
+            <h2>试试 Cheese! OCR</h2>
+            <p>一个快捷键，一次拖拽，文字进剪贴板。100% 本地运行，$5.99 一次买断，无订阅。</p>
+            <a href="https://apps.apple.com/app/cheese-ocr/id6760889131" class="cta-button">在 Mac App Store 试用 Cheese! OCR</a>
+        </div>
+    </section>
+
+    <section class="article-related">
+        <h2>相关文章</h2>
+        <div class="related-grid">
+            <a href="../cheese-ocr-vs-live-text/" class="related-card">
+                <h3>Cheese! OCR vs macOS 实况文本：什么时候系统自带的不够用</h3>
+                <p>实况文本擅长什么、在哪里力不从心，以及为什么有时候专用快捷键工具更划算。</p>
+            </a>
+            <a href="../copy-text-from-video-on-mac/" class="related-card">
+                <h3>如何在 Mac 上从视频中复制文字（教程、会议、任何场景）</h3>
+                <p>从暂停的视频画面中提取文字的三种方法，包括受 DRM 保护的会议与基于 Chrome 的教程。</p>
+            </a>
+            <a href="../how-to-ocr-pdf-on-mac/" class="related-card">
+                <h3>如何在 Mac 上 OCR 识别 PDF（2026）：原生版、扫描版、混合版完整指南</h3>
+                <p>原生 PDF、扫描版 PDF 与受保护 PDF 的实用识别指南——不上传任何文件到云端。</p>
+            </a>
+        </div>
+    </section>
+
+    <footer class="article-footer">
+        <a href="../../">主页</a>
+        <a href="../../../privacy.html">隐私政策</a>
+        <a href="mailto:nicholaslck@icloud.com">联系我们</a>
+        <p>&copy; 2026 Cheese! OCR. 版权所有。</p>
+    </footer>
+
+</body>
+</html>
