@@ -1,22 +1,36 @@
-<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Body -->
-  <rect x="100" y="50" width="312" height="412" rx="40" fill="#ffffff" stroke="#333333" stroke-width="24"/>
-  
-  <!-- Folded Corner Effect -->
-  <path d="M312 50 L312 150 L412 150" fill="#e5e5e5" stroke="#333333" stroke-width="24" stroke-linejoin="round"/>
-  <!-- Hide the top right corner of rect? A bit complex in SVG without masks. Just overlaying is fine for this style. -->
-  
-  <!-- Eyes -->
-  <ellipse cx="190" cy="260" rx="35" ry="45" fill="#333333"/>
-  <ellipse cx="322" cy="260" rx="35" ry="45" fill="#333333"/>
-  <!-- Highlights -->
-  <circle cx="205" cy="245" r="12" fill="white"/>
-  <circle cx="337" cy="245" r="12" fill="white"/>
-  
-  <!-- Blush -->
-  <ellipse cx="150" cy="310" rx="25" ry="15" fill="#FFB6C1" opacity="0.6"/>
-  <ellipse cx="362" cy="310" rx="25" ry="15" fill="#FFB6C1" opacity="0.6"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#A0DBEF"/>
+      <stop offset="100%" stop-color="#76C0DC"/>
+    </linearGradient>
+    <filter id="ds" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
+      <feOffset dx="0" dy="8" result="offsetblur"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.22"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Sky blue rounded square background -->
+  <rect width="512" height="512" rx="115" fill="url(#bg)"/>
+
+  <!-- White document with folded top-right corner, with subtle shadow -->
+  <g filter="url(#ds)">
+    <path d="M148 132 h150 l60 60 v204 a14 14 0 0 1 -14 14 h-196 a14 14 0 0 1 -14 -14 v-250 a14 14 0 0 1 14 -14 z" fill="#ffffff"/>
+    <path d="M298 132 v46 a14 14 0 0 0 14 14 h46 z" fill="#E8EDF2"/>
+  </g>
+
+  <!-- Big kawaii eyes -->
+  <ellipse cx="216" cy="252" rx="17" ry="23" fill="#1d1d1f"/>
+  <ellipse cx="296" cy="252" rx="17" ry="23" fill="#1d1d1f"/>
+  <circle cx="222" cy="244" r="6" fill="#ffffff"/>
+  <circle cx="302" cy="244" r="6" fill="#ffffff"/>
+
+  <!-- Pink blush -->
+  <ellipse cx="184" cy="294" rx="13" ry="7" fill="#FFB6C1" opacity="0.55"/>
+  <ellipse cx="328" cy="294" rx="13" ry="7" fill="#FFB6C1" opacity="0.55"/>
 
   <!-- Smile -->
-  <path d="M220 340 Q256 380 292 340" stroke="#333333" stroke-width="20" stroke-linecap="round"/>
+  <path d="M232 308 Q256 330 280 308" stroke="#1d1d1f" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
 </svg>
