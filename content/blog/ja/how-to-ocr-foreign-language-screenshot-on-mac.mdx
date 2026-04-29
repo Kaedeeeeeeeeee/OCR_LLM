@@ -1,0 +1,79 @@
+---
+title: "Mac で外国語スクリーンショットを OCR する方法（読めない文字も解説）"
+description: "Apple Vision が Mac でサポートする言語、サポート外の文字（キリル・アラビア・ヘブライ・タイ・ベトナム）、そして必要なときに Tesseract やクラウド OCR に切り替える方法。"
+slug: how-to-ocr-foreign-language-screenshot-on-mac
+locale: ja
+date: 2026-04-29
+category: Guide
+read_min: 8
+tags: ["Mac OCR", "外国語", "翻訳", "Apple Vision", "Tesseract", "Apple 翻訳", "DeepL"]
+template: guide
+key_facts:
+  - "Apple Vision recognizes English, Simplified Chinese, Traditional Chinese, Japanese, Korean, French, German, Italian, Spanish, Portuguese as of macOS 14"
+  - "macOS 12 supported English/French/Italian/German/Portuguese/Spanish/Chinese; Japanese and Korean were added in macOS 13"
+  - "Live Text and Cheese! OCR auto-detect the language — you do not select one manually"
+  - "Apple Vision does NOT recognize Cyrillic (Russian, Ukrainian), Arabic, Hebrew, Thai, Vietnamese as of early 2026"
+  - "For unsupported scripts: Tesseract (open-source CLI) with the appropriate language data, or cloud OCR (Google Cloud Vision, Azure AI Vision)"
+  - "Apple Translate is built into macOS 12+ and does on-device translation for many language pairs without sending text to the cloud"
+  - "Mixed-language text (e.g., English embedded in a Japanese page) is handled automatically — Apple Vision recognizes both"
+  - "Right-to-left scripts (Arabic, Hebrew) require RTL-aware OCR; Apple Vision does not currently support them"
+  - "After OCR, common translation paths: Apple Translate (on-device), DeepL (cloud, generally best for European languages), Google Translate (cloud, broadest coverage)"
+  - "Cheese! OCR is built on Apple Vision and inherits the supported-language list — same on-device, no network"
+  - "For Chinese, Apple Vision auto-handles both Simplified and Traditional script — no toggle needed"
+  - "For Japanese, Apple Vision handles hiragana, katakana, and printed kanji; freehand handwriting is partial"
+internal_links: ["ocr-asian-languages-on-mac", "extract-text-from-screenshot-on-mac", "how-on-device-ocr-works"]
+tldr: |
+  Mac でスクリーンショットから外国語のテキストを抽出したい場合、Apple Vision フレームワークが多くの主要言語を自動認識します。macOS 14 時点で英語、中国語（簡体字・繁体字）、日本語、韓国語、フランス語、ドイツ語、イタリア語、スペイン語、ポルトガル語に対応しており、言語を手動で選ぶ必要はありません。ただしキリル文字（ロシア語・ウクライナ語）、アラビア語、ヘブライ語、タイ語、ベトナム語はサポート外です。これらの文字を扱うには Tesseract のようなオープンソースの CLI ツールか、Google Cloud Vision や Azure AI Vision などのクラウド OCR サービスが必要になります。本記事では Apple Vision の対応言語と限界、そして代替手段を具体的に解説します。
+faqs:
+  - q: "Apple Vision はどの言語をサポートしていますか？"
+    a: "macOS 14 時点で、Apple Vision は英語、中国語（簡体字・繁体字）、日本語、韓国語、フランス語、ドイツ語、イタリア語、スペイン語、ポルトガル語を認識できます。macOS 12 では英語・フランス語・イタリア語・ドイツ語・ポルトガル語・スペイン語・中国語のみでしたが、macOS 13 で日本語と韓国語が追加されました。これらの言語は自動検出されるため、ユーザーが手動で切り替える必要はありません。"
+  - q: "Apple Vision が認識できない文字はどうすればいいですか？"
+    a: "キリル文字（ロシア語・ウクライナ語）、アラビア語、ヘブライ語、タイ語、ベトナム語は Apple Vision の対象外です。これらの文字を OCR するには、Tesseract というオープンソースの CLI ツールに適切な言語データを追加する方法がおすすめです。あるいは Google Cloud Vision や Azure AI Vision などのクラウド OCR サービスを利用することもできます。"
+  - q: "複数の言語が混ざったテキストは認識できますか？"
+    a: "はい、Apple Vision は混在言語のテキストを自動的に処理します。たとえば日本語のページに英語の単語が埋め込まれていても、両方の言語を同時に認識してテキストとして抽出できます。言語を切り替える操作は一切不要です。"
+  - q: "右から左に書かれる文字（アラビア語やヘブライ語）はどうですか？"
+    a: "Apple Vision は現時点で右横書き（RTL）のスクリプトをサポートしていません。アラビア語やヘブライ語のテキストを正しく OCR するには、RTL に対応した専用のツールやクラウドサービスを利用する必要があります。Tesseract も RTL 対応の言語データを提供しています。"
+---
+
+あなたが外国語で書かれたスクリーンショットを Mac で開き、そのテキストをコピーしようとした経験はありませんか。たとえば海外のウェブサイトの一部を切り取った画像や、同僚から送られてきた日本語の資料のスクリーンショットなどです。そのままでは文字を選択できず、手で打ち直すしかないと諦めてしまいがちです。
+
+しかし macOS には Apple Vision という強力な OCR フレームワークが組み込まれています。このフレームワークを使えば、スクリーンショット内のテキストを自動的に認識し、コピーできるようになります。ただし対応している言語とそうでない言語があるため、事前にその範囲を把握しておくことが大切です。
+
+## Apple Vision の仕組みと対応言語の実態
+
+Apple Vision は macOS 12 Monterey で初めて導入され、以降のバージョンで対応言語が拡大されてきました。macOS 14 時点で認識できるのは、英語、中国語（簡体字・繁体字）、日本語、韓国語、フランス語、ドイツ語、イタリア語、スペイン語、ポルトガル語の 9 言語です。macOS 12 では英語・フランス語・イタリア語・ドイツ語・ポルトガル語・スペイン語・中国語のみでしたが、macOS 13 で日本語と韓国語が追加されました。
+
+このフレームワークは言語を自動検出するため、ユーザーが手動で切り替える必要はありません。たとえば日本語のページに英語の単語が混ざっていても、両方の言語を同時に認識してテキストとして抽出できます。中国語については簡体字と繁体字の両方を自動で処理してくれるため、特別な設定は不要です。
+
+ただし Apple Vision はすべての文字をカバーしているわけではありません。キリル文字（ロシア語・ウクライナ語）、アラビア語、ヘブライ語、タイ語、ベトナム語は、2026 年初頭時点でもサポート対象外です。これらの文字を扱うには別のツールが必要になります。
+
+## 実用上のポイント — 認識がうまくいかないケースとその対策
+
+Apple Vision はスクリーンショット内のテキストを高い精度で認識しますが、いくつかの条件下では失敗することがあります。たとえば画像の解像度が低すぎる場合や、文字が斜めに傾いている場合、あるいは手書き文字の場合は認識率が低下します。特に日本語の手書き文字については、ひらがなやカタカナ、印刷された漢字は問題なく認識されますが、フリーハンドの筆記体は部分的にしか対応していません。
+
+また右から左に書かれるアラビア語やヘブライ語のテキストは、Apple Vision がそもそもサポートしていません。これらの文字を OCR したい場合は、Tesseract というオープンソースの CLI ツールに適切な言語データを追加する方法が現実的です。Tesseract はコマンドラインから使うツールですが、言語データをダウンロードすれば多くの文字に対応できます。
+
+クラウド OCR サービスも有力な選択肢です。Google Cloud Vision や Azure AI Vision は幅広い言語をカバーしており、特にキリル文字やアラビア語など Apple Vision が対応していない文字に対して高い精度を発揮します。ただしネットワーク接続が必要で、データが外部に送信される点には注意してください。
+
+## 翻訳パス — OCR したテキストをどう活かすか
+
+テキストを抽出したあと、それを翻訳したい場面は多いでしょう。macOS 12 以降には Apple 翻訳が標準で組み込まれており、多くの言語ペアでオンデバイス翻訳が可能です。この機能はネットワークに依存しないため、プライバシーを重視する方に適しています。
+
+より高品質な翻訳を求めるなら、DeepL がヨーロッパ言語に対して特に優れた結果を出します。Google 翻訳はカバレッジが最も広く、アジア言語や中東言語にも対応しています。OCR と翻訳を組み合わせることで、読めない文字のスクリーンショットも実用的な情報源に変えられます。
+
+Cheese! OCR は Apple Vision をベースにしたアプリケーションです。そのため対応言語リストは Apple Vision と同一で、すべてオンデバイスで処理されます。ネットワーク不要で高速に動作する点が強みですが、Apple Vision の限界をそのまま継承していることにも注意が必要です。
+
+## システム標準で足りるときと、足りないとき
+
+もしあなたが OCR をたまにしか使わず、かつ対象が英語や日本語など Apple Vision 対応言語だけなら、macOS に標準搭載されている Live Text で十分です。Finder やプレビューで画像を開き、テキストを選択してコピーするだけで完了します。追加のアプリは一切不要です。
+
+一方で、キリル文字やアラビア語など Apple Vision がサポートしない文字を日常的に扱う場合や、大量のスクリーンショットをバッチ処理したい場合は、専用のツールが必要です。Tesseract やクラウド OCR サービス、あるいは Cheese! OCR のようなアプリが役立ちます。自分のワークフローに合った方法を選んでください。
+
+## 簡単なチェックリスト
+
+1. スクリーンショットの言語が Apple Vision 対応リスト（英語・中国語・日本語・韓国語・フランス語・ドイツ語・イタリア語・スペイン語・ポルトガル語）に含まれているか確認してください。
+2. 対応言語であれば、Live Text または Cheese! OCR でそのままテキストを抽出できます。
+3. 非対応言語の場合は、Tesseract に適切な言語データを追加するか、クラウド OCR サービスを利用してください。
+4. 抽出したテキストを翻訳したい場合は、Apple 翻訳（オンデバイス）、DeepL（ヨーロッパ言語向け）、Google 翻訳（広範囲）から選んでください。
+5. プライバシーを重視するなら、オンデバイスで完結する Apple 翻訳または Cheese! OCR を選びましょう。
+6. 大量のスクリーンショットを処理する場合は、バッチ処理に対応したツールを検討してください。

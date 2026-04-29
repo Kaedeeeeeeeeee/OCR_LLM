@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
+
+    <title>How to OCR a Foreign-Language Screenshot on Mac (and What Mac Can't Read) — Cheese! OCR Blog</title>
+    <meta name="description" content="Which languages Apple Vision recognizes on Mac, which scripts it can't handle, and how to fall back to Tesseract or a cloud OCR service when needed.">
+
+    <link rel="canonical" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-foreign-language-screenshot-on-mac/">
+    <link rel="alternate" hreflang="en" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-foreign-language-screenshot-on-mac/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/how-to-ocr-foreign-language-screenshot-on-mac/">
+    <link rel="alternate" hreflang="ja" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-to-ocr-foreign-language-screenshot-on-mac/">
+    <link rel="alternate" hreflang="ko" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ko/blog/how-to-ocr-foreign-language-screenshot-on-mac/">
+    <link rel="alternate" hreflang="x-default" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-foreign-language-screenshot-on-mac/">
+
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg?v=3">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../article.css">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Cheese! OCR">
+    <meta property="og:title" content="How to OCR a Foreign-Language Screenshot on Mac (and What Mac Can't Read)">
+    <meta property="og:description" content="Which languages Apple Vision recognizes on Mac, which scripts it can't handle, and how to fall back to Tesseract or a cloud OCR service when needed.">
+    <meta property="og:url" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-foreign-language-screenshot-on-mac/">
+    <meta property="og:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    <meta property="article:published_time" content="2026-04-29">
+    <meta property="article:author" content="Cheese! OCR Team">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to OCR a Foreign-Language Screenshot on Mac (and What Mac Can't Read)">
+    <meta name="twitter:description" content="Which languages Apple Vision recognizes on Mac, which scripts it can't handle, and how to fall back to Tesseract or a cloud OCR service when needed.">
+    <meta name="twitter:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to OCR a Foreign-Language Screenshot on Mac (and What Mac Can't Read)",
+  "description": "Which languages Apple Vision recognizes on Mac, which scripts it can't handle, and how to fall back to Tesseract or a cloud OCR service when needed.",
+  "author": {
+    "@type": "Organization",
+    "name": "Cheese! OCR",
+    "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Cheese! OCR",
+    "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+  },
+  "datePublished": "2026-04-29",
+  "dateModified": "2026-04-29",
+  "image": "https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png",
+  "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-foreign-language-screenshot-on-mac/",
+  "inLanguage": "en",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-foreign-language-screenshot-on-mac/"
+  }
+}
+    </script>
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "en",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does Apple Vision support Russian or Ukrainian?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. As of early 2026, Apple Vision does not recognize Cyrillic scripts like Russian or Ukrainian. You'll need to use Tesseract with the appropriate language data, or a cloud OCR service like Google Cloud Vision or Azure AI Vision."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I OCR a screenshot with both English and Japanese text?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Apple Vision handles mixed-language text automatically — it recognizes both English and Japanese in the same image without any toggle. This works in Live Text and in apps like Cheese! OCR that use the same framework."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the best way to translate text after OCR on a Mac?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Apple Translate is built into macOS 12+ and works on-device for many language pairs. For European languages, DeepL generally gives the best quality. Google Translate has the broadest coverage if you need something more obscure."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Cheese! OCR support more languages than Apple's Live Text?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Cheese! OCR is built on Apple Vision, so it inherits the exact same supported-language list. The advantage is convenience — you get a dedicated hotkey and batch processing — but the underlying language support is identical."
+      }
+    }
+  ]
+}
+    </script>
+
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Cheese! OCR",
+      "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "How to OCR a Foreign-Language Screenshot on Mac (and What Mac Can't Read)"
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+
+    <nav class="article-nav">
+        <a href="../" class="back-link">← Blog</a>
+        <div class="lang-switcher">
+            <a href="/OCR_LLM/blog/how-to-ocr-foreign-language-screenshot-on-mac/" aria-current="page" hreflang="en">EN</a>
+            <a href="/OCR_LLM/zh/blog/how-to-ocr-foreign-language-screenshot-on-mac/" hreflang="zh-Hans">中文</a>
+            <a href="/OCR_LLM/ja/blog/how-to-ocr-foreign-language-screenshot-on-mac/" hreflang="ja">日本語</a>
+            <a href="/OCR_LLM/ko/blog/how-to-ocr-foreign-language-screenshot-on-mac/" hreflang="ko">한국어</a>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <h1>How to OCR a Foreign-Language Screenshot on Mac (and What Mac Can't Read)</h1>
+        <p class="article-meta">
+        <time datetime="2026-04-29">April 29, 2026</time>
+            · 8 min read
+        </p>
+    </header>
+
+    <aside class="tldr">
+        <strong>TL;DR</strong>
+        If you need to grab text from a foreign-language screenshot on your Mac, Apple Vision covers the major East Asian and European scripts automatically — no manual language selection required. But it has real gaps: Cyrillic, Arabic, Hebrew, Thai, and Vietnamese aren't supported as of early 2026. For those, you'll need Tesseract or a cloud OCR service. This guide walks you through what works, what doesn't, and how to bridge the gap without wasting time.
+    </aside>
+
+    <article class="article-body">
+<p>You're looking at a screenshot of a menu in Japanese, or a sign in Russian, or a PDF in Arabic. You need the text — not a photo, not a translation app's camera view, but actual selectable text you can paste into a document or translator. On a Mac, the built-in OCR tools handle some languages beautifully and others not at all. Here's what actually works.</p>
+<p>Apple Vision, the framework behind Live Text and apps like Cheese! OCR, recognizes a specific set of languages. As of macOS 14, that set includes English, Simplified Chinese, Traditional Chinese, Japanese, Korean, French, German, Italian, Spanish, and Portuguese. macOS 12 started with English, French, Italian, German, Portuguese, Spanish, and Chinese; Japanese and Korean arrived in macOS 13. The system auto-detects the language — you never select one manually. Mixed-language text, like English embedded in a Japanese page, is handled automatically.</p>
+<h2 id="what-apple-vision-cant-read">What Apple Vision can't read</h2>
+<p>Apple Vision does not recognize Cyrillic scripts (Russian, Ukrainian), Arabic, Hebrew, Thai, or Vietnamese as of early 2026. Right-to-left scripts like Arabic and Hebrew require RTL-aware OCR, which Apple Vision doesn't support. If your screenshot contains any of these, Live Text and Cheese! OCR will return nothing useful.</p>
+<p>For unsupported scripts, you have two practical options. Tesseract is an open-source CLI tool you can install via Homebrew. You'll need to download the appropriate language data files — <code>tesseract-lang</code> covers most scripts. It's free and runs locally, but the accuracy varies and setup takes a few minutes. Cloud OCR services like Google Cloud Vision or Azure AI Vision support a much wider range of languages and generally produce cleaner results, but they send your image to a remote server.</p>
+<h2 id="after-ocr-translation-paths">After OCR: translation paths</h2>
+<p>Once you have the text, you need to translate it. Apple Translate is built into macOS 12+ and does on-device translation for many language pairs without sending anything to the cloud. It's fast and private, but the language coverage is narrower than cloud alternatives. DeepL is generally the best choice for European languages — it handles nuance better than most competitors. Google Translate has the broadest coverage if you need something more obscure like Thai or Vietnamese.</p>
+<p>For Chinese, Apple Vision auto-handles both Simplified and Traditional script — no toggle needed. For Japanese, it handles hiragana, katakana, and printed kanji reliably; freehand handwriting recognition is partial.</p>
+<h2 id="when-the-built-in-tool-is-enough">When the built-in tool is enough</h2>
+<p>If you only OCR occasionally and only in the languages Apple Vision supports, Live Text is free, fast, and right there. Stop reading and use the tool you already have. The same applies if you're working with mixed-language text that stays within the supported set — Apple Vision handles it automatically.</p>
+<p>If you need Cyrillic, Arabic, Hebrew, Thai, or Vietnamese, or if you need to batch-process many screenshots, you'll need something else. Cheese! OCR is built on Apple Vision and inherits the same language list — it won't help with unsupported scripts. For those cases, Tesseract or a cloud service is your actual path forward.</p>
+<h2 id="a-short-checklist">A short checklist</h2>
+<ol>
+<li>Check if your target language is in Apple Vision's supported list (English, Chinese, Japanese, Korean, French, German, Italian, Spanish, Portuguese).</li>
+<li>If it is, use Live Text or Cheese! OCR — no setup needed.</li>
+<li>If it isn't, install Tesseract via Homebrew and download the language data for your script.</li>
+<li>For higher accuracy on unsupported scripts, use Google Cloud Vision or Azure AI Vision.</li>
+<li>After OCR, translate with Apple Translate (on-device), DeepL (best for European languages), or Google Translate (broadest coverage).</li>
+<li>If you batch-process screenshots regularly, consider a dedicated tool like Cheese! OCR for the supported languages, and a separate workflow for the rest.</li>
+</ol>
+    </article>
+
+    <section class="article-faq">
+        <h2>Frequently Asked Questions</h2>
+        <details class="faq-item">
+            <summary>Does Apple Vision support Russian or Ukrainian?</summary>
+            <div class="answer">No. As of early 2026, Apple Vision does not recognize Cyrillic scripts like Russian or Ukrainian. You'll need to use Tesseract with the appropriate language data, or a cloud OCR service like Google Cloud Vision or Azure AI Vision.</div>
+        </details>
+        <details class="faq-item">
+            <summary>Can I OCR a screenshot with both English and Japanese text?</summary>
+            <div class="answer">Yes. Apple Vision handles mixed-language text automatically — it recognizes both English and Japanese in the same image without any toggle. This works in Live Text and in apps like Cheese! OCR that use the same framework.</div>
+        </details>
+        <details class="faq-item">
+            <summary>What's the best way to translate text after OCR on a Mac?</summary>
+            <div class="answer">Apple Translate is built into macOS 12+ and works on-device for many language pairs. For European languages, DeepL generally gives the best quality. Google Translate has the broadest coverage if you need something more obscure.</div>
+        </details>
+        <details class="faq-item">
+            <summary>Does Cheese! OCR support more languages than Apple's Live Text?</summary>
+            <div class="answer">No. Cheese! OCR is built on Apple Vision, so it inherits the exact same supported-language list. The advantage is convenience — you get a dedicated hotkey and batch processing — but the underlying language support is identical.</div>
+        </details>
+    </section>
+
+    <section class="article-cta">
+        <div class="cta-card">
+            <h2>Try Cheese! OCR</h2>
+            <p>One hotkey. Drag-select. Text on your clipboard. $5.99 one-time, on-device, works in any app you can see.</p>
+            <a href="https://apps.apple.com/app/cheese-ocr/id6760889131" class="cta-button">Try Cheese! OCR — Mac App Store</a>
+        </div>
+    </section>
+
+    <section class="article-related">
+        <h2>Related articles</h2>
+        <div class="related-grid">
+            <a href="../ocr-asian-languages-on-mac/" class="related-card">
+                <h3>How to OCR Chinese, Japanese, and Korean Text on Mac</h3>
+                <p>Specific tips and tools for each language, with a focus on what Live Text can and can't recognize out of the box.</p>
+            </a>
+            <a href="../extract-text-from-screenshot-on-mac/" class="related-card">
+                <h3>How to Extract Text from a Screenshot on Mac (Three Methods Compared)</h3>
+                <p>Live Text, Cmd+Shift+5 floating actions, and dedicated OCR tools — when each one is worth the keystrokes.</p>
+            </a>
+            <a href="../how-on-device-ocr-works/" class="related-card">
+                <h3>How On-Device OCR Works: Apple Vision Framework Explained</h3>
+                <p>A technical look at how Apple Vision performs OCR on-device, why it's faster than the cloud, and what it means for privacy.</p>
+            </a>
+        </div>
+    </section>
+
+    <footer class="article-footer">
+        <a href="../../">Home</a>
+        <a href="../../privacy.html">Privacy Policy</a>
+        <a href="mailto:nicholaslck@icloud.com">Contact</a>
+        <p>&copy; 2026 Cheese! OCR. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

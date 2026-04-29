@@ -1,0 +1,82 @@
+---
+title: "How to OCR a Receipt on Mac (For Expense Reports and Tax Time)"
+description: "Three reliable ways to extract text from a receipt on Mac — Live Text in Photos, scanned PDF OCR, and a hotkey OCR tool — plus the cases where each one fails."
+slug: how-to-ocr-receipt-on-mac
+locale: en
+date: 2026-04-29
+category: How-to
+read_min: 8
+tags: ["Mac OCR", "receipt", "expense report", "tax", "Live Text", "scanned PDF", "screenshot OCR"]
+template: howto
+key_facts:
+  - "Photos.app and Preview.app on macOS 12+ support Live Text on receipt photos and PDF scans"
+  - "Apple Vision handles printed receipt thermal-paper text well in good lighting; faded thermal print is unreliable regardless of OCR engine"
+  - "Live Text in Photos surfaces phone numbers, addresses, dates, and amounts as tappable data — useful for receipts"
+  - "PDFs from email receipts (Uber Eats, Amazon, airlines) are usually native PDFs with selectable text already — no OCR needed"
+  - "Scanned PDF receipts (e.g., from a flatbed scanner) need OCR; Preview's Live Text handles many; Adobe Acrobat Pro's OCR or ocrmypdf (open source CLI) handle the rest"
+  - "iPhone Notes and Files apps have a 'Scan Documents' feature that produces searchable PDFs — these are auto-OCR'd"
+  - "For batch receipt processing (expense reports), workflows that work: take photos → AirDrop to Mac → Photos → Live Text select → paste"
+  - "Cheese! OCR works on receipt photos opened in any app, including third-party photo viewers Live Text doesn't reach"
+  - "Apple Vision recognizes English, Simplified/Traditional Chinese, Japanese, Korean, French, German, Italian, Spanish, Portuguese on receipts"
+  - "Receipts in unsupported scripts (Russian/Cyrillic, Arabic, Hebrew, Thai) require Tesseract or a cloud OCR service"
+  - "Receipt amounts with commas vs dots as decimal separator (US vs EU) are preserved — OCR doesn't normalize"
+  - "Cheese! OCR's default hotkey is Shift+Command+E, all processing on-device, no network entitlements — relevant for receipts containing personal info"
+internal_links: ["extract-text-from-screenshot-on-mac", "how-on-device-ocr-works", "ocr-asian-languages-on-mac"]
+tldr: |
+  You have three solid ways to OCR a receipt on a Mac. If the receipt is a photo in your Photos library, Live Text works instantly with no extra tools. If it's a scanned PDF, Preview's Live Text handles most cases, and Adobe Acrobat Pro or ocrmypdf covers the rest. For receipts that are open in any app — a browser, a third-party viewer, or a screenshot — Cheese! OCR gives you a hotkey-driven fallback that runs entirely on your machine. Start with the built-in tool; reach for the dedicated one when Live Text won't cooperate.
+faqs:
+  - q: "Do I need to OCR a receipt that came as a PDF in my email?"
+    a: "Probably not. Most receipts from Uber Eats, Amazon, airlines, and online stores are native PDFs with selectable text already embedded. Just highlight and copy the text directly. You only need OCR if the PDF is a scanned image of a paper receipt."
+  - q: "Can I OCR a receipt from a screenshot on my Mac?"
+    a: "Yes, but Live Text only works in certain apps like Photos, Preview, and Quick Look. If you take a screenshot and open it in a third-party image viewer, Live Text won't activate. Cheese! OCR works on any receipt photo open in any app, so it's a reliable fallback for screenshots."
+  - q: "What if my receipt is in a language like Chinese or Korean?"
+    a: "Apple Vision supports English, Simplified and Traditional Chinese, Japanese, Korean, French, German, Italian, Spanish, and Portuguese on receipts. If your receipt uses a script outside that list, like Russian Cyrillic or Arabic, you'll need Tesseract or a cloud OCR service."
+  - q: "Will OCR preserve the decimal separator in receipt amounts?"
+    a: "Yes. OCR reads the characters as they appear, so a US receipt with a dot (12.99) and an EU receipt with a comma (12,99) will both be preserved exactly. The OCR engine doesn't normalize or convert the format."
+  - q: "Is it safe to OCR receipts with personal information using Cheese! OCR?"
+    a: "Yes. Cheese! OCR processes everything on-device using Apple's Vision framework. It has no network entitlements, so your receipt data never leaves your Mac. This is especially relevant for receipts containing addresses, phone numbers, or payment details."
+---
+
+It's the night before your expense report is due. You have a stack of paper receipts — coffee meetings, taxi rides, a lunch with a client — and you need to get the dates, amounts, and vendor names into a spreadsheet. Typing them by hand is slow and error-prone. OCR is the obvious answer, but which tool actually works on a Mac?
+
+This guide covers three reliable methods. Start with the built-in macOS tools, because they're free and already on your machine. When they fall short, a dedicated hotkey-driven OCR app picks up the slack. No cloud uploads, no subscription fees, just text extraction that respects your privacy.
+
+## Method 1: Live Text in Photos and Preview
+
+If you have a photo of a receipt in your Photos library, Live Text is the fastest path. Open the photo, hover over any text, and the cursor turns into a text caret. You can highlight, copy, and paste directly into your expense report. Live Text also surfaces phone numbers, addresses, dates, and amounts as tappable data — useful for quickly grabbing a vendor's phone number or the total.
+
+For scanned PDF receipts, open the PDF in Preview. Live Text works the same way: select the text, copy it, and you're done. This handles most receipts captured in good lighting with clear thermal print. Apple Vision does a solid job with English, Chinese, Japanese, Korean, and several European languages.
+
+### When Live Text fails
+
+Live Text only works inside Apple's own apps — Photos, Preview, Quick Look, and Safari. If you open a receipt photo in a third-party image viewer or a browser-based expense tool, Live Text won't activate. Faded thermal print is another common failure point. If the receipt is old or the ink has degraded, no OCR engine will reliably extract the text. And if your receipt uses a script Apple Vision doesn't support, like Russian Cyrillic or Arabic, you'll need a different approach.
+
+## Method 2: Scanned PDF OCR with Adobe Acrobat Pro or ocrmypdf
+
+If you have a scanned PDF — say, from a flatbed scanner or the iPhone Notes scan feature — Preview's Live Text handles many cases, but not all. For complex layouts, poor contrast, or multi-page receipts, Adobe Acrobat Pro's built-in OCR tool is more reliable. Open the PDF, go to Tools > Scan & OCR, and run the recognition. It gives you searchable text you can copy and paste.
+
+If you prefer open-source tools, ocrmypdf is a command-line utility that adds an OCR text layer to scanned PDFs. It uses Tesseract under the hood, which supports many more languages than Apple Vision. Install it via Homebrew (`brew install ocrmypdf`) and run `ocrmypdf input.pdf output.pdf`. It's fast, free, and works well for batch processing.
+
+### When this method fails
+
+Adobe Acrobat Pro requires a subscription, which is overkill if you only OCR a few receipts a year. ocrmypdf is powerful but requires comfort with the terminal. Neither tool helps if the receipt is a screenshot or an image open in a non-PDF app — you'd need to save it as a PDF first, adding an extra step.
+
+## Method 3: Use Cheese! OCR
+
+Cheese! OCR fills the gap where Live Text doesn't reach. If you have a receipt photo open in any app — a browser, a third-party viewer, or even a screenshot tool — you press Shift+Command+E, drag a selection box around the text, and it's copied to your clipboard. No need to save the image to Photos or convert it to a PDF first.
+
+The processing happens entirely on-device using Apple's Vision framework, so your receipt data never leaves your Mac. That matters when the receipt contains your home address, phone number, or payment details. Cheese! OCR supports the same languages as Apple Vision — English, Chinese, Japanese, Korean, and European languages — and preserves decimal separators exactly as they appear on the receipt.
+
+## Quick comparison
+
+| Method | Best for | Limitation |
+|---|---|---|
+| Live Text (Photos/Preview) | Receipt photos in Photos library or PDFs in Preview | Only works in Apple apps; fails on faded thermal print |
+| Scanned PDF OCR (Acrobat/ocrmypdf) | Complex or multi-page scanned PDFs | Requires subscription or terminal; doesn't work on images |
+| Cheese! OCR | Receipts open in any app; screenshots; privacy-sensitive data | Requires a one-time purchase; same language limits as Apple Vision |
+
+## Common troubleshooting
+
+If Live Text doesn't show the text cursor, make sure your Mac is running macOS 12 Monterey or later. The feature is also region-dependent — check that your system language and region settings include a supported language. For Cheese! OCR, verify that the app has screen recording permission in System Settings > Privacy & Security > Screen Recording. If the hotkey doesn't respond, check for conflicts with other apps that use the same shortcut.
+
+For faded receipts, try increasing the contrast or brightness of the image before running OCR. If the text is still unreadable, you may need to manually type the data — no OCR tool can recover what the human eye can't read.

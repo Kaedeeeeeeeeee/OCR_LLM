@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
+
+    <title>How to OCR Text from a Zoom Meeting on Mac (Teams, Meet, Webex too) — Cheese! OCR Blog</title>
+    <meta name="description" content="Why macOS Live Text doesn't work in Zoom meeting windows, what DRM screen-protection means, and three reliable ways to copy text from Zoom, Teams, Meet, and Webex on Mac.">
+
+    <link rel="canonical" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-from-zoom-meetings-on-mac/">
+    <link rel="alternate" hreflang="en" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-from-zoom-meetings-on-mac/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/how-to-ocr-from-zoom-meetings-on-mac/">
+    <link rel="alternate" hreflang="ja" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-to-ocr-from-zoom-meetings-on-mac/">
+    <link rel="alternate" hreflang="ko" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ko/blog/how-to-ocr-from-zoom-meetings-on-mac/">
+    <link rel="alternate" hreflang="x-default" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-from-zoom-meetings-on-mac/">
+
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg?v=3">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../article.css">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Cheese! OCR">
+    <meta property="og:title" content="How to OCR Text from a Zoom Meeting on Mac (Teams, Meet, Webex too)">
+    <meta property="og:description" content="Why macOS Live Text doesn't work in Zoom meeting windows, what DRM screen-protection means, and three reliable ways to copy text from Zoom, Teams, Meet, and Webex on Mac.">
+    <meta property="og:url" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-from-zoom-meetings-on-mac/">
+    <meta property="og:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="en_US">
+    <meta property="article:published_time" content="2026-04-29">
+    <meta property="article:author" content="Cheese! OCR Team">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to OCR Text from a Zoom Meeting on Mac (Teams, Meet, Webex too)">
+    <meta name="twitter:description" content="Why macOS Live Text doesn't work in Zoom meeting windows, what DRM screen-protection means, and three reliable ways to copy text from Zoom, Teams, Meet, and Webex on Mac.">
+    <meta name="twitter:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to OCR Text from a Zoom Meeting on Mac (Teams, Meet, Webex too)",
+  "description": "Why macOS Live Text doesn't work in Zoom meeting windows, what DRM screen-protection means, and three reliable ways to copy text from Zoom, Teams, Meet, and Webex on Mac.",
+  "author": {
+    "@type": "Organization",
+    "name": "Cheese! OCR",
+    "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Cheese! OCR",
+    "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+  },
+  "datePublished": "2026-04-29",
+  "dateModified": "2026-04-29",
+  "image": "https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png",
+  "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-from-zoom-meetings-on-mac/",
+  "inLanguage": "en",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-from-zoom-meetings-on-mac/"
+  }
+}
+    </script>
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "en",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why doesn't macOS Live Text work in Zoom meeting windows?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Live Text only works inside Apple's own apps like Photos, Preview, Safari, Notes, and QuickLook, plus WebKit-rendered images. Zoom, Teams, Meet, and Webex use their own rendering engines that don't expose text to Apple's framework. The meeting window is essentially a video stream, not a static image view."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I use Cmd+Shift+4 to screenshot a Zoom meeting and then OCR it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, as long as the meeting host hasn't enabled DRM screen-protection. If they have, your screenshot will be a black rectangle. In that case, you'll need to use a tool that reads screen pixels directly via the Screen Recording permission, like Cheese! OCR or Text Sniper."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Zoom have a built-in way to capture text from slides?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Zoom can save the chat log and meeting transcript, but neither includes text from the presenter's slides or shared screen. If you need text from a slide, you'll need to capture it visually and OCR it. The 'save transcript' feature only captures spoken words, not on-screen content."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Cheese! OCR safe to use with confidential meeting content?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cheese! OCR processes everything on-device using Apple's Vision framework — no data is sent to any server. The app's sandbox declares zero network entitlements, which you can verify in the Mac App Store privacy report. It only needs Screen Recording permission to read pixels, and that permission is granted by macOS on first use."
+      }
+    }
+  ]
+}
+    </script>
+
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Cheese! OCR",
+      "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "How to OCR Text from a Zoom Meeting on Mac (Teams, Meet, Webex too)"
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+
+    <nav class="article-nav">
+        <a href="../" class="back-link">← Blog</a>
+        <div class="lang-switcher">
+            <a href="/OCR_LLM/blog/how-to-ocr-from-zoom-meetings-on-mac/" aria-current="page" hreflang="en">EN</a>
+            <a href="/OCR_LLM/zh/blog/how-to-ocr-from-zoom-meetings-on-mac/" hreflang="zh-Hans">中文</a>
+            <a href="/OCR_LLM/ja/blog/how-to-ocr-from-zoom-meetings-on-mac/" hreflang="ja">日本語</a>
+            <a href="/OCR_LLM/ko/blog/how-to-ocr-from-zoom-meetings-on-mac/" hreflang="ko">한국어</a>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <h1>How to OCR Text from a Zoom Meeting on Mac (Teams, Meet, Webex too)</h1>
+        <p class="article-meta">
+        <time datetime="2026-04-29">April 29, 2026</time>
+            · 9 min read
+        </p>
+    </header>
+
+    <aside class="tldr">
+        <strong>TL;DR</strong>
+        macOS Live Text won't work in Zoom, Teams, Meet, or Webex meeting windows because they aren't Apple-native image views. You have three real options: take a screenshot with Cmd+Shift+4 and run it through an OCR tool, use the meeting app's built-in transcript or chat export, or use a hotkey-driven OCR app like Cheese! OCR that reads screen pixels directly. For most people, the screenshot-plus-OCR route is the fastest and most reliable — especially when the presenter's slides contain text that transcripts miss.
+    </aside>
+
+    <article class="article-body">
+<p>You're in a Zoom meeting, the presenter flips to a slide with a crucial URL, a product code, or a block of text you need to copy. You reach for Cmd+C — nothing. You try Live Text — nothing. You take a screenshot with Cmd+Shift+4, open it in Preview, and still can't select the text. This is a common frustration for anyone who works with video conferencing tools on a Mac.</p>
+<p>The core problem is that macOS Live Text doesn't work inside Zoom, Microsoft Teams, Google Meet (in Chrome), or Webex meeting windows. These apps don't use Apple's native image rendering framework, so Live Text simply has nothing to latch onto. You have three reliable ways to get that text out: the screenshot-plus-OCR route, the meeting app's own built-in features, or a hotkey-driven OCR tool that reads screen pixels directly.</p>
+<h2 id="method-1-screenshot--ocr-tool">Method 1: Screenshot + OCR Tool</h2>
+<p>This is the most straightforward approach. Press Cmd+Shift+4 to capture a portion of the screen, then open the screenshot in an OCR-capable app. You can use the built-in Preview app with Live Text if the screenshot is saved as a file and opened there — but only if the screenshot contains text that Live Text can recognize. For meeting windows, this often fails because the text is rendered as part of a video stream.</p>
+<p>A better option is to use a dedicated OCR tool like Text Sniper or Cheese! OCR. After taking the screenshot, drag the image into the tool, and it will extract the text. This works for any text visible on screen, including URLs, code snippets, and slide content. The process takes about 10 seconds once you're used to it.</p>
+<h3 id="when-this-method-fails">When This Method Fails</h3>
+<p>The screenshot approach fails completely when the meeting host enables DRM screen-protection. In that case, Cmd+Shift+4 returns a black rectangle — the host has set this restriction, not the meeting app itself. You'll see the meeting window normally, but any screenshot tool will capture only black pixels.</p>
+<p>Additionally, if you're in a full-screen meeting and the screenshot captures the entire display, Live Text may still not work because the image is treated as a video frame rather than a static document. The only reliable workaround is to use a tool that reads screen pixels directly via the Screen Recording permission.</p>
+<h2 id="method-2-the-meeting-apps-built-in-features">Method 2: The Meeting App's Built-in Features</h2>
+<p>Zoom, Teams, and Meet all offer some form of text capture. Zoom can save the chat log and generate a transcript of spoken words. Teams has a similar feature for meeting recordings and live captions. Google Meet can save captions to a Google Doc.</p>
+<p>These features are useful for capturing spoken content and chat messages, but they have a critical blind spot: they don't include text from the presenter's slides, shared screen, or any on-screen annotations. If the presenter shows a slide with a table of data, a code snippet, or a URL, the transcript won't contain it.</p>
+<h3 id="when-this-method-fails-1">When This Method Fails</h3>
+<p>The built-in features fail whenever you need text that appears on the presenter's screen but isn't spoken or typed into chat. This is the most common scenario — someone shares a slide with a link, and you need to copy it. The transcript captures "here's the link" but not the actual URL.</p>
+<p>Also, these features require the meeting host to enable recording or transcription. If the host hasn't turned them on, you have no access to any text at all. And even when they're enabled, the text is only available after the meeting ends, not in real time.</p>
+<h2 id="method-3-use-cheese-ocr">Method 3: Use Cheese! OCR</h2>
+<p>Cheese! OCR solves the problem differently. Instead of waiting for a screenshot file or relying on the meeting app's features, it reads screen pixels directly using the Screen Recording permission. Press the default hotkey Shift+Command+E, drag a selection rectangle over the text you want, and the recognized text appears instantly. Copy it with Cmd+C and paste where you need it.</p>
+<p>This approach works in any meeting app — Zoom, Teams, Meet, Webex — because it doesn't depend on the app's rendering engine. It sees the pixels on screen, just like your eyes do. The Apple Vision framework handles text recognition on-device, so there's no network delay and no privacy concern. It auto-detects English, Simplified Chinese, Traditional Chinese, Japanese, and Korean without any manual language switch.</p>
+<p>The hotkey-drag-paste workflow takes about two seconds once muscle memory kicks in. You don't need to save a screenshot file, open another app, or wait for processing. It works in real time, even during a live presentation.</p>
+<h2 id="quick-comparison">Quick Comparison</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Best for</th>
+<th>Limitation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Screenshot + OCR</td>
+<td>Static slides, URLs, code snippets</td>
+<td>Fails with DRM screen-protection; requires extra steps</td>
+</tr>
+<tr>
+<td>App built-in features</td>
+<td>Chat logs, spoken transcripts</td>
+<td>Misses on-screen text; requires host to enable</td>
+</tr>
+<tr>
+<td>Cheese! OCR</td>
+<td>Real-time text from any on-screen content</td>
+<td>Requires Screen Recording permission; not free</td>
+</tr>
+</tbody>
+</table>
+<h2 id="common-troubleshooting">Common Troubleshooting</h2>
+<p>The most common issue is the Screen Recording permission prompt. When you first use Cheese! OCR, macOS will ask for permission to record the screen. You need to grant this in System Settings > Privacy &#x26; Security > Screen Recording. Without it, the app can't read pixels.</p>
+<p>If your screenshots are coming out black, the meeting host has enabled DRM screen-protection. In this case, only tools that use the Screen Recording API (like Cheese! OCR) can capture the screen. Standard screenshot tools will always return black.</p>
+<p>If text isn't being recognized, check that the text is large enough and clearly visible. Apple Vision works best with text that's at least 10-12 points in size. Very small text, heavily stylized fonts, or text on complex backgrounds may not be recognized reliably.</p>
+    </article>
+
+    <section class="article-faq">
+        <h2>Frequently Asked Questions</h2>
+        <details class="faq-item">
+            <summary>Why doesn't macOS Live Text work in Zoom meeting windows?</summary>
+            <div class="answer">Live Text only works inside Apple's own apps like Photos, Preview, Safari, Notes, and QuickLook, plus WebKit-rendered images. Zoom, Teams, Meet, and Webex use their own rendering engines that don't expose text to Apple's framework. The meeting window is essentially a video stream, not a static image view.</div>
+        </details>
+        <details class="faq-item">
+            <summary>Can I use Cmd+Shift+4 to screenshot a Zoom meeting and then OCR it?</summary>
+            <div class="answer">Yes, as long as the meeting host hasn't enabled DRM screen-protection. If they have, your screenshot will be a black rectangle. In that case, you'll need to use a tool that reads screen pixels directly via the Screen Recording permission, like Cheese! OCR or Text Sniper.</div>
+        </details>
+        <details class="faq-item">
+            <summary>Does Zoom have a built-in way to capture text from slides?</summary>
+            <div class="answer">Zoom can save the chat log and meeting transcript, but neither includes text from the presenter's slides or shared screen. If you need text from a slide, you'll need to capture it visually and OCR it. The 'save transcript' feature only captures spoken words, not on-screen content.</div>
+        </details>
+        <details class="faq-item">
+            <summary>Is Cheese! OCR safe to use with confidential meeting content?</summary>
+            <div class="answer">Cheese! OCR processes everything on-device using Apple's Vision framework — no data is sent to any server. The app's sandbox declares zero network entitlements, which you can verify in the Mac App Store privacy report. It only needs Screen Recording permission to read pixels, and that permission is granted by macOS on first use.</div>
+        </details>
+    </section>
+
+    <section class="article-cta">
+        <div class="cta-card">
+            <h2>Try Cheese! OCR</h2>
+            <p>One hotkey. Drag-select. Text on your clipboard. $5.99 one-time, on-device, works in any app you can see.</p>
+            <a href="https://apps.apple.com/app/cheese-ocr/id6760889131" class="cta-button">Try Cheese! OCR — Mac App Store</a>
+        </div>
+    </section>
+
+    <section class="article-related">
+        <h2>Related articles</h2>
+        <div class="related-grid">
+            <a href="../copy-text-from-video-on-mac/" class="related-card">
+                <h3>How to Copy Text from a Video on Mac (Tutorials, Meetings, Anything)</h3>
+                <p>Three ways to grab text from a paused video frame, including DRM-protected meetings and Chrome-based tutorials.</p>
+            </a>
+            <a href="../cheese-ocr-vs-live-text/" class="related-card">
+                <h3>Cheese! OCR vs macOS Live Text: When Apple's Built-in Tool Isn't Enough</h3>
+                <p>How macOS Live Text compares to a global-hotkey OCR tool, and the four scenarios where Live Text falls short.</p>
+            </a>
+            <a href="../extract-text-from-screenshot-on-mac/" class="related-card">
+                <h3>How to Extract Text from a Screenshot on Mac (Three Methods Compared)</h3>
+                <p>Live Text, Cmd+Shift+5 floating actions, and dedicated OCR tools — when each one is worth the keystrokes.</p>
+            </a>
+        </div>
+    </section>
+
+    <footer class="article-footer">
+        <a href="../../">Home</a>
+        <a href="../../privacy.html">Privacy Policy</a>
+        <a href="mailto:nicholaslck@icloud.com">Contact</a>
+        <p>&copy; 2026 Cheese! OCR. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

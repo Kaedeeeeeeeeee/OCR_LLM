@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
+
+    <title>Mac でレシートを OCR する方法（経費精算・確定申告に） — Cheese! OCR Blog</title>
+    <meta name="description" content="Mac でレシートからテキストを取り出す確実な 3 つの方法——写真アプリのライブテキスト、スキャン PDF の OCR、ホットキー OCR ツール——それぞれが効かないケースも解説。">
+
+    <link rel="canonical" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-to-ocr-receipt-on-mac/">
+    <link rel="alternate" hreflang="en" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-receipt-on-mac/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/how-to-ocr-receipt-on-mac/">
+    <link rel="alternate" hreflang="ja" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-to-ocr-receipt-on-mac/">
+    <link rel="alternate" hreflang="ko" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ko/blog/how-to-ocr-receipt-on-mac/">
+    <link rel="alternate" hreflang="x-default" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-receipt-on-mac/">
+
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg?v=3">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../../../blog/article.css">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Cheese! OCR">
+    <meta property="og:title" content="Mac でレシートを OCR する方法（経費精算・確定申告に）">
+    <meta property="og:description" content="Mac でレシートからテキストを取り出す確実な 3 つの方法——写真アプリのライブテキスト、スキャン PDF の OCR、ホットキー OCR ツール——それぞれが効かないケースも解説。">
+    <meta property="og:url" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-to-ocr-receipt-on-mac/">
+    <meta property="og:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="article:published_time" content="2026-04-29">
+    <meta property="article:author" content="Cheese! OCR Team">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mac でレシートを OCR する方法（経費精算・確定申告に）">
+    <meta name="twitter:description" content="Mac でレシートからテキストを取り出す確実な 3 つの方法——写真アプリのライブテキスト、スキャン PDF の OCR、ホットキー OCR ツール——それぞれが効かないケースも解説。">
+    <meta name="twitter:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Mac でレシートを OCR する方法（経費精算・確定申告に）",
+  "description": "Mac でレシートからテキストを取り出す確実な 3 つの方法——写真アプリのライブテキスト、スキャン PDF の OCR、ホットキー OCR ツール——それぞれが効かないケースも解説。",
+  "author": {
+    "@type": "Organization",
+    "name": "Cheese! OCR",
+    "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Cheese! OCR",
+    "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+  },
+  "datePublished": "2026-04-29",
+  "dateModified": "2026-04-29",
+  "image": "https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png",
+  "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-to-ocr-receipt-on-mac/",
+  "inLanguage": "ja",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-to-ocr-receipt-on-mac/"
+  }
+}
+    </script>
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "ja",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "ライブテキストはどんなレシートでも認識できますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ライブテキストは、macOS 12 以降の写真アプリとプレビューで利用できます。印刷された感熱紙のレシートは、照明が良ければ問題なく認識します。ただし、経年で文字が薄くなった感熱紙は、どの OCR エンジンでも認識が不安定です。また、ロシア語やアラビア語など、Apple Vision が対応していない言語のレシートは認識できません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "メールで届いたレシート PDF は OCR が必要ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Uber Eats や Amazon、航空会社などから届く PDF レシートの多くは、最初からテキストが選択可能なネイティブ PDF です。その場合は OCR は不要で、そのままテキストをコピーできます。スキャナーで取り込んだ PDF の場合は、プレビューのライブテキストか、Adobe Acrobat Pro の OCR 機能を使ってテキスト化します。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "複数のレシートをまとめて処理する方法はありますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "iPhone のメモアプリやファイルアプリには「書類をスキャン」機能があり、スキャンした書類は自動的に検索可能な PDF になります。その PDF を Mac に転送して、写真アプリで開けばライブテキストが使えます。大量のレシート写真を一括処理する場合は、Cheese! OCR のようなホットキー型ツールが効率的です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "レシートの金額にカンマとドットの違いは影響しますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "OCR は金額の表記をそのままテキストとして抽出します。アメリカ式のドット区切り（$12.50）もヨーロッパ式のカンマ区切り（€12,50）も、そのままの形式で出力されます。OCR が自動的に正規化することはありませんので、経費精算の際はご自身で確認してください。"
+      }
+    }
+  ]
+}
+    </script>
+
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Cheese! OCR",
+      "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Mac でレシートを OCR する方法（経費精算・確定申告に）"
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+
+    <nav class="article-nav">
+        <a href="../" class="back-link">← ブログ</a>
+        <div class="lang-switcher">
+            <a href="/OCR_LLM/blog/how-to-ocr-receipt-on-mac/" hreflang="en">EN</a>
+            <a href="/OCR_LLM/zh/blog/how-to-ocr-receipt-on-mac/" hreflang="zh-Hans">中文</a>
+            <a href="/OCR_LLM/ja/blog/how-to-ocr-receipt-on-mac/" aria-current="page" hreflang="ja">日本語</a>
+            <a href="/OCR_LLM/ko/blog/how-to-ocr-receipt-on-mac/" hreflang="ko">한국어</a>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <h1>Mac でレシートを OCR する方法（経費精算・確定申告に）</h1>
+        <p class="article-meta">
+        <time datetime="2026-04-29">2026年4月29日</time>
+            · 約 8 分
+        </p>
+    </header>
+
+    <aside class="tldr">
+        <strong>要点</strong>
+        この記事では、Mac でレシートからテキストを抽出する 3 つの方法を比較します。まずは macOS 標準のライブテキストを試すのがおすすめです。写真アプリやプレビューでレシート写真を開き、テキストを選択してコピーできます。次に、メールで届いた PDF レシートは多くの場合、すでにテキスト選択可能です。スキャンした PDF にはプレビューのライブテキストが有効ですが、認識できない場合は Adobe Acrobat Pro や ocrmypdf を使います。最後に、ライブテキストが対応していないアプリで開いた画像や、バッチ処理が必要な場合は、Cheese! OCR のようなホットキー駆動のツールが便利です。すべてオンデバイスで処理されるため、個人情報を含むレシートにも安心です。
+    </aside>
+
+    <article class="article-body">
+<p>経費精算や確定申告の時期になると、机の上に溜まったレシートの山を前にため息をついた経験はありませんか。一枚一枚手で入力するのは時間がかかりますし、入力ミスも心配です。Mac を使っているなら、レシートからテキストを自動で抽出する方法がいくつかあります。</p>
+<p>この記事では、3 つの方法を紹介します。まずは macOS に標準搭載されているライブテキストを使う方法、次にメールやスキャナーで受け取った PDF を扱う方法、そして最後に、より柔軟なホットキー駆動の OCR ツールを使う方法です。それぞれに得意な場面と苦手な場面がありますので、ご自身の作業に合ったものを選んでください。</p>
+<h2 id="写真アプリのライブテキストを使う方法">写真アプリのライブテキストを使う方法</h2>
+<p>macOS 12 Monterey 以降、写真アプリとプレビューにはライブテキスト機能が搭載されています。これは、画像内の文字を認識して選択・コピーできる機能です。レシートの写真を撮って Mac に取り込めば、すぐにテキスト化できます。</p>
+<p>具体的な手順は次の通りです。まず、iPhone でレシートを撮影します。明るい場所で、文字がはっきり写るように撮ってください。その写真を AirDrop で Mac に送り、写真アプリで開きます。すると、画像内のテキスト部分にカーソルを合わせると自動的に選択可能になります。あとはコピーして、経費精算のスプレッドシートや会計ソフトに貼り付けるだけです。</p>
+<p>ライブテキストは、電話番号や住所、日付、金額などをタップ可能なデータとして認識します。レシートからこれらの情報を素早く取り出したい場合に便利です。</p>
+<h3 id="ライブテキストが効かないケース">ライブテキストが効かないケース</h3>
+<p>ライブテキストは便利ですが、すべてのレシートで完璧に動作するわけではありません。特に、経年で印字が薄くなった感熱紙のレシートは認識率が低下します。これはライブテキストに限らず、どの OCR エンジンでも同様です。</p>
+<p>また、ライブテキストは Apple Vision フレームワークを使用しており、対応言語が限られています。英語、中国語（簡体字・繁体字）、日本語、韓国語、フランス語、ドイツ語、イタリア語、スペイン語、ポルトガル語には対応していますが、ロシア語やアラビア語、ヘブライ語、タイ語などは認識できません。これらの言語のレシートを扱う場合は、Tesseract やクラウド OCR サービスを検討する必要があります。</p>
+<p>さらに、ライブテキストは写真アプリとプレビューでのみ動作します。サードパーティ製の画像ビューアで開いたレシート画像には適用できません。</p>
+<h2 id="メールやスキャン-pdf-のテキストを抽出する方法">メールやスキャン PDF のテキストを抽出する方法</h2>
+<p>Uber Eats や Amazon、航空会社などから届くレシート PDF は、多くの場合、最初からテキストが選択可能なネイティブ PDF です。この場合は OCR は不要で、そのままテキストを選択してコピーできます。まずは PDF 内でテキストが選択できるかどうかを確認してください。</p>
+<p>一方、スキャナーで取り込んだ PDF は画像として保存されているため、OCR 処理が必要です。プレビューで開けばライブテキストが機能しますが、認識精度が不十分な場合もあります。そのような場合は、Adobe Acrobat Pro の OCR 機能や、オープンソースのコマンドラインツール ocrmypdf を使うと良いでしょう。</p>
+<p>iPhone のメモアプリやファイルアプリには「書類をスキャン」機能があり、スキャンした書類は自動的に検索可能な PDF になります。この機能を使えば、スキャンしたレシートを Mac に転送して、すぐにテキストを抽出できます。</p>
+<h3 id="この方法が向かないケース">この方法が向かないケース</h3>
+<p>メールで届いた PDF が画像ベースの場合、プレビューのライブテキストが認識できないことがあります。また、スキャンした PDF の解像度が低い場合や、文字がかすれている場合も認識率が低下します。大量のレシートを一括処理する場合、一枚ずつ PDF を開いてコピーするのは手間がかかります。</p>
+<h2 id="cheese-ocr-を使う方法">Cheese! OCR を使う方法</h2>
+<p>ライブテキストが対応していないアプリでレシート画像を開いている場合や、より素早くテキストを抽出したい場合には、Cheese! OCR が便利です。このアプリは、デフォルトのホットキー Shift+Command+E を押すと、画面上の任意の領域をドラッグ選択して OCR を実行します。認識されたテキストは自動的にクリップボードにコピーされるので、そのまま貼り付けるだけです。</p>
+<p>Cheese! OCR は Apple Vision フレームワークを使用しており、すべての処理がオンデバイスで行われます。そのため、レシートに含まれる個人情報がネットワークに送信されることはありません。経費精算や確定申告で扱うレシートには、住所や電話番号などの個人情報が含まれていることが多いので、セキュリティ面でも安心です。</p>
+<p>また、Cheese! OCR は写真アプリやプレビュー以外のアプリでも動作します。例えば、ブラウザで開いたレシート画像や、サードパーティ製の画像ビューアで開いた画像でも OCR が可能です。複数のレシートを連続して処理する場合も、ホットキー一つで素早くテキストを抽出できます。</p>
+<h2 id="3-つの方法を比較する">3 つの方法を比較する</h2>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>最適な場面</th>
+<th>制限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ライブテキスト（写真アプリ）</td>
+<td>撮影したレシート写真を一枚ずつ処理する場合</td>
+<td>写真アプリとプレビュー限定、対応言語に制限あり</td>
+</tr>
+<tr>
+<td>PDF の OCR（プレビュー・Acrobat）</td>
+<td>スキャン PDF やメール添付の PDF を処理する場合</td>
+<td>バッチ処理には不向き、画像 PDF は認識率が低下</td>
+</tr>
+<tr>
+<td>Cheese! OCR</td>
+<td>あらゆるアプリの画像から素早くテキストを抽出したい場合</td>
+<td>専用アプリのインストールが必要</td>
+</tr>
+</tbody>
+</table>
+<h2 id="よくあるトラブルと対処法">よくあるトラブルと対処法</h2>
+<p>OCR を実行しようとしても、テキストが認識されないことがあります。まず確認してほしいのは、画像の明るさと解像度です。暗い場所で撮影したレシートや、ピントが合っていない写真は認識率が下がります。可能であれば、明るい場所で撮り直してください。</p>
+<p>また、ライブテキストが機能しない場合、macOS のバージョンが 12 以上であることを確認してください。それ以前のバージョンではライブテキストは利用できません。さらに、システム環境設定で写真アプリとプレビューに画像へのアクセス許可が与えられているかも確認しましょう。</p>
+<p>Cheese! OCR を使用する場合、初回起動時に画面収録の許可を求められます。これは OCR のために画面の一部をキャプチャするために必要な権限です。許可しないと OCR が実行できませんので、指示に従って設定してください。</p>
+    </article>
+
+    <section class="article-faq">
+        <h2>よくある質問</h2>
+        <details class="faq-item">
+            <summary>ライブテキストはどんなレシートでも認識できますか？</summary>
+            <div class="answer">ライブテキストは、macOS 12 以降の写真アプリとプレビューで利用できます。印刷された感熱紙のレシートは、照明が良ければ問題なく認識します。ただし、経年で文字が薄くなった感熱紙は、どの OCR エンジンでも認識が不安定です。また、ロシア語やアラビア語など、Apple Vision が対応していない言語のレシートは認識できません。</div>
+        </details>
+        <details class="faq-item">
+            <summary>メールで届いたレシート PDF は OCR が必要ですか？</summary>
+            <div class="answer">Uber Eats や Amazon、航空会社などから届く PDF レシートの多くは、最初からテキストが選択可能なネイティブ PDF です。その場合は OCR は不要で、そのままテキストをコピーできます。スキャナーで取り込んだ PDF の場合は、プレビューのライブテキストか、Adobe Acrobat Pro の OCR 機能を使ってテキスト化します。</div>
+        </details>
+        <details class="faq-item">
+            <summary>複数のレシートをまとめて処理する方法はありますか？</summary>
+            <div class="answer">iPhone のメモアプリやファイルアプリには「書類をスキャン」機能があり、スキャンした書類は自動的に検索可能な PDF になります。その PDF を Mac に転送して、写真アプリで開けばライブテキストが使えます。大量のレシート写真を一括処理する場合は、Cheese! OCR のようなホットキー型ツールが効率的です。</div>
+        </details>
+        <details class="faq-item">
+            <summary>レシートの金額にカンマとドットの違いは影響しますか？</summary>
+            <div class="answer">OCR は金額の表記をそのままテキストとして抽出します。アメリカ式のドット区切り（$12.50）もヨーロッパ式のカンマ区切り（€12,50）も、そのままの形式で出力されます。OCR が自動的に正規化することはありませんので、経費精算の際はご自身で確認してください。</div>
+        </details>
+    </section>
+
+    <section class="article-cta">
+        <div class="cta-card">
+            <h2>Cheese! OCR を試す</h2>
+            <p>ホットキー一つ、ドラッグで範囲選択、テキストはクリップボードへ。買い切り $5.99、完全オンデバイス、画面に表示されているものなら何でも対応。</p>
+            <a href="https://apps.apple.com/app/cheese-ocr/id6760889131" class="cta-button">Mac App Store で入手</a>
+        </div>
+    </section>
+
+    <section class="article-related">
+        <h2>関連記事</h2>
+        <div class="related-grid">
+            <a href="../extract-text-from-screenshot-on-mac/" class="related-card">
+                <h3>Mac でスクリーンショットからテキストを抽出する方法（3 つの方法を比較）</h3>
+                <p>Live Text、Cmd+Shift+5、Cheese! OCR の 3 つの方法。それぞれをいつ使うべきか。</p>
+            </a>
+            <a href="../how-on-device-ocr-works/" class="related-card">
+                <h3>オンデバイス OCR はどう動くのか：Apple Vision Framework 解説</h3>
+                <p>Apple Vision がデバイス上で OCR を行う仕組み。なぜクラウドより速いのか、プライバシーへの意味は何か。</p>
+            </a>
+            <a href="../ocr-asian-languages-on-mac/" class="related-card">
+                <h3>Mac で日本語 OCR を使う完全ガイド：漫画・PDF・ビジネス文書</h3>
+                <p>漫画やスキャン本から駅看板、業務文書まで。日本語 OCR の典型シーンを一通りカバー。</p>
+            </a>
+        </div>
+    </section>
+
+    <footer class="article-footer">
+        <a href="../../">ホーム</a>
+        <a href="../../../privacy.html">プライバシーポリシー</a>
+        <a href="mailto:nicholaslck@icloud.com">お問い合わせ</a>
+        <p>&copy; 2026 Cheese! OCR. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

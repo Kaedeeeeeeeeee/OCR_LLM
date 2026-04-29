@@ -1,0 +1,90 @@
+---
+title: "如何在 Mac 上 OCR 识别小票（报销与报税）"
+description: "Mac 上从小票中提取文字的三种方法——Photos 里的 Live Text、扫描 PDF OCR、快捷键 OCR 工具——以及它们各自失效的场景。"
+slug: how-to-ocr-receipt-on-mac
+locale: zh
+date: 2026-04-29
+category: How-to
+read_min: 8
+tags: ["Mac OCR", "小票", "报销", "报税", "Live Text", "扫描 PDF", "截图 OCR"]
+template: howto
+key_facts:
+  - "Photos.app and Preview.app on macOS 12+ support Live Text on receipt photos and PDF scans"
+  - "Apple Vision handles printed receipt thermal-paper text well in good lighting; faded thermal print is unreliable regardless of OCR engine"
+  - "Live Text in Photos surfaces phone numbers, addresses, dates, and amounts as tappable data — useful for receipts"
+  - "PDFs from email receipts (Uber Eats, Amazon, airlines) are usually native PDFs with selectable text already — no OCR needed"
+  - "Scanned PDF receipts (e.g., from a flatbed scanner) need OCR; Preview's Live Text handles many; Adobe Acrobat Pro's OCR or ocrmypdf (open source CLI) handle the rest"
+  - "iPhone Notes and Files apps have a 'Scan Documents' feature that produces searchable PDFs — these are auto-OCR'd"
+  - "For batch receipt processing (expense reports), workflows that work: take photos → AirDrop to Mac → Photos → Live Text select → paste"
+  - "Cheese! OCR works on receipt photos opened in any app, including third-party photo viewers Live Text doesn't reach"
+  - "Apple Vision recognizes English, Simplified/Traditional Chinese, Japanese, Korean, French, German, Italian, Spanish, Portuguese on receipts"
+  - "Receipts in unsupported scripts (Russian/Cyrillic, Arabic, Hebrew, Thai) require Tesseract or a cloud OCR service"
+  - "Receipt amounts with commas vs dots as decimal separator (US vs EU) are preserved — OCR doesn't normalize"
+  - "Cheese! OCR's default hotkey is Shift+Command+E, all processing on-device, no network entitlements — relevant for receipts containing personal info"
+internal_links: ["extract-text-from-screenshot-on-mac", "how-on-device-ocr-works", "ocr-asian-languages-on-mac"]
+tldr: |
+  报销或报税时，从小票照片或扫描件里提取文字是常见需求。本文对比了三种方法：macOS 自带的 Live Text（在 Photos 和 Preview 中可用）、扫描 PDF 的 OCR 处理（Adobe Acrobat Pro 或 ocrmypdf），以及快捷键驱动的 OCR 工具（如 Cheese! OCR）。如果你的小票是清晰的照片，先用 Live Text；如果是扫描 PDF，Preview 的 Live Text 通常够用，不行再用专业工具；如果你需要从任意应用中快速提取文字，Cheese! OCR 的全局快捷键是最省事的方案。
+faqs:
+  - q: "Live Text 能识别所有小票上的文字吗？"
+    a: "不能。Live Text 依赖 Apple Vision 框架，对打印清晰的收据效果很好，但热敏纸褪色、字体模糊或光线不足时，识别率会大幅下降。此外，它不支持俄语、阿拉伯语、希伯来语等脚本，这些情况需要 Tesseract 或云端 OCR 服务。"
+  - q: "从邮件里收到的 PDF 小票需要 OCR 吗？"
+    a: "通常不需要。Uber Eats、亚马逊、航空公司等发来的 PDF 小票大多是原生 PDF，文字本身就是可选的，直接复制即可。只有扫描生成的 PDF（比如用平板扫描仪做的）才需要 OCR 处理。"
+  - q: "用 Cheese! OCR 处理小票安全吗？"
+    a: "安全。Cheese! OCR 所有处理都在设备本地完成，不联网，不发送任何数据到服务器。小票上包含姓名、地址、消费金额等个人信息，本地处理能避免隐私泄露风险。默认快捷键是 Shift+Command+E。"
+  - q: "批量处理几十张小票照片，最快的方法是什么？"
+    a: "用 iPhone 拍照后 AirDrop 到 Mac，在 Photos 中全选，用 Live Text 逐张复制粘贴。如果需要更高效的批量流程，可以考虑用 Cheese! OCR 配合自动化工具（如 Shortcuts），或者用 Adobe Acrobat Pro 的批量 OCR 功能。"
+---
+
+你刚吃完一顿商务午餐，服务员递来一张热敏纸小票。回到工位，你需要把上面的金额、日期和商户名录入报销系统。手动打字？太慢，还容易出错。截图后用 Live Text？如果小票是照片格式，这确实可行。但如果你收到的是一份扫描 PDF，或者小票在某个不支持 Live Text 的图片查看器里打开，事情就变得麻烦了。
+
+本文会介绍三种从小票中提取文字的方法：macOS 自带的 Live Text、扫描 PDF 的 OCR 处理，以及一个快捷键驱动的 OCR 工具。我们会说清楚每种方法适合什么场景，以及什么时候它们会失效。
+
+## 方法一：用 Live Text 从小票照片中提取文字
+
+如果你的小票是照片格式（用 iPhone 拍的，或者从微信里保存的），macOS 自带的 Live Text 是最直接的方案。在 Photos 或 Preview 中打开图片，光标移到文字上会自动变成文本选择工具。你可以直接选中金额、日期、商户名，然后复制粘贴。
+
+具体步骤很简单：在 Photos 中打开小票照片，点击右下角的 Live Text 按钮（一个文本识别图标），或者直接用鼠标拖选文字。Live Text 还会自动识别电话号码、地址和日期，点击即可拨号或添加到日历——这对报销时核对信息很有用。
+
+如果你有一批小票照片，可以全部 AirDrop 到 Mac，在 Photos 中全选，然后逐张用 Live Text 复制。这个流程对偶尔报销一两张的情况完全够用。
+
+### 什么时候 Live Text 失效
+
+Live Text 对打印清晰、光线充足的热敏纸小票效果很好。但热敏纸放久了会褪色，字迹变淡——这时候无论用什么 OCR 引擎，识别率都会大幅下降。Live Text 也不例外。
+
+另外，Live Text 只支持 macOS 12 Monterey 及更新版本。如果你的 Mac 系统较旧，或者小票是在第三方图片查看器（如 XnView、Adobe Bridge）中打开的，Live Text 不会出现。这时候就需要其他方法了。
+
+## 方法二：扫描 PDF 小票的 OCR 处理
+
+很多报销场景下，你收到的不是照片，而是一份扫描 PDF——比如用平板扫描仪做的，或者从公司系统导出的。这种 PDF 本质上是图片，文字不可选，需要 OCR 才能提取。
+
+Preview 的 Live Text 能处理不少扫描 PDF：在 Preview 中打开 PDF，点击文字区域，如果 Live Text 生效，直接复制即可。如果不行，你需要更专业的工具。Adobe Acrobat Pro 的 OCR 功能（工具 → 扫描与 OCR → 识别文本）可以处理复杂的扫描件，但需要付费订阅。开源方案是 ocrmypdf，一个命令行工具，免费且效果不错，适合有技术背景的用户。
+
+还有一个容易被忽略的选项：iPhone 的 Notes 和 Files 应用有“扫描文稿”功能，生成的 PDF 会自动 OCR，文字可直接搜索。如果你用 iPhone 扫描小票，这个功能已经帮你处理好了。
+
+### 什么时候这个方法失效
+
+扫描 PDF 的 OCR 成功率取决于扫描质量。如果原稿模糊、有折痕、或者背景有图案，OCR 可能会漏掉或错认文字。Adobe Acrobat Pro 的纠错能力更强，但也不是万能的。
+
+此外，如果小票上的文字是手写的（比如餐厅手写账单），OCR 基本无能为力。Apple Vision 框架对手写体的支持有限，专业 OCR 工具也好不到哪去。
+
+## 方法三：用 Cheese! OCR 从任意应用中提取文字
+
+如果你经常需要从小票中提取文字，而且这些文字出现在各种应用里——比如在微信聊天记录里、在 Safari 打开的网页上、或者在某个不支持 Live Text 的图片查看器中——那么一个全局快捷键驱动的 OCR 工具会更高效。
+
+Cheese! OCR 就是这样的工具。安装后，默认快捷键是 Shift+Command+E。按下快捷键，屏幕会变暗，你拖选小票所在的区域，文字就会被识别并自动复制到剪贴板。整个过程在设备本地完成，不联网，不发送任何数据——小票上包含姓名、地址、消费金额等个人信息，本地处理能避免隐私泄露风险。
+
+Cheese! OCR 基于 Apple Vision 框架，支持英文、简体中文、繁体中文、日文、韩文、法文、德文、意大利文、西班牙文、葡萄牙文。如果你经常处理多语言小票（比如海外消费），这个功能很实用。而且它不限制应用——只要文字在屏幕上，就能提取。
+
+## 三种方法对比
+
+| 方法 | 最适合的场景 | 局限性 |
+|---|---|---|
+| Live Text（Photos/Preview） | 清晰的小票照片或扫描 PDF，偶尔使用 | 不支持第三方图片查看器；热敏纸褪色时失效；系统需 macOS 12+ |
+| 扫描 PDF OCR（Adobe Acrobat Pro / ocrmypdf） | 批量处理扫描 PDF，需要高精度 | 需要付费或命令行操作；手写体无效 |
+| Cheese! OCR | 从任意应用中快速提取文字，注重隐私 | 需要安装第三方应用；对褪色热敏纸同样有限 |
+
+## 常见问题排查
+
+如果你发现 OCR 识别不出文字，先检查几个常见原因。第一，小票是否清晰？热敏纸褪色或光线不足是最大的敌人——换个角度重新拍照，或者用扫描仪提高对比度。第二，系统版本是否够新？Live Text 需要 macOS 12 或更新版本。第三，语言设置是否正确？Apple Vision 支持的语言列表有限，如果小票是俄语或阿拉伯语，需要改用 Tesseract 或云端 OCR 服务。
+
+如果使用 Cheese! OCR 时快捷键没反应，检查系统偏好设置 → 隐私与安全性 → 辅助功能，确保 Cheese! OCR 已被授权。截图类工具都需要这个权限。

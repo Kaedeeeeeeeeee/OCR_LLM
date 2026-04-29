@@ -1,0 +1,58 @@
+---
+title: "{{TITLE}}"
+description: "{{DESCRIPTION}}"
+slug: {{SLUG}}
+locale: {{LOCALE}}
+date: {{DATE}}
+category: Guide
+read_min: {{READ_MIN}}
+tags: [{{TAGS}}]
+template: guide
+key_facts:
+{{KEY_FACTS_YAML}}
+internal_links: [{{INTERNAL_LINKS}}]
+status: draft
+tldr: |
+  BULLET: One-paragraph TL;DR in {{LOCALE_LANG}} that frames the topic and the practical takeaway.
+faqs:
+  - q: "BULLET: Real question."
+    a: "BULLET: Answer."
+  - q: "BULLET: Real question."
+    a: "BULLET: Answer."
+  - q: "BULLET: Real question."
+    a: "BULLET: Answer."
+  - q: "BULLET: Real question."
+    a: "BULLET: Answer."
+---
+
+{/* SUBAGENT WRITING NOTES (will be deleted on expand)
+- Write in {{LOCALE_LANG}}.
+- Body length target: {{TARGET_LENGTH}} characters.
+- Every "## BULLET: ..." or "### BULLET: ..." line is a heading marker — render the heading text in {{LOCALE_LANG}}, keeping the ## or ### prefix.
+- Do NOT keep any English heading text. Translate or rewrite naturally.
+- Keep "Cheese! OCR" verbatim as a brand name.
+- Every BULLET: block in the body is a fact-summary to expand into 2–4 paragraphs.
+- Do NOT invent facts beyond key_facts.
+*/}
+
+BULLET: Opening 2–4 paragraphs. Frame the topic with a real situation.
+
+## BULLET: H2 in {{LOCALE_LANG}} — background / what's actually happening (e.g. "底层原理", "実際に何が起きているか", "Background — what's actually happening")
+
+BULLET: 3–5 paragraphs explaining the underlying mechanism (why Apple Vision recognizes some scripts better than others; why screenshots fail in certain apps; etc.).
+
+## BULLET: H2 in {{LOCALE_LANG}} — practical considerations (e.g. "实操注意事项", "実用上のポイント", "Practical considerations")
+
+BULLET: 3–5 paragraphs. May contain a sub-list of bullet points if the structure is clearly enumerative.
+
+## BULLET: H2 in {{LOCALE_LANG}} — third major topic-specific section
+
+BULLET: 3–5 paragraphs.
+
+## BULLET: H2 in {{LOCALE_LANG}} — when the built-in tool is enough vs when it isn't (write naturally; e.g. "什么时候系统自带就够用，什么时候需要换工具", "代替手段で足りるとき、足りないとき")
+
+BULLET: 2–3 paragraphs. Honest about the cases where the reader doesn't need anything beyond what macOS ships with.
+
+## BULLET: H2 in {{LOCALE_LANG}} — short checklist heading (e.g. "简短清单", "簡単なチェックリスト", "A short checklist")
+
+BULLET: 4–6 numbered list items giving the reader a concrete next step. Each item is one sentence.

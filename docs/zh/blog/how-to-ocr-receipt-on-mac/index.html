@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
+
+    <title>如何在 Mac 上 OCR 识别小票（报销与报税） — Cheese! OCR Blog</title>
+    <meta name="description" content="Mac 上从小票中提取文字的三种方法——Photos 里的 Live Text、扫描 PDF OCR、快捷键 OCR 工具——以及它们各自失效的场景。">
+
+    <link rel="canonical" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/how-to-ocr-receipt-on-mac/">
+    <link rel="alternate" hreflang="en" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-receipt-on-mac/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/how-to-ocr-receipt-on-mac/">
+    <link rel="alternate" hreflang="ja" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-to-ocr-receipt-on-mac/">
+    <link rel="alternate" hreflang="ko" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ko/blog/how-to-ocr-receipt-on-mac/">
+    <link rel="alternate" hreflang="x-default" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-receipt-on-mac/">
+
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg?v=3">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../../../blog/article.css">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Cheese! OCR">
+    <meta property="og:title" content="如何在 Mac 上 OCR 识别小票（报销与报税）">
+    <meta property="og:description" content="Mac 上从小票中提取文字的三种方法——Photos 里的 Live Text、扫描 PDF OCR、快捷键 OCR 工具——以及它们各自失效的场景。">
+    <meta property="og:url" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/how-to-ocr-receipt-on-mac/">
+    <meta property="og:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="article:published_time" content="2026-04-29">
+    <meta property="article:author" content="Cheese! OCR Team">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="如何在 Mac 上 OCR 识别小票（报销与报税）">
+    <meta name="twitter:description" content="Mac 上从小票中提取文字的三种方法——Photos 里的 Live Text、扫描 PDF OCR、快捷键 OCR 工具——以及它们各自失效的场景。">
+    <meta name="twitter:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "如何在 Mac 上 OCR 识别小票（报销与报税）",
+  "description": "Mac 上从小票中提取文字的三种方法——Photos 里的 Live Text、扫描 PDF OCR、快捷键 OCR 工具——以及它们各自失效的场景。",
+  "author": {
+    "@type": "Organization",
+    "name": "Cheese! OCR",
+    "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Cheese! OCR",
+    "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+  },
+  "datePublished": "2026-04-29",
+  "dateModified": "2026-04-29",
+  "image": "https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png",
+  "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/how-to-ocr-receipt-on-mac/",
+  "inLanguage": "zh-Hans",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/how-to-ocr-receipt-on-mac/"
+  }
+}
+    </script>
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "zh-Hans",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Live Text 能识别所有小票上的文字吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不能。Live Text 依赖 Apple Vision 框架，对打印清晰的收据效果很好，但热敏纸褪色、字体模糊或光线不足时，识别率会大幅下降。此外，它不支持俄语、阿拉伯语、希伯来语等脚本，这些情况需要 Tesseract 或云端 OCR 服务。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "从邮件里收到的 PDF 小票需要 OCR 吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "通常不需要。Uber Eats、亚马逊、航空公司等发来的 PDF 小票大多是原生 PDF，文字本身就是可选的，直接复制即可。只有扫描生成的 PDF（比如用平板扫描仪做的）才需要 OCR 处理。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "用 Cheese! OCR 处理小票安全吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "安全。Cheese! OCR 所有处理都在设备本地完成，不联网，不发送任何数据到服务器。小票上包含姓名、地址、消费金额等个人信息，本地处理能避免隐私泄露风险。默认快捷键是 Shift+Command+E。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "批量处理几十张小票照片，最快的方法是什么？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "用 iPhone 拍照后 AirDrop 到 Mac，在 Photos 中全选，用 Live Text 逐张复制粘贴。如果需要更高效的批量流程，可以考虑用 Cheese! OCR 配合自动化工具（如 Shortcuts），或者用 Adobe Acrobat Pro 的批量 OCR 功能。"
+      }
+    }
+  ]
+}
+    </script>
+
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Cheese! OCR",
+      "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "如何在 Mac 上 OCR 识别小票（报销与报税）"
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+
+    <nav class="article-nav">
+        <a href="../" class="back-link">← 博客</a>
+        <div class="lang-switcher">
+            <a href="/OCR_LLM/blog/how-to-ocr-receipt-on-mac/" hreflang="en">EN</a>
+            <a href="/OCR_LLM/zh/blog/how-to-ocr-receipt-on-mac/" aria-current="page" hreflang="zh-Hans">中文</a>
+            <a href="/OCR_LLM/ja/blog/how-to-ocr-receipt-on-mac/" hreflang="ja">日本語</a>
+            <a href="/OCR_LLM/ko/blog/how-to-ocr-receipt-on-mac/" hreflang="ko">한국어</a>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <h1>如何在 Mac 上 OCR 识别小票（报销与报税）</h1>
+        <p class="article-meta">
+        <time datetime="2026-04-29">2026年4月29日</time>
+            · 约 8 分钟
+        </p>
+    </header>
+
+    <aside class="tldr">
+        <strong>速览</strong>
+        报销或报税时，从小票照片或扫描件里提取文字是常见需求。本文对比了三种方法：macOS 自带的 Live Text（在 Photos 和 Preview 中可用）、扫描 PDF 的 OCR 处理（Adobe Acrobat Pro 或 ocrmypdf），以及快捷键驱动的 OCR 工具（如 Cheese! OCR）。如果你的小票是清晰的照片，先用 Live Text；如果是扫描 PDF，Preview 的 Live Text 通常够用，不行再用专业工具；如果你需要从任意应用中快速提取文字，Cheese! OCR 的全局快捷键是最省事的方案。
+    </aside>
+
+    <article class="article-body">
+<p>你刚吃完一顿商务午餐，服务员递来一张热敏纸小票。回到工位，你需要把上面的金额、日期和商户名录入报销系统。手动打字？太慢，还容易出错。截图后用 Live Text？如果小票是照片格式，这确实可行。但如果你收到的是一份扫描 PDF，或者小票在某个不支持 Live Text 的图片查看器里打开，事情就变得麻烦了。</p>
+<p>本文会介绍三种从小票中提取文字的方法：macOS 自带的 Live Text、扫描 PDF 的 OCR 处理，以及一个快捷键驱动的 OCR 工具。我们会说清楚每种方法适合什么场景，以及什么时候它们会失效。</p>
+<h2 id="方法一用-live-text-从小票照片中提取文字">方法一：用 Live Text 从小票照片中提取文字</h2>
+<p>如果你的小票是照片格式（用 iPhone 拍的，或者从微信里保存的），macOS 自带的 Live Text 是最直接的方案。在 Photos 或 Preview 中打开图片，光标移到文字上会自动变成文本选择工具。你可以直接选中金额、日期、商户名，然后复制粘贴。</p>
+<p>具体步骤很简单：在 Photos 中打开小票照片，点击右下角的 Live Text 按钮（一个文本识别图标），或者直接用鼠标拖选文字。Live Text 还会自动识别电话号码、地址和日期，点击即可拨号或添加到日历——这对报销时核对信息很有用。</p>
+<p>如果你有一批小票照片，可以全部 AirDrop 到 Mac，在 Photos 中全选，然后逐张用 Live Text 复制。这个流程对偶尔报销一两张的情况完全够用。</p>
+<h3 id="什么时候-live-text-失效">什么时候 Live Text 失效</h3>
+<p>Live Text 对打印清晰、光线充足的热敏纸小票效果很好。但热敏纸放久了会褪色，字迹变淡——这时候无论用什么 OCR 引擎，识别率都会大幅下降。Live Text 也不例外。</p>
+<p>另外，Live Text 只支持 macOS 12 Monterey 及更新版本。如果你的 Mac 系统较旧，或者小票是在第三方图片查看器（如 XnView、Adobe Bridge）中打开的，Live Text 不会出现。这时候就需要其他方法了。</p>
+<h2 id="方法二扫描-pdf-小票的-ocr-处理">方法二：扫描 PDF 小票的 OCR 处理</h2>
+<p>很多报销场景下，你收到的不是照片，而是一份扫描 PDF——比如用平板扫描仪做的，或者从公司系统导出的。这种 PDF 本质上是图片，文字不可选，需要 OCR 才能提取。</p>
+<p>Preview 的 Live Text 能处理不少扫描 PDF：在 Preview 中打开 PDF，点击文字区域，如果 Live Text 生效，直接复制即可。如果不行，你需要更专业的工具。Adobe Acrobat Pro 的 OCR 功能（工具 → 扫描与 OCR → 识别文本）可以处理复杂的扫描件，但需要付费订阅。开源方案是 ocrmypdf，一个命令行工具，免费且效果不错，适合有技术背景的用户。</p>
+<p>还有一个容易被忽略的选项：iPhone 的 Notes 和 Files 应用有“扫描文稿”功能，生成的 PDF 会自动 OCR，文字可直接搜索。如果你用 iPhone 扫描小票，这个功能已经帮你处理好了。</p>
+<h3 id="什么时候这个方法失效">什么时候这个方法失效</h3>
+<p>扫描 PDF 的 OCR 成功率取决于扫描质量。如果原稿模糊、有折痕、或者背景有图案，OCR 可能会漏掉或错认文字。Adobe Acrobat Pro 的纠错能力更强，但也不是万能的。</p>
+<p>此外，如果小票上的文字是手写的（比如餐厅手写账单），OCR 基本无能为力。Apple Vision 框架对手写体的支持有限，专业 OCR 工具也好不到哪去。</p>
+<h2 id="方法三用-cheese-ocr-从任意应用中提取文字">方法三：用 Cheese! OCR 从任意应用中提取文字</h2>
+<p>如果你经常需要从小票中提取文字，而且这些文字出现在各种应用里——比如在微信聊天记录里、在 Safari 打开的网页上、或者在某个不支持 Live Text 的图片查看器中——那么一个全局快捷键驱动的 OCR 工具会更高效。</p>
+<p>Cheese! OCR 就是这样的工具。安装后，默认快捷键是 Shift+Command+E。按下快捷键，屏幕会变暗，你拖选小票所在的区域，文字就会被识别并自动复制到剪贴板。整个过程在设备本地完成，不联网，不发送任何数据——小票上包含姓名、地址、消费金额等个人信息，本地处理能避免隐私泄露风险。</p>
+<p>Cheese! OCR 基于 Apple Vision 框架，支持英文、简体中文、繁体中文、日文、韩文、法文、德文、意大利文、西班牙文、葡萄牙文。如果你经常处理多语言小票（比如海外消费），这个功能很实用。而且它不限制应用——只要文字在屏幕上，就能提取。</p>
+<h2 id="三种方法对比">三种方法对比</h2>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>最适合的场景</th>
+<th>局限性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Live Text（Photos/Preview）</td>
+<td>清晰的小票照片或扫描 PDF，偶尔使用</td>
+<td>不支持第三方图片查看器；热敏纸褪色时失效；系统需 macOS 12+</td>
+</tr>
+<tr>
+<td>扫描 PDF OCR（Adobe Acrobat Pro / ocrmypdf）</td>
+<td>批量处理扫描 PDF，需要高精度</td>
+<td>需要付费或命令行操作；手写体无效</td>
+</tr>
+<tr>
+<td>Cheese! OCR</td>
+<td>从任意应用中快速提取文字，注重隐私</td>
+<td>需要安装第三方应用；对褪色热敏纸同样有限</td>
+</tr>
+</tbody>
+</table>
+<h2 id="常见问题排查">常见问题排查</h2>
+<p>如果你发现 OCR 识别不出文字，先检查几个常见原因。第一，小票是否清晰？热敏纸褪色或光线不足是最大的敌人——换个角度重新拍照，或者用扫描仪提高对比度。第二，系统版本是否够新？Live Text 需要 macOS 12 或更新版本。第三，语言设置是否正确？Apple Vision 支持的语言列表有限，如果小票是俄语或阿拉伯语，需要改用 Tesseract 或云端 OCR 服务。</p>
+<p>如果使用 Cheese! OCR 时快捷键没反应，检查系统偏好设置 → 隐私与安全性 → 辅助功能，确保 Cheese! OCR 已被授权。截图类工具都需要这个权限。</p>
+    </article>
+
+    <section class="article-faq">
+        <h2>常见问题</h2>
+        <details class="faq-item">
+            <summary>Live Text 能识别所有小票上的文字吗？</summary>
+            <div class="answer">不能。Live Text 依赖 Apple Vision 框架，对打印清晰的收据效果很好，但热敏纸褪色、字体模糊或光线不足时，识别率会大幅下降。此外，它不支持俄语、阿拉伯语、希伯来语等脚本，这些情况需要 Tesseract 或云端 OCR 服务。</div>
+        </details>
+        <details class="faq-item">
+            <summary>从邮件里收到的 PDF 小票需要 OCR 吗？</summary>
+            <div class="answer">通常不需要。Uber Eats、亚马逊、航空公司等发来的 PDF 小票大多是原生 PDF，文字本身就是可选的，直接复制即可。只有扫描生成的 PDF（比如用平板扫描仪做的）才需要 OCR 处理。</div>
+        </details>
+        <details class="faq-item">
+            <summary>用 Cheese! OCR 处理小票安全吗？</summary>
+            <div class="answer">安全。Cheese! OCR 所有处理都在设备本地完成，不联网，不发送任何数据到服务器。小票上包含姓名、地址、消费金额等个人信息，本地处理能避免隐私泄露风险。默认快捷键是 Shift+Command+E。</div>
+        </details>
+        <details class="faq-item">
+            <summary>批量处理几十张小票照片，最快的方法是什么？</summary>
+            <div class="answer">用 iPhone 拍照后 AirDrop 到 Mac，在 Photos 中全选，用 Live Text 逐张复制粘贴。如果需要更高效的批量流程，可以考虑用 Cheese! OCR 配合自动化工具（如 Shortcuts），或者用 Adobe Acrobat Pro 的批量 OCR 功能。</div>
+        </details>
+    </section>
+
+    <section class="article-cta">
+        <div class="cta-card">
+            <h2>试试 Cheese! OCR</h2>
+            <p>一个快捷键,框选,文字到剪贴板。一次性 $5.99,完全本地运行,任何你能看到的 app 都能用。</p>
+            <a href="https://apps.apple.com/app/cheese-ocr/id6760889131" class="cta-button">在 Mac App Store 下载</a>
+        </div>
+    </section>
+
+    <section class="article-related">
+        <h2>相关文章</h2>
+        <div class="related-grid">
+            <a href="../extract-text-from-screenshot-on-mac/" class="related-card">
+                <h3>如何在 Mac 上从截图中提取文字（三种方法对比）</h3>
+                <p>实况文本、Cmd+Shift+5 浮动操作、Cheese! OCR 三种从截图取文的方法，何时用哪个最划算。</p>
+            </a>
+            <a href="../how-on-device-ocr-works/" class="related-card">
+                <h3>设备端 OCR 是如何工作的：Apple Vision 框架解析</h3>
+                <p>从技术角度解读 Apple Vision 如何在设备端完成 OCR，以及为什么它比云端更快、对隐私更友好。</p>
+            </a>
+            <a href="../ocr-asian-languages-on-mac/" class="related-card">
+                <h3>Mac 上中文 OCR 完整指南：繁简、混排、古籍与外刊</h3>
+                <p>从繁简识别到中英混排，从扫描古籍到外刊学术论文——一篇覆盖中文 OCR 的所有典型场景。</p>
+            </a>
+        </div>
+    </section>
+
+    <footer class="article-footer">
+        <a href="../../">主页</a>
+        <a href="../../../privacy.html">隐私政策</a>
+        <a href="mailto:nicholaslck@icloud.com">联系我们</a>
+        <p>&copy; 2026 Cheese! OCR. 版权所有。</p>
+    </footer>
+
+</body>
+</html>

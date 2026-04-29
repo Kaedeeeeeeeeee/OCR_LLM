@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
+
+    <title>Mac で手書き文字を OCR：正直なガイド——できること・できないこと — Cheese! OCR Blog</title>
+    <meta name="description" content="Apple Vision が手書きノートで読めるもの・読めないもの、日本語の手書きが部分的にしか認識されない理由、ライブテキストが諦めたときに使えるツール。">
+
+    <link rel="canonical" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/ocr-handwriting-on-mac-honest-guide/">
+    <link rel="alternate" hreflang="en" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/ocr-handwriting-on-mac-honest-guide/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/ocr-handwriting-on-mac-honest-guide/">
+    <link rel="alternate" hreflang="ja" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/ocr-handwriting-on-mac-honest-guide/">
+    <link rel="alternate" hreflang="ko" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ko/blog/ocr-handwriting-on-mac-honest-guide/">
+    <link rel="alternate" hreflang="x-default" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/ocr-handwriting-on-mac-honest-guide/">
+
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg?v=3">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../../../blog/article.css">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Cheese! OCR">
+    <meta property="og:title" content="Mac で手書き文字を OCR：正直なガイド——できること・できないこと">
+    <meta property="og:description" content="Apple Vision が手書きノートで読めるもの・読めないもの、日本語の手書きが部分的にしか認識されない理由、ライブテキストが諦めたときに使えるツール。">
+    <meta property="og:url" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/ocr-handwriting-on-mac-honest-guide/">
+    <meta property="og:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="article:published_time" content="2026-04-29">
+    <meta property="article:author" content="Cheese! OCR Team">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mac で手書き文字を OCR：正直なガイド——できること・できないこと">
+    <meta name="twitter:description" content="Apple Vision が手書きノートで読めるもの・読めないもの、日本語の手書きが部分的にしか認識されない理由、ライブテキストが諦めたときに使えるツール。">
+    <meta name="twitter:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Mac で手書き文字を OCR：正直なガイド——できること・できないこと",
+  "description": "Apple Vision が手書きノートで読めるもの・読めないもの、日本語の手書きが部分的にしか認識されない理由、ライブテキストが諦めたときに使えるツール。",
+  "author": {
+    "@type": "Organization",
+    "name": "Cheese! OCR",
+    "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Cheese! OCR",
+    "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+  },
+  "datePublished": "2026-04-29",
+  "dateModified": "2026-04-29",
+  "image": "https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png",
+  "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/ocr-handwriting-on-mac-honest-guide/",
+  "inLanguage": "ja",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/ocr-handwriting-on-mac-honest-guide/"
+  }
+}
+    </script>
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "ja",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "ライブテキストは日本語の手書きノートを認識できますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "認識できるのは、ごく一部の活字体に近い手書きに限られます。日本語の楷書体でも、文字のバラつきやかすれがあると認識率は大きく下がります。行書や草書はほぼ認識しません。Apple Notesの「手書きを検索」機能の方が、日本語手書きの検索には適しています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "手書きの認識率を上げるにはどうすればいいですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "写真の品質が最も重要です。照明を均一にして影をなくし、ピントをしっかり合わせ、インクと紙のコントラストを高めてください。手書き文字はできるだけ大きく、活字体に近い形で書くと認識率が上がります。ツールを変えるよりも、撮影環境を改善する方が効果的です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cheese! OCRは手書き文字を認識できますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cheese! OCRはApple Visionフレームワークを使用しているため、そのまま手書きの強みと限界を受け継ぎます。活字体に近い英語の手書きであれば認識できる可能性がありますが、日本語の手書きや筆記体は期待しないでください。手書きOCRが主目的であれば、Apple NotesやGoodNotesなど専用の手書き認識機能を持つアプリの方が適しています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "GoodNotesやNotabilityの手書き認識はなぜライブテキストより正確なのですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "これらのアプリは独自の手書き認識エンジンを持っており、大量の手書きデータで訓練されています。特に英語の筆記体や、ある程度崩れた手書きに対しては、Apple Visionよりも高い精度を発揮します。ただし、日本語や中国語の手書き認識はアプリによって対応状況が異なりますので、購入前に確認することをおすすめします。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "研究目的で古文書の手書き文字を読み取りたい場合はどうすればいいですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Transkribusが最も適したツールです。これは研究機関向けに開発された専用プラットフォームで、歴史的な手書き文書の認識に特化しています。無料枠には制限がありますが、アーカイブ品質の認識が可能です。一般のノートやメモにはオーバースペックなので、用途に応じて使い分けてください。"
+      }
+    }
+  ]
+}
+    </script>
+
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Cheese! OCR",
+      "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Mac で手書き文字を OCR：正直なガイド——できること・できないこと"
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+
+    <nav class="article-nav">
+        <a href="../" class="back-link">← ブログ</a>
+        <div class="lang-switcher">
+            <a href="/OCR_LLM/blog/ocr-handwriting-on-mac-honest-guide/" hreflang="en">EN</a>
+            <a href="/OCR_LLM/zh/blog/ocr-handwriting-on-mac-honest-guide/" hreflang="zh-Hans">中文</a>
+            <a href="/OCR_LLM/ja/blog/ocr-handwriting-on-mac-honest-guide/" aria-current="page" hreflang="ja">日本語</a>
+            <a href="/OCR_LLM/ko/blog/ocr-handwriting-on-mac-honest-guide/" hreflang="ko">한국어</a>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <h1>Mac で手書き文字を OCR：正直なガイド——できること・できないこと</h1>
+        <p class="article-meta">
+        <time datetime="2026-04-29">2026年4月29日</time>
+            · 約 9 分
+        </p>
+    </header>
+
+    <aside class="tldr">
+        <strong>要点</strong>
+        手書き文字のOCRは、印刷された文字の認識とはまったく別の技術です。Apple Visionフレームワークは主に印刷テキスト向けに訓練されているため、手書き、特に日本語や中国語の筆記体や崩し字の認識率は大幅に低下します。macOS 14 Sonoma以降のライブテキストは、英語の活字体に近い手書きであれば部分的に認識できますが、日本語の手書き（楷書体でも）は信頼できません。Apple Notesの「手書きを検索」機能は別の専用モデルを使っているため、メモ内検索ではライブテキストより優れています。このガイドでは、Apple Visionの限界を正直に説明し、GoodNotesやTranskribusなどの代替ツールが本当に必要になるケースを整理します。
+    </aside>
+
+    <article class="article-body">
+<p>あなたはMacでスクリーンショットを撮り、そこに写った手書きのメモからテキストをコピーしようとした経験はありませんか？ライブテキストが一瞬で印刷文字を拾ってくれるのを見た後で、手書きの部分だけがまったく反応しない——そんなもどかしさを感じたことがある方も多いでしょう。</p>
+<p>実は、この現象には技術的な理由があります。Apple Visionフレームワークは主に印刷されたテキストを認識するように訓練されています。手書き文字、特に日本語や中国語のような非ラテン文字の手書きは、まったく別の認識課題なのです。このガイドでは、Macで手書き文字をOCRする際の現実的な限界と、それでも使える方法を正直にお伝えします。</p>
+<h2 id="なぜapple-visionは手書き文字を苦手とするのか技術的な背景">なぜApple Visionは手書き文字を苦手とするのか——技術的な背景</h2>
+<p>Apple Visionが手書きを認識しにくい理由は、その学習データにあります。このフレームワークは、印刷された書籍や看板、ラベルなど、整った字形のテキストを大量に学習して訓練されています。手書き文字は個人差が大きく、同じ単語でも書く人によって形がまったく異なります。特に日本語の手書きでは、楷書体でも「はね」「はらい」「とめ」の微妙な違いが認識を難しくします。</p>
+<p>macOS 14 Sonoma以降のライブテキストは、英語の活字体に近い手書きであれば部分的に認識できるようになりました。しかし、日本語の手書き（tegaki）では、楷書体でも認識率は低く、行書や草書になるとほぼゼロに近くなります。中国語の草書や行書も同様で、Apple Visionでは事実上認識できません。韓国語の손글씨も同じ傾向で、活字体に近い形なら一部認識しますが、自由な筆記体は信頼できません。</p>
+<p>認識率に影響を与える要素はいくつかあります。文字の読みやすさ、インクと背景のコントラスト、言語、活字体か筆記体か、そして写真の照明条件です。これらの要素を改善することで、同じツールでも結果が大きく変わることがあります。</p>
+<h2 id="実用上のポイント写真の品質がすべてを決める">実用上のポイント——写真の品質がすべてを決める</h2>
+<p>手書き文字のOCRで最も効果的な対策は、ツールを変えることではなく、写真の品質を上げることです。照明を均一にして影をなくし、ピントをしっかり合わせ、紙面をまっすぐに撮影してください。コントラストが高いほど認識率は上がります。白い紙に黒いインクで書かれた文字が最も認識しやすく、色付きの紙や薄い鉛筆書きは苦手です。</p>
+<p>また、手書き文字自体を工夫することも有効です。できるだけ大きく、活字体に近い形で書くと認識率が上がります。特に日本語の場合は、楷書体で一文字ずつ丁寧に書くことが重要です。走り書きや崩した文字は、どんなツールを使っても認識が難しいことを理解しておきましょう。</p>
+<h2 id="代替ツールの選択肢用途に応じて使い分ける">代替ツールの選択肢——用途に応じて使い分ける</h2>
+<p>Apple Notesには、ライブテキストとは別の「手書きを検索」機能が搭載されています。これは手書き認識に特化したモデルを使用しており、メモ内の手書きテキストを検索できます。また、「書類をスキャン」機能を使えば、手書きの検索が可能なPDFを作成できます。Apple Notesを日常的に使っている方にとっては、これが最も手軽な解決策です。</p>
+<p>GoodNotesやNotabilityは、独自の手書き認識エンジンを搭載しています。これらのアプリは大量の手書きデータで訓練されているため、英語の筆記体やある程度崩れた手書きに対して、Apple Visionよりも高い精度を発揮します。ただし、日本語や中国語の手書き認識はアプリによって対応状況が異なりますので、購入前に確認してください。</p>
+<p>研究目的で歴史的な文書や古文書の手書き文字を読み取りたい場合は、Transkribusが最も適したツールです。これは研究機関向けに開発された専用プラットフォームで、アーカイブ品質の認識が可能です。無料枠には制限がありますが、一般のノートやメモにはオーバースペックなので、用途に応じて使い分けてください。</p>
+<p>Cheese! OCRはApple Visionを使用しているため、手書き認識の強みと限界をそのまま受け継ぎます。活字体に近い英語の手書きであれば認識できる可能性がありますが、日本語の手書きや筆記体は期待しないでください。手書きOCRが主目的であれば、Apple NotesやGoodNotesなど専用の手書き認識機能を持つアプリの方が適しています。</p>
+<h2 id="システム標準で十分なケースと専用ツールが必要なケース">システム標準で十分なケースと、専用ツールが必要なケース</h2>
+<p>もしあなたが英語の活字体に近い手書きを、たまに認識できれば十分という程度であれば、macOSに標準搭載されているライブテキストで事足ります。特にApple Notesの「手書きを検索」機能は、メモ内検索に特化しているため、日常的な使い方では十分な性能を発揮します。</p>
+<p>一方、日本語や中国語の手書きノートを頻繁にデジタル化したい場合、あるいは筆記体や崩し字を含む文書を扱う場合は、専用ツールの導入を検討すべきです。GoodNotesやNotabilityは手書きノートの管理に優れており、Transkribusは研究用途に特化しています。自分の用途に合ったツールを選ぶことが、時間とコストの節約につながります。</p>
+<h2 id="手書きocrを成功させるための簡単なチェックリスト">手書きOCRを成功させるための簡単なチェックリスト</h2>
+<ol>
+<li>写真を撮る前に、照明を均一にして紙面に影ができないようにしてください。</li>
+<li>ピントをしっかり合わせ、手ブレを防ぐためにカメラを固定して撮影しましょう。</li>
+<li>手書き文字はできるだけ大きく、活字体に近い形で書くと認識率が上がります。</li>
+<li>日本語の手書きを認識したい場合は、Apple Notesの「手書きを検索」機能を最初に試してください。</li>
+<li>英語の筆記体や崩し字を扱う場合は、GoodNotesやNotabilityの専用エンジンを検討しましょう。</li>
+<li>研究目的の古文書にはTranskribusを使い、一般のノートにはオーバースペックであることを理解しておいてください。</li>
+</ol>
+    </article>
+
+    <section class="article-faq">
+        <h2>よくある質問</h2>
+        <details class="faq-item">
+            <summary>ライブテキストは日本語の手書きノートを認識できますか？</summary>
+            <div class="answer">認識できるのは、ごく一部の活字体に近い手書きに限られます。日本語の楷書体でも、文字のバラつきやかすれがあると認識率は大きく下がります。行書や草書はほぼ認識しません。Apple Notesの「手書きを検索」機能の方が、日本語手書きの検索には適しています。</div>
+        </details>
+        <details class="faq-item">
+            <summary>手書きの認識率を上げるにはどうすればいいですか？</summary>
+            <div class="answer">写真の品質が最も重要です。照明を均一にして影をなくし、ピントをしっかり合わせ、インクと紙のコントラストを高めてください。手書き文字はできるだけ大きく、活字体に近い形で書くと認識率が上がります。ツールを変えるよりも、撮影環境を改善する方が効果的です。</div>
+        </details>
+        <details class="faq-item">
+            <summary>Cheese! OCRは手書き文字を認識できますか？</summary>
+            <div class="answer">Cheese! OCRはApple Visionフレームワークを使用しているため、そのまま手書きの強みと限界を受け継ぎます。活字体に近い英語の手書きであれば認識できる可能性がありますが、日本語の手書きや筆記体は期待しないでください。手書きOCRが主目的であれば、Apple NotesやGoodNotesなど専用の手書き認識機能を持つアプリの方が適しています。</div>
+        </details>
+        <details class="faq-item">
+            <summary>GoodNotesやNotabilityの手書き認識はなぜライブテキストより正確なのですか？</summary>
+            <div class="answer">これらのアプリは独自の手書き認識エンジンを持っており、大量の手書きデータで訓練されています。特に英語の筆記体や、ある程度崩れた手書きに対しては、Apple Visionよりも高い精度を発揮します。ただし、日本語や中国語の手書き認識はアプリによって対応状況が異なりますので、購入前に確認することをおすすめします。</div>
+        </details>
+        <details class="faq-item">
+            <summary>研究目的で古文書の手書き文字を読み取りたい場合はどうすればいいですか？</summary>
+            <div class="answer">Transkribusが最も適したツールです。これは研究機関向けに開発された専用プラットフォームで、歴史的な手書き文書の認識に特化しています。無料枠には制限がありますが、アーカイブ品質の認識が可能です。一般のノートやメモにはオーバースペックなので、用途に応じて使い分けてください。</div>
+        </details>
+    </section>
+
+    <section class="article-cta">
+        <div class="cta-card">
+            <h2>Cheese! OCR を試す</h2>
+            <p>ホットキー一つ、ドラッグで範囲選択、テキストはクリップボードへ。買い切り $5.99、完全オンデバイス、画面に表示されているものなら何でも対応。</p>
+            <a href="https://apps.apple.com/app/cheese-ocr/id6760889131" class="cta-button">Mac App Store で入手</a>
+        </div>
+    </section>
+
+    <section class="article-related">
+        <h2>関連記事</h2>
+        <div class="related-grid">
+            <a href="../ocr-asian-languages-on-mac/" class="related-card">
+                <h3>Mac で日本語 OCR を使う完全ガイド：漫画・PDF・ビジネス文書</h3>
+                <p>漫画やスキャン本から駅看板、業務文書まで。日本語 OCR の典型シーンを一通りカバー。</p>
+            </a>
+            <a href="../how-on-device-ocr-works/" class="related-card">
+                <h3>オンデバイス OCR はどう動くのか：Apple Vision Framework 解説</h3>
+                <p>Apple Vision がデバイス上で OCR を行う仕組み。なぜクラウドより速いのか、プライバシーへの意味は何か。</p>
+            </a>
+            <a href="../extract-text-from-screenshot-on-mac/" class="related-card">
+                <h3>Mac でスクリーンショットからテキストを抽出する方法（3 つの方法を比較）</h3>
+                <p>Live Text、Cmd+Shift+5、Cheese! OCR の 3 つの方法。それぞれをいつ使うべきか。</p>
+            </a>
+        </div>
+    </section>
+
+    <footer class="article-footer">
+        <a href="../../">ホーム</a>
+        <a href="../../../privacy.html">プライバシーポリシー</a>
+        <a href="mailto:nicholaslck@icloud.com">お問い合わせ</a>
+        <p>&copy; 2026 Cheese! OCR. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

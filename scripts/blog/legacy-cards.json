@@ -1,0 +1,206 @@
+{
+  "en": [
+    {
+      "slug": "cheese-ocr-vs-live-text",
+      "order": 0,
+      "categoryTag": "Comparison",
+      "title": "Cheese! OCR vs macOS Live Text: When Apple's Built-in Tool Isn't Enough",
+      "description": "How macOS Live Text compares to a global-hotkey OCR tool, and the four scenarios where Live Text falls short."
+    },
+    {
+      "slug": "how-to-ocr-pdf-on-mac",
+      "order": 1,
+      "categoryTag": "How-to",
+      "title": "How to OCR a PDF on Mac (2026): Native, Scanned, and Everything In Between",
+      "description": "A practical guide to extracting text from native, scanned, and protected PDFs on Mac — without uploading anything to the cloud."
+    },
+    {
+      "slug": "copy-text-from-video-on-mac",
+      "order": 2,
+      "categoryTag": "How-to",
+      "title": "How to Copy Text from a Video on Mac (Tutorials, Meetings, Anything)",
+      "description": "Three ways to grab text from a paused video frame, including DRM-protected meetings and Chrome-based tutorials."
+    },
+    {
+      "slug": "ocr-asian-languages-on-mac",
+      "order": 3,
+      "categoryTag": "Guide",
+      "title": "How to OCR Chinese, Japanese, and Korean Text on Mac",
+      "description": "Specific tips and tools for each language, with a focus on what Live Text can and can't recognize out of the box."
+    },
+    {
+      "slug": "extract-text-from-screenshot-on-mac",
+      "order": 4,
+      "categoryTag": "How-to",
+      "title": "How to Extract Text from a Screenshot on Mac (Three Methods Compared)",
+      "description": "Live Text, Cmd+Shift+5 floating actions, and dedicated OCR tools — when each one is worth the keystrokes."
+    },
+    {
+      "slug": "how-on-device-ocr-works",
+      "order": 5,
+      "categoryTag": "Deep Dive",
+      "title": "How On-Device OCR Works: Apple Vision Framework Explained",
+      "description": "A technical look at how Apple Vision performs OCR on-device, why it's faster than the cloud, and what it means for privacy."
+    },
+    {
+      "slug": "cheese-ocr-vs-text-sniper",
+      "order": 6,
+      "categoryTag": "Comparison",
+      "title": "Cheese! OCR vs Text Sniper: Honest Comparison Between Two Mac OCR Tools",
+      "description": "Where Text Sniper still leads, where Cheese! OCR pulls ahead, and how to pick between them based on how you actually work."
+    }
+  ],
+  "zh": [
+    {
+      "slug": "cheese-ocr-vs-live-text",
+      "order": 0,
+      "categoryTag": "对比",
+      "title": "Cheese! OCR vs macOS 实况文本：什么时候系统自带的不够用",
+      "description": "macOS 实况文本与一款全局热键 OCR 工具的对比，以及 Live Text 在 4 个场景下力不从心的原因。"
+    },
+    {
+      "slug": "how-to-ocr-pdf-on-mac",
+      "order": 1,
+      "categoryTag": "教程",
+      "title": "如何在 Mac 上 OCR 识别 PDF（2026）：原生版、扫描版、混合版完整指南",
+      "description": "在 Mac 上识别原生 PDF、扫描版 PDF 和受保护 PDF 的实用指南——不上传任何文件到云端。"
+    },
+    {
+      "slug": "copy-text-from-video-on-mac",
+      "order": 2,
+      "categoryTag": "教程",
+      "title": "如何在 Mac 上从视频中复制文字（教程、会议、任何场景）",
+      "description": "从暂停的视频画面中提取文字的三种方法，包括受 DRM 保护的会议与基于 Chrome 的教程。"
+    },
+    {
+      "slug": "ocr-asian-languages-on-mac",
+      "order": 3,
+      "categoryTag": "指南",
+      "title": "Mac 上中文 OCR 完整指南：繁简、混排、古籍与外刊",
+      "description": "从繁简识别到中英混排，从扫描古籍到外刊学术论文——一篇覆盖中文 OCR 的所有典型场景。"
+    },
+    {
+      "slug": "extract-text-from-screenshot-on-mac",
+      "order": 4,
+      "categoryTag": "教程",
+      "title": "如何在 Mac 上从截图中提取文字（三种方法对比）",
+      "description": "实况文本、Cmd+Shift+5 浮动操作、Cheese! OCR 三种从截图取文的方法，何时用哪个最划算。"
+    },
+    {
+      "slug": "how-on-device-ocr-works",
+      "order": 5,
+      "categoryTag": "技术解析",
+      "title": "设备端 OCR 是如何工作的：Apple Vision 框架解析",
+      "description": "从技术角度解读 Apple Vision 如何在设备端完成 OCR，以及为什么它比云端更快、对隐私更友好。"
+    },
+    {
+      "slug": "cheese-ocr-vs-text-sniper",
+      "order": 6,
+      "categoryTag": "对比",
+      "title": "Cheese! OCR 与主流 Mac OCR 工具横评（含 Text Sniper、嗨格式 OCR 等）",
+      "description": "Text Sniper 在哪些方面仍然领先，Cheese! OCR 在哪些方面拉开差距，以及如何根据自己的工作流挑选。"
+    }
+  ],
+  "ja": [
+    {
+      "slug": "cheese-ocr-vs-live-text",
+      "order": 0,
+      "categoryTag": "比較",
+      "title": "Cheese! OCR vs macOS テキスト認識（Live Text）: 標準機能では足りない場面",
+      "description": "macOS の Live Text とグローバルホットキー型 OCR ツールの比較。Live Text が苦手な 4 つのシーン。"
+    },
+    {
+      "slug": "how-to-ocr-pdf-on-mac",
+      "order": 1,
+      "categoryTag": "ハウツー",
+      "title": "Mac で PDF を OCR する方法（2026）: ネイティブ・スキャン・混在まで完全ガイド",
+      "description": "Mac でネイティブ／スキャン／保護付き PDF を OCR する実用ガイド。クラウドアップロードは一切なし。"
+    },
+    {
+      "slug": "copy-text-from-video-on-mac",
+      "order": 2,
+      "categoryTag": "ハウツー",
+      "title": "Mac で動画からテキストをコピーする方法（チュートリアル・会議・あらゆる場面）",
+      "description": "一時停止した動画フレームからテキストを取り出す 3 つの方法。DRM 付き会議や Chrome 上のチュートリアルにも。"
+    },
+    {
+      "slug": "ocr-asian-languages-on-mac",
+      "order": 3,
+      "categoryTag": "ガイド",
+      "title": "Mac で日本語 OCR を使う完全ガイド：漫画・PDF・ビジネス文書",
+      "description": "漫画やスキャン本から駅看板、業務文書まで。日本語 OCR の典型シーンを一通りカバー。"
+    },
+    {
+      "slug": "extract-text-from-screenshot-on-mac",
+      "order": 4,
+      "categoryTag": "ハウツー",
+      "title": "Mac でスクリーンショットからテキストを抽出する方法（3 つの方法を比較）",
+      "description": "Live Text、Cmd+Shift+5、Cheese! OCR の 3 つの方法。それぞれをいつ使うべきか。"
+    },
+    {
+      "slug": "how-on-device-ocr-works",
+      "order": 5,
+      "categoryTag": "技術解説",
+      "title": "オンデバイス OCR はどう動くのか：Apple Vision Framework 解説",
+      "description": "Apple Vision がデバイス上で OCR を行う仕組み。なぜクラウドより速いのか、プライバシーへの意味は何か。"
+    },
+    {
+      "slug": "cheese-ocr-vs-text-sniper",
+      "order": 6,
+      "categoryTag": "比較",
+      "title": "Cheese! OCR と主要 Mac OCR ツールの比較（Text Sniper・他）",
+      "description": "Text Sniper がいまも先行している点、Cheese! OCR が引き離している点。自分のワークフローでの選び方。"
+    }
+  ],
+  "ko": [
+    {
+      "slug": "cheese-ocr-vs-live-text",
+      "order": 0,
+      "categoryTag": "비교",
+      "title": "Cheese! OCR vs macOS 라이브 텍스트: 기본 기능으로 부족할 때",
+      "description": "macOS 라이브 텍스트와 전역 단축키 OCR 도구 비교. 라이브 텍스트가 부족한 4가지 상황."
+    },
+    {
+      "slug": "how-to-ocr-pdf-on-mac",
+      "order": 1,
+      "categoryTag": "가이드",
+      "title": "Mac에서 PDF OCR하는 방법 (2026): 네이티브·스캔·혼합까지 완벽 가이드",
+      "description": "Mac에서 네이티브·스캔·보호된 PDF를 OCR하는 실용 가이드. 클라우드 업로드 없이."
+    },
+    {
+      "slug": "copy-text-from-video-on-mac",
+      "order": 2,
+      "categoryTag": "가이드",
+      "title": "Mac에서 동영상에서 텍스트 복사하는 방법 (튜토리얼·회의·모든 상황)",
+      "description": "일시정지한 동영상 프레임에서 텍스트를 가져오는 세 가지 방법. DRM 회의·Chrome 강좌까지."
+    },
+    {
+      "slug": "ocr-asian-languages-on-mac",
+      "order": 3,
+      "categoryTag": "가이드",
+      "title": "Mac에서 한국어 OCR 사용하는 완벽 가이드: PDF·웹툰·문서",
+      "description": "한국어 PDF부터 웹툰, 카카오톡 스크린샷, 학술 자료까지. 한국어 OCR의 대표 시나리오 총정리."
+    },
+    {
+      "slug": "extract-text-from-screenshot-on-mac",
+      "order": 4,
+      "categoryTag": "가이드",
+      "title": "Mac에서 스크린샷의 텍스트를 추출하는 방법 (세 가지 방법 비교)",
+      "description": "라이브 텍스트, Cmd+Shift+5, Cheese! OCR 세 방법으로 스크린샷에서 텍스트 추출. 어떤 게 언제 좋은가."
+    },
+    {
+      "slug": "how-on-device-ocr-works",
+      "order": 5,
+      "categoryTag": "심층 분석",
+      "title": "온디바이스 OCR은 어떻게 작동하나: Apple Vision 프레임워크 해설",
+      "description": "Apple Vision이 기기 안에서 OCR을 수행하는 원리. 왜 클라우드보다 빠른지, 개인정보에 어떤 의미가 있는지."
+    },
+    {
+      "slug": "cheese-ocr-vs-text-sniper",
+      "order": 6,
+      "categoryTag": "비교",
+      "title": "Cheese! OCR vs 주요 Mac OCR 도구 비교 (Text Sniper 외)",
+      "description": "Text Sniper가 여전히 앞서는 부분, Cheese! OCR이 격차를 벌리는 부분. 자기 워크플로우에 맞게 고르는 법."
+    }
+  ]
+}

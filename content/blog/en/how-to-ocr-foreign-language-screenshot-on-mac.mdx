@@ -1,0 +1,67 @@
+---
+title: "How to OCR a Foreign-Language Screenshot on Mac (and What Mac Can't Read)"
+description: "Which languages Apple Vision recognizes on Mac, which scripts it can't handle, and how to fall back to Tesseract or a cloud OCR service when needed."
+slug: how-to-ocr-foreign-language-screenshot-on-mac
+locale: en
+date: 2026-04-29
+category: Guide
+read_min: 8
+tags: ["Mac OCR", "foreign language", "translation", "Apple Vision", "Tesseract", "Apple Translate", "DeepL"]
+template: guide
+key_facts:
+  - "Apple Vision recognizes English, Simplified Chinese, Traditional Chinese, Japanese, Korean, French, German, Italian, Spanish, Portuguese as of macOS 14"
+  - "macOS 12 supported English/French/Italian/German/Portuguese/Spanish/Chinese; Japanese and Korean were added in macOS 13"
+  - "Live Text and Cheese! OCR auto-detect the language — you do not select one manually"
+  - "Apple Vision does NOT recognize Cyrillic (Russian, Ukrainian), Arabic, Hebrew, Thai, Vietnamese as of early 2026"
+  - "For unsupported scripts: Tesseract (open-source CLI) with the appropriate language data, or cloud OCR (Google Cloud Vision, Azure AI Vision)"
+  - "Apple Translate is built into macOS 12+ and does on-device translation for many language pairs without sending text to the cloud"
+  - "Mixed-language text (e.g., English embedded in a Japanese page) is handled automatically — Apple Vision recognizes both"
+  - "Right-to-left scripts (Arabic, Hebrew) require RTL-aware OCR; Apple Vision does not currently support them"
+  - "After OCR, common translation paths: Apple Translate (on-device), DeepL (cloud, generally best for European languages), Google Translate (cloud, broadest coverage)"
+  - "Cheese! OCR is built on Apple Vision and inherits the supported-language list — same on-device, no network"
+  - "For Chinese, Apple Vision auto-handles both Simplified and Traditional script — no toggle needed"
+  - "For Japanese, Apple Vision handles hiragana, katakana, and printed kanji; freehand handwriting is partial"
+internal_links: ["ocr-asian-languages-on-mac", "extract-text-from-screenshot-on-mac", "how-on-device-ocr-works"]
+tldr: |
+  If you need to grab text from a foreign-language screenshot on your Mac, Apple Vision covers the major East Asian and European scripts automatically — no manual language selection required. But it has real gaps: Cyrillic, Arabic, Hebrew, Thai, and Vietnamese aren't supported as of early 2026. For those, you'll need Tesseract or a cloud OCR service. This guide walks you through what works, what doesn't, and how to bridge the gap without wasting time.
+faqs:
+  - q: "Does Apple Vision support Russian or Ukrainian?"
+    a: "No. As of early 2026, Apple Vision does not recognize Cyrillic scripts like Russian or Ukrainian. You'll need to use Tesseract with the appropriate language data, or a cloud OCR service like Google Cloud Vision or Azure AI Vision."
+  - q: "Can I OCR a screenshot with both English and Japanese text?"
+    a: "Yes. Apple Vision handles mixed-language text automatically — it recognizes both English and Japanese in the same image without any toggle. This works in Live Text and in apps like Cheese! OCR that use the same framework."
+  - q: "What's the best way to translate text after OCR on a Mac?"
+    a: "Apple Translate is built into macOS 12+ and works on-device for many language pairs. For European languages, DeepL generally gives the best quality. Google Translate has the broadest coverage if you need something more obscure."
+  - q: "Does Cheese! OCR support more languages than Apple's Live Text?"
+    a: "No. Cheese! OCR is built on Apple Vision, so it inherits the exact same supported-language list. The advantage is convenience — you get a dedicated hotkey and batch processing — but the underlying language support is identical."
+---
+
+You're looking at a screenshot of a menu in Japanese, or a sign in Russian, or a PDF in Arabic. You need the text — not a photo, not a translation app's camera view, but actual selectable text you can paste into a document or translator. On a Mac, the built-in OCR tools handle some languages beautifully and others not at all. Here's what actually works.
+
+Apple Vision, the framework behind Live Text and apps like Cheese! OCR, recognizes a specific set of languages. As of macOS 14, that set includes English, Simplified Chinese, Traditional Chinese, Japanese, Korean, French, German, Italian, Spanish, and Portuguese. macOS 12 started with English, French, Italian, German, Portuguese, Spanish, and Chinese; Japanese and Korean arrived in macOS 13. The system auto-detects the language — you never select one manually. Mixed-language text, like English embedded in a Japanese page, is handled automatically.
+
+## What Apple Vision can't read
+
+Apple Vision does not recognize Cyrillic scripts (Russian, Ukrainian), Arabic, Hebrew, Thai, or Vietnamese as of early 2026. Right-to-left scripts like Arabic and Hebrew require RTL-aware OCR, which Apple Vision doesn't support. If your screenshot contains any of these, Live Text and Cheese! OCR will return nothing useful.
+
+For unsupported scripts, you have two practical options. Tesseract is an open-source CLI tool you can install via Homebrew. You'll need to download the appropriate language data files — `tesseract-lang` covers most scripts. It's free and runs locally, but the accuracy varies and setup takes a few minutes. Cloud OCR services like Google Cloud Vision or Azure AI Vision support a much wider range of languages and generally produce cleaner results, but they send your image to a remote server.
+
+## After OCR: translation paths
+
+Once you have the text, you need to translate it. Apple Translate is built into macOS 12+ and does on-device translation for many language pairs without sending anything to the cloud. It's fast and private, but the language coverage is narrower than cloud alternatives. DeepL is generally the best choice for European languages — it handles nuance better than most competitors. Google Translate has the broadest coverage if you need something more obscure like Thai or Vietnamese.
+
+For Chinese, Apple Vision auto-handles both Simplified and Traditional script — no toggle needed. For Japanese, it handles hiragana, katakana, and printed kanji reliably; freehand handwriting recognition is partial.
+
+## When the built-in tool is enough
+
+If you only OCR occasionally and only in the languages Apple Vision supports, Live Text is free, fast, and right there. Stop reading and use the tool you already have. The same applies if you're working with mixed-language text that stays within the supported set — Apple Vision handles it automatically.
+
+If you need Cyrillic, Arabic, Hebrew, Thai, or Vietnamese, or if you need to batch-process many screenshots, you'll need something else. Cheese! OCR is built on Apple Vision and inherits the same language list — it won't help with unsupported scripts. For those cases, Tesseract or a cloud service is your actual path forward.
+
+## A short checklist
+
+1. Check if your target language is in Apple Vision's supported list (English, Chinese, Japanese, Korean, French, German, Italian, Spanish, Portuguese).
+2. If it is, use Live Text or Cheese! OCR — no setup needed.
+3. If it isn't, install Tesseract via Homebrew and download the language data for your script.
+4. For higher accuracy on unsupported scripts, use Google Cloud Vision or Azure AI Vision.
+5. After OCR, translate with Apple Translate (on-device), DeepL (best for European languages), or Google Translate (broadest coverage).
+6. If you batch-process screenshots regularly, consider a dedicated tool like Cheese! OCR for the supported languages, and a separate workflow for the rest.

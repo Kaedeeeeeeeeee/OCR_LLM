@@ -1,0 +1,53 @@
+{
+  "site": {
+    "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM",
+    "contentDir": "content/blog",
+    "locales": ["en", "zh", "ja", "ko"],
+    "defaultLocale": "en"
+  },
+  "output": {
+    "format": "mdx",
+    "frontmatterFields": {
+      "required": ["title", "description", "date", "tags", "category", "slug", "locale", "template", "key_facts"],
+      "optional": ["read_min", "internal_links", "tldr", "faqs", "cover", "status"],
+      "stripOnPublish": ["status"]
+    }
+  },
+  "llm": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-flash",
+    "endpoint": "https://api.deepseek.com/v1/chat/completions",
+    "apiKeyEnv": "DEEPSEEK_API_KEY",
+    "temperature": 0.3,
+    "pricing": { "inputPerM": 0.14, "outputPerM": 0.28 }
+  },
+  "style": {
+    "guidePath": "./style-guide.md",
+    "language": "matches frontmatter.locale",
+    "tone": "calm, expert, honest about tradeoffs",
+    "forbiddenPhrases": [
+      "in today's world",
+      "in this digital age",
+      "revolutionary",
+      "game-changer",
+      "seamless",
+      "leverage",
+      "robust solution",
+      "cutting-edge",
+      "delve into",
+      "dive deep",
+      "in the realm of",
+      "harness the power",
+      "unlock the potential"
+    ],
+    "targetLength": [1400, 2400]
+  },
+  "templates": {
+    "default": "comparison",
+    "available": ["comparison", "howto", "guide", "deep-dive"]
+  },
+  "safety": {
+    "warnAt": 100,
+    "hardStopAt": 500
+  }
+}

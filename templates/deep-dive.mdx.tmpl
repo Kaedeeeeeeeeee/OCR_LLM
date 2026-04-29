@@ -1,0 +1,58 @@
+---
+title: "{{TITLE}}"
+description: "{{DESCRIPTION}}"
+slug: {{SLUG}}
+locale: {{LOCALE}}
+date: {{DATE}}
+category: Deep Dive
+read_min: {{READ_MIN}}
+tags: [{{TAGS}}]
+template: deep-dive
+key_facts:
+{{KEY_FACTS_YAML}}
+internal_links: [{{INTERNAL_LINKS}}]
+status: draft
+tldr: |
+  BULLET: One-paragraph TL;DR in {{LOCALE_LANG}} stating the core technical claim and why a non-engineer reader still cares.
+faqs:
+  - q: "BULLET: Question."
+    a: "BULLET: Answer."
+  - q: "BULLET: Question."
+    a: "BULLET: Answer."
+  - q: "BULLET: Question."
+    a: "BULLET: Answer."
+  - q: "BULLET: Question."
+    a: "BULLET: Answer."
+---
+
+{/* SUBAGENT WRITING NOTES (will be deleted on expand)
+- Write in {{LOCALE_LANG}}.
+- Body length target: {{TARGET_LENGTH}} characters.
+- Every "## BULLET: ..." or "### BULLET: ..." line is a heading marker — render the heading text in {{LOCALE_LANG}}, keeping the ## or ### prefix.
+- Do NOT keep any English heading text. Translate or rewrite naturally.
+- Keep "Cheese! OCR" verbatim as a brand name.
+- Every BULLET: block is a fact-summary to expand into 2–4 paragraphs.
+- Do NOT invent facts beyond key_facts. Do NOT invent benchmark numbers.
+*/}
+
+BULLET: Opening 2–4 paragraphs. Frame the technical question with a user-facing motivation (e.g., "why is on-device OCR so fast on Apple Silicon?").
+
+## BULLET: H2 in {{LOCALE_LANG}} — what's actually going on (e.g. "底层到底发生了什么", "実際に何が起きているか", "What's actually going on")
+
+BULLET: 4–6 paragraphs explaining the mechanism. Use H3 sub-sections if needed.
+
+### BULLET: H3 in {{LOCALE_LANG}} — first technical layer
+
+BULLET: 2–4 paragraphs.
+
+### BULLET: H3 in {{LOCALE_LANG}} — second technical layer
+
+BULLET: 2–4 paragraphs.
+
+## BULLET: H2 in {{LOCALE_LANG}} — implications for the user (e.g. "对用户来说意味着什么", "ユーザーにとっての意味")
+
+BULLET: 3–5 paragraphs translating the technical detail into "what this means when you press the hotkey."
+
+## BULLET: H2 in {{LOCALE_LANG}} — what this means in practice (e.g. "实际意味着什么", "実際の意味するところ", "What this means in practice")
+
+BULLET: 2–3 paragraphs of concrete user-facing takeaway. End with a one-line summary the reader can repeat at a meeting.

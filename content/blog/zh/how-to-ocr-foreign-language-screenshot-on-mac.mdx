@@ -1,0 +1,76 @@
+---
+title: "Mac 上如何 OCR 外文截图（以及哪些文字 Mac 识别不了）"
+description: "Apple Vision 在 Mac 上支持哪些语言、不支持哪些字符（俄文、阿拉伯文、希伯来文、泰文、越南文），以及需要时如何回退到 Tesseract 或云端 OCR。"
+slug: how-to-ocr-foreign-language-screenshot-on-mac
+locale: zh
+date: 2026-04-29
+category: Guide
+read_min: 8
+tags: ["Mac OCR", "外语", "翻译", "Apple Vision", "Tesseract", "Apple 翻译", "DeepL"]
+template: guide
+key_facts:
+  - "Apple Vision recognizes English, Simplified Chinese, Traditional Chinese, Japanese, Korean, French, German, Italian, Spanish, Portuguese as of macOS 14"
+  - "macOS 12 supported English/French/Italian/German/Portuguese/Spanish/Chinese; Japanese and Korean were added in macOS 13"
+  - "Live Text and Cheese! OCR auto-detect the language — you do not select one manually"
+  - "Apple Vision does NOT recognize Cyrillic (Russian, Ukrainian), Arabic, Hebrew, Thai, Vietnamese as of early 2026"
+  - "For unsupported scripts: Tesseract (open-source CLI) with the appropriate language data, or cloud OCR (Google Cloud Vision, Azure AI Vision)"
+  - "Apple Translate is built into macOS 12+ and does on-device translation for many language pairs without sending text to the cloud"
+  - "Mixed-language text (e.g., English embedded in a Japanese page) is handled automatically — Apple Vision recognizes both"
+  - "Right-to-left scripts (Arabic, Hebrew) require RTL-aware OCR; Apple Vision does not currently support them"
+  - "After OCR, common translation paths: Apple Translate (on-device), DeepL (cloud, generally best for European languages), Google Translate (cloud, broadest coverage)"
+  - "Cheese! OCR is built on Apple Vision and inherits the supported-language list — same on-device, no network"
+  - "For Chinese, Apple Vision auto-handles both Simplified and Traditional script — no toggle needed"
+  - "For Japanese, Apple Vision handles hiragana, katakana, and printed kanji; freehand handwriting is partial"
+internal_links: ["ocr-asian-languages-on-mac", "extract-text-from-screenshot-on-mac", "how-on-device-ocr-works"]
+tldr: |
+  Mac 上 Apple Vision 框架内置的 OCR 功能（Live Text 和基于它的应用）能自动识别英文、中日韩文以及几种欧洲语言，但有一个容易被忽略的盲区：它完全不支持俄文、阿拉伯文、希伯来文、泰文和越南文。如果你经常处理这些文字的截图或 PDF，系统自带工具会直接失效。本文会告诉你哪些语言能识别、哪些不能，以及当遇到不支持的文字时，如何用 Tesseract 或云端 OCR 服务作为替代方案，同时也会提到识别后翻译的常用路径。
+faqs:
+  - q: "Apple Vision 支持哪些语言？"
+    a: "截至 macOS 14，Apple Vision 框架支持英文、简体中文、繁体中文、日文、韩文、法文、德文、意大利文、西班牙文和葡萄牙文。这些语言在 Live Text 和基于 Vision 的应用（如 Cheese! OCR）中都能自动识别，你不需要手动选择语言。"
+  - q: "Apple Vision 不支持哪些常见语言？"
+    a: "目前不支持西里尔字母（俄文、乌克兰文）、阿拉伯文、希伯来文、泰文和越南文。如果你需要识别这些文字，系统自带工具无法完成，必须借助第三方方案，比如开源的 Tesseract 或云端 OCR 服务。"
+  - q: "混合语言文本（比如日文页面里夹着英文）能识别吗？"
+    a: "可以。Apple Vision 会自动检测并同时识别多种文字，不需要你手动切换。比如一张截图里同时有日文和英文，系统会一并提取出来，不会漏掉。"
+  - q: "识别之后怎么翻译？"
+    a: "macOS 12 及以上版本内置了 Apple 翻译，支持多种语言对，且完全在设备上运行，不联网。如果需要更高质量的翻译，尤其是欧洲语言，DeepL 通常效果最好；如果需要覆盖最广的语言种类，Google 翻译是更稳妥的选择。"
+---
+
+你从同事的 Slack 消息里收到一张截图，上面是俄文的文档片段。你打开预览，鼠标悬停，光标没有变成文字选择工具。你试了试快速查看，也不行。你甚至打开了 Cheese! OCR，按下快捷键，结果什么也没提取出来。
+
+这不是你的操作有问题。这是 Apple Vision 框架的已知边界。它支持的语言列表很实用，但远非完整。如果你经常处理非英语、非东亚语言的截图，了解这个边界在哪里、以及越界之后怎么办，能省下大量试错时间。
+
+## Apple Vision 的语言支持范围
+
+Apple Vision 框架是 macOS 上 Live Text 和 Cheese! OCR 等工具背后的引擎。它完全在设备上运行，不发送数据到云端，速度很快，但语言支持是固定的。截至 macOS 14，它支持英文、简体中文、繁体中文、日文、韩文、法文、德文、意大利文、西班牙文和葡萄牙文。macOS 12 刚推出时只支持英文和五种欧洲语言加中文，日文和韩文是在 macOS 13 才加入的。
+
+这意味着如果你遇到俄文、乌克兰文、阿拉伯文、希伯来文、泰文或越南文的截图，Apple Vision 会直接跳过，不返回任何文本。这不是识别精度的问题——是模型根本没有训练这些文字。右到左书写的脚本（阿拉伯文、希伯来文）还需要特殊的排版处理，Apple Vision 目前完全不支持。
+
+好消息是，对于它支持的语言，识别效果相当好。中日文混排、韩文里夹英文、法文带重音符号，都能自动处理，不需要你手动切换语言模式。对于中文，简体和繁体也自动兼容。
+
+## 遇到不支持的文字怎么办
+
+当 Apple Vision 无能为力时，你有两条主要路径：本地开源方案和云端服务。
+
+本地方案首选 Tesseract。它是一个开源的 OCR 引擎，通过命令行运行，支持超过 100 种语言。你需要安装 Tesseract 本体，然后下载对应的语言数据包（比如俄文的 `rus` 包）。运行命令 `tesseract input.png output -l rus` 就能得到文本。缺点是配置稍麻烦，而且识别精度不如现代云端服务，尤其是对于排版复杂的文档。
+
+云端方案包括 Google Cloud Vision 和 Azure AI Vision。它们支持的语言列表更广，识别精度也更高，尤其是对于印刷体。代价是你的图片会离开本地设备，需要网络连接，并且可能涉及费用（免费额度通常够个人使用）。如果你处理的是敏感文档，这一点需要权衡。
+
+## 识别之后怎么翻译
+
+拿到文本之后，下一步通常是翻译。macOS 12 及以上版本内置了 Apple 翻译，支持几十种语言对，完全在设备上运行，不联网。对于欧洲语言之间的翻译，DeepL 通常效果最好，尤其是法文、德文、西班牙文。如果需要覆盖最广的语言种类，Google 翻译是更稳妥的选择。
+
+注意，Apple 翻译可以直接在系统层面调用——选中文本后右键选择“翻译”即可。DeepL 和 Google 翻译则需要打开网页或桌面应用。
+
+## 什么时候系统自带就够用，什么时候需要换工具
+
+如果你只处理英文、中日韩文或几种欧洲语言的截图，并且只在 Apple 生态内使用，Live Text 是免费、快速、现成的。打开预览或快速查看，选中文本，复制，结束。你不需要任何第三方工具。
+
+但如果你经常遇到俄文、阿拉伯文、希伯来文、泰文或越南文的截图，或者需要批量处理大量图片，系统自带工具就不够用了。这时候 Tesseract 或云端 OCR 是必要的补充。Cheese! OCR 基于 Apple Vision，所以它继承的是同样的语言列表——它不会帮你识别俄文，但它能让你用快捷键一键触发 OCR，省去打开预览的步骤。
+
+## 简短清单
+
+1. 先确认截图文字是否在 Apple Vision 支持的语言列表内——如果是，直接用 Live Text 或 Cheese! OCR。
+2. 如果是不支持的文字，安装 Tesseract 并下载对应语言包，或者注册一个云端 OCR 服务的免费账号。
+3. 对于右到左书写的脚本（阿拉伯文、希伯来文），优先考虑云端方案，因为本地工具对 RTL 排版支持较弱。
+4. 识别后需要翻译时，优先用 Apple 翻译（不联网、免费），效果不够再试 DeepL 或 Google 翻译。
+5. 如果经常处理混合语言文档，确认你的工具能自动检测多种文字——Apple Vision 可以，Tesseract 需要手动指定语言。

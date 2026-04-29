@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
+
+    <title>如何在 Mac 上从教程视频里复制代码（免重打） — Cheese! OCR Blog</title>
+    <meta name="description" content="为什么 Live Text 只能识别 Safari 里的代码、要警惕的 0/O 混淆，以及如何在任何浏览器从暂停的 YouTube 或 B 站视频帧中 OCR 出代码。">
+
+    <link rel="canonical" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/how-to-ocr-code-from-tutorial-video-on-mac/">
+    <link rel="alternate" hreflang="en" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-code-from-tutorial-video-on-mac/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/how-to-ocr-code-from-tutorial-video-on-mac/">
+    <link rel="alternate" hreflang="ja" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-to-ocr-code-from-tutorial-video-on-mac/">
+    <link rel="alternate" hreflang="ko" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ko/blog/how-to-ocr-code-from-tutorial-video-on-mac/">
+    <link rel="alternate" hreflang="x-default" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-code-from-tutorial-video-on-mac/">
+
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg?v=3">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../../../blog/article.css">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Cheese! OCR">
+    <meta property="og:title" content="如何在 Mac 上从教程视频里复制代码（免重打）">
+    <meta property="og:description" content="为什么 Live Text 只能识别 Safari 里的代码、要警惕的 0/O 混淆，以及如何在任何浏览器从暂停的 YouTube 或 B 站视频帧中 OCR 出代码。">
+    <meta property="og:url" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/how-to-ocr-code-from-tutorial-video-on-mac/">
+    <meta property="og:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="article:published_time" content="2026-04-29">
+    <meta property="article:author" content="Cheese! OCR Team">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="如何在 Mac 上从教程视频里复制代码（免重打）">
+    <meta name="twitter:description" content="为什么 Live Text 只能识别 Safari 里的代码、要警惕的 0/O 混淆，以及如何在任何浏览器从暂停的 YouTube 或 B 站视频帧中 OCR 出代码。">
+    <meta name="twitter:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "如何在 Mac 上从教程视频里复制代码（免重打）",
+  "description": "为什么 Live Text 只能识别 Safari 里的代码、要警惕的 0/O 混淆，以及如何在任何浏览器从暂停的 YouTube 或 B 站视频帧中 OCR 出代码。",
+  "author": {
+    "@type": "Organization",
+    "name": "Cheese! OCR",
+    "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Cheese! OCR",
+    "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+  },
+  "datePublished": "2026-04-29",
+  "dateModified": "2026-04-29",
+  "image": "https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png",
+  "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/how-to-ocr-code-from-tutorial-video-on-mac/",
+  "inLanguage": "zh-Hans",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/how-to-ocr-code-from-tutorial-video-on-mac/"
+  }
+}
+    </script>
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "zh-Hans",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "为什么 Live Text 在 Chrome 里识别不了暂停的视频？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "因为 Live Text 依赖 Safari 的网页渲染引擎来提取文本，而 Chrome、Firefox、Edge 等浏览器使用自己的渲染引擎，Live Text 无法访问其中的像素数据。所以同样的 YouTube 视频，在 Safari 里暂停可以选中文字，在 Chrome 里就不行。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "OCR 出来的代码缩进全乱了怎么办？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "这是目前所有 OCR 工具的通病——多行代码的缩进几乎都会丢失。你需要在粘贴后手动重新缩进。如果代码量很大，建议先用 OCR 拿到文本，再借助编辑器的自动格式化功能（比如 VS Code 的 Format Document）恢复缩进结构。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "代码里的特殊符号（如箭头、等号）识别不准怎么办？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Apple Vision 对等宽字体识别不错，但特殊字符容易出错。比如 → 可能被识别成 \u003e 或 -，=\u003e 可能变成 =。如果你使用了 Fira Code 或 Cascadia Code 这类连字字体，问题会更明显。建议在视频设置里关闭连字字体，或者 OCR 后手动检查这些符号。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "用 Cheese! OCR 识别代码后，还需要做什么检查？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "建议把识别出的代码直接运行一遍，或者用搜索功能检查常见的混淆对：0 和 O、1 和 l、5 和 S、rn 和 m。这些是 OCR 最容易出错的地方。如果代码量不大，逐行对比视频画面是最稳妥的办法。"
+      }
+    }
+  ]
+}
+    </script>
+
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Cheese! OCR",
+      "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "如何在 Mac 上从教程视频里复制代码（免重打）"
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+
+    <nav class="article-nav">
+        <a href="../" class="back-link">← 博客</a>
+        <div class="lang-switcher">
+            <a href="/OCR_LLM/blog/how-to-ocr-code-from-tutorial-video-on-mac/" hreflang="en">EN</a>
+            <a href="/OCR_LLM/zh/blog/how-to-ocr-code-from-tutorial-video-on-mac/" aria-current="page" hreflang="zh-Hans">中文</a>
+            <a href="/OCR_LLM/ja/blog/how-to-ocr-code-from-tutorial-video-on-mac/" hreflang="ja">日本語</a>
+            <a href="/OCR_LLM/ko/blog/how-to-ocr-code-from-tutorial-video-on-mac/" hreflang="ko">한국어</a>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <h1>如何在 Mac 上从教程视频里复制代码（免重打）</h1>
+        <p class="article-meta">
+        <time datetime="2026-04-29">2026年4月29日</time>
+            · 约 8 分钟
+        </p>
+    </header>
+
+    <aside class="tldr">
+        <strong>速览</strong>
+        看教程视频时遇到想复制的代码，最省事的办法是在 Safari 里暂停视频，直接用 Live Text 选中复制。但如果你用 Chrome、Firefox 或其他浏览器，Live Text 就失效了。这时可以用系统自带的截图工具（Shift+Command+4）截取画面，再用支持 OCR 的 App 识别文本；或者直接使用 Cheese! OCR，在任何浏览器或播放器里按快捷键 Shift+Command+E 框选区域，一步完成识别和复制。三种方法各有局限，本文会逐一说明，并提醒你 OCR 代码后需要手动检查的常见错误。
+    </aside>
+
+    <article class="article-body">
+<p>你正在看一个 YouTube 教程，视频里演示了一段很漂亮的 Python 代码。你暂停视频，想复制下来自己跑一遍。但手动打字太慢，还容易出错。你试了试鼠标选中文字——不行，视频帧里的文本根本选不中。</p>
+<p>这个场景每个开发者都遇到过。本文会介绍三种从教程视频里复制代码的方法：macOS 自带的 Live Text（仅限 Safari）、系统截图加第三方 OCR 工具、以及快捷键驱动的 OCR 工具 Cheese! OCR。每种方法都有适用场景和局限，你可以根据自己的浏览器和播放器选择最顺手的那一个。</p>
+<h2 id="方法一用-macos-live-text仅限-safari">方法一：用 macOS Live Text（仅限 Safari）</h2>
+<p>如果你用的是 Safari 浏览器，这是最直接的方法。在 YouTube 或 B 站上暂停视频，把鼠标移到代码区域，光标会变成文本选择工具。你可以像选中普通网页文字一样高亮、复制代码。整个过程不需要安装任何额外软件。</p>
+<p>这个方法依赖 macOS 的 Live Text 功能，它从 2021 年的 macOS 12 Monterey 开始内置。Live Text 对等宽字体的识别效果不错，代码区域只要分辨率够高（1080p 以上），识别准确率相当可观。</p>
+<h3 id="什么时候这个方法失效">什么时候这个方法失效</h3>
+<p>Live Text 只在 Safari 里有效。如果你用 Chrome、Firefox、Edge、Brave 或 Arc 浏览器，暂停视频后光标不会变成文本选择工具——这些浏览器使用自己的渲染引擎，Live Text 无法访问其中的像素数据。同样，在 IINA、VLC 或大多数第三方 Mac 视频播放器里，Live Text 也不起作用。</p>
+<p>另外，即使你在 Safari 里，如果视频分辨率太低（比如 720p 或更低），小字体的代码可能识别不全。Live Text 对多行代码的缩进支持也不好，粘贴后通常需要手动调整。</p>
+<h2 id="方法二系统截图--ocr-工具">方法二：系统截图 + OCR 工具</h2>
+<p>这个方法适用于任何浏览器和播放器。按 Shift+Command+4 截取视频帧中的代码区域，保存为图片。然后打开一个支持 OCR 的 App（比如系统自带的预览、或者第三方 OCR 工具），从图片中提取文本。</p>
+<p>如果你用的是 macOS 自带的预览 App，打开截图后可以直接选中文字——预览也集成了 Live Text。但这个方法有两个问题：一是步骤多（截图→打开→选中→复制），二是预览的 Live Text 同样受限于 Apple Vision 的识别能力，对特殊字符和缩进的处理不够理想。</p>
+<h3 id="什么时候这个方法失效-1">什么时候这个方法失效</h3>
+<p>截图本身没问题，但 OCR 环节的准确率取决于截图分辨率和字体大小。720p 视频里的小字体代码，识别结果可能包含大量错误。另外，如果你需要频繁复制代码，每次都要走一遍截图→打开→复制的流程，效率很低。</p>
+<h2 id="方法三用-cheese-ocr-一键识别">方法三：用 Cheese! OCR 一键识别</h2>
+<p>Cheese! OCR 是一个专门解决这类问题的 Mac 应用。它通过读取屏幕像素（需要屏幕录制权限）来识别文本，不依赖浏览器或播放器的渲染引擎。所以无论你用 Chrome 看 YouTube、用 IINA 看本地视频、还是在任何 App 里看教程，它都能工作。</p>
+<p>默认快捷键是 Shift+Command+E。按下后，鼠标变成十字准线，你框选视频中的代码区域，识别结果会直接复制到剪贴板。整个过程不到两秒。Cheese! OCR 底层使用 Apple Vision 框架，识别准确率与 Live Text 相当，但适用范围更广——它可以在任何屏幕上工作。</p>
+<p>识别出的代码会丢失缩进，这是所有 OCR 工具的通病。粘贴到编辑器后，你需要手动重新缩进。另外，建议把代码运行一遍来验证，重点检查 0/O、1/l、5/S 这些容易混淆的字符。</p>
+<h2 id="三种方法对比">三种方法对比</h2>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>最佳场景</th>
+<th>局限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Live Text（Safari）</td>
+<td>只用 Safari 看视频，偶尔复制代码</td>
+<td>其他浏览器和播放器无效</td>
+</tr>
+<tr>
+<td>截图 + OCR 工具</td>
+<td>任何浏览器/播放器，不介意多几步操作</td>
+<td>步骤多，效率低</td>
+</tr>
+<tr>
+<td>Cheese! OCR</td>
+<td>需要频繁复制代码，追求一步到位</td>
+<td>需要安装应用并授予屏幕录制权限</td>
+</tr>
+</tbody>
+</table>
+<h2 id="常见问题排查">常见问题排查</h2>
+<p>OCR 代码后最常见的问题是缩进丢失和字符混淆。缩进只能手动修复，没有捷径。字符混淆方面，建议用编辑器的搜索功能查找 0/O、1/l、5/S、rn/m 这些常见错误对。如果你使用了 Fira Code 或 Cascadia Code 这类连字字体，<code>-></code> 和 <code>=></code> 可能被识别成单个字符，导致语法错误——在视频设置里关闭连字字体可以缓解这个问题。</p>
+<p>另一个常见问题是屏幕录制权限。Cheese! OCR 首次启动时会请求屏幕录制权限，你需要在系统设置中手动授权。如果拒绝，应用无法读取屏幕像素，也就无法识别文本。授权后，应用会像 macOS 截图工具一样在后台运行，不会影响你的正常工作。</p>
+    </article>
+
+    <section class="article-faq">
+        <h2>常见问题</h2>
+        <details class="faq-item">
+            <summary>为什么 Live Text 在 Chrome 里识别不了暂停的视频？</summary>
+            <div class="answer">因为 Live Text 依赖 Safari 的网页渲染引擎来提取文本，而 Chrome、Firefox、Edge 等浏览器使用自己的渲染引擎，Live Text 无法访问其中的像素数据。所以同样的 YouTube 视频，在 Safari 里暂停可以选中文字，在 Chrome 里就不行。</div>
+        </details>
+        <details class="faq-item">
+            <summary>OCR 出来的代码缩进全乱了怎么办？</summary>
+            <div class="answer">这是目前所有 OCR 工具的通病——多行代码的缩进几乎都会丢失。你需要在粘贴后手动重新缩进。如果代码量很大，建议先用 OCR 拿到文本，再借助编辑器的自动格式化功能（比如 VS Code 的 Format Document）恢复缩进结构。</div>
+        </details>
+        <details class="faq-item">
+            <summary>代码里的特殊符号（如箭头、等号）识别不准怎么办？</summary>
+            <div class="answer">Apple Vision 对等宽字体识别不错，但特殊字符容易出错。比如 → 可能被识别成 &gt; 或 -，=&gt; 可能变成 =。如果你使用了 Fira Code 或 Cascadia Code 这类连字字体，问题会更明显。建议在视频设置里关闭连字字体，或者 OCR 后手动检查这些符号。</div>
+        </details>
+        <details class="faq-item">
+            <summary>用 Cheese! OCR 识别代码后，还需要做什么检查？</summary>
+            <div class="answer">建议把识别出的代码直接运行一遍，或者用搜索功能检查常见的混淆对：0 和 O、1 和 l、5 和 S、rn 和 m。这些是 OCR 最容易出错的地方。如果代码量不大，逐行对比视频画面是最稳妥的办法。</div>
+        </details>
+    </section>
+
+    <section class="article-cta">
+        <div class="cta-card">
+            <h2>试试 Cheese! OCR</h2>
+            <p>一个快捷键,框选,文字到剪贴板。一次性 $5.99,完全本地运行,任何你能看到的 app 都能用。</p>
+            <a href="https://apps.apple.com/app/cheese-ocr/id6760889131" class="cta-button">在 Mac App Store 下载</a>
+        </div>
+    </section>
+
+    <section class="article-related">
+        <h2>相关文章</h2>
+        <div class="related-grid">
+            <a href="../copy-text-from-video-on-mac/" class="related-card">
+                <h3>如何在 Mac 上从视频中复制文字（教程、会议、任何场景）</h3>
+                <p>从暂停的视频画面中提取文字的三种方法，包括受 DRM 保护的会议与基于 Chrome 的教程。</p>
+            </a>
+            <a href="../extract-text-from-screenshot-on-mac/" class="related-card">
+                <h3>如何在 Mac 上从截图中提取文字（三种方法对比）</h3>
+                <p>实况文本、Cmd+Shift+5 浮动操作、Cheese! OCR 三种从截图取文的方法，何时用哪个最划算。</p>
+            </a>
+            <a href="../how-on-device-ocr-works/" class="related-card">
+                <h3>设备端 OCR 是如何工作的：Apple Vision 框架解析</h3>
+                <p>从技术角度解读 Apple Vision 如何在设备端完成 OCR，以及为什么它比云端更快、对隐私更友好。</p>
+            </a>
+        </div>
+    </section>
+
+    <footer class="article-footer">
+        <a href="../../">主页</a>
+        <a href="../../../privacy.html">隐私政策</a>
+        <a href="mailto:nicholaslck@icloud.com">联系我们</a>
+        <p>&copy; 2026 Cheese! OCR. 版权所有。</p>
+    </footer>
+
+</body>
+</html>

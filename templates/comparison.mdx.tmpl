@@ -1,0 +1,80 @@
+---
+title: "{{TITLE}}"
+description: "{{DESCRIPTION}}"
+slug: {{SLUG}}
+locale: {{LOCALE}}
+date: {{DATE}}
+category: Comparison
+read_min: {{READ_MIN}}
+tags: [{{TAGS}}]
+template: comparison
+key_facts:
+{{KEY_FACTS_YAML}}
+internal_links: [{{INTERNAL_LINKS}}]
+status: draft
+tldr: |
+  BULLET: One-paragraph summary in {{LOCALE_LANG}} that lays out the bottom line of this comparison. Mention both tools by name. Tell the reader which is better for which case. No CTA. 80–140 words / 150–250 chars (zh/ja/ko).
+faqs:
+  - q: "BULLET: Real question a reader would ask after reading this comparison. In {{LOCALE_LANG}}."
+    a: "BULLET: 2–4 sentence answer in {{LOCALE_LANG}} based on key_facts."
+  - q: "BULLET: Second real question."
+    a: "BULLET: Answer."
+  - q: "BULLET: Third real question."
+    a: "BULLET: Answer."
+  - q: "BULLET: Fourth real question."
+    a: "BULLET: Answer."
+---
+
+{/* SUBAGENT WRITING NOTES (will be deleted on expand)
+- Write in {{LOCALE_LANG}}.
+- Body length target: {{TARGET_LENGTH}} characters.
+- Every "## BULLET: ..." or "### BULLET: ..." line is a heading marker — render the heading text in {{LOCALE_LANG}}, keeping the ## or ### prefix.
+- Do NOT keep any English heading text. Translate or rewrite naturally.
+- Keep "Cheese! OCR" verbatim as a brand name (do NOT translate it).
+- Preserve every BULLET: block as a fact-summary you must expand into 2-4 paragraphs.
+- Preserve the comparison <table> structure exactly (you may translate the cell contents).
+- Do NOT invent facts beyond key_facts. If something is missing, omit it.
+*/}
+
+BULLET: Opening 2–4 paragraphs. Set the scene with a concrete situation the reader has experienced (e.g., trying to copy text from a Slack image). Don't say "in this article". Mention both tools by name in the first 200 chars for SEO.
+
+## BULLET: H2 in {{LOCALE_LANG}} — introducing the first tool / approach (typically the built-in macOS approach, e.g. "What macOS Live Text is, and what it does well", "macOS 实况文本是什么，它擅长什么")
+
+BULLET: Expand from key_facts. Cover what it does, where it works, what it can't do. 3–5 paragraphs.
+
+## BULLET: H2 in {{LOCALE_LANG}} — introducing the failure modes / gaps of the first tool
+
+BULLET: 3–5 paragraphs. Use H3 sub-sections to break out specific scenarios (third-party apps, video conferencing, protected PDFs, non-Safari browsers, etc.). Each H3 has 2–3 paragraphs.
+
+### BULLET: H3 in {{LOCALE_LANG}} — first specific gap
+
+BULLET: 2–3 paragraphs.
+
+### BULLET: H3 in {{LOCALE_LANG}} — second specific gap
+
+BULLET: 2–3 paragraphs.
+
+## BULLET: H2 in {{LOCALE_LANG}} — how Cheese! OCR fills the gaps (write naturally; e.g. "Cheese! OCR 如何填补这些空缺", "Cheese! OCR がそのギャップをどう埋めるか")
+
+BULLET: 4–6 paragraphs. Use a sub-list ONLY for the bullet points of distinguishing features (Apple Vision engine, cross-app coverage, on-device privacy, multi-language). End with a concrete decision rule.
+
+## BULLET: H2 in {{LOCALE_LANG}} — when the alternative is actually enough (write naturally; e.g. "什么时候系统自带的就够用了", "代替手段で十分なケース")
+
+BULLET: 2–4 paragraphs being honest about cases where the reader should NOT switch. This is mandatory — do not skip it.
+
+## BULLET: H2 in {{LOCALE_LANG}} — side-by-side comparison heading (e.g. "并排对比", "並べて比較", "Side-by-side comparison")
+
+| BULLET: column header "aspect" in {{LOCALE_LANG}} | {{COMPETITOR_NAME}} | Cheese! OCR |
+|---|---|---|
+| BULLET: Row 1 — pricing label in {{LOCALE_LANG}} | BULLET: cell | BULLET: cell |
+| BULLET: Row 2 — coverage label | BULLET: cell | BULLET: cell |
+| BULLET: Row 3 — trigger / UX label | BULLET: cell | BULLET: cell |
+| BULLET: Row 4 — languages label | BULLET: cell | BULLET: cell |
+| BULLET: Row 5 — history / search label | BULLET: cell | BULLET: cell |
+| BULLET: Row 6 — engine label | BULLET: cell | BULLET: cell |
+| BULLET: Row 7 — network / privacy label | BULLET: cell | BULLET: cell |
+| BULLET: Row 8 — best for label | BULLET: cell | BULLET: cell |
+
+## BULLET: H2 in {{LOCALE_LANG}} — a simple decision framework heading (e.g. "简单的决策框架", "シンプルな判断基準", "A simple decision framework")
+
+BULLET: 1 short paragraph + a numbered list of 3 rules covering "use the alternative when X / use Cheese! OCR when Y / make the choice subconscious by Z". Each rule is one sentence.

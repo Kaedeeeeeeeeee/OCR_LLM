@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
+
+    <title>Mac で Zoom ミーティングのテキストを OCR する方法（Teams・Meet・Webex も） — Cheese! OCR Blog</title>
+    <meta name="description" content="macOS のライブテキストが Zoom ミーティングウィンドウで動作しない理由、DRM 画面保護フラグの仕組み、Zoom・Teams・Meet・Webex からテキストを取り出す確実な 3 つの方法。">
+
+    <link rel="canonical" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-to-ocr-from-zoom-meetings-on-mac/">
+    <link rel="alternate" hreflang="en" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-from-zoom-meetings-on-mac/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/how-to-ocr-from-zoom-meetings-on-mac/">
+    <link rel="alternate" hreflang="ja" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-to-ocr-from-zoom-meetings-on-mac/">
+    <link rel="alternate" hreflang="ko" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ko/blog/how-to-ocr-from-zoom-meetings-on-mac/">
+    <link rel="alternate" hreflang="x-default" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-from-zoom-meetings-on-mac/">
+
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg?v=3">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../../../blog/article.css">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Cheese! OCR">
+    <meta property="og:title" content="Mac で Zoom ミーティングのテキストを OCR する方法（Teams・Meet・Webex も）">
+    <meta property="og:description" content="macOS のライブテキストが Zoom ミーティングウィンドウで動作しない理由、DRM 画面保護フラグの仕組み、Zoom・Teams・Meet・Webex からテキストを取り出す確実な 3 つの方法。">
+    <meta property="og:url" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-to-ocr-from-zoom-meetings-on-mac/">
+    <meta property="og:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="article:published_time" content="2026-04-29">
+    <meta property="article:author" content="Cheese! OCR Team">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mac で Zoom ミーティングのテキストを OCR する方法（Teams・Meet・Webex も）">
+    <meta name="twitter:description" content="macOS のライブテキストが Zoom ミーティングウィンドウで動作しない理由、DRM 画面保護フラグの仕組み、Zoom・Teams・Meet・Webex からテキストを取り出す確実な 3 つの方法。">
+    <meta name="twitter:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Mac で Zoom ミーティングのテキストを OCR する方法（Teams・Meet・Webex も）",
+  "description": "macOS のライブテキストが Zoom ミーティングウィンドウで動作しない理由、DRM 画面保護フラグの仕組み、Zoom・Teams・Meet・Webex からテキストを取り出す確実な 3 つの方法。",
+  "author": {
+    "@type": "Organization",
+    "name": "Cheese! OCR",
+    "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Cheese! OCR",
+    "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+  },
+  "datePublished": "2026-04-29",
+  "dateModified": "2026-04-29",
+  "image": "https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png",
+  "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-to-ocr-from-zoom-meetings-on-mac/",
+  "inLanguage": "ja",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-to-ocr-from-zoom-meetings-on-mac/"
+  }
+}
+    </script>
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "ja",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Zoom ミーティング中にスクリーンショットを撮ると真っ黒になるのはなぜですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "それは、ミーティングのホストが DRM 画面保護機能を有効にしているためです。この設定はホスト側で行われ、Zoom アプリ自体の機能ではありません。Cmd+Shift+4 などの標準的なスクリーンショットは黒い矩形で返されますが、Cheese! OCR のような Screen Recording 権限を使用するツールは、この制限の影響を受けずにテキストを認識できます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ライブテキストが Zoom で使えないのはなぜですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "macOS のライブテキストは、Apple の標準アプリ（写真、プレビュー、Safari など）や WebKit でレンダリングされた画像でのみ動作します。Zoom や Teams のミーティングウィンドウは AppKit の標準的な画像ビューではないため、ライブテキストの対象外となります。これは macOS の仕様によるもので、アプリ側の問題ではありません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cheese! OCR はオフラインでも使えますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい、完全にオフラインで動作します。Cheese! OCR は Apple Vision フレームワークを利用しており、すべての処理はお使いの Mac 上で完結します。ネットワーク通信は一切行われないため、プライバシー面でも安心です。Mac App Store のプライバシーレポートで、ネットワーク権限が一切宣言されていないことを確認できます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Google Meet を Chrome で使っていますが、テキストを OCR する方法はありますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Chrome で動作する Google Meet のウィンドウでも、Cheese! OCR は問題なくテキストを認識できます。標準のスクリーンショット（Cmd+Shift+4）を撮影した後、その画像を Cheese! OCR にドラッグ＆ドロップするか、ホットキー（デフォルトは Shift+Command+E）を使って画面上のテキストを直接選択することも可能です。"
+      }
+    }
+  ]
+}
+    </script>
+
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Cheese! OCR",
+      "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Mac で Zoom ミーティングのテキストを OCR する方法（Teams・Meet・Webex も）"
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+
+    <nav class="article-nav">
+        <a href="../" class="back-link">← ブログ</a>
+        <div class="lang-switcher">
+            <a href="/OCR_LLM/blog/how-to-ocr-from-zoom-meetings-on-mac/" hreflang="en">EN</a>
+            <a href="/OCR_LLM/zh/blog/how-to-ocr-from-zoom-meetings-on-mac/" hreflang="zh-Hans">中文</a>
+            <a href="/OCR_LLM/ja/blog/how-to-ocr-from-zoom-meetings-on-mac/" aria-current="page" hreflang="ja">日本語</a>
+            <a href="/OCR_LLM/ko/blog/how-to-ocr-from-zoom-meetings-on-mac/" hreflang="ko">한국어</a>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <h1>Mac で Zoom ミーティングのテキストを OCR する方法（Teams・Meet・Webex も）</h1>
+        <p class="article-meta">
+        <time datetime="2026-04-29">2026年4月29日</time>
+            · 約 9 分
+        </p>
+    </header>
+
+    <aside class="tldr">
+        <strong>要点</strong>
+        ビデオ会議中にスライドや画面に表示されたテキストをコピーしたい場面はよくあります。しかし、macOS のライブテキストは Zoom や Teams、Meet、Webex のミーティングウィンドウでは動作しません。この記事では、その理由を解説した上で、スクリーンショット＋OCR ツールの組み合わせ、会議アプリの内蔵機能、そして Cheese! OCR を使ったホットキーベースの方法という 3 つの実用的な解決策を比較します。DRM 画面保護が有効な場合の対処法についても触れています。
+    </aside>
+
+    <article class="article-body">
+<p>あなたは Zoom ミーティングに参加していて、発表者のスライドに表示された重要なデータや引用文をコピーしたいと思ったことはありませんか？ マウスでテキストを選択しようとしても、カーソルがテキストを認識してくれず、仕方なく手で書き写した経験がある方も多いでしょう。この記事では、Zoom、Microsoft Teams、Google Meet、Webex といった主要なビデオ会議ツールからテキストを確実に取り出す 3 つの方法を、具体的な手順とともにご紹介します。</p>
+<h2 id="方法1スクリーンショットを撮って-ocr-ツールで読み取る">方法1：スクリーンショットを撮って OCR ツールで読み取る</h2>
+<p>最もシンプルで確実な方法は、画面上のテキストをスクリーンショットとして切り出し、OCR ツールでテキスト化することです。まず、キーボードショートカットの <code>Command + Shift + 4</code> を押して、テキストが表示されている領域をドラッグ選択します。これでデスクトップに PNG 画像が保存されます。次に、その画像を Cheese! OCR や Text Sniper などの Vision ベースの OCR ツールにドラッグ＆ドロップするか、ツールのホットキーを使って画像内のテキストを直接認識させます。</p>
+<p>この方法の利点は、どのビデオ会議アプリでも、どのような画面表示でも使えることです。macOS 12.3（2022年4月）以降に搭載された ScreenCaptureKit のおかげで、スクリーンショットの取得自体は非常に軽量です。一度操作に慣れれば、テキストの取得からペーストまで約2秒で完了します。</p>
+<h3 id="この方法が失敗するケース">この方法が失敗するケース</h3>
+<p>ただし、この方法には注意点があります。ミーティングのホストが DRM 画面保護機能を有効にしている場合、<code>Command + Shift + 4</code> で撮影したスクリーンショットは真っ黒な画像になってしまいます。これはホスト側の設定によるもので、会議アプリのバグではありません。また、ライブテキストは Zoom や Teams のミーティングウィンドウでは動作しません。これはこれらのウィンドウが Apple の標準的な画像ビュー（AppKit の NSImageView）ではないためです。</p>
+<h2 id="方法2会議アプリの内蔵機能を利用する">方法2：会議アプリの内蔵機能を利用する</h2>
+<p>Zoom や Teams、Meet には、テキストを保存するための独自の機能が用意されています。Zoom であれば、チャットパネルから「チャットを保存」を選択すると、チャットの内容がテキストファイルとして保存されます。また、ミーティングの文字起こし機能を有効にしていれば、発言内容を字幕として表示し、後からトランスクリプトとして書き出すことも可能です。</p>
+<p>これらの機能は、会話の内容やチャットでのやり取りを記録するには便利です。しかし、発表者のスライドに表示されている図表のラベルや、共有画面に映った Web ページのテキストなどは保存されません。あくまで音声とチャットに限定された機能であることを理解しておく必要があります。</p>
+<h3 id="この方法が失敗するケース-1">この方法が失敗するケース</h3>
+<p>内蔵機能の最大の限界は、視覚的な情報をテキスト化できないことです。スライドの内容を正確に引用したい場合や、共有画面に表示されたエラーメッセージをコピーしたい場合には役に立ちません。また、文字起こし機能はホストが有効にしていなければ利用できず、すべてのミーティングで使えるわけではありません。</p>
+<h2 id="方法3cheese-ocr-のホットキーで直接テキストを取得する">方法3：Cheese! OCR のホットキーで直接テキストを取得する</h2>
+<p>Cheese! OCR は、画面上の任意のテキストをホットキー一つで選択してコピーできるツールです。デフォルトのホットキーは <code>Shift + Command + E</code> で、設定画面から自由に変更できます。ホットキーを押すと画面が半透明になり、テキストを認識したい領域をドラッグするだけで、その中のテキストが自動的にクリップボードにコピーされます。</p>
+<p>この方法が他の方法と異なるのは、スクリーンショットをファイルとして保存する必要がない点です。Cheese! OCR は Screen Recording 権限を使って画面のピクセルデータを直接読み取るため、<code>Command + Shift + 4</code> でスクリーンショットを撮るのと同じ基盤技術（ScreenCaptureKit）を使用しています。つまり、通常のスクリーンショットで撮影できる範囲であれば、Cheese! OCR でもテキストを認識できます。</p>
+<p>Cheese! OCR は Apple Vision フレームワークをベースにしており、英語、簡体字中国語、繁体字中国語、日本語、韓国語を自動検出します。言語を手動で切り替える必要はありません。また、すべての処理はオフラインで行われるため、プライバシー面でも安心です。Mac App Store のプライバシーレポートで確認できますが、Cheese! OCR のサンドボックスにはネットワーク権限が一切宣言されていません。</p>
+<h2 id="三つの方法を比較">三つの方法を比較</h2>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>最適な用途</th>
+<th>制限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>スクリーンショット＋OCR</td>
+<td>どのアプリでも使える汎用的な方法</td>
+<td>DRM 画面保護が有効だとスクリーンショットが黒くなる</td>
+</tr>
+<tr>
+<td>会議アプリの内蔵機能</td>
+<td>チャットや発言の記録を残したい場合</td>
+<td>スライドや共有画面のテキストは取得できない</td>
+</tr>
+<tr>
+<td>Cheese! OCR</td>
+<td>素早く画面上のテキストをコピーしたい場合</td>
+<td>初回使用時に Screen Recording 権限の許可が必要</td>
+</tr>
+</tbody>
+</table>
+<h2 id="よくあるトラブルと対処法">よくあるトラブルと対処法</h2>
+<p>Cheese! OCR を初めて使うときに最も多いトラブルは、Screen Recording 権限の許可を求められることです。ホットキーを押した際に macOS が自動的にシステム環境設定を開くので、そこで Cheese! OCR にチェックを入れてください。この許可は一度行えば以降は必要ありません。</p>
+<p>DRM 画面保護が有効なミーティングでは、Cheese! OCR もテキストを認識できません。これはアプリの制限ではなく、ホスト側の設定によるものです。そのような場合は、会議アプリの内蔵機能や、発表者にスライドを共有してもらうなど、別の方法を検討しましょう。</p>
+<p>言語が自動検出されないケースもありますが、これは非常に稀です。Apple Vision は複数の言語が混在しているテキストでも高い精度で認識します。もし特定の言語だけ認識されない場合は、macOS のシステム環境設定でその言語の入力ソースが有効になっているか確認してください。</p>
+    </article>
+
+    <section class="article-faq">
+        <h2>よくある質問</h2>
+        <details class="faq-item">
+            <summary>Zoom ミーティング中にスクリーンショットを撮ると真っ黒になるのはなぜですか？</summary>
+            <div class="answer">それは、ミーティングのホストが DRM 画面保護機能を有効にしているためです。この設定はホスト側で行われ、Zoom アプリ自体の機能ではありません。Cmd+Shift+4 などの標準的なスクリーンショットは黒い矩形で返されますが、Cheese! OCR のような Screen Recording 権限を使用するツールは、この制限の影響を受けずにテキストを認識できます。</div>
+        </details>
+        <details class="faq-item">
+            <summary>ライブテキストが Zoom で使えないのはなぜですか？</summary>
+            <div class="answer">macOS のライブテキストは、Apple の標準アプリ（写真、プレビュー、Safari など）や WebKit でレンダリングされた画像でのみ動作します。Zoom や Teams のミーティングウィンドウは AppKit の標準的な画像ビューではないため、ライブテキストの対象外となります。これは macOS の仕様によるもので、アプリ側の問題ではありません。</div>
+        </details>
+        <details class="faq-item">
+            <summary>Cheese! OCR はオフラインでも使えますか？</summary>
+            <div class="answer">はい、完全にオフラインで動作します。Cheese! OCR は Apple Vision フレームワークを利用しており、すべての処理はお使いの Mac 上で完結します。ネットワーク通信は一切行われないため、プライバシー面でも安心です。Mac App Store のプライバシーレポートで、ネットワーク権限が一切宣言されていないことを確認できます。</div>
+        </details>
+        <details class="faq-item">
+            <summary>Google Meet を Chrome で使っていますが、テキストを OCR する方法はありますか？</summary>
+            <div class="answer">Chrome で動作する Google Meet のウィンドウでも、Cheese! OCR は問題なくテキストを認識できます。標準のスクリーンショット（Cmd+Shift+4）を撮影した後、その画像を Cheese! OCR にドラッグ＆ドロップするか、ホットキー（デフォルトは Shift+Command+E）を使って画面上のテキストを直接選択することも可能です。</div>
+        </details>
+    </section>
+
+    <section class="article-cta">
+        <div class="cta-card">
+            <h2>Cheese! OCR を試す</h2>
+            <p>ホットキー一つ、ドラッグで範囲選択、テキストはクリップボードへ。買い切り $5.99、完全オンデバイス、画面に表示されているものなら何でも対応。</p>
+            <a href="https://apps.apple.com/app/cheese-ocr/id6760889131" class="cta-button">Mac App Store で入手</a>
+        </div>
+    </section>
+
+    <section class="article-related">
+        <h2>関連記事</h2>
+        <div class="related-grid">
+            <a href="../copy-text-from-video-on-mac/" class="related-card">
+                <h3>Mac で動画からテキストをコピーする方法（チュートリアル・会議・あらゆる場面）</h3>
+                <p>一時停止した動画フレームからテキストを取り出す 3 つの方法。DRM 付き会議や Chrome 上のチュートリアルにも。</p>
+            </a>
+            <a href="../cheese-ocr-vs-live-text/" class="related-card">
+                <h3>Cheese! OCR vs macOS テキスト認識（Live Text）: 標準機能では足りない場面</h3>
+                <p>macOS の Live Text とグローバルホットキー型 OCR ツールの比較。Live Text が苦手な 4 つのシーン。</p>
+            </a>
+            <a href="../extract-text-from-screenshot-on-mac/" class="related-card">
+                <h3>Mac でスクリーンショットからテキストを抽出する方法（3 つの方法を比較）</h3>
+                <p>Live Text、Cmd+Shift+5、Cheese! OCR の 3 つの方法。それぞれをいつ使うべきか。</p>
+            </a>
+        </div>
+    </section>
+
+    <footer class="article-footer">
+        <a href="../../">ホーム</a>
+        <a href="../../../privacy.html">プライバシーポリシー</a>
+        <a href="mailto:nicholaslck@icloud.com">お問い合わせ</a>
+        <p>&copy; 2026 Cheese! OCR. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

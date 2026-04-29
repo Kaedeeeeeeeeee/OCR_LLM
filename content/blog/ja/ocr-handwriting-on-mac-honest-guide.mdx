@@ -1,0 +1,81 @@
+---
+title: "Mac で手書き文字を OCR：正直なガイド——できること・できないこと"
+description: "Apple Vision が手書きノートで読めるもの・読めないもの、日本語の手書きが部分的にしか認識されない理由、ライブテキストが諦めたときに使えるツール。"
+slug: ocr-handwriting-on-mac-honest-guide
+locale: ja
+date: 2026-04-29
+category: Guide
+read_min: 9
+tags: ["Mac OCR", "手書き", "Apple Vision", "ライブテキスト", "メモアプリ", "GoodNotes", "Transkribus"]
+template: guide
+key_facts:
+  - "Apple Vision is trained primarily on printed text; handwriting recognition is more limited and language-dependent"
+  - "Live Text supports some English print-style handwriting in macOS 14 Sonoma and later; very limited for non-Latin scripts"
+  - "Recognition rate depends on legibility, ink-to-background contrast, language, print vs cursive, and lighting in the photo"
+  - "Chinese cursive (草书 / 行书) recognition rate with Apple Vision is near zero"
+  - "Japanese tegaki (手書き) printed-style is partial; freehand and cursive are not reliable"
+  - "Korean handwriting (손글씨) similarly limited — printed forms recognize, freehand does not"
+  - "For dense handwritten notes, Apple Notes' built-in 'Search Handwriting' uses a different model tuned specifically for handwriting and works better than Live Text"
+  - "Apple Notes' 'Scan Documents' feature produces searchable PDFs with handwriting search via the same handwriting model"
+  - "GoodNotes and Notability use their own handwriting recognition models, often more accurate for cursive English"
+  - "Transkribus is the dedicated tool for archive-quality handwriting OCR (research-grade, free tier limited)"
+  - "Cheese! OCR uses Apple Vision so inherits its strengths and limits — printed handwriting may work, cursive will not"
+  - "Improving photo quality (lighting, focus, contrast) helps far more than switching tools for handwriting OCR"
+internal_links: ["ocr-asian-languages-on-mac", "how-on-device-ocr-works", "extract-text-from-screenshot-on-mac"]
+tldr: |
+  手書き文字のOCRは、印刷された文字の認識とはまったく別の技術です。Apple Visionフレームワークは主に印刷テキスト向けに訓練されているため、手書き、特に日本語や中国語の筆記体や崩し字の認識率は大幅に低下します。macOS 14 Sonoma以降のライブテキストは、英語の活字体に近い手書きであれば部分的に認識できますが、日本語の手書き（楷書体でも）は信頼できません。Apple Notesの「手書きを検索」機能は別の専用モデルを使っているため、メモ内検索ではライブテキストより優れています。このガイドでは、Apple Visionの限界を正直に説明し、GoodNotesやTranskribusなどの代替ツールが本当に必要になるケースを整理します。
+faqs:
+  - q: "ライブテキストは日本語の手書きノートを認識できますか？"
+    a: "認識できるのは、ごく一部の活字体に近い手書きに限られます。日本語の楷書体でも、文字のバラつきやかすれがあると認識率は大きく下がります。行書や草書はほぼ認識しません。Apple Notesの「手書きを検索」機能の方が、日本語手書きの検索には適しています。"
+  - q: "手書きの認識率を上げるにはどうすればいいですか？"
+    a: "写真の品質が最も重要です。照明を均一にして影をなくし、ピントをしっかり合わせ、インクと紙のコントラストを高めてください。手書き文字はできるだけ大きく、活字体に近い形で書くと認識率が上がります。ツールを変えるよりも、撮影環境を改善する方が効果的です。"
+  - q: "Cheese! OCRは手書き文字を認識できますか？"
+    a: "Cheese! OCRはApple Visionフレームワークを使用しているため、そのまま手書きの強みと限界を受け継ぎます。活字体に近い英語の手書きであれば認識できる可能性がありますが、日本語の手書きや筆記体は期待しないでください。手書きOCRが主目的であれば、Apple NotesやGoodNotesなど専用の手書き認識機能を持つアプリの方が適しています。"
+  - q: "GoodNotesやNotabilityの手書き認識はなぜライブテキストより正確なのですか？"
+    a: "これらのアプリは独自の手書き認識エンジンを持っており、大量の手書きデータで訓練されています。特に英語の筆記体や、ある程度崩れた手書きに対しては、Apple Visionよりも高い精度を発揮します。ただし、日本語や中国語の手書き認識はアプリによって対応状況が異なりますので、購入前に確認することをおすすめします。"
+  - q: "研究目的で古文書の手書き文字を読み取りたい場合はどうすればいいですか？"
+    a: "Transkribusが最も適したツールです。これは研究機関向けに開発された専用プラットフォームで、歴史的な手書き文書の認識に特化しています。無料枠には制限がありますが、アーカイブ品質の認識が可能です。一般のノートやメモにはオーバースペックなので、用途に応じて使い分けてください。"
+---
+
+あなたはMacでスクリーンショットを撮り、そこに写った手書きのメモからテキストをコピーしようとした経験はありませんか？ライブテキストが一瞬で印刷文字を拾ってくれるのを見た後で、手書きの部分だけがまったく反応しない——そんなもどかしさを感じたことがある方も多いでしょう。
+
+実は、この現象には技術的な理由があります。Apple Visionフレームワークは主に印刷されたテキストを認識するように訓練されています。手書き文字、特に日本語や中国語のような非ラテン文字の手書きは、まったく別の認識課題なのです。このガイドでは、Macで手書き文字をOCRする際の現実的な限界と、それでも使える方法を正直にお伝えします。
+
+## なぜApple Visionは手書き文字を苦手とするのか——技術的な背景
+
+Apple Visionが手書きを認識しにくい理由は、その学習データにあります。このフレームワークは、印刷された書籍や看板、ラベルなど、整った字形のテキストを大量に学習して訓練されています。手書き文字は個人差が大きく、同じ単語でも書く人によって形がまったく異なります。特に日本語の手書きでは、楷書体でも「はね」「はらい」「とめ」の微妙な違いが認識を難しくします。
+
+macOS 14 Sonoma以降のライブテキストは、英語の活字体に近い手書きであれば部分的に認識できるようになりました。しかし、日本語の手書き（tegaki）では、楷書体でも認識率は低く、行書や草書になるとほぼゼロに近くなります。中国語の草書や行書も同様で、Apple Visionでは事実上認識できません。韓国語の손글씨も同じ傾向で、活字体に近い形なら一部認識しますが、自由な筆記体は信頼できません。
+
+認識率に影響を与える要素はいくつかあります。文字の読みやすさ、インクと背景のコントラスト、言語、活字体か筆記体か、そして写真の照明条件です。これらの要素を改善することで、同じツールでも結果が大きく変わることがあります。
+
+## 実用上のポイント——写真の品質がすべてを決める
+
+手書き文字のOCRで最も効果的な対策は、ツールを変えることではなく、写真の品質を上げることです。照明を均一にして影をなくし、ピントをしっかり合わせ、紙面をまっすぐに撮影してください。コントラストが高いほど認識率は上がります。白い紙に黒いインクで書かれた文字が最も認識しやすく、色付きの紙や薄い鉛筆書きは苦手です。
+
+また、手書き文字自体を工夫することも有効です。できるだけ大きく、活字体に近い形で書くと認識率が上がります。特に日本語の場合は、楷書体で一文字ずつ丁寧に書くことが重要です。走り書きや崩した文字は、どんなツールを使っても認識が難しいことを理解しておきましょう。
+
+## 代替ツールの選択肢——用途に応じて使い分ける
+
+Apple Notesには、ライブテキストとは別の「手書きを検索」機能が搭載されています。これは手書き認識に特化したモデルを使用しており、メモ内の手書きテキストを検索できます。また、「書類をスキャン」機能を使えば、手書きの検索が可能なPDFを作成できます。Apple Notesを日常的に使っている方にとっては、これが最も手軽な解決策です。
+
+GoodNotesやNotabilityは、独自の手書き認識エンジンを搭載しています。これらのアプリは大量の手書きデータで訓練されているため、英語の筆記体やある程度崩れた手書きに対して、Apple Visionよりも高い精度を発揮します。ただし、日本語や中国語の手書き認識はアプリによって対応状況が異なりますので、購入前に確認してください。
+
+研究目的で歴史的な文書や古文書の手書き文字を読み取りたい場合は、Transkribusが最も適したツールです。これは研究機関向けに開発された専用プラットフォームで、アーカイブ品質の認識が可能です。無料枠には制限がありますが、一般のノートやメモにはオーバースペックなので、用途に応じて使い分けてください。
+
+Cheese! OCRはApple Visionを使用しているため、手書き認識の強みと限界をそのまま受け継ぎます。活字体に近い英語の手書きであれば認識できる可能性がありますが、日本語の手書きや筆記体は期待しないでください。手書きOCRが主目的であれば、Apple NotesやGoodNotesなど専用の手書き認識機能を持つアプリの方が適しています。
+
+## システム標準で十分なケースと、専用ツールが必要なケース
+
+もしあなたが英語の活字体に近い手書きを、たまに認識できれば十分という程度であれば、macOSに標準搭載されているライブテキストで事足ります。特にApple Notesの「手書きを検索」機能は、メモ内検索に特化しているため、日常的な使い方では十分な性能を発揮します。
+
+一方、日本語や中国語の手書きノートを頻繁にデジタル化したい場合、あるいは筆記体や崩し字を含む文書を扱う場合は、専用ツールの導入を検討すべきです。GoodNotesやNotabilityは手書きノートの管理に優れており、Transkribusは研究用途に特化しています。自分の用途に合ったツールを選ぶことが、時間とコストの節約につながります。
+
+## 手書きOCRを成功させるための簡単なチェックリスト
+
+1. 写真を撮る前に、照明を均一にして紙面に影ができないようにしてください。
+2. ピントをしっかり合わせ、手ブレを防ぐためにカメラを固定して撮影しましょう。
+3. 手書き文字はできるだけ大きく、活字体に近い形で書くと認識率が上がります。
+4. 日本語の手書きを認識したい場合は、Apple Notesの「手書きを検索」機能を最初に試してください。
+5. 英語の筆記体や崩し字を扱う場合は、GoodNotesやNotabilityの専用エンジンを検討しましょう。
+6. 研究目的の古文書にはTranskribusを使い、一般のノートにはオーバースペックであることを理解しておいてください。

@@ -43,3 +43,9 @@ Pods/
 # Raw video source files (too large for git)
 Video/
 
+# Node / blog tooling
+node_modules/
+.env
+.env.local
+.env.*.local
+

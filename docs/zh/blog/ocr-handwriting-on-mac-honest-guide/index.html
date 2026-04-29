@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
+
+    <title>Mac 手写文字 OCR 实情指南：哪些能识，哪些识不出 — Cheese! OCR Blog</title>
+    <meta name="description" content="Apple Vision 在手写笔记上能识别什么、识不出什么，为什么中文草书几乎完全失效，以及 Live Text 不行时用哪些工具。">
+
+    <link rel="canonical" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/ocr-handwriting-on-mac-honest-guide/">
+    <link rel="alternate" hreflang="en" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/ocr-handwriting-on-mac-honest-guide/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/ocr-handwriting-on-mac-honest-guide/">
+    <link rel="alternate" hreflang="ja" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/ocr-handwriting-on-mac-honest-guide/">
+    <link rel="alternate" hreflang="ko" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ko/blog/ocr-handwriting-on-mac-honest-guide/">
+    <link rel="alternate" hreflang="x-default" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/ocr-handwriting-on-mac-honest-guide/">
+
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg?v=3">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../../../blog/article.css">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Cheese! OCR">
+    <meta property="og:title" content="Mac 手写文字 OCR 实情指南：哪些能识，哪些识不出">
+    <meta property="og:description" content="Apple Vision 在手写笔记上能识别什么、识不出什么，为什么中文草书几乎完全失效，以及 Live Text 不行时用哪些工具。">
+    <meta property="og:url" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/ocr-handwriting-on-mac-honest-guide/">
+    <meta property="og:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="article:published_time" content="2026-04-29">
+    <meta property="article:author" content="Cheese! OCR Team">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mac 手写文字 OCR 实情指南：哪些能识，哪些识不出">
+    <meta name="twitter:description" content="Apple Vision 在手写笔记上能识别什么、识不出什么，为什么中文草书几乎完全失效，以及 Live Text 不行时用哪些工具。">
+    <meta name="twitter:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Mac 手写文字 OCR 实情指南：哪些能识，哪些识不出",
+  "description": "Apple Vision 在手写笔记上能识别什么、识不出什么，为什么中文草书几乎完全失效，以及 Live Text 不行时用哪些工具。",
+  "author": {
+    "@type": "Organization",
+    "name": "Cheese! OCR",
+    "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Cheese! OCR",
+    "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+  },
+  "datePublished": "2026-04-29",
+  "dateModified": "2026-04-29",
+  "image": "https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png",
+  "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/ocr-handwriting-on-mac-honest-guide/",
+  "inLanguage": "zh-Hans",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/ocr-handwriting-on-mac-honest-guide/"
+  }
+}
+    </script>
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "zh-Hans",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Apple Vision 能识别中文手写吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "能识别一部分，但仅限于工整的印刷体风格。如果你写的字接近楷书或宋体，笔画清晰、间距均匀，Apple Vision 有可能识别出部分内容。但一旦涉及行书或草书，识别率会骤降至接近零。对于日常随手写的笔记，不要指望它可靠工作。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Live Text 和 Apple 备忘录的“搜索手写”有什么区别？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Live Text 是系统级的 OCR 功能，能在照片、截图、预览等任何地方提取文字，但它对手写的支持很有限。Apple 备忘录的“搜索手写”使用一个专门针对手写优化的模型，能搜索你在备忘录里手写的内容，效果明显更好。不过这个功能只限于备忘录应用内部，不能用于其他地方的图片。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "GoodNotes 和 Notability 的手写识别比系统自带强吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "对于英文草书，是的。GoodNotes 和 Notability 使用自己的手写识别引擎，对英文连笔字的识别准确率通常高于 Apple Vision。对于中文和日文，它们的优势没那么明显，但依然比 Live Text 可靠。缺点是这些功能通常需要付费订阅，且识别结果只能在应用内使用。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "如果我要 OCR 历史档案或古籍手稿，该用什么工具？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Transkribus 是专门为学术级手写识别设计的工具，支持多种历史字体和语言，包括中文古籍。它基于深度学习模型，可以针对特定手写风格训练。免费版有使用次数限制，但对于研究用途来说，这是目前最可靠的选择。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cheese! OCR 能处理手写文字吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Cheese! OCR 底层调用 Apple Vision 框架，所以手写识别能力与 Live Text 完全一致。印刷体风格的手写可能部分识别，草书和潦草字迹基本无效。如果你主要处理印刷体文字，Cheese! OCR 是很好的工具；如果手写是刚需，建议搭配 Apple 备忘录或 GoodNotes 使用。"
+      }
+    }
+  ]
+}
+    </script>
+
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Cheese! OCR",
+      "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Mac 手写文字 OCR 实情指南：哪些能识，哪些识不出"
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+
+    <nav class="article-nav">
+        <a href="../" class="back-link">← 博客</a>
+        <div class="lang-switcher">
+            <a href="/OCR_LLM/blog/ocr-handwriting-on-mac-honest-guide/" hreflang="en">EN</a>
+            <a href="/OCR_LLM/zh/blog/ocr-handwriting-on-mac-honest-guide/" aria-current="page" hreflang="zh-Hans">中文</a>
+            <a href="/OCR_LLM/ja/blog/ocr-handwriting-on-mac-honest-guide/" hreflang="ja">日本語</a>
+            <a href="/OCR_LLM/ko/blog/ocr-handwriting-on-mac-honest-guide/" hreflang="ko">한국어</a>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <h1>Mac 手写文字 OCR 实情指南：哪些能识，哪些识不出</h1>
+        <p class="article-meta">
+        <time datetime="2026-04-29">2026年4月29日</time>
+            · 约 9 分钟
+        </p>
+    </header>
+
+    <aside class="tldr">
+        <strong>速览</strong>
+        Mac 上的手写文字识别远没有印刷体那么可靠。Apple Vision 框架主要针对印刷文本训练，对手写的支持因语言和书写风格差异巨大：英文印刷体在 macOS 14 Sonoma 及更新版本上部分可用，但中文草书（行书、草书）的识别率几乎为零，日文和韩文的手写体也仅有印刷风格的部分识别。Apple 备忘录内置的“搜索手写”功能使用专门模型，效果比 Live Text 好得多。GoodNotes、Notability 和 Transkribus 各有专长，而 Cheese! OCR 继承 Apple Vision 的能力，所以手写识别同样受限。提升拍照质量（光线、对焦、对比度）比换工具更有效。
+    </aside>
+
+    <article class="article-body">
+<p>你刚拍了一张会议白板的照片，或者扫描了一页手写笔记，想快速把文字提取出来。你打开 Mac 上的 OCR 工具，选中区域，然后——什么也没发生，或者吐出一堆乱码。</p>
+<p>这不是你的问题。Mac 上的手写文字识别，尤其是非英文的手写，远没有印刷体那么可靠。Apple Vision 框架主要针对印刷文本训练，对手写的支持因语言和书写风格差异巨大。这篇文章会告诉你哪些能识别、哪些不能，以及什么时候该换工具。</p>
+<h2 id="底层原理为什么-apple-vision-对手写这么挑剔">底层原理：为什么 Apple Vision 对手写这么挑剔</h2>
+<p>Apple Vision 的 OCR 模型在训练时，数据主体是印刷体文字——书籍、文档、屏幕截图、路牌。这些文字有固定的字形、均匀的笔画宽度和清晰的字符间距。手写文字则完全不同：笔画粗细不一、字符倾斜、连笔、重叠，而且每个人的字迹都是独特的。</p>
+<p>对于英文，Apple Vision 在 macOS 14 Sonoma 及更新版本上能识别一部分印刷风格的手写体——比如你工整地写“Hello World”，每个字母分开、没有连笔，它有可能识别出来。但一旦进入草书（cursive），识别率会急剧下降。</p>
+<p>对于中文，情况更严峻。中文手写有楷书、行书、草书等多种风格，Apple Vision 对行书和草书的识别率接近零。原因很简单：训练数据里几乎没有这些风格。日文手写（手書き）和韩文手写（손글씨）同样如此——印刷风格的部分识别，自由书写和连笔基本无效。</p>
+<h2 id="实操注意事项拍照质量比换工具更重要">实操注意事项：拍照质量比换工具更重要</h2>
+<p>很多人遇到手写识别失败时，第一反应是换一个 OCR 工具。但在此之前，你应该先检查照片质量。光线充足、对焦清晰、纸张与文字对比度高——这些因素对识别率的影响，往往比工具本身更大。</p>
+<p>具体来说：避免阴影覆盖文字，确保照片不模糊，尽量让纸张平整（不要有褶皱或弯曲）。如果你拍的是白板，注意反光。如果你扫描的是笔记本，尽量压平页面。</p>
+<p>另一个容易被忽略的点：Apple 备忘录的“扫描文稿”功能，在扫描后生成的 PDF 中内置了手写搜索能力。这个功能使用一个专门针对手写优化的模型，效果比 Live Text 好得多。如果你只是想在笔记里搜索手写内容，直接用备忘录扫描即可，不需要额外工具。</p>
+<h2 id="什么时候系统自带就够用什么时候需要换工具">什么时候系统自带就够用，什么时候需要换工具</h2>
+<p>如果你的需求是：偶尔识别几张工整的英文手写笔记，或者搜索自己写在 Apple 备忘录里的手写内容——macOS 自带的 Live Text 和备忘录搜索功能完全够用。你不需要下载任何第三方应用。</p>
+<p>但如果你需要：识别中文行书或草书、处理大量手写文档（如课堂笔记、会议记录）、或者需要将手写内容导出为可编辑文本——系统自带工具就不够了。这时候你需要考虑 GoodNotes、Notability 或 Transkribus。</p>
+<p>GoodNotes 和 Notability 使用自己的手写识别引擎，对英文草书的准确率明显高于 Apple Vision。对于中文，它们的优势没那么大，但依然比 Live Text 可靠。Transkribus 则是学术级的选择，专门用于历史档案和古籍手稿的 OCR，支持多种语言和字体，甚至可以针对特定手写风格训练模型。</p>
+<p>Cheese! OCR 继承 Apple Vision 的能力，所以手写识别同样受限。它擅长的是印刷体文字——截图、PDF、视频帧、非中文文档——在这些场景下它非常高效。但如果你主要处理手写内容，Cheese! OCR 不是最佳选择。</p>
+<h2 id="简短清单下一步该做什么">简短清单：下一步该做什么</h2>
+<ol>
+<li>先改善照片质量——光线、对焦、对比度，这三样比任何工具都重要。</li>
+<li>如果只是搜索手写笔记，用 Apple 备忘录的“扫描文稿”功能，不要用 Live Text。</li>
+<li>如果需要识别英文草书，考虑 GoodNotes 或 Notability，它们的专用模型更准确。</li>
+<li>如果需要识别中文行书或草书，目前没有可靠的 Mac 端 OCR 工具——考虑手动转录或使用 Transkribus 进行学术级处理。</li>
+<li>如果主要处理印刷体文字，Cheese! OCR 是高效的选择，但不要指望它处理手写。</li>
+</ol>
+    </article>
+
+    <section class="article-faq">
+        <h2>常见问题</h2>
+        <details class="faq-item">
+            <summary>Apple Vision 能识别中文手写吗？</summary>
+            <div class="answer">能识别一部分，但仅限于工整的印刷体风格。如果你写的字接近楷书或宋体，笔画清晰、间距均匀，Apple Vision 有可能识别出部分内容。但一旦涉及行书或草书，识别率会骤降至接近零。对于日常随手写的笔记，不要指望它可靠工作。</div>
+        </details>
+        <details class="faq-item">
+            <summary>Live Text 和 Apple 备忘录的“搜索手写”有什么区别？</summary>
+            <div class="answer">Live Text 是系统级的 OCR 功能，能在照片、截图、预览等任何地方提取文字，但它对手写的支持很有限。Apple 备忘录的“搜索手写”使用一个专门针对手写优化的模型，能搜索你在备忘录里手写的内容，效果明显更好。不过这个功能只限于备忘录应用内部，不能用于其他地方的图片。</div>
+        </details>
+        <details class="faq-item">
+            <summary>GoodNotes 和 Notability 的手写识别比系统自带强吗？</summary>
+            <div class="answer">对于英文草书，是的。GoodNotes 和 Notability 使用自己的手写识别引擎，对英文连笔字的识别准确率通常高于 Apple Vision。对于中文和日文，它们的优势没那么明显，但依然比 Live Text 可靠。缺点是这些功能通常需要付费订阅，且识别结果只能在应用内使用。</div>
+        </details>
+        <details class="faq-item">
+            <summary>如果我要 OCR 历史档案或古籍手稿，该用什么工具？</summary>
+            <div class="answer">Transkribus 是专门为学术级手写识别设计的工具，支持多种历史字体和语言，包括中文古籍。它基于深度学习模型，可以针对特定手写风格训练。免费版有使用次数限制，但对于研究用途来说，这是目前最可靠的选择。</div>
+        </details>
+        <details class="faq-item">
+            <summary>Cheese! OCR 能处理手写文字吗？</summary>
+            <div class="answer">Cheese! OCR 底层调用 Apple Vision 框架，所以手写识别能力与 Live Text 完全一致。印刷体风格的手写可能部分识别，草书和潦草字迹基本无效。如果你主要处理印刷体文字，Cheese! OCR 是很好的工具；如果手写是刚需，建议搭配 Apple 备忘录或 GoodNotes 使用。</div>
+        </details>
+    </section>
+
+    <section class="article-cta">
+        <div class="cta-card">
+            <h2>试试 Cheese! OCR</h2>
+            <p>一个快捷键,框选,文字到剪贴板。一次性 $5.99,完全本地运行,任何你能看到的 app 都能用。</p>
+            <a href="https://apps.apple.com/app/cheese-ocr/id6760889131" class="cta-button">在 Mac App Store 下载</a>
+        </div>
+    </section>
+
+    <section class="article-related">
+        <h2>相关文章</h2>
+        <div class="related-grid">
+            <a href="../ocr-asian-languages-on-mac/" class="related-card">
+                <h3>Mac 上中文 OCR 完整指南：繁简、混排、古籍与外刊</h3>
+                <p>从繁简识别到中英混排，从扫描古籍到外刊学术论文——一篇覆盖中文 OCR 的所有典型场景。</p>
+            </a>
+            <a href="../how-on-device-ocr-works/" class="related-card">
+                <h3>设备端 OCR 是如何工作的：Apple Vision 框架解析</h3>
+                <p>从技术角度解读 Apple Vision 如何在设备端完成 OCR，以及为什么它比云端更快、对隐私更友好。</p>
+            </a>
+            <a href="../extract-text-from-screenshot-on-mac/" class="related-card">
+                <h3>如何在 Mac 上从截图中提取文字（三种方法对比）</h3>
+                <p>实况文本、Cmd+Shift+5 浮动操作、Cheese! OCR 三种从截图取文的方法，何时用哪个最划算。</p>
+            </a>
+        </div>
+    </section>
+
+    <footer class="article-footer">
+        <a href="../../">主页</a>
+        <a href="../../../privacy.html">隐私政策</a>
+        <a href="mailto:nicholaslck@icloud.com">联系我们</a>
+        <p>&copy; 2026 Cheese! OCR. 版权所有。</p>
+    </footer>
+
+</body>
+</html>

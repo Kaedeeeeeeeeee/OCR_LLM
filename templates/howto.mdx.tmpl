@@ -1,0 +1,69 @@
+---
+title: "{{TITLE}}"
+description: "{{DESCRIPTION}}"
+slug: {{SLUG}}
+locale: {{LOCALE}}
+date: {{DATE}}
+category: How-to
+read_min: {{READ_MIN}}
+tags: [{{TAGS}}]
+template: howto
+key_facts:
+{{KEY_FACTS_YAML}}
+internal_links: [{{INTERNAL_LINKS}}]
+status: draft
+tldr: |
+  BULLET: One-paragraph TL;DR in {{LOCALE_LANG}} that names the methods compared and tells the reader which one to use first. No CTA.
+faqs:
+  - q: "BULLET: Real question a reader would ask. In {{LOCALE_LANG}}."
+    a: "BULLET: 2–4 sentence answer."
+  - q: "BULLET: Second question."
+    a: "BULLET: Answer."
+  - q: "BULLET: Third question."
+    a: "BULLET: Answer."
+  - q: "BULLET: Fourth question."
+    a: "BULLET: Answer."
+---
+
+{/* SUBAGENT WRITING NOTES (will be deleted on expand)
+- Write in {{LOCALE_LANG}}.
+- Body length target: {{TARGET_LENGTH}} characters.
+- Every BULLET: block is a fact-summary to expand into 2–4 paragraphs.
+- Every "## BULLET: ..." or "### BULLET: ..." line is a heading marker — render the heading text in {{LOCALE_LANG}}, keeping the ## or ### prefix.
+- Do NOT keep any English heading text. Translate or rewrite naturally in {{LOCALE_LANG}}.
+- Do NOT invent facts beyond key_facts.
+*/}
+
+BULLET: Opening 2–4 paragraphs. Open with a concrete scenario where the reader needs this how-to. State up front that you'll cover three methods (the built-in macOS approach, the in-app/built-in feature of the source app, and a hotkey-driven OCR tool).
+
+## BULLET: H2 in {{LOCALE_LANG}} — name the first method (usually the system-screenshot + third-party OCR-tool route, or the macOS Live Text route if applicable).
+
+BULLET: 3–4 paragraphs. Spell out the steps. Be specific about which app, which menu, which keyboard shortcut.
+
+### BULLET: H3 in {{LOCALE_LANG}} — when this method fails (e.g. "ライブテキストが効かないケース", "什么时候这个方法失效", etc.)
+
+BULLET: 2–3 paragraphs covering the failure modes. Be specific.
+
+## BULLET: H2 in {{LOCALE_LANG}} — name the second method (e.g. the source app's own built-in feature: subtitles, transcript, save-chat, etc.)
+
+BULLET: 3–4 paragraphs. Steps. Limitations.
+
+### BULLET: H3 in {{LOCALE_LANG}} — when this method fails
+
+BULLET: 2–3 paragraphs.
+
+## BULLET: H2 in {{LOCALE_LANG}} — name the third method, which is Cheese! OCR (write the section heading naturally; e.g. "Cheese! OCR を使う", "用 Cheese! OCR 解决", "Use Cheese! OCR")
+
+BULLET: 3–5 paragraphs. Hotkey, drag-select, paste. Why this works where the others didn't. Mention on-device + Apple Vision + multi-language. Keep "Cheese! OCR" verbatim as a brand name (do NOT translate it).
+
+## BULLET: H2 in {{LOCALE_LANG}} — quick comparison heading (e.g. "三种方法对比", "三つの方法を比較", "Quick comparison")
+
+| BULLET: column header "method" in {{LOCALE_LANG}} | BULLET: column header "best for" in {{LOCALE_LANG}} | BULLET: column header "limitation" in {{LOCALE_LANG}} |
+|---|---|---|
+| BULLET: Method 1 name in {{LOCALE_LANG}} | BULLET: cell in {{LOCALE_LANG}} | BULLET: cell in {{LOCALE_LANG}} |
+| BULLET: Method 2 name in {{LOCALE_LANG}} | BULLET: cell in {{LOCALE_LANG}} | BULLET: cell in {{LOCALE_LANG}} |
+| Cheese! OCR | BULLET: cell in {{LOCALE_LANG}} | BULLET: cell in {{LOCALE_LANG}} |
+
+## BULLET: H2 in {{LOCALE_LANG}} — common troubleshooting heading (e.g. "常见问题排查", "よくあるトラブル", "Common troubleshooting")
+
+BULLET: 2–3 paragraphs OR 3–5 sub-bullets covering the most common things that go wrong (permission prompts, screenshot blanking out, language not detected). Use sub-bullets only if the items are clearly a discrete enumeration.

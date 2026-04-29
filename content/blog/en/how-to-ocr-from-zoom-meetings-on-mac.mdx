@@ -1,0 +1,89 @@
+---
+title: "How to OCR Text from a Zoom Meeting on Mac (Teams, Meet, Webex too)"
+description: "Why macOS Live Text doesn't work in Zoom meeting windows, what DRM screen-protection means, and three reliable ways to copy text from Zoom, Teams, Meet, and Webex on Mac."
+slug: how-to-ocr-from-zoom-meetings-on-mac
+locale: en
+date: 2026-04-29
+category: How-to
+read_min: 9
+tags: ["Mac OCR", "Zoom", "Microsoft Teams", "Google Meet", "Webex", "video conferencing", "screenshot OCR"]
+template: howto
+key_facts:
+  - "macOS Live Text does not work in Zoom, Microsoft Teams, Google Meet (in Chrome), or Webex meeting windows because they are not AppKit image views"
+  - "Live Text only works inside Apple's own apps (Photos, Preview, Safari, Notes, QuickLook) and WebKit-rendered images"
+  - "Apple ships ScreenCaptureKit since macOS 12.3 (April 2022) for low-overhead screen capture"
+  - "When a meeting host enables DRM screen-protection, Cmd+Shift+4 screenshots return a black rectangle — set by the host, not the meeting app"
+  - "Cheese! OCR uses the Screen Recording permission to read screen pixels; macOS prompts for it on first hotkey use"
+  - "Cheese! OCR's default hotkey is Shift+Command+E and is configurable in Settings"
+  - "Cheese! OCR is built on the Apple Vision framework — same engine as Live Text"
+  - "In ordinary meetings without DRM, Cheese! OCR / Text Sniper / similar Vision-based tools recognize on-screen text fine"
+  - "Apple Vision auto-detects English, Simplified Chinese, Traditional Chinese, Japanese, Korean — no manual language switch"
+  - "Hotkey-drag-paste workflow takes ~2 seconds per text grab once muscle memory kicks in"
+  - "Cheese! OCR's sandbox declares zero network entitlements — verifiable in the Mac App Store privacy report"
+  - "Zoom's built-in 'save chat' and 'save transcript' do not include text on the presenter's slides"
+  - "What Cmd+Shift+4 can capture, Cheese! OCR can also OCR — same underlying screen-capture API"
+internal_links: ["copy-text-from-video-on-mac", "cheese-ocr-vs-live-text", "extract-text-from-screenshot-on-mac"]
+tldr: |
+  macOS Live Text won't work in Zoom, Teams, Meet, or Webex meeting windows because they aren't Apple-native image views. You have three real options: take a screenshot with Cmd+Shift+4 and run it through an OCR tool, use the meeting app's built-in transcript or chat export, or use a hotkey-driven OCR app like Cheese! OCR that reads screen pixels directly. For most people, the screenshot-plus-OCR route is the fastest and most reliable — especially when the presenter's slides contain text that transcripts miss.
+faqs:
+  - q: "Why doesn't macOS Live Text work in Zoom meeting windows?"
+    a: "Live Text only works inside Apple's own apps like Photos, Preview, Safari, Notes, and QuickLook, plus WebKit-rendered images. Zoom, Teams, Meet, and Webex use their own rendering engines that don't expose text to Apple's framework. The meeting window is essentially a video stream, not a static image view."
+  - q: "Can I use Cmd+Shift+4 to screenshot a Zoom meeting and then OCR it?"
+    a: "Yes, as long as the meeting host hasn't enabled DRM screen-protection. If they have, your screenshot will be a black rectangle. In that case, you'll need to use a tool that reads screen pixels directly via the Screen Recording permission, like Cheese! OCR or Text Sniper."
+  - q: "Does Zoom have a built-in way to capture text from slides?"
+    a: "Zoom can save the chat log and meeting transcript, but neither includes text from the presenter's slides or shared screen. If you need text from a slide, you'll need to capture it visually and OCR it. The 'save transcript' feature only captures spoken words, not on-screen content."
+  - q: "Is Cheese! OCR safe to use with confidential meeting content?"
+    a: "Cheese! OCR processes everything on-device using Apple's Vision framework — no data is sent to any server. The app's sandbox declares zero network entitlements, which you can verify in the Mac App Store privacy report. It only needs Screen Recording permission to read pixels, and that permission is granted by macOS on first use."
+---
+
+You're in a Zoom meeting, the presenter flips to a slide with a crucial URL, a product code, or a block of text you need to copy. You reach for Cmd+C — nothing. You try Live Text — nothing. You take a screenshot with Cmd+Shift+4, open it in Preview, and still can't select the text. This is a common frustration for anyone who works with video conferencing tools on a Mac.
+
+The core problem is that macOS Live Text doesn't work inside Zoom, Microsoft Teams, Google Meet (in Chrome), or Webex meeting windows. These apps don't use Apple's native image rendering framework, so Live Text simply has nothing to latch onto. You have three reliable ways to get that text out: the screenshot-plus-OCR route, the meeting app's own built-in features, or a hotkey-driven OCR tool that reads screen pixels directly.
+
+## Method 1: Screenshot + OCR Tool
+
+This is the most straightforward approach. Press Cmd+Shift+4 to capture a portion of the screen, then open the screenshot in an OCR-capable app. You can use the built-in Preview app with Live Text if the screenshot is saved as a file and opened there — but only if the screenshot contains text that Live Text can recognize. For meeting windows, this often fails because the text is rendered as part of a video stream.
+
+A better option is to use a dedicated OCR tool like Text Sniper or Cheese! OCR. After taking the screenshot, drag the image into the tool, and it will extract the text. This works for any text visible on screen, including URLs, code snippets, and slide content. The process takes about 10 seconds once you're used to it.
+
+### When This Method Fails
+
+The screenshot approach fails completely when the meeting host enables DRM screen-protection. In that case, Cmd+Shift+4 returns a black rectangle — the host has set this restriction, not the meeting app itself. You'll see the meeting window normally, but any screenshot tool will capture only black pixels.
+
+Additionally, if you're in a full-screen meeting and the screenshot captures the entire display, Live Text may still not work because the image is treated as a video frame rather than a static document. The only reliable workaround is to use a tool that reads screen pixels directly via the Screen Recording permission.
+
+## Method 2: The Meeting App's Built-in Features
+
+Zoom, Teams, and Meet all offer some form of text capture. Zoom can save the chat log and generate a transcript of spoken words. Teams has a similar feature for meeting recordings and live captions. Google Meet can save captions to a Google Doc.
+
+These features are useful for capturing spoken content and chat messages, but they have a critical blind spot: they don't include text from the presenter's slides, shared screen, or any on-screen annotations. If the presenter shows a slide with a table of data, a code snippet, or a URL, the transcript won't contain it.
+
+### When This Method Fails
+
+The built-in features fail whenever you need text that appears on the presenter's screen but isn't spoken or typed into chat. This is the most common scenario — someone shares a slide with a link, and you need to copy it. The transcript captures "here's the link" but not the actual URL.
+
+Also, these features require the meeting host to enable recording or transcription. If the host hasn't turned them on, you have no access to any text at all. And even when they're enabled, the text is only available after the meeting ends, not in real time.
+
+## Method 3: Use Cheese! OCR
+
+Cheese! OCR solves the problem differently. Instead of waiting for a screenshot file or relying on the meeting app's features, it reads screen pixels directly using the Screen Recording permission. Press the default hotkey Shift+Command+E, drag a selection rectangle over the text you want, and the recognized text appears instantly. Copy it with Cmd+C and paste where you need it.
+
+This approach works in any meeting app — Zoom, Teams, Meet, Webex — because it doesn't depend on the app's rendering engine. It sees the pixels on screen, just like your eyes do. The Apple Vision framework handles text recognition on-device, so there's no network delay and no privacy concern. It auto-detects English, Simplified Chinese, Traditional Chinese, Japanese, and Korean without any manual language switch.
+
+The hotkey-drag-paste workflow takes about two seconds once muscle memory kicks in. You don't need to save a screenshot file, open another app, or wait for processing. It works in real time, even during a live presentation.
+
+## Quick Comparison
+
+| Method | Best for | Limitation |
+|---|---|---|
+| Screenshot + OCR | Static slides, URLs, code snippets | Fails with DRM screen-protection; requires extra steps |
+| App built-in features | Chat logs, spoken transcripts | Misses on-screen text; requires host to enable |
+| Cheese! OCR | Real-time text from any on-screen content | Requires Screen Recording permission; not free |
+
+## Common Troubleshooting
+
+The most common issue is the Screen Recording permission prompt. When you first use Cheese! OCR, macOS will ask for permission to record the screen. You need to grant this in System Settings > Privacy & Security > Screen Recording. Without it, the app can't read pixels.
+
+If your screenshots are coming out black, the meeting host has enabled DRM screen-protection. In this case, only tools that use the Screen Recording API (like Cheese! OCR) can capture the screen. Standard screenshot tools will always return black.
+
+If text isn't being recognized, check that the text is large enough and clearly visible. Apple Vision works best with text that's at least 10-12 points in size. Very small text, heavily stylized fonts, or text on complex backgrounds may not be recognized reliably.

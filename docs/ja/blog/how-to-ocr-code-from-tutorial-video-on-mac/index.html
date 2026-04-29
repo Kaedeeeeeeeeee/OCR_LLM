@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
+
+    <title>Mac でチュートリアル動画からコードをコピーする方法（再入力不要） — Cheese! OCR Blog</title>
+    <meta name="description" content="Safari でしかコードに反応しないライブテキストの制限、注意すべき 0/O の誤認識、ブラウザを問わず一時停止した YouTube や Loom のフレームからコードを OCR する方法。">
+
+    <link rel="canonical" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-to-ocr-code-from-tutorial-video-on-mac/">
+    <link rel="alternate" hreflang="en" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-code-from-tutorial-video-on-mac/">
+    <link rel="alternate" hreflang="zh-Hans" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/zh/blog/how-to-ocr-code-from-tutorial-video-on-mac/">
+    <link rel="alternate" hreflang="ja" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-to-ocr-code-from-tutorial-video-on-mac/">
+    <link rel="alternate" hreflang="ko" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/ko/blog/how-to-ocr-code-from-tutorial-video-on-mac/">
+    <link rel="alternate" hreflang="x-default" href="https://kaedeeeeeeeeee.github.io/OCR_LLM/blog/how-to-ocr-code-from-tutorial-video-on-mac/">
+
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg?v=3">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png">
+
+    <link rel="stylesheet" href="../../../blog/article.css">
+
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Cheese! OCR">
+    <meta property="og:title" content="Mac でチュートリアル動画からコードをコピーする方法（再入力不要）">
+    <meta property="og:description" content="Safari でしかコードに反応しないライブテキストの制限、注意すべき 0/O の誤認識、ブラウザを問わず一時停止した YouTube や Loom のフレームからコードを OCR する方法。">
+    <meta property="og:url" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-to-ocr-code-from-tutorial-video-on-mac/">
+    <meta property="og:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="ja_JP">
+    <meta property="article:published_time" content="2026-04-29">
+    <meta property="article:author" content="Cheese! OCR Team">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mac でチュートリアル動画からコードをコピーする方法（再入力不要）">
+    <meta name="twitter:description" content="Safari でしかコードに反応しないライブテキストの制限、注意すべき 0/O の誤認識、ブラウザを問わず一時停止した YouTube や Loom のフレームからコードを OCR する方法。">
+    <meta name="twitter:image" content="https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png">
+
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Mac でチュートリアル動画からコードをコピーする方法（再入力不要）",
+  "description": "Safari でしかコードに反応しないライブテキストの制限、注意すべき 0/O の誤認識、ブラウザを問わず一時停止した YouTube や Loom のフレームからコードを OCR する方法。",
+  "author": {
+    "@type": "Organization",
+    "name": "Cheese! OCR",
+    "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Cheese! OCR",
+    "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+  },
+  "datePublished": "2026-04-29",
+  "dateModified": "2026-04-29",
+  "image": "https://kaedeeeeeeeeee.github.io/OCR_LLM/og-image.png",
+  "url": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-to-ocr-code-from-tutorial-video-on-mac/",
+  "inLanguage": "ja",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/how-to-ocr-code-from-tutorial-video-on-mac/"
+  }
+}
+    </script>
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "ja",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "ライブテキストは Chrome で一時停止した YouTube 動画でも使えますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "いいえ、使えません。ライブテキストは Safari のレンダリングエンジンに依存して動作するため、Chrome、Firefox、Edge、Brave、Arc などの他ブラウザでは機能しません。これらのブラウザで動画を一時停止しても、テキスト選択はできません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "OCR でコードを読み取った後、必ず手動で確認すべき点はありますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい、特に0とO、1とl（小文字のL）とI（大文字のi）、5とSの混同に注意してください。また、=\u003e が = と認識されたり、→ が \u003e や - になることもあります。OCR 後にコードを実際に実行して、エラーが出ないか確認することをおすすめします。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "ダークテーマのコードブロックでも OCR の精度は変わりませんか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "変わりません。Apple Vision フレームワークはコントラストが高ければ高いほど正確に認識します。ダーク背景に明るい文字のシンタックスハイライトは、むしろ認識しやすい条件です。色の種類は認識精度にほとんど影響しません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cheese! OCR はどのブラウザや動画プレイヤーでも使えますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい、使えます。Cheese! OCR はスクリーンキャプチャ機能を使って画面のピクセルを直接読み取るため、ブラウザや動画プレイヤーの種類に依存しません。Safari 以外のブラウザや、IINA、VLC などのサードパーティ製プレイヤーでも問題なく動作します。"
+      }
+    }
+  ]
+}
+    </script>
+
+    <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Cheese! OCR",
+      "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://kaedeeeeeeeeee.github.io/OCR_LLM/ja/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Mac でチュートリアル動画からコードをコピーする方法（再入力不要）"
+    }
+  ]
+}
+    </script>
+</head>
+<body>
+
+    <nav class="article-nav">
+        <a href="../" class="back-link">← ブログ</a>
+        <div class="lang-switcher">
+            <a href="/OCR_LLM/blog/how-to-ocr-code-from-tutorial-video-on-mac/" hreflang="en">EN</a>
+            <a href="/OCR_LLM/zh/blog/how-to-ocr-code-from-tutorial-video-on-mac/" hreflang="zh-Hans">中文</a>
+            <a href="/OCR_LLM/ja/blog/how-to-ocr-code-from-tutorial-video-on-mac/" aria-current="page" hreflang="ja">日本語</a>
+            <a href="/OCR_LLM/ko/blog/how-to-ocr-code-from-tutorial-video-on-mac/" hreflang="ko">한국어</a>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <h1>Mac でチュートリアル動画からコードをコピーする方法（再入力不要）</h1>
+        <p class="article-meta">
+        <time datetime="2026-04-29">2026年4月29日</time>
+            · 約 8 分
+        </p>
+    </header>
+
+    <aside class="tldr">
+        <strong>要点</strong>
+        チュートリアル動画を一時停止してコードをコピーしたい場合、Safari ではライブテキストが使えますが、Chrome や VLC など他のアプリでは機能しません。この記事では、macOS 標準のスクリーンショット＋OCR ツール、動画アプリ内の字幕機能、そしてブラウザを問わず使える Cheese! OCR の3つの方法を比較します。コードの誤認識（0とOの混同など）やインデントの消失といった注意点も解説します。
+    </aside>
+
+    <article class="article-body">
+<p>チュートリアル動画を見ながら、画面に表示されたコードを手で打ち直した経験はありませんか？ 特に長い設定ファイルや複雑な正規表現を写すのは時間の無駄です。この記事では、動画の一時停止フレームからコードをテキストとして抽出する3つの方法を、それぞれの制限とともに解説します。</p>
+<h2 id="方法1-macos-標準のスクリーンショットとライブテキストを使う">方法1: macOS 標準のスクリーンショットとライブテキストを使う</h2>
+<p>まずは macOS に標準搭載されている機能から試してみましょう。動画を一時停止した状態で、<code>Shift + Command + 4</code> でスクリーンショットを撮ります。撮影直後に画面の右下に表示されるサムネイルをクリックすると、クイックルックが開きます。ここでコード部分をドラッグ選択すれば、ライブテキストが認識したテキストをコピーできます。</p>
+<p>この方法の利点は、追加のアプリをインストールする必要がないことです。ただし、認識されたテキストはインデントが失われることが多く、ペースト後に手動で整形し直す必要があります。また、特殊文字の誤認識にも注意が必要です。</p>
+<h3 id="この方法が使えないケース">この方法が使えないケース</h3>
+<p>ライブテキストは Safari のレンダリングエンジンに依存して動作するため、Chrome、Firefox、Edge、Brave、Arc などのブラウザでは機能しません。また、IINA や VLC などのサードパーティ製動画プレイヤーでも使えません。さらに、スクリーンショットを撮る手間が毎回発生するため、頻繁にコードをコピーする場合には効率的とは言えません。</p>
+<h2 id="方法2-動画アプリ内の字幕トランスクリプト機能を使う">方法2: 動画アプリ内の字幕・トランスクリプト機能を使う</h2>
+<p>YouTube や Loom には、動画の字幕や自動生成されたトランスクリプトを表示する機能があります。YouTube の場合、動画の下にある「その他」メニューから「文字起こしを表示」を選ぶと、タイムスタンプ付きのテキストが表示されます。ここからコードらしき部分をコピーできます。</p>
+<p>この方法の最大の利点は、OCR を一切使わないため誤認識が発生しないことです。ただし、動画の話者がコードを読み上げている場合に限られます。また、トランスクリプトは話し言葉をそのままテキスト化したものであり、コードのインデントや特殊文字は当然含まれていません。</p>
+<h3 id="この方法が使えないケース-1">この方法が使えないケース</h3>
+<p>動画に字幕やトランスクリプトが用意されていない場合、この方法は使えません。また、画面にコードが表示されているだけで話者が読み上げていない場合も同様です。さらに、Loom のトランスクリプトは英語のみ対応していることが多く、日本語のチュートリアルでは利用できないことがあります。</p>
+<h2 id="方法3-cheese-ocr-を使う">方法3: Cheese! OCR を使う</h2>
+<p>Cheese! OCR は、ブラウザや動画プレイヤーの種類を問わず動作する OCR ツールです。デフォルトのホットキーは <code>Shift + Command + E</code> で、設定画面から変更も可能です。動画を一時停止した状態でホットキーを押し、コード部分をドラッグで選択するだけで、認識されたテキストがクリップボードにコピーされます。</p>
+<p>Cheese! OCR は Apple Vision フレームワークを内部で使用しているため、認識精度はライブテキストと同等です。スクリーンキャプチャ機能で画面のピクセルを直接読み取るため、Safari 以外のブラウザやサードパーティ製プレイヤーでも問題なく動作します。また、オンデバイス処理のため、インターネット接続は不要で、プライバシーも保護されます。</p>
+<h2 id="3つの方法を比較">3つの方法を比較</h2>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>最適なケース</th>
+<th>制限</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>スクリーンショット＋ライブテキスト</td>
+<td>Safari のみを使っていて、たまにコードをコピーする場合</td>
+<td>Chrome など他ブラウザでは使えず、毎回スクリーンショットが必要</td>
+</tr>
+<tr>
+<td>字幕・トランスクリプト機能</td>
+<td>話者がコードを読み上げている動画で、誤認識を避けたい場合</td>
+<td>トランスクリプトが存在しない動画では使えず、インデントは再現されない</td>
+</tr>
+<tr>
+<td>Cheese! OCR</td>
+<td>ブラウザを問わず、頻繁にコードをコピーする場合</td>
+<td>Apple Vision の誤認識パターン（0/O など）には注意が必要</td>
+</tr>
+</tbody>
+</table>
+<h2 id="よくあるトラブルと対処法">よくあるトラブルと対処法</h2>
+<p>OCR でコードを読み取った後は、必ず実際に実行して検証してください。特に以下の文字の混同に注意しましょう。0 と O、1 と l（小文字のL）と I（大文字のi）、5 と S、そして <code>rn</code> が <code>m</code> と認識されるケースです。また、Fira Code や Cascadia Code などのプログラミング用フォントで使われる合字（リガチャ）は、<code>→</code> が <code>></code> や <code>-</code> に、<code>=></code> が <code>=</code> に誤認識される原因になります。</p>
+<p>動画の解像度も認識精度に大きく影響します。1080p のソースであれば問題ありませんが、720p 以下の小さなフォントでは誤認識が増えます。可能であれば、動画の画質設定を最高に変更してから一時停止してください。</p>
+    </article>
+
+    <section class="article-faq">
+        <h2>よくある質問</h2>
+        <details class="faq-item">
+            <summary>ライブテキストは Chrome で一時停止した YouTube 動画でも使えますか？</summary>
+            <div class="answer">いいえ、使えません。ライブテキストは Safari のレンダリングエンジンに依存して動作するため、Chrome、Firefox、Edge、Brave、Arc などの他ブラウザでは機能しません。これらのブラウザで動画を一時停止しても、テキスト選択はできません。</div>
+        </details>
+        <details class="faq-item">
+            <summary>OCR でコードを読み取った後、必ず手動で確認すべき点はありますか？</summary>
+            <div class="answer">はい、特に0とO、1とl（小文字のL）とI（大文字のi）、5とSの混同に注意してください。また、=&gt; が = と認識されたり、→ が &gt; や - になることもあります。OCR 後にコードを実際に実行して、エラーが出ないか確認することをおすすめします。</div>
+        </details>
+        <details class="faq-item">
+            <summary>ダークテーマのコードブロックでも OCR の精度は変わりませんか？</summary>
+            <div class="answer">変わりません。Apple Vision フレームワークはコントラストが高ければ高いほど正確に認識します。ダーク背景に明るい文字のシンタックスハイライトは、むしろ認識しやすい条件です。色の種類は認識精度にほとんど影響しません。</div>
+        </details>
+        <details class="faq-item">
+            <summary>Cheese! OCR はどのブラウザや動画プレイヤーでも使えますか？</summary>
+            <div class="answer">はい、使えます。Cheese! OCR はスクリーンキャプチャ機能を使って画面のピクセルを直接読み取るため、ブラウザや動画プレイヤーの種類に依存しません。Safari 以外のブラウザや、IINA、VLC などのサードパーティ製プレイヤーでも問題なく動作します。</div>
+        </details>
+    </section>
+
+    <section class="article-cta">
+        <div class="cta-card">
+            <h2>Cheese! OCR を試す</h2>
+            <p>ホットキー一つ、ドラッグで範囲選択、テキストはクリップボードへ。買い切り $5.99、完全オンデバイス、画面に表示されているものなら何でも対応。</p>
+            <a href="https://apps.apple.com/app/cheese-ocr/id6760889131" class="cta-button">Mac App Store で入手</a>
+        </div>
+    </section>
+
+    <section class="article-related">
+        <h2>関連記事</h2>
+        <div class="related-grid">
+            <a href="../copy-text-from-video-on-mac/" class="related-card">
+                <h3>Mac で動画からテキストをコピーする方法（チュートリアル・会議・あらゆる場面）</h3>
+                <p>一時停止した動画フレームからテキストを取り出す 3 つの方法。DRM 付き会議や Chrome 上のチュートリアルにも。</p>
+            </a>
+            <a href="../extract-text-from-screenshot-on-mac/" class="related-card">
+                <h3>Mac でスクリーンショットからテキストを抽出する方法（3 つの方法を比較）</h3>
+                <p>Live Text、Cmd+Shift+5、Cheese! OCR の 3 つの方法。それぞれをいつ使うべきか。</p>
+            </a>
+            <a href="../how-on-device-ocr-works/" class="related-card">
+                <h3>オンデバイス OCR はどう動くのか：Apple Vision Framework 解説</h3>
+                <p>Apple Vision がデバイス上で OCR を行う仕組み。なぜクラウドより速いのか、プライバシーへの意味は何か。</p>
+            </a>
+        </div>
+    </section>
+
+    <footer class="article-footer">
+        <a href="../../">ホーム</a>
+        <a href="../../../privacy.html">プライバシーポリシー</a>
+        <a href="mailto:nicholaslck@icloud.com">お問い合わせ</a>
+        <p>&copy; 2026 Cheese! OCR. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

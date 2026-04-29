@@ -1,0 +1,82 @@
+---
+title: "How to Copy Code from a Tutorial Video on Mac (Without Retyping)"
+description: "Why Live Text only catches code in Safari, the common 0/O confusion to watch for, and how to OCR code from a paused YouTube or Loom frame in any browser."
+slug: how-to-ocr-code-from-tutorial-video-on-mac
+locale: en
+date: 2026-04-29
+category: How-to
+read_min: 8
+tags: ["Mac OCR", "code", "tutorial video", "YouTube", "Loom", "developer", "screenshot OCR"]
+template: howto
+key_facts:
+  - "Live Text recognizes code in paused video frames inside Safari but does not work in Chrome, Firefox, Edge, Brave, or Arc — they use their own rendering engines"
+  - "Live Text does not work in IINA, VLC, or most third-party Mac video players"
+  - "Apple Vision recognizes monospace fonts well but commonly confuses 0/O, 1/l/I, and similar pairs in code"
+  - "OCR of multi-line code typically loses indentation; you have to re-indent manually after pasting"
+  - "Special characters in code can misrecognize: `→` may read as `>` or `-`, `=>` as `=`, ligatures from Fira Code/Cascadia may produce odd results"
+  - "Higher source resolution improves accuracy substantially — 1080p source is fine, 720p is risky for small fonts"
+  - "Cheese! OCR works in Chrome and any other browser because it reads screen pixels via Screen Recording, not Live Text"
+  - "Cheese! OCR's default hotkey is Shift+Command+E, configurable in Settings"
+  - "Cheese! OCR uses Apple Vision under the hood — accuracy comparable to Live Text on the same content"
+  - "After OCR'ing code, manually validate by running it; common substitutions to search for: 0↔O, 1↔l, 5↔S, rn↔m"
+  - "Tutorial videos on YouTube paused in Safari work with Live Text; the same video paused in Chrome does not"
+  - "Code on dark backgrounds with syntax highlighting recognizes fine — high contrast helps regardless of color scheme"
+internal_links: ["copy-text-from-video-on-mac", "extract-text-from-screenshot-on-mac", "how-on-device-ocr-works"]
+tldr: |
+  If you've ever paused a YouTube tutorial to copy a code snippet, only to find Live Text doesn't work in Chrome, you know the frustration. This guide covers three ways to extract code from a paused video frame on Mac: using Live Text in Safari, grabbing subtitles or transcripts, and using a dedicated OCR tool like Cheese! OCR. For most developers, the fastest path is a hotkey-driven OCR tool that works in any browser or video player.
+faqs:
+  - q: "Does Live Text work with code in paused YouTube videos?"
+    a: "Only if you're using Safari. Live Text works on paused video frames in Safari, but not in Chrome, Firefox, Edge, Brave, or Arc because those browsers use their own rendering engines. If you're not in Safari, you'll need another method."
+  - q: "Will OCR preserve indentation in code?"
+    a: "Usually not. Most OCR tools, including Live Text and Cheese! OCR, recognize characters but don't reliably preserve multi-line indentation. You'll likely need to re-indent after pasting. Some editors can auto-format pasted code, which helps."
+  - q: "What common OCR errors should I watch for in code?"
+    a: "The most frequent mistakes are confusing 0 and O, 1 and l, and 5 and S. Special characters like arrows or ligatures from coding fonts (Fira Code, Cascadia Code) can also misrecognize. Always run the code after pasting to catch these substitutions."
+  - q: "Can I use Cheese! OCR in any browser or video player?"
+    a: "Yes. Cheese! OCR reads screen pixels via Screen Recording permission, so it works in any app that displays video — Chrome, Firefox, IINA, VLC, or QuickTime Player. The default hotkey is Shift+Command+E, and you can customize it in Settings."
+---
+
+You're watching a coding tutorial on YouTube, and the instructor types out a block of code you need. You pause the video, reach for your mouse to highlight the text, and nothing happens. The cursor stays as a pointer. You try again, slower. Still nothing. You're in Chrome, and Live Text doesn't work here.
+
+This is a common frustration for developers who learn from video tutorials. You can either retype the code by hand, or you can use one of three methods to extract it automatically. We'll cover the built-in macOS approach, the source app's own features, and a hotkey-driven OCR tool that works in any browser.
+
+## Use Live Text in Safari
+
+If you're using Safari, Live Text can recognize text in paused video frames. Pause the video at the right moment, then click and drag to select the code. You can copy it with Command+C and paste it into your editor.
+
+This method is fast and requires no extra software. It works with YouTube, Vimeo, and most other video sites. The text recognition is powered by Apple Vision, which handles monospace fonts well.
+
+### When Live Text fails
+
+Live Text only works in Safari. If you use Chrome, Firefox, Edge, Brave, or Arc, you won't see the text selection cursor. It also doesn't work in third-party video players like IINA or VLC. And even in Safari, Live Text can confuse similar characters like 0 and O, or 1 and l, especially in code with small fonts.
+
+## Use the source app's built-in features
+
+Many tutorial platforms offer text alternatives. YouTube has auto-generated captions and a transcript panel. Loom provides a transcript for every video. Some coding tutorial sites include a "copy code" button or a downloadable code file.
+
+Open the transcript or captions panel, find the code snippet, and copy it directly. This avoids OCR entirely and gives you clean text.
+
+### When this method fails
+
+Transcripts don't always include code blocks accurately. Auto-generated captions can mangle syntax, especially with special characters or non-English variable names. And not every platform provides a transcript — some smaller tutorial sites skip this feature entirely.
+
+## Use Cheese! OCR
+
+Cheese! OCR reads text from any part of your screen, regardless of the app displaying it. Press Shift+Command+E, drag a selection rectangle around the code in the paused video, and the text appears in a popup window. Copy it with one click.
+
+This works in Chrome, Firefox, Safari, IINA, VLC — any app that shows video. It uses Apple Vision on-device, so no data leaves your Mac. The default hotkey is configurable in Settings, and you can OCR multiple languages if the tutorial uses mixed text.
+
+Cheese! OCR has the same accuracy as Live Text on the same content, because both use the same underlying framework. The key difference is that Cheese! OCR works everywhere, not just in Safari.
+
+## Quick comparison
+
+| Method | Best for | Limitation |
+|---|---|---|
+| Live Text in Safari | Quick copy in Safari | Only works in Safari |
+| Transcript or captions | Clean text, no OCR errors | Not always available or accurate |
+| Cheese! OCR | Any browser or video player | Requires Screen Recording permission |
+
+## Common troubleshooting
+
+If OCR isn't working, check that you've granted Screen Recording permission in System Settings > Privacy & Security. Without it, tools like Cheese! OCR can't read the screen. Also make sure the video is paused at a frame where the code is clear and in focus. Blurry or low-resolution video (below 720p) will reduce accuracy significantly.
+
+After pasting code from any OCR method, always run it to catch character substitutions. Search for common swaps like 0↔O, 1↔l, 5↔S, and rn↔m. Most editors have a find-and-replace function that makes this quick.

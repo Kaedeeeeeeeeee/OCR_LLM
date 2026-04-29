@@ -1,0 +1,70 @@
+---
+title: "Mac에서 영수증을 OCR하는 방법 (경비 보고서와 연말 정산용)"
+description: "Mac에서 영수증 텍스트를 추출하는 세 가지 방법 — 사진 앱의 라이브 텍스트, 스캔 PDF OCR, 단축키 OCR 도구 — 그리고 각각이 실패하는 경우."
+slug: how-to-ocr-receipt-on-mac
+locale: ko
+date: 2026-04-29
+category: How-to
+read_min: 8
+tags: ["Mac OCR", "영수증", "경비 보고서", "연말 정산", "라이브 텍스트", "스캔 PDF", "스크린샷 OCR"]
+template: howto
+key_facts:
+  - "Photos.app and Preview.app on macOS 12+ support Live Text on receipt photos and PDF scans"
+  - "Apple Vision handles printed receipt thermal-paper text well in good lighting; faded thermal print is unreliable regardless of OCR engine"
+  - "Live Text in Photos surfaces phone numbers, addresses, dates, and amounts as tappable data — useful for receipts"
+  - "PDFs from email receipts (Uber Eats, Amazon, airlines) are usually native PDFs with selectable text already — no OCR needed"
+  - "Scanned PDF receipts (e.g., from a flatbed scanner) need OCR; Preview's Live Text handles many; Adobe Acrobat Pro's OCR or ocrmypdf (open source CLI) handle the rest"
+  - "iPhone Notes and Files apps have a 'Scan Documents' feature that produces searchable PDFs — these are auto-OCR'd"
+  - "For batch receipt processing (expense reports), workflows that work: take photos → AirDrop to Mac → Photos → Live Text select → paste"
+  - "Cheese! OCR works on receipt photos opened in any app, including third-party photo viewers Live Text doesn't reach"
+  - "Apple Vision recognizes English, Simplified/Traditional Chinese, Japanese, Korean, French, German, Italian, Spanish, Portuguese on receipts"
+  - "Receipts in unsupported scripts (Russian/Cyrillic, Arabic, Hebrew, Thai) require Tesseract or a cloud OCR service"
+  - "Receipt amounts with commas vs dots as decimal separator (US vs EU) are preserved — OCR doesn't normalize"
+  - "Cheese! OCR's default hotkey is Shift+Command+E, all processing on-device, no network entitlements — relevant for receipts containing personal info"
+internal_links: ["extract-text-from-screenshot-on-mac", "how-on-device-ocr-works", "ocr-asian-languages-on-mac"]
+tldr: |
+  Mac에서 영수증 텍스트를 추출하는 방법은 크게 세 가지로 나뉩니다. 첫째, macOS 12 이상에 내장된 라이브 텍스트를 사진 앱이나 미리보기에서 사용하는 방법입니다. 둘째, 이메일로 받은 영수증 PDF가 이미 선택 가능한 텍스트를 포함하고 있는지 확인하는 방법입니다. 셋째, Cheese! OCR과 같은 단축키 기반 도구를 사용하여 화면에 표시된 모든 영수증 이미지에서 텍스트를 바로 추출하는 방법입니다. 이 글에서는 각 방법의 구체적인 사용법과 한계점을 설명하며, 특히 라이브 텍스트가 지원하지 않는 앱이나 흐릿한 영수증에서도 작동하는 대안을 제시합니다. 경비 보고서 작성이나 연말 정산을 자주 하는 사용자에게 실질적인 도움이 될 것입니다.
+faqs:
+  - q: "라이브 텍스트가 영수증의 모든 텍스트를 인식하지 못하는 이유는 무엇입니까?"
+    a: "라이브 텍스트는 Apple Vision 프레임워크를 기반으로 하며, 조명이 좋고 선명하게 인쇄된 영수증에서는 매우 정확합니다. 그러나 열전사 영수증은 시간이 지나면서 글자가 흐려지기 때문에 OCR 엔진에 관계없이 인식률이 떨어집니다. 또한 영수증이 기울어져 있거나 반사광이 있으면 텍스트 추출이 실패할 수 있습니다."
+  - q: "이메일로 받은 영수증 PDF에도 OCR이 필요합니까?"
+    a: "대부분의 경우 필요하지 않습니다. Uber Eats, Amazon, 항공사 등에서 발송하는 PDF 영수증은 보통 네이티브 PDF로, 텍스트가 이미 선택 가능한 상태로 포함되어 있습니다. 이런 파일은 미리보기나 Adobe Acrobat에서 바로 텍스트를 복사할 수 있습니다. 반면에 스캐너로 직접 스캔한 PDF는 이미지 형태이므로 OCR이 필요합니다."
+  - q: "Cheese! OCR은 영수증 개인 정보를 어떻게 보호합니까?"
+    a: "Cheese! OCR은 모든 텍스트 인식을 기기 내에서 처리하며, 네트워크 권한이 필요하지 않습니다. 따라서 영수증에 포함된 개인 정보나 결제 내역이 외부 서버로 전송되지 않습니다. 기본 단축키는 Shift+Command+E이며, 화면에 표시된 영수증 이미지에서 바로 텍스트를 추출할 수 있습니다."
+  - q: "러시아어나 아랍어로 된 영수증은 어떻게 OCR합니까?"
+    a: "Apple Vision은 영어, 중국어, 일본어, 한국어, 프랑스어, 독일어, 이탈리아어, 스페인어, 포르투갈어를 지원합니다. 키릴 문자나 아랍어, 히브리어, 태국어 등 지원되지 않는 언어의 영수증은 Tesseract와 같은 오픈 소스 OCR 엔진이나 클라우드 기반 OCR 서비스를 사용해야 합니다. 이 경우 개인 정보 보호에 주의하시기 바랍니다."
+---
+
+영수증 정리를 위해 Mac 앞에 앉아 사진 앱을 열고 찍어둔 영수증 사진을 하나하나 확인하는 상황을 떠올려 보십시오. 금액, 날짜, 업체명을 일일이 타이핑하여 경비 보고서를 작성하거나 연말 정산 자료를 만드는 일은 생각보다 많은 시간을 소모합니다. 이 글에서는 Mac에서 영수증 텍스트를 추출하는 세 가지 방법을 소개합니다. 첫 번째는 macOS에 내장된 라이브 텍스트를 활용하는 방법이고, 두 번째는 이메일로 받은 PDF 영수증을 처리하는 방법이며, 세 번째는 Cheese! OCR과 같은 단축키 기반 도구를 사용하는 방법입니다.
+
+## 사진 앱과 미리보기의 라이브 텍스트로 영수증 OCR하기
+
+macOS 12 Monterey부터 도입된 라이브 텍스트는 사진 앱과 미리보기에서 영수증 사진이나 스캔 PDF의 텍스트를 인식합니다. 사진 앱에서 영수증 이미지를 열고 텍스트 위로 마우스를 가져가면 커서가 텍스트 선택 아이콘으로 바뀝니다. 여기서 원하는 부분을 드래그하여 선택한 후 Command+C로 복사하면 됩니다. 미리보기에서도 동일한 방식으로 작동하며, PDF로 스캔된 영수증도 지원합니다. 특히 라이브 텍스트는 전화번호, 주소, 날짜, 금액을 탭 가능한 데이터로 인식하므로 영수증 정보를 빠르게 추출하는 데 유용합니다.
+
+### 라이브 텍스트가 영수증 인식에 실패하는 경우
+
+라이브 텍스트는 Apple Vision 프레임워크를 기반으로 하며, 조명이 좋고 선명하게 인쇄된 영수증에서는 높은 정확도를 보입니다. 그러나 열전사 영수증은 시간이 지나면서 글자가 흐려지기 때문에 어떤 OCR 엔진을 사용하더라도 인식률이 크게 떨어집니다. 또한 영수증이 기울어져 있거나 반사광이 심한 경우, 또는 사진이 흔들려 촬영된 경우에도 텍스트 추출이 실패할 수 있습니다. 라이브 텍스트는 사진 앱과 미리보기, Safari, Quick Look 등 Apple 앱에서만 작동하므로 타사 이미지 뷰어에서는 사용할 수 없다는 점도 한계입니다.
+
+## 이메일 영수증 PDF 처리하기: OCR이 필요 없는 경우와 필요한 경우
+
+Uber Eats, Amazon, 항공사 등에서 이메일로 발송하는 PDF 영수증은 대부분 네이티브 PDF입니다. 즉, 텍스트가 이미 선택 가능한 상태로 포함되어 있어 OCR이 전혀 필요하지 않습니다. 이런 파일은 미리보기나 Adobe Acrobat에서 바로 텍스트를 드래그하여 복사할 수 있습니다. 반면에 플랫베드 스캐너로 직접 스캔한 PDF는 이미지 형태이므로 OCR 처리가 필요합니다. 미리보기의 라이브 텍스트가 많은 경우를 처리할 수 있지만, 실패할 경우 Adobe Acrobat Pro의 OCR 기능이나 오픈 소스 CLI 도구인 ocrmypdf를 사용할 수 있습니다. iPhone의 메모 앱이나 파일 앱에 내장된 '문서 스캔' 기능은 스캔과 동시에 검색 가능한 PDF를 생성하므로 별도의 OCR 작업이 필요하지 않습니다.
+
+### 스캔 PDF OCR이 실패하는 경우
+
+스캔 PDF의 해상도가 낮거나 문서가 구겨져 있어 글자가 겹치는 경우 OCR 정확도가 급격히 떨어집니다. 또한 영수증에 사용된 폰트가 비표준이거나 손글씨가 포함된 경우에도 인식이 어렵습니다. 이런 상황에서는 Adobe Acrobat Pro의 '텍스트 인식' 기능이나 ocrmypdf의 전처리 옵션을 조정하여 개선할 수 있지만, 완벽한 결과를 보장하지는 않습니다.
+
+## Cheese! OCR로 모든 앱에서 영수증 텍스트 추출하기
+
+Cheese! OCR은 화면에 표시된 모든 영수증 이미지에서 텍스트를 추출할 수 있는 단축키 기반 도구입니다. 기본 단축키는 Shift+Command+E이며, 이 단축키를 누르면 화면의 일부를 드래그하여 선택할 수 있습니다. 선택한 영역의 텍스트가 즉시 인식되어 클립보드에 복사되므로, 바로 경비 보고서나 스프레드시트에 붙여넣을 수 있습니다. 이 도구는 라이브 텍스트가 지원되지 않는 타사 이미지 뷰어나 웹 브라우저에서도 작동합니다. 모든 처리는 Apple Vision 프레임워크를 사용하여 기기 내에서 이루어지므로 네트워크 연결이 필요 없으며, 영수증에 포함된 개인 정보가 외부로 유출될 위험이 없습니다. Apple Vision은 영어, 중국어, 일본어, 한국어, 프랑스어, 독일어, 이탈리아어, 스페인어, 포르투갈어를 지원하므로 다국어 영수증 처리에도 적합합니다.
+
+## 세 가지 방법 비교
+
+| 방법 | 최적 사용 사례 | 한계 |
+|---|---|---|
+| 라이브 텍스트 (사진 앱/미리보기) | Apple 앱 내에서 영수증 사진이나 스캔 PDF 처리 | 타사 앱 미지원, 흐릿한 열전사 영수증 인식 불가 |
+| 이메일 PDF 직접 복사 | 네이티브 PDF 영수증 (Uber Eats, Amazon 등) | 스캔 PDF는 OCR 필요, 대량 처리에 비효율적 |
+| Cheese! OCR | 모든 앱에서 화면에 표시된 영수증 텍스트 즉시 추출 | Apple Vision 미지원 언어(러시아어, 아랍어 등) 처리 불가 |
+
+## 일반적인 문제 해결
+
+OCR 작업 중 가장 흔히 발생하는 문제는 권한 설정입니다. Cheese! OCR은 화면 녹화 권한이 필요하며, macOS 설정에서 이 권한을 활성화해야 합니다. 또한 스크린샷을 찍을 때 영수증 이미지가 흰색으로 빈 화면처럼 보이는 경우가 있는데, 이는 일부 앱이 화면 캡처를 차단하기 때문입니다. 이런 경우 해당 앱의 설정에서 화면 캡처를 허용해야 합니다. 언어 인식 문제가 발생하면 영수증에 사용된 언어가 Apple Vision의 지원 언어 목록에 포함되어 있는지 확인하십시오. 지원되지 않는 언어의 영수증은 Tesseract나 클라우드 OCR 서비스를 고려해야 합니다.

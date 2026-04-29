@@ -1,0 +1,78 @@
+---
+title: "Mac でチュートリアル動画からコードをコピーする方法（再入力不要）"
+description: "Safari でしかコードに反応しないライブテキストの制限、注意すべき 0/O の誤認識、ブラウザを問わず一時停止した YouTube や Loom のフレームからコードを OCR する方法。"
+slug: how-to-ocr-code-from-tutorial-video-on-mac
+locale: ja
+date: 2026-04-29
+category: How-to
+read_min: 8
+tags: ["Mac OCR", "コード", "チュートリアル動画", "YouTube", "Loom", "開発者", "スクリーンショット OCR"]
+template: howto
+key_facts:
+  - "Live Text recognizes code in paused video frames inside Safari but does not work in Chrome, Firefox, Edge, Brave, or Arc — they use their own rendering engines"
+  - "Live Text does not work in IINA, VLC, or most third-party Mac video players"
+  - "Apple Vision recognizes monospace fonts well but commonly confuses 0/O, 1/l/I, and similar pairs in code"
+  - "OCR of multi-line code typically loses indentation; you have to re-indent manually after pasting"
+  - "Special characters in code can misrecognize: `→` may read as `>` or `-`, `=>` as `=`, ligatures from Fira Code/Cascadia may produce odd results"
+  - "Higher source resolution improves accuracy substantially — 1080p source is fine, 720p is risky for small fonts"
+  - "Cheese! OCR works in Chrome and any other browser because it reads screen pixels via Screen Recording, not Live Text"
+  - "Cheese! OCR's default hotkey is Shift+Command+E, configurable in Settings"
+  - "Cheese! OCR uses Apple Vision under the hood — accuracy comparable to Live Text on the same content"
+  - "After OCR'ing code, manually validate by running it; common substitutions to search for: 0↔O, 1↔l, 5↔S, rn↔m"
+  - "Tutorial videos on YouTube paused in Safari work with Live Text; the same video paused in Chrome does not"
+  - "Code on dark backgrounds with syntax highlighting recognizes fine — high contrast helps regardless of color scheme"
+internal_links: ["copy-text-from-video-on-mac", "extract-text-from-screenshot-on-mac", "how-on-device-ocr-works"]
+tldr: |
+  チュートリアル動画を一時停止してコードをコピーしたい場合、Safari ではライブテキストが使えますが、Chrome や VLC など他のアプリでは機能しません。この記事では、macOS 標準のスクリーンショット＋OCR ツール、動画アプリ内の字幕機能、そしてブラウザを問わず使える Cheese! OCR の3つの方法を比較します。コードの誤認識（0とOの混同など）やインデントの消失といった注意点も解説します。
+faqs:
+  - q: "ライブテキストは Chrome で一時停止した YouTube 動画でも使えますか？"
+    a: "いいえ、使えません。ライブテキストは Safari のレンダリングエンジンに依存して動作するため、Chrome、Firefox、Edge、Brave、Arc などの他ブラウザでは機能しません。これらのブラウザで動画を一時停止しても、テキスト選択はできません。"
+  - q: "OCR でコードを読み取った後、必ず手動で確認すべき点はありますか？"
+    a: "はい、特に0とO、1とl（小文字のL）とI（大文字のi）、5とSの混同に注意してください。また、`=>` が `=` と認識されたり、`→` が `>` や `-` になることもあります。OCR 後にコードを実際に実行して、エラーが出ないか確認することをおすすめします。"
+  - q: "ダークテーマのコードブロックでも OCR の精度は変わりませんか？"
+    a: "変わりません。Apple Vision フレームワークはコントラストが高ければ高いほど正確に認識します。ダーク背景に明るい文字のシンタックスハイライトは、むしろ認識しやすい条件です。色の種類は認識精度にほとんど影響しません。"
+  - q: "Cheese! OCR はどのブラウザや動画プレイヤーでも使えますか？"
+    a: "はい、使えます。Cheese! OCR はスクリーンキャプチャ機能を使って画面のピクセルを直接読み取るため、ブラウザや動画プレイヤーの種類に依存しません。Safari 以外のブラウザや、IINA、VLC などのサードパーティ製プレイヤーでも問題なく動作します。"
+---
+
+チュートリアル動画を見ながら、画面に表示されたコードを手で打ち直した経験はありませんか？ 特に長い設定ファイルや複雑な正規表現を写すのは時間の無駄です。この記事では、動画の一時停止フレームからコードをテキストとして抽出する3つの方法を、それぞれの制限とともに解説します。
+
+## 方法1: macOS 標準のスクリーンショットとライブテキストを使う
+
+まずは macOS に標準搭載されている機能から試してみましょう。動画を一時停止した状態で、`Shift + Command + 4` でスクリーンショットを撮ります。撮影直後に画面の右下に表示されるサムネイルをクリックすると、クイックルックが開きます。ここでコード部分をドラッグ選択すれば、ライブテキストが認識したテキストをコピーできます。
+
+この方法の利点は、追加のアプリをインストールする必要がないことです。ただし、認識されたテキストはインデントが失われることが多く、ペースト後に手動で整形し直す必要があります。また、特殊文字の誤認識にも注意が必要です。
+
+### この方法が使えないケース
+
+ライブテキストは Safari のレンダリングエンジンに依存して動作するため、Chrome、Firefox、Edge、Brave、Arc などのブラウザでは機能しません。また、IINA や VLC などのサードパーティ製動画プレイヤーでも使えません。さらに、スクリーンショットを撮る手間が毎回発生するため、頻繁にコードをコピーする場合には効率的とは言えません。
+
+## 方法2: 動画アプリ内の字幕・トランスクリプト機能を使う
+
+YouTube や Loom には、動画の字幕や自動生成されたトランスクリプトを表示する機能があります。YouTube の場合、動画の下にある「その他」メニューから「文字起こしを表示」を選ぶと、タイムスタンプ付きのテキストが表示されます。ここからコードらしき部分をコピーできます。
+
+この方法の最大の利点は、OCR を一切使わないため誤認識が発生しないことです。ただし、動画の話者がコードを読み上げている場合に限られます。また、トランスクリプトは話し言葉をそのままテキスト化したものであり、コードのインデントや特殊文字は当然含まれていません。
+
+### この方法が使えないケース
+
+動画に字幕やトランスクリプトが用意されていない場合、この方法は使えません。また、画面にコードが表示されているだけで話者が読み上げていない場合も同様です。さらに、Loom のトランスクリプトは英語のみ対応していることが多く、日本語のチュートリアルでは利用できないことがあります。
+
+## 方法3: Cheese! OCR を使う
+
+Cheese! OCR は、ブラウザや動画プレイヤーの種類を問わず動作する OCR ツールです。デフォルトのホットキーは `Shift + Command + E` で、設定画面から変更も可能です。動画を一時停止した状態でホットキーを押し、コード部分をドラッグで選択するだけで、認識されたテキストがクリップボードにコピーされます。
+
+Cheese! OCR は Apple Vision フレームワークを内部で使用しているため、認識精度はライブテキストと同等です。スクリーンキャプチャ機能で画面のピクセルを直接読み取るため、Safari 以外のブラウザやサードパーティ製プレイヤーでも問題なく動作します。また、オンデバイス処理のため、インターネット接続は不要で、プライバシーも保護されます。
+
+## 3つの方法を比較
+
+| 方法 | 最適なケース | 制限 |
+|---|---|---|
+| スクリーンショット＋ライブテキスト | Safari のみを使っていて、たまにコードをコピーする場合 | Chrome など他ブラウザでは使えず、毎回スクリーンショットが必要 |
+| 字幕・トランスクリプト機能 | 話者がコードを読み上げている動画で、誤認識を避けたい場合 | トランスクリプトが存在しない動画では使えず、インデントは再現されない |
+| Cheese! OCR | ブラウザを問わず、頻繁にコードをコピーする場合 | Apple Vision の誤認識パターン（0/O など）には注意が必要 |
+
+## よくあるトラブルと対処法
+
+OCR でコードを読み取った後は、必ず実際に実行して検証してください。特に以下の文字の混同に注意しましょう。0 と O、1 と l（小文字のL）と I（大文字のi）、5 と S、そして `rn` が `m` と認識されるケースです。また、Fira Code や Cascadia Code などのプログラミング用フォントで使われる合字（リガチャ）は、`→` が `>` や `-` に、`=>` が `=` に誤認識される原因になります。
+
+動画の解像度も認識精度に大きく影響します。1080p のソースであれば問題ありませんが、720p 以下の小さなフォントでは誤認識が増えます。可能であれば、動画の画質設定を最高に変更してから一時停止してください。
