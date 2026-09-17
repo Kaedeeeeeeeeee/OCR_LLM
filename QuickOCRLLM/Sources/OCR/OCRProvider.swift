@@ -10,11 +10,13 @@ protocol OCRProvider {
 enum OCRProviderError: Error, LocalizedError {
     case invalidResponse
     case requestFailed(String)
+    case timedOut
 
     var errorDescription: String? {
         switch self {
         case .invalidResponse: return "Invalid response"
         case .requestFailed(let s): return s
+        case .timedOut: return "OCR timed out"
         }
     }
 }

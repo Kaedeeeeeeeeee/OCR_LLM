@@ -58,8 +58,10 @@ final class MenuBarController: NSObject, NSMenuDelegate {
         menu.removeAllItems()
         let target = self
         
-        let captureItem = menu.addItem(withTitle: "Capture and OCR".localized, action: #selector(capture), keyEquivalent: "e")
+        let captureTitle = viewModel.isCapturing ? "Recognizing text…".localized : "Capture and OCR".localized
+        let captureItem = menu.addItem(withTitle: captureTitle, action: #selector(capture), keyEquivalent: "e")
         captureItem.keyEquivalentModifierMask = [.command, .shift]
+        captureItem.isEnabled = !viewModel.isCapturing
         
         menu.addItem(NSMenuItem.separator())
         

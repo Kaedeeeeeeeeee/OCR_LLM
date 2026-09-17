@@ -121,6 +121,8 @@ final class LocalizationService: ObservableObject {
         
         // App Logic
         "OCR failed": ["zh-Hans": "识别失败", "ja": "OCR 失敗", "en": "OCR failed"],
+        "OCR timed out": ["zh-Hans": "识别超时，请重试", "ja": "OCR がタイムアウトしました。もう一度お試しください。", "en": "OCR timed out. Please try again."],
+        "Recognizing text…": ["zh-Hans": "正在识别文字…", "ja": "テキストを認識中…", "en": "Recognizing text…"],
         "Please enable 'Screen Recording' permission in System Settings and restart the app.": [
             "zh-Hans": "请在系统设置中为本应用开启‘屏幕录制’权限，然后重启应用。",
             "ja": "システム設定で「画面収録」の権限を有効にしてから、アプリを再起動してください。",

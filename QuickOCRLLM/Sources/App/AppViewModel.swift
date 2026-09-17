@@ -41,6 +41,7 @@ final class AppViewModel: ObservableObject {
             let data = try await NativeScreencapture.captureSelectionToPNG()
             guard let data else { return }
 
+            HUDManager.shared.show(text: "Recognizing text…".localized, icon: "text.viewfinder")
             let provider = VisionOCRProvider()
             let text = try await provider.recognize(imageData: data, mode: .plainText, languageHint: nil, timeout: 20)
 

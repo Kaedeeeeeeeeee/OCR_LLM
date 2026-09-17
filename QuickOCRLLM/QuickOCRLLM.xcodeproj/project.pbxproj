@@ -28,6 +28,8 @@
 		CEDDD1FB2EA3D3F600C6085F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEDDD1F72EA3D3F600C6085F /* Assets.xcassets */; };
 		CEDDD1FE2EA3D3CD00C6085F /* LaunchAtLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDDD1FD2EA3D3CD00C6085F /* LaunchAtLoginService.swift */; };
 		E146CE1A8DBD4EB2B5659217 /* VisionOCRProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E075538C23C4694BAE86C64 /* VisionOCRProvider.swift */; };
+		A09170000000000000000001 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A09170000000000000000002; };
+		A09170000000000000000003 /* CheeseOCRWorker in Embed OCR Worker */ = {isa = PBXBuildFile; fileRef = A09170000000000000000004; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +47,12 @@
 			remoteGlobalIDString = CEDDD1972EA3D30800C6085F;
 			remoteInfo = QuickOCRLLM;
 		};
+		A0917000000000000000000B /* PBXContainerItemProxy */ = {isa = PBXContainerItemProxy; containerPortal = CEDDD1902EA3D30800C6085F; proxyType = 1; remoteGlobalIDString = A09170000000000000000007; remoteInfo = CheeseOCRWorker; };
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A0917000000000000000000A /* Embed OCR Worker */ = {isa = PBXCopyFilesBuildPhase; buildActionMask = 2147483647; dstPath = ""; dstSubfolderSpec = 6; files = (A09170000000000000000003, ); name = "Embed OCR Worker"; runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7E075538C23C4694BAE86C64 /* VisionOCRProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionOCRProvider.swift; sourceTree = "<group>"; };
@@ -74,6 +81,9 @@
 		CEDDD1F72EA3D3F600C6085F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEDDD1F92EA3D3F600C6085F /* QuickOCRLLM.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuickOCRLLM.entitlements; sourceTree = "<group>"; };
 		CEDDD1FD2EA3D3CD00C6085F /* LaunchAtLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLoginService.swift; sourceTree = "<group>"; };
+		A09170000000000000000002 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		A09170000000000000000004 /* CheeseOCRWorker */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = CheeseOCRWorker; sourceTree = BUILT_PRODUCTS_DIR; };
+		A09170000000000000000005 /* OCRWorker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OCRWorker.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -122,6 +132,7 @@
 		CEDDD18F2EA3D30800C6085F = {
 			isa = PBXGroup;
 			children = (
+				A09170000000000000000006 /* OCRWorker */,
 				CEDDD1F72EA3D3F600C6085F /* Assets.xcassets */,
 				CEDDD1F92EA3D3F600C6085F /* QuickOCRLLM.entitlements */,
 				A1B2C3D42EA4000000000000 /* PrivacyInfo.xcprivacy */,
@@ -136,6 +147,7 @@
 		CEDDD1992EA3D30800C6085F /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				A09170000000000000000004 /* CheeseOCRWorker */,
 				CEDDD1982EA3D30800C6085F /* Cheese! OCR.app */,
 				CEDDD1A52EA3D30A00C6085F /* QuickOCRLLMTests.xctest */,
 				CEDDD1AF2EA3D30A00C6085F /* QuickOCRLLMUITests.xctest */,
@@ -234,6 +246,7 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
+		A09170000000000000000006 /* OCRWorker */ = {isa = PBXGroup; children = (A09170000000000000000002, A09170000000000000000005, ); path = OCRWorker; sourceTree = "<group>"; };
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -244,10 +257,12 @@
 				CEDDD1942EA3D30800C6085F /* Sources */,
 				CEDDD1952EA3D30800C6085F /* Frameworks */,
 				CEDDD1962EA3D30800C6085F /* Resources */,
+				A0917000000000000000000A /* Embed OCR Worker */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A0917000000000000000000C /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				CEDDD19A2EA3D30800C6085F /* QuickOCRLLM */,
@@ -305,6 +320,17 @@
 			productReference = CEDDD1AF2EA3D30A00C6085F /* QuickOCRLLMUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		A09170000000000000000007 /* CheeseOCRWorker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A09170000000000000000008;
+			buildPhases = (A09170000000000000000009, );
+			buildRules = ();
+			dependencies = ();
+			name = CheeseOCRWorker;
+			productName = CheeseOCRWorker;
+			productReference = A09170000000000000000004;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -342,6 +368,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				A09170000000000000000007 /* CheeseOCRWorker */,
 				CEDDD1972EA3D30800C6085F /* QuickOCRLLM */,
 				CEDDD1A42EA3D30A00C6085F /* QuickOCRLLMTests */,
 				CEDDD1AE2EA3D30A00C6085F /* QuickOCRLLMUITests */,
@@ -416,6 +443,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A09170000000000000000009 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A09170000000000000000001, ); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -429,6 +457,7 @@
 			target = CEDDD1972EA3D30800C6085F /* QuickOCRLLM */;
 			targetProxy = CEDDD1B02EA3D30A00C6085F /* PBXContainerItemProxy */;
 		};
+		A0917000000000000000000C /* PBXTargetDependency */ = {isa = PBXTargetDependency; target = A09170000000000000000007; targetProxy = A0917000000000000000000B; };
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -561,7 +590,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = Y4FV6WUU4V;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -616,7 +645,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = Y4FV6WUU4V;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -679,7 +708,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QuickOCRLLM.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/QuickOCRLLM";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cheese! OCR.app/Contents/MacOS/Cheese! OCR";
 			};
 			name = Debug;
 		};
@@ -700,7 +729,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QuickOCRLLM.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/QuickOCRLLM";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cheese! OCR.app/Contents/MacOS/Cheese! OCR";
 			};
 			name = Release;
 		};
@@ -739,6 +768,44 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = QuickOCRLLM;
+			};
+			name = Release;
+		};
+		A0917000000000000000000D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = OCRWorker/OCRWorker.entitlements;
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
+				OTHER_CODE_SIGN_FLAGS = "$(inherited) -i $(PRODUCT_BUNDLE_IDENTIFIER)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y4FV6WUU4V;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cheeseocr.app.worker;
+				PRODUCT_NAME = CheeseOCRWorker;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A0917000000000000000000E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = OCRWorker/OCRWorker.entitlements;
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
+				OTHER_CODE_SIGN_FLAGS = "$(inherited) -i $(PRODUCT_BUNDLE_IDENTIFIER)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y4FV6WUU4V;
+				ENABLE_HARDENED_RUNTIME = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cheeseocr.app.worker;
+				PRODUCT_NAME = CheeseOCRWorker;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -781,6 +848,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		A09170000000000000000008 /* Worker configurations */ = {isa = XCConfigurationList; buildConfigurations = (A0917000000000000000000D, A0917000000000000000000E, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
 /* End XCConfigurationList section */
 	};
 	rootObject = CEDDD1902EA3D30800C6085F /* Project object */;
