@@ -1,0 +1,5 @@
+{
+  "en-US": "Improved OCR reliability.\n- Automatically recovers from certain text recognition engine failures.\n- Improved handling of stalled recognition so you can try again.\n- Added a clearer indication while text recognition is running.\nText recognition continues to run entirely on your Mac.",
+  "zh-Hans": "提升了文字识别的稳定性。\n- 识别引擎出现特定异常时，自动恢复并重试。\n- 改进识别卡住时的处理，方便重新发起识别。\n- 新增更清晰的正在识别提示。\n文字识别仍完全在 Mac 本地完成。",
+  "ja": "文字認識の安定性を向上しました。\n- 認識エンジンで特定のエラーが発生した場合、自動的に復旧して再試行します。\n- 認識が応答しなくなった場合の処理を改善しました。\n- 文字認識中であることを分かりやすく表示します。\n文字認識は引き続き、すべて Mac 上で行われます。"
+}

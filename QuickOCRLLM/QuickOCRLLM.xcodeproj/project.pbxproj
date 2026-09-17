@@ -616,7 +616,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cheeseocr.app;
 				PRODUCT_NAME = "Cheese! OCR";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -671,7 +671,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cheeseocr.app;
 				PRODUCT_NAME = "Cheese! OCR";
 				PROVISIONING_PROFILE_SPECIFIER = "";
